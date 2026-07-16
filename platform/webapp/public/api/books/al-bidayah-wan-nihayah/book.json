@@ -1,0 +1,26 @@
+{
+  "id": "book-bidayah",
+  "type": "BOOK",
+  "slug": "al-bidayah-wan-nihayah",
+  "status": "published",
+  "title": {
+    "ar": "البداية والنهاية",
+    "en": "Al-Bidayah wa'n-Nihayah"
+  },
+  "attributes": {
+    "kind": "book",
+    "author": {
+      "ar": "ابن كثير",
+      "en": "Ibn Kathir"
+    },
+    "eraLabel": "701–774 AH"
+  },
+  "digitization": {
+    "totalUnits": 14,
+    "unit": {
+      "ar": "مجلدًا",
+      "en": "volumes"
+    }
+  },
+  "schemaVersion": 1
+}

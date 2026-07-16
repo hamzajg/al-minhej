@@ -1,0 +1,26 @@
+{
+  "id": "book-bukhari",
+  "type": "BOOK",
+  "slug": "sahih-al-bukhari",
+  "status": "published",
+  "title": {
+    "ar": "صحيح البخاري",
+    "en": "Sahih al-Bukhari"
+  },
+  "attributes": {
+    "kind": "book",
+    "author": {
+      "ar": "الإمام البخاري",
+      "en": "Imam al-Bukhari"
+    },
+    "eraLabel": "194–256 AH"
+  },
+  "digitization": {
+    "totalUnits": 7563,
+    "unit": {
+      "ar": "حديث",
+      "en": "hadith"
+    }
+  },
+  "schemaVersion": 1
+}

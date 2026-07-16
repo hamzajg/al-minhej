@@ -1,0 +1,26 @@
+{
+  "id": "book-jami-ulum",
+  "type": "BOOK",
+  "slug": "jami-al-ulum-wal-hikam",
+  "status": "published",
+  "title": {
+    "ar": "جامع العلوم والحكم",
+    "en": "Jami' al-'Ulum wal-Hikam"
+  },
+  "attributes": {
+    "kind": "book",
+    "author": {
+      "ar": "ابن رجب الحنبلي",
+      "en": "Ibn Rajab al-Hanbali"
+    },
+    "eraLabel": "736–795 AH"
+  },
+  "digitization": {
+    "totalUnits": 50,
+    "unit": {
+      "ar": "بابًا",
+      "en": "chapters"
+    }
+  },
+  "schemaVersion": 1
+}

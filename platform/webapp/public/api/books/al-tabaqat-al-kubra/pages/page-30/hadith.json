@@ -1,0 +1,128 @@
+{
+  "page": {
+    "id": "page-tabaqat-umar",
+    "slug": "tabaqat-umar",
+    "title": {
+      "ar": "ترجمة عمر — الطبقات",
+      "en": "Biography of 'Umar — Tabaqat"
+    },
+    "pageNum": 30,
+    "bookId": "book-tabaqat",
+    "readingNodeId": "hadith-tabaqat-1"
+  },
+  "hadiths": [
+    {
+      "id": "hadith-tabaqat-1",
+      "slug": "tabaqat-1",
+      "title": {
+        "ar": "ذِكْرُ رَسُولِ اللَّهِ ﷺ وَطَبَقَاتُ أَصْحَابِهِ",
+        "en": "The Prophet ﷺ and the generations of his Companions"
+      },
+      "attributes": {
+        "kind": "hadith",
+        "grade": {
+          "ar": "سيرة وتاريخ",
+          "en": "Biography & History"
+        }
+      },
+      "content": [
+        {
+          "type": "clauses",
+          "introAr": "ذَكَرَ مُحَمَّدُ بْنُ سَعْدٍ فِي «الطَّبَقَاتِ الْكُبْرَى» بَدْءَ خَلْقِ النَّبِيِّ ﷺ وَنَسَبَهُ:",
+          "introSub": {
+            "en": "Muhammad ibn Sa'd, in al-Tabaqat al-Kubra, begins with the creation of the Prophet ﷺ and his lineage:",
+            "fr": "Muhammad ibn Sa'd, dans al-Tabaqat al-Kubra, commence par la création du Prophète ﷺ et sa lignée :",
+            "es": "Muhammad ibn Sa'd, en al-Tabaqat al-Kubra, comienza con la creación del Profeta ﷺ y su linaje:"
+          },
+          "items": [
+            {
+              "id": 1,
+              "ar": "هُوَ مُحَمَّدُ بْنُ عَبْدِ اللَّهِ بْنِ عَبْدِ الْمُطَّلِبِ بْنِ هَاشِمٍ، مِنْ قُرَيْشٍ،",
+              "en": "He is Muhammad ibn 'Abd Allah ibn 'Abd al-Muttalib ibn Hashim, of the tribe of Quraysh,",
+              "fr": "Il est Muhammad ibn 'Abd Allah ibn 'Abd al-Muttalib ibn Hashim, de la tribu de Quraysh,",
+              "es": "Él es Muhammad ibn 'Abd Allah ibn 'Abd al-Muttalib ibn Hashim, de la tribu de Quraysh,"
+            },
+            {
+              "id": 2,
+              "ar": "وَقُرَيْشٌ أَشْرَفُ عَرَبِ الْمَشْرِقِ وَالْمَغْرِبِ نَسَبًا،",
+              "en": "and Quraysh is the noblest of the Arabs of east and west in lineage,",
+              "fr": "et Quraysh est la plus noble des tribus arabes, d'Orient comme d'Occident, par sa lignée,",
+              "es": "y Quraysh es la más noble de las tribus árabes, de Oriente y Occidente, por su linaje,"
+            },
+            {
+              "id": 3,
+              "ar": "وَهُوَ خَاتَمُ النَّبِيِّينَ، صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ.",
+              "en": "and he is the Seal of the Prophets, may God bless him and grant him peace.",
+              "fr": "et il est le Sceau des prophètes, que la paix et la bénédiction de Dieu soient sur lui.",
+              "es": "y él es el Sello de los Profetas, que la paz y las bendiciones de Dios sean con él."
+            }
+          ]
+        },
+        {
+          "type": "vocabulary",
+          "entries": [
+            {
+              "id": "nabi",
+              "word": "النَّبِيِّ",
+              "root": "ن-ب-أ",
+              "pron": "an-nabiyy",
+              "occ": 1,
+              "en": "the Prophet",
+              "ar": "النبي محمد ﷺ",
+              "nodeId": "narrator-prophet"
+            },
+            {
+              "id": "quraysh",
+              "word": "قُرَيْشٍ",
+              "root": "ق-ر-ش",
+              "pron": "Quraysh",
+              "occ": 1,
+              "en": "Quraysh (the Prophet's tribe)",
+              "ar": "قريش"
+            },
+            {
+              "id": "khatam",
+              "word": "خَاتَمُ",
+              "root": "خ-ت-م",
+              "pron": "khatam",
+              "occ": 1,
+              "en": "the Seal (final)",
+              "ar": "الخاتم"
+            }
+          ]
+        },
+        {
+          "type": "context",
+          "title": {
+            "ar": "لماذا تُفتتح الطبقات بالنبي ﷺ؟",
+            "en": "Why does al-Tabaqat begin with the Prophet ﷺ?"
+          },
+          "body": {
+            "en": "Ibn Sa'd arranges the book by 'tabaqat' (generations): he opens with the Prophet ﷺ, then the first generation of his Companions, then the Followers — the structure that gives the work its name.",
+            "ar": "رتّب ابن سعد كتابه على «الطبقات»: يبدأ بالنبي ﷺ، ثم الجيل الأول من أصحابه، ثم التابعين — وهو الهيكل الذي سُمّي به الكتاب."
+          }
+        }
+      ],
+      "schemaVersion": 1
+    },
+    {
+      "id": "narrator-umar",
+      "slug": "umar-ibn-al-khattab",
+      "title": {
+        "ar": "عمر بن الخطاب",
+        "en": "'Umar ibn al-Khattab"
+      },
+      "attributes": {
+        "kind": "narrator",
+        "dates": "c. 584–644 CE",
+        "grade": {
+          "ar": "صحابي",
+          "en": "Companion (Sahabi)"
+        },
+        "isnadDepth": 1
+      },
+      "content": [],
+      "schemaVersion": 1
+    }
+  ]
+}

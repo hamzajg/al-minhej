@@ -1,0 +1,26 @@
+{
+  "id": "book-fathalbari",
+  "type": "BOOK",
+  "slug": "fath-al-bari",
+  "status": "published",
+  "title": {
+    "ar": "فتح الباري بشرح صحيح البخاري",
+    "en": "Fath al-Bari"
+  },
+  "attributes": {
+    "kind": "book",
+    "author": {
+      "ar": "ابن حجر العسقلاني",
+      "en": "Ibn Hajar al-Asqalani"
+    },
+    "eraLabel": "773–852 AH"
+  },
+  "digitization": {
+    "totalUnits": 9200,
+    "unit": {
+      "ar": "صفحة",
+      "en": "pages"
+    }
+  },
+  "schemaVersion": 1
+}
