@@ -1,0 +1,179 @@
+import { GitBranch, ShieldCheck } from "lucide-react";
+import { useSettings } from "@/context/SettingsContext";
+import { useNodeProgress } from "@/hooks/useNodeProgress";
+import { useReferencedBooks } from "@/hooks/useReferencedBooks";
+import { SourceChip } from "@/components/sources/SourceChip";
+import { SourceProgressBar } from "@/components/sources/SourceProgressBar";
+import { formatPct } from "@/lib/format";
+import type { IsnadDTO } from "@/domain/dto";
+import type { KnowledgeNode } from "@/domain/types";
+
+const TO_LABEL: Record<string, { en: string; ar: string }> = {
+  "book-bukhari": { en: "Bukhari", ar: "البخاري" },
+  "book-muslim": { en: "Muslim", ar: "مسلم" },
+};
+
+interface Props {
+  isnad: IsnadDTO;
+  activeId: string;
+  onSelect: (id: string) => void;
+  onOpenSource: (id: string) => void;
+}
+
+export function ChainOfNarration({ isnad, activeId, onSelect, onOpenSource }: Props) {
+  const { t, uiLang, dir } = useSettings();
+
+  const activeNode: KnowledgeNode | undefined =
+    isnad.chain.find((p) => p.node.id === activeId)?.node ??
+    isnad.branches.find((b) => b.node.id === activeId)?.node ??
+    isnad.books.find((b) => b.node.id === activeId)?.node;
+
+  const isBookEntity = activeNode?.type === "BOOK";
+  const referencedBooks = useReferencedBooks(activeNode?.type === "NARRATOR" ? activeId : undefined);
+  const bookProgress = useNodeProgress(isBookEntity ? activeNode : undefined);
+
+  return (
+    <div>
+      <div className="flex items-center gap-1.5 mb-1 text-[var(--color-gold)]">
+        <GitBranch size={14} />
+        <span className="text-[11.5px] font-bold tracking-wide">{t.chainEyebrow}</span>
+      </div>
+      <h2 className="font-display font-semibold text-lg mb-3.5 text-[var(--color-ink)]">
+        {t.chainTitle}
+      </h2>
+
+      <div className="rounded-xl border border-[var(--color-emerald)]/30 bg-[var(--color-emerald)]/10 p-3 mb-4 flex gap-2">
+        <ShieldCheck size={16} className="text-[var(--color-emerald)] shrink-0 mt-0.5" />
+        <p className="text-[11.5px] leading-relaxed text-[var(--color-ink)]">{t.authenticity}</p>
+      </div>
+
+      <div className="relative ps-4.5">
+        <div className="absolute top-1.5 bottom-1.5 start-[5px] w-0.5 bg-[var(--color-line)]" />
+        {isnad.chain.map(({ node, role, isNeck }) => {
+          const active = activeId === node.id;
+          return (
+            <button
+              key={node.id}
+              onClick={() => onSelect(node.id)}
+              className="flex items-start gap-2.5 w-full py-1.5 relative text-start"
+            >
+              <span
+                className="absolute top-2.5 w-2.5 h-2.5 rounded-full"
+                style={{
+                  insetInlineStart: -18,
+                  background: active ? "var(--color-gold)" : isNeck ? "var(--color-emerald)" : "var(--color-panel-2)",
+                  border: `2px solid ${active ? "var(--color-gold)" : "var(--color-line)"}`,
+                }}
+              />
+              <div>
+                <div
+                  className={[
+                    "text-[12.5px]",
+                    active ? "font-bold text-[var(--color-gold)]" : "font-semibold text-[var(--color-ink)]",
+                  ].join(" ")}
+                >
+                  {uiLang === "ar" ? node.title.ar : node.title.en}
+                </div>
+                <div className="text-[10.5px] text-[var(--color-sub)]">{role[uiLang]}</div>
+              </div>
+            </button>
+          );
+        })}
+      </div>
+
+      <div className="text-[10.5px] text-[var(--color-sub)] my-2.5 ps-4.5">{t.transmittedBy}</div>
+
+      <div className="flex flex-wrap gap-1.5 ps-4.5 mb-3.5">
+        {isnad.branches.map(({ node, toBookIds }) => {
+          const active = activeId === node.id;
+          return (
+            <button
+              key={node.id}
+              onClick={() => onSelect(node.id)}
+              className={[
+                "text-[11px] px-2.5 py-1.5 rounded-full border",
+                active
+                  ? "bg-[var(--color-gold)] text-[#241c0a] border-[var(--color-gold)]"
+                  : "bg-[var(--color-panel-2)] text-[var(--color-ink)] border-[var(--color-line)]",
+              ].join(" ")}
+            >
+              {uiLang === "ar" ? node.title.ar : node.title.en}{" "}
+              <span className="opacity-60">
+                {dir === "rtl" ? "←" : "→"}{" "}
+                {toBookIds.map((id) => TO_LABEL[id]?.[uiLang] ?? id).join(uiLang === "ar" ? "، " : ", ")}
+              </span>
+            </button>
+          );
+        })}
+      </div>
+
+      <div className="flex gap-2 ps-4.5 mb-4">
+        {isnad.books.map(({ node, locator }) => {
+          const active = activeId === node.id;
+          return (
+            <button
+              key={node.id}
+              onClick={() => onSelect(node.id)}
+              className={[
+                "flex-1 text-start p-2.5 rounded-lg border",
+                active
+                  ? "bg-[var(--color-emerald)] text-[#F4EFE2] border-[var(--color-emerald)]"
+                  : "bg-[var(--color-panel-2)] text-[var(--color-ink)] border-[var(--color-line)]",
+              ].join(" ")}
+            >
+              <div className="text-[11.5px] font-bold">{uiLang === "ar" ? node.title.ar : node.title.en}</div>
+              <div className="text-[10px] opacity-75 mt-0.5">{locator[uiLang]}</div>
+            </button>
+          );
+        })}
+      </div>
+
+      {activeNode && (
+        <div className="rounded-2xl border border-[var(--color-line)] bg-[var(--color-panel)] p-3.5">
+          <div className="font-display font-semibold text-[15px] mb-0.5 text-[var(--color-ink)]">
+            {uiLang === "ar" ? activeNode.title.ar : activeNode.title.en}
+          </div>
+
+          {activeNode.attributes.kind === "narrator" && (
+            <>
+              <div className="text-[10.5px] text-[var(--color-sub)] mb-2">{activeNode.attributes.dates}</div>
+              <div className="inline-block text-[10.5px] font-semibold text-[var(--color-gold)] bg-[var(--color-gold)]/15 rounded-full px-2.5 py-1 mb-2.5">
+                {activeNode.attributes.grade[uiLang]}
+              </div>
+            </>
+          )}
+
+          {activeNode.attributes.kind === "book" && (
+            <div className="text-[10.5px] text-[var(--color-sub)] mb-2">{activeNode.attributes.eraLabel}</div>
+          )}
+
+          {isBookEntity && (
+            <button
+              onClick={() => onOpenSource(activeNode.id)}
+              className="w-full text-start bg-[var(--color-panel-2)] border border-[var(--color-line)] rounded-[10px] p-2.5"
+            >
+              <div className="flex justify-between items-center mb-1.5">
+                <span className="text-[10.5px] text-[var(--color-emerald)] font-bold">{t.digitizedBadge}</span>
+                <span className="text-[10px] text-[var(--color-sub)]">
+                  {formatPct(bookProgress.pct, bookProgress.indexedUnits)}
+                </span>
+              </div>
+              <SourceProgressBar pct={bookProgress.pct} />
+            </button>
+          )}
+
+          {referencedBooks.length > 0 && (
+            <div>
+              <div className="text-[10px] text-[var(--color-sub)] mb-1.5 mt-1">{t.referencedIn}</div>
+              <div className="flex flex-wrap gap-1.5">
+                {referencedBooks.map((book) => (
+                  <SourceChip key={book.id} node={book} onOpen={onOpenSource} />
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
