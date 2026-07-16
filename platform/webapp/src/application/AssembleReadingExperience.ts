@@ -109,19 +109,40 @@ export class AssembleReadingExperience {
 
     const allConnected = await this.nodes.findManyByIds([...connectedNarratorIds]);
 
-    let chainNarrators = allConnected
-      .filter((n) => n.attributes.kind === "narrator" && n.attributes.isnadDepth !== undefined && !n.attributes.isnadBranch);
-
+    let chainNarrators: KnowledgeNode[];
     if (!isShort) {
-      const directSet = new Set(directNarratorIds);
-      const checks = await Promise.all(
-        chainNarrators.map(async (n) => {
-          if (directSet.has(n.id)) return true;
-          const incoming = await this.relationships.incomingTo(n.id);
-          return incoming.some((r) => r.type === "NARRATED_BY" && r.from.startsWith("narrator-"));
-        })
+      // Find the deepest connected narrator (highest isnadDepth) as the chain start
+      const narratorsWithDepth = allConnected.filter(
+        (n) => n.attributes.kind === "narrator" && n.attributes.isnadDepth !== undefined
       );
-      chainNarrators = chainNarrators.filter((_, i) => checks[i]);
+      narratorsWithDepth.sort(
+        (a, b) => ((a.attributes as { isnadDepth?: number }).isnadDepth ?? 0) - ((b.attributes as { isnadDepth?: number }).isnadDepth ?? 0)
+      );
+      const deepest = narratorsWithDepth[narratorsWithDepth.length - 1];
+      if (!deepest) {
+        chainNarrators = [];
+      } else {
+        // Trace from deepest → Prophet via outgoing NARRATED_BY edges
+        const chainPath: KnowledgeNode[] = [];
+        const visitedChain = new Set<string>();
+        let currentId = deepest.id;
+        while (currentId && !visitedChain.has(currentId)) {
+          visitedChain.add(currentId);
+          const node = allConnected.find((n) => n.id === currentId);
+          if (!node) break;
+          chainPath.push(node);
+          const outgoing = await this.relationships.outgoingFrom(currentId);
+          const parentEdge = outgoing.find(
+            (r) => r.type === "NARRATED_BY" && r.to.startsWith("narrator-")
+          );
+          currentId = parentEdge?.to ?? "";
+        }
+        chainNarrators = chainPath;
+      }
+    } else {
+      chainNarrators = allConnected.filter(
+        (n) => n.attributes.kind === "narrator" && n.attributes.isnadDepth !== undefined
+      );
     }
 
     chainNarrators.sort((a, b) => {
@@ -130,13 +151,14 @@ export class AssembleReadingExperience {
       return da - db;
     });
 
+    const chainIds = new Set(chainNarrators.map((n) => n.id));
     const chain: IsnadPersonDTO[] = chainNarrators.map((n) => {
       const depth = n.attributes.kind === "narrator" ? n.attributes.isnadDepth ?? 0 : 0;
       return { node: n, role: ROLE_BY_DEPTH[depth] ?? { ar: "راوٍ", en: "Narrator" }, isNeck: depth === 4 };
     });
 
     const branchNarrators = allConnected.filter(
-      (n) => n.attributes.kind === "narrator" && n.attributes.isnadBranch
+      (n) => n.attributes.kind === "narrator" && !chainIds.has(n.id)
     );
     const branches: IsnadBranchDTO[] = await Promise.all(
       branchNarrators.map(async (n) => {

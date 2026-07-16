@@ -1,5 +1,11 @@
 [
   {
+    "id": "r-humaydi-thawri",
+    "from": "narrator-humaydi",
+    "to": "narrator-thawri",
+    "type": "NARRATED_BY"
+  },
+  {
     "id": "r-umar-prophet",
     "from": "narrator-umar",
     "to": "narrator-prophet",
