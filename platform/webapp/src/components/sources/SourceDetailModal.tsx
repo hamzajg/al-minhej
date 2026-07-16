@@ -18,7 +18,7 @@ export function SourceDetailModal({ node, onClose, onVote, voted, voteCount }: P
   const { indexedUnits, pct } = useNodeProgress(node);
   const digitized = indexedUnits > 0;
   const attrs = node.attributes.kind === "book" ? node.attributes : null;
-  const digitization = node.digitization;
+  const digitization = attrs?.digitization;
 
   return (
     <div
@@ -40,7 +40,7 @@ export function SourceDetailModal({ node, onClose, onVote, voted, voteCount }: P
             </div>
             {attrs && (
               <div className="text-[11.5px] text-[var(--color-sub)] mt-1">
-                {t.author}: {uiLang === "ar" ? attrs.author.ar : attrs.author.en} · {attrs.eraLabel}
+                {t.author}: {uiLang === "ar" ? attrs.author.ar : attrs.author.en} · {uiLang === "ar" ? attrs.eraLabel.ar : attrs.eraLabel.en}
               </div>
             )}
           </div>

@@ -1,0 +1,17 @@
+{
+  "primary": {
+    "id": "isnad-muslim-1-primary",
+    "hadithId": "hadith-muslim-1",
+    "role": "primary",
+    "links": [
+      {
+        "narratorId": "narrator-ibn-umar",
+        "position": 0
+      }
+    ],
+    "terminatesAt": {
+      "kind": "narrator-prophet"
+    }
+  },
+  "branches": []
+}

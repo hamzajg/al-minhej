@@ -1,18 +1,20 @@
-import type { KnowledgeNode, Localized, RelationshipType } from "./types";
+import type { KnowledgeNode, IsnadChain, Localized, RelationshipType } from "./types";
 
 export interface IsnadPersonDTO {
   node: KnowledgeNode;
   role: Localized<string>;
-  isNeck: boolean;
+  position: number;
+  transmissionNote?: Localized<string>;
 }
 
 export interface IsnadBranchDTO {
-  node: KnowledgeNode;
-  toBookIds: string[];
+  chain: IsnadChain;
+  anchors: IsnadPersonDTO;
+  members: IsnadPersonDTO[];
 }
 
 export interface IsnadDTO {
-  chain: IsnadPersonDTO[];
+  primary: IsnadPersonDTO[];
   branches: IsnadBranchDTO[];
   books: { node: KnowledgeNode; locator: Localized<string> }[];
 }

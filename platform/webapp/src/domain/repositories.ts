@@ -1,4 +1,4 @@
-import type { KnowledgeNode, NodeType, Relationship } from "./types";
+import type { IsnadData, KnowledgeNode, NodeType, Relationship } from "./types";
 
 /**
  * Storage-agnostic contracts. Application services depend on these
@@ -17,9 +17,12 @@ export interface KnowledgeRepository {
 export interface RelationshipRepository {
   /** Every edge touching this node, in either direction. */
   neighborsOf(nodeId: string): Promise<Relationship[]>;
-  /** Every edge pointing *at* this node — used to derive digitization
-   *  progress and to find "what explains/narrates this". */
+  /** Every edge pointing *at* this node. */
   incomingTo(nodeId: string): Promise<Relationship[]>;
   /** Every edge originating *from* this node. */
   outgoingFrom(nodeId: string): Promise<Relationship[]>;
+}
+
+export interface IsnadRepository {
+  findByHadithSlug(hadithSlug: string): Promise<IsnadData | null>;
 }

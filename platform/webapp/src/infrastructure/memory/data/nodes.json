@@ -16,60 +16,73 @@
       },
       "isnadType": "short"
     },
-    "schemaVersion": 1,
+    "schemaVersion": 2,
     "content": [
       {
         "type": "clauses",
-        "introAr": "عَنْ أَمِيرِ الْمُؤْمِنِينَ أَبِي حَفْصٍ عُمَرَ بْنِ الْخَطَّابِ رَضِيَ اللَّهُ عَنْهُ قَالَ: سَمِعْتُ رَسُولَ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ يَقُولُ:",
-        "introSub": {
+        "items": [
+          {
+            "id": "1",
+            "text": {
+              "ar": "إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ،",
+              "en": "Actions are only judged by the intentions behind them,",
+              "fr": "Les actes ne valent que par les intentions qui les animent,",
+              "es": "Las acciones solo valen según la intención que las mueve,"
+            }
+          },
+          {
+            "id": "2",
+            "text": {
+              "ar": "وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى،",
+              "en": "and every person will be credited only for what they intended.",
+              "fr": "et chacun n'obtient que ce qu'il a réellement voulu.",
+              "es": "y cada persona solo obtiene lo que realmente quiso alcanzar."
+            }
+          },
+          {
+            "id": "3",
+            "text": {
+              "ar": "فَمَنْ كَانَتْ هِجْرَتُهُ إِلَى اللَّهِ وَرَسُولِهِ",
+              "en": "So whoever's emigration was for the sake of God and His Messenger,",
+              "fr": "Ainsi, celui dont l'émigration visait Dieu et Son Messager,",
+              "es": "Así, quien emigra buscando a Dios y a Su Mensajero,"
+            }
+          },
+          {
+            "id": "4",
+            "text": {
+              "ar": "فَهِجْرَتُهُ إِلَى اللَّهِ وَرَسُولِهِ،",
+              "en": "their emigration counts for God and His Messenger.",
+              "fr": "son émigration compte pour Dieu et Son Messager.",
+              "es": "su emigración cuenta para Dios y Su Mensajero."
+            }
+          },
+          {
+            "id": "5",
+            "text": {
+              "ar": "وَمَنْ كَانَتْ هِجْرَتُهُ لِدُنْيَا يُصِيبُهَا أَوِ امْرَأَةٍ يَنْكِحُهَا",
+              "en": "And whoever's emigration was for some worldly gain, or to marry a woman,",
+              "fr": "Et celui dont l'émigration visait un gain de ce monde, ou le mariage avec une femme,",
+              "es": "Y quien emigra por un beneficio mundano, o para casarse con una mujer,"
+            }
+          },
+          {
+            "id": "6",
+            "text": {
+              "ar": "فَهِجْرَتُهُ إِلَى مَا هَاجَرَ إِلَيْهِ",
+              "en": "their emigration counts only for what they emigrated for.",
+              "fr": "son émigration ne compte que pour cela.",
+              "es": "su emigración solo cuenta para eso."
+            }
+          }
+        ],
+        "blockVersion": 1,
+        "intro": {
+          "ar": "عَنْ أَمِيرِ الْمُؤْمِنِينَ أَبِي حَفْصٍ عُمَرَ بْنِ الْخَطَّابِ رَضِيَ اللَّهُ عَنْهُ قَالَ: سَمِعْتُ رَسُولَ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ يَقُولُ:",
           "en": "On the authority of the Commander of the Faithful, Abu Hafs 'Umar ibn al-Khattab — who said: I heard the Messenger of God ﷺ say:",
           "fr": "Selon le commandeur des croyants, Abu Hafs 'Umar ibn al-Khattab, qui a dit avoir entendu le Messager de Dieu déclarer :",
           "es": "Según el comandante de los creyentes, Abu Hafs 'Umar ibn al-Khattab, quien dijo haber oído al Mensajero de Dios decir:"
-        },
-        "items": [
-          {
-            "id": 1,
-            "ar": "إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ،",
-            "en": "Actions are only judged by the intentions behind them,",
-            "fr": "Les actes ne valent que par les intentions qui les animent,",
-            "es": "Las acciones solo valen según la intención que las mueve,"
-          },
-          {
-            "id": 2,
-            "ar": "وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى،",
-            "en": "and every person will be credited only for what they intended.",
-            "fr": "et chacun n'obtient que ce qu'il a réellement voulu.",
-            "es": "y cada persona solo obtiene lo que realmente quiso alcanzar."
-          },
-          {
-            "id": 3,
-            "ar": "فَمَنْ كَانَتْ هِجْرَتُهُ إِلَى اللَّهِ وَرَسُولِهِ",
-            "en": "So whoever's emigration was for the sake of God and His Messenger,",
-            "fr": "Ainsi, celui dont l'émigration visait Dieu et Son Messager,",
-            "es": "Así, quien emigra buscando a Dios y a Su Mensajero,"
-          },
-          {
-            "id": 4,
-            "ar": "فَهِجْرَتُهُ إِلَى اللَّهِ وَرَسُولِهِ،",
-            "en": "their emigration counts for God and His Messenger.",
-            "fr": "son émigration compte pour Dieu et Son Messager.",
-            "es": "su emigración cuenta para Dios y Su Mensajero."
-          },
-          {
-            "id": 5,
-            "ar": "وَمَنْ كَانَتْ هِجْرَتُهُ لِدُنْيَا يُصِيبُهَا أَوِ امْرَأَةٍ يَنْكِحُهَا",
-            "en": "And whoever's emigration was for some worldly gain, or to marry a woman,",
-            "fr": "Et celui dont l'émigration visait un gain de ce monde, ou le mariage avec une femme,",
-            "es": "Y quien emigra por un beneficio mundano, o para casarse con una mujer,"
-          },
-          {
-            "id": 6,
-            "ar": "فَهِجْرَتُهُ إِلَى مَا هَاجَرَ إِلَيْهِ",
-            "en": "their emigration counts only for what they emigrated for.",
-            "fr": "son émigration ne compte que pour cela.",
-            "es": "su emigración solo cuenta para eso."
-          }
-        ]
+        }
       },
       {
         "type": "vocabulary",
@@ -79,56 +92,81 @@
             "word": "الْأَعْمَالُ",
             "root": "ع-م-ل",
             "pron": "al-a'māl",
-            "occ": 1,
-            "en": "deeds, actions",
-            "ar": "الأفعال والتصرفات"
+            "occurrences": [
+              1
+            ],
+            "gloss": {
+              "ar": "الأفعال والتصرفات",
+              "en": "deeds, actions"
+            }
           },
           {
             "id": "niyyat",
             "word": "بِالنِّيَّاتِ",
             "root": "ن-و-ي",
             "pron": "bin-niyyāt",
-            "occ": 1,
-            "en": "by intentions",
-            "ar": "القصد الباطن للفعل"
+            "occurrences": [
+              1
+            ],
+            "gloss": {
+              "ar": "القصد الباطن للفعل",
+              "en": "by intentions"
+            }
           },
           {
             "id": "imri",
             "word": "امْرِئٍ",
             "root": "م-ر-أ",
             "pron": "imri'in",
-            "occ": 1,
-            "en": "a person, individual",
-            "ar": "الشخص أو الفرد"
+            "occurrences": [
+              1
+            ],
+            "gloss": {
+              "ar": "الشخص أو الفرد",
+              "en": "a person, individual"
+            }
           },
           {
             "id": "hijratuh1",
             "word": "هِجْرَتُهُ",
             "root": "ه-ج-ر",
             "pron": "hijratuhu",
-            "occ": 3,
-            "en": "his emigration",
-            "ar": "هجرته، انتقاله"
+            "occurrences": [
+              3
+            ],
+            "gloss": {
+              "ar": "هجرته، انتقاله",
+              "en": "his emigration"
+            }
           },
           {
             "id": "yusibuha",
             "word": "يُصِيبُهَا",
             "root": "ص-و-ب",
             "pron": "yuṣībuhā",
-            "occ": 1,
-            "en": "to attain / gain it",
-            "ar": "يحصل عليها من الدنيا"
+            "occurrences": [
+              1
+            ],
+            "gloss": {
+              "ar": "يحصل عليها من الدنيا",
+              "en": "to attain / gain it"
+            }
           },
           {
             "id": "yankihuha",
             "word": "يَنْكِحُهَا",
             "root": "ن-ك-ح",
             "pron": "yankiḥuhā",
-            "occ": 1,
-            "en": "to marry her",
-            "ar": "يتزوج بها"
+            "occurrences": [
+              1
+            ],
+            "gloss": {
+              "ar": "يتزوج بها",
+              "en": "to marry her"
+            }
           }
-        ]
+        ],
+        "blockVersion": 1
       },
       {
         "type": "commentary",
@@ -140,7 +178,8 @@
         "note": {
           "en": "Opens his forty-hadith collection with this narration, calling it a third of all knowledge — every act of worship is judged first at the level of intention.",
           "ar": "يفتتح مجموعته من الأربعين حديثًا بهذا الحديث، ويصفه بأنه ثلث العلم — لأن كل عمل عبادة يُحكم عليه أولًا من جهة النية."
-        }
+        },
+        "blockVersion": 1
       },
       {
         "type": "commentary",
@@ -152,7 +191,8 @@
         "note": {
           "en": "Explains the hadith addresses the unseen motive, not the outward form — two people doing the same deed can leave with entirely different outcomes.",
           "ar": "يوضّح أن الحديث يتناول الباعث الخفي لا صورة العمل الظاهرة — فقد يقوم شخصان بنفس الفعل ويخرجان بنتيجتين مختلفتين تمامًا."
-        }
+        },
+        "blockVersion": 1
       },
       {
         "type": "context",
@@ -163,80 +203,115 @@
         "body": {
           "en": "Hijrah was the costliest act a believer could make. Using it as the example makes the point unmissable: if even that can be emptied by motive, nothing is exempt.",
           "ar": "كانت الهجرة أغلى ما يمكن أن يقدّمه المؤمن. اختيارها مثالًا يجعل الفكرة لا لبس فيها: إن كانت الهجرة نفسها تُفرَّغ من قيمتها بسبب الدافع، فلا شيء يُستثنى."
-        }
+        },
+        "blockVersion": 1
       },
       {
         "type": "ai_context",
-        "explanation": {
-          "en": "Intention is the invoice attached to every action — it's what's actually being billed. Two people doing the same visible act can walk away with entirely different results, because the deed is only ever worth what they meant by it.",
-          "ar": "النية هي الفاتورة المرفقة بكل عمل — فهي ما يُحاسَب عليه المرء فعليًا. قد يقوم شخصان بنفس الفعل الظاهر، لكنهما يخرجان بنتيجتين مختلفتين تمامًا، لأن قيمة العمل تُقاس بما قصده صاحبه."
-        },
-        "prompts": [
-          "explain_12",
-          "practical_example",
-          "why_chain"
-        ],
-        "answers": {
-          "en": [
-            "It's like getting credit for homework based on why you did it — copying it to avoid trouble doesn't count the same as doing it to learn. God looks at your 'why', not just the finished page.",
-            "Two students study the same night — one to genuinely understand and help others, one only to show off a grade. Same action, different intention, different weight.",
-            "The chain (isnad) is how scholars verified a saying actually reached the Prophet ﷺ reliably — checking that every link was trustworthy and precise, generation by generation."
-          ],
-          "ar": [
-            "الأمر أشبه بالحصول على درجة في الواجب المدرسي بناءً على سبب قيامك به — نسخه لتجنّب المشكلة لا يُحسب مثل أدائه للتعلّم فعلًا. الله ينظر إلى «لماذا» فعلت الشيء، لا فقط إلى الصفحة المكتملة.",
-            "طالبان يذاكران في نفس الليلة — أحدهما ليفهم فعلًا ويفيد غيره، والآخر فقط ليتباهى بالدرجة. الفعل نفسه، لكن النية مختلفة، والوزن مختلف.",
-            "السند هو الطريقة التي تحقّق بها العلماء من وصول القول فعلًا إلى النبي ﷺ بشكل موثوق — بالتأكد أن كل حلقة كانت أمينة ودقيقة، جيلًا بعد جيل."
-          ]
-        }
+        "blockVersion": 1,
+        "items": [
+          {
+            "key": "explain_12",
+            "question": {
+              "en": "explain_12"
+            },
+            "answer": {
+              "en": "It's like getting credit for homework based on why you did it — copying it to avoid trouble doesn't count the same as doing it to learn. God looks at your 'why', not just the finished page.",
+              "ar": "الأمر أشبه بالحصول على درجة في الواجب المدرسي بناءً على سبب قيامك به — نسخه لتجنّب المشكلة لا يُحسب مثل أدائه للتعلّم فعلًا. الله ينظر إلى «لماذا» فعلت الشيء، لا فقط إلى الصفحة المكتملة."
+            }
+          },
+          {
+            "key": "practical_example",
+            "question": {
+              "en": "practical_example"
+            },
+            "answer": {
+              "en": "Two students study the same night — one to genuinely understand and help others, one only to show off a grade. Same action, different intention, different weight.",
+              "ar": "طالبان يذاكران في نفس الليلة — أحدهما ليفهم فعلًا ويفيد غيره، والآخر فقط ليتباهى بالدرجة. الفعل نفسه، لكن النية مختلفة، والوزن مختلف."
+            }
+          },
+          {
+            "key": "why_chain",
+            "question": {
+              "en": "why_chain"
+            },
+            "answer": {
+              "en": "The chain (isnad) is how scholars verified a saying actually reached the Prophet ﷺ reliably — checking that every link was trustworthy and precise, generation by generation.",
+              "ar": "السند هو الطريقة التي تحقّق بها العلماء من وصول القول فعلًا إلى النبي ﷺ بشكل موثوق — بالتأكد أن كل حلقة كانت أمينة ودقيقة، جيلًا بعد جيل."
+            }
+          }
+        ]
       },
       {
         "type": "quiz",
         "questions": [
           {
-            "q": {
+            "question": {
               "en": "What determines the value of an action?",
               "ar": "ما الذي يحدد قيمة العمل؟"
             },
             "options": [
               {
-                "en": "Its visible size",
-                "ar": "حجمه الظاهر"
+                "id": "opt-0-0",
+                "text": {
+                  "en": "Its visible size",
+                  "ar": "حجمه الظاهر"
+                }
               },
               {
-                "en": "The intention behind it",
-                "ar": "النية وراءه"
+                "id": "opt-0-1",
+                "text": {
+                  "en": "The intention behind it",
+                  "ar": "النية وراءه"
+                }
               },
               {
-                "en": "Who witnesses it",
-                "ar": "من يشهده"
+                "id": "opt-0-2",
+                "text": {
+                  "en": "Who witnesses it",
+                  "ar": "من يشهده"
+                }
               }
             ],
-            "correct": 1
+            "correctOptionId": "opt-0-1"
           },
           {
-            "q": {
+            "question": {
               "en": "What example does the hadith use for mixed intentions?",
               "ar": "ما المثال الذي يستخدمه الحديث لاختلاط النية؟"
             },
             "options": [
               {
-                "en": "Public prayer",
-                "ar": "الصلاة العلنية"
+                "id": "opt-1-0",
+                "text": {
+                  "en": "Public prayer",
+                  "ar": "الصلاة العلنية"
+                }
               },
               {
-                "en": "Emigration (hijrah)",
-                "ar": "الهجرة"
+                "id": "opt-1-1",
+                "text": {
+                  "en": "Emigration (hijrah)",
+                  "ar": "الهجرة"
+                }
               },
               {
-                "en": "Anonymous charity",
-                "ar": "الصدقة السرية"
+                "id": "opt-1-2",
+                "text": {
+                  "en": "Anonymous charity",
+                  "ar": "الصدقة السرية"
+                }
               }
             ],
-            "correct": 1
+            "correctOptionId": "opt-1-1"
           }
-        ]
+        ],
+        "blockVersion": 1
       }
-    ]
+    ],
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "complete"
   },
   {
     "id": "hadith-2",
@@ -255,8 +330,11 @@
       },
       "isnadType": "short"
     },
-    "schemaVersion": 1,
-    "content": []
+    "schemaVersion": 2,
+    "content": [],
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "complete"
   },
   {
     "id": "hadith-3",
@@ -275,8 +353,11 @@
       },
       "isnadType": "short"
     },
-    "schemaVersion": 1,
-    "content": []
+    "schemaVersion": 2,
+    "content": [],
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "complete"
   },
   {
     "id": "hadith-4",
@@ -295,8 +376,11 @@
       },
       "isnadType": "short"
     },
-    "schemaVersion": 1,
-    "content": []
+    "schemaVersion": 2,
+    "content": [],
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "complete"
   },
   {
     "id": "hadith-5",
@@ -315,21 +399,24 @@
       },
       "isnadType": "full"
     },
-    "schemaVersion": 1,
+    "schemaVersion": 2,
     "content": [
       {
         "type": "clauses",
-        "introAr": "عَنْ مُعَاوِيَةَ رَضِيَ اللَّهُ عَنْهُ قَالَ: سَمِعْتُ رَسُولَ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ يَقُولُ:",
-        "introSub": {
-          "en": "On the authority of Mu'awiyah — who said: I heard the Messenger of God ﷺ say:"
-        },
         "items": [
           {
-            "id": 1,
-            "ar": "مَنْ يُرِدِ اللَّهُ بِهِ خَيْرًا يُفَقِّهْهُ فِي الدِّينِ",
-            "en": "Whomsoever God wishes good for, He grants him understanding of the religion."
+            "id": "1",
+            "text": {
+              "ar": "مَنْ يُرِدِ اللَّهُ بِهِ خَيْرًا يُفَقِّهْهُ فِي الدِّينِ",
+              "en": "Whomsoever God wishes good for, He grants him understanding of the religion."
+            }
           }
-        ]
+        ],
+        "blockVersion": 1,
+        "intro": {
+          "ar": "عَنْ مُعَاوِيَةَ رَضِيَ اللَّهُ عَنْهُ قَالَ: سَمِعْتُ رَسُولَ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ يَقُولُ:",
+          "en": "On the authority of Mu'awiyah — who said: I heard the Messenger of God ﷺ say:"
+        }
       },
       {
         "type": "vocabulary",
@@ -339,22 +426,34 @@
             "word": "يُرِدْ",
             "root": "أ-ر-د",
             "pron": "yurid",
-            "occ": 1,
-            "en": "He wills / wishes",
-            "ar": "يشاء ويريد"
+            "occurrences": [
+              1
+            ],
+            "gloss": {
+              "ar": "يشاء ويريد",
+              "en": "He wills / wishes"
+            }
           },
           {
             "id": "yufaqqihhu",
             "word": "يُفَقِّهْهُ",
             "root": "ف-ق-ه",
             "pron": "yufaqqihhu",
-            "occ": 1,
-            "en": "He grants him understanding",
-            "ar": "يعمّقه في العلم ويفهّمه"
+            "occurrences": [
+              1
+            ],
+            "gloss": {
+              "ar": "يعمّقه في العلم ويفهّمه",
+              "en": "He grants him understanding"
+            }
           }
-        ]
+        ],
+        "blockVersion": 1
       }
-    ]
+    ],
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "complete"
   },
   {
     "id": "hadith-6",
@@ -373,8 +472,11 @@
       },
       "isnadType": "full"
     },
-    "schemaVersion": 1,
-    "content": []
+    "schemaVersion": 2,
+    "content": [],
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "complete"
   },
   {
     "id": "hadith-7",
@@ -393,21 +495,24 @@
       },
       "isnadType": "full"
     },
-    "schemaVersion": 1,
+    "schemaVersion": 2,
     "content": [
       {
         "type": "clauses",
-        "introAr": "عَنْ أَنَسِ بْنِ مَالِكٍ رَضِيَ اللَّهُ عَنْهُ عَنِ النَّبِيِّ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ قَالَ:",
-        "introSub": {
-          "en": "On the authority of Anas ibn Malik — from the Prophet ﷺ who said:"
-        },
         "items": [
           {
-            "id": 1,
-            "ar": "لَا يُؤْمِنُ أَحَدُكُمْ حَتَّى يُحِبَّ لِأَخِيهِ مَا يُحِبُّ لِنَفْسِهِ",
-            "en": "None of you truly believes until he loves for his brother what he loves for himself."
+            "id": "1",
+            "text": {
+              "ar": "لَا يُؤْمِنُ أَحَدُكُمْ حَتَّى يُحِبَّ لِأَخِيهِ مَا يُحِبُّ لِنَفْسِهِ",
+              "en": "None of you truly believes until he loves for his brother what he loves for himself."
+            }
           }
-        ]
+        ],
+        "blockVersion": 1,
+        "intro": {
+          "ar": "عَنْ أَنَسِ بْنِ مَالِكٍ رَضِيَ اللَّهُ عَنْهُ عَنِ النَّبِيِّ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ قَالَ:",
+          "en": "On the authority of Anas ibn Malik — from the Prophet ﷺ who said:"
+        }
       },
       {
         "type": "vocabulary",
@@ -417,40 +522,60 @@
             "word": "يُؤْمِنُ",
             "root": "أ-م-ن",
             "pron": "yu'minu",
-            "occ": 1,
-            "en": "he believes (with complete faith)",
-            "ar": "يؤمن إيمانًا كاملاً"
+            "occurrences": [
+              1
+            ],
+            "gloss": {
+              "ar": "يؤمن إيمانًا كاملاً",
+              "en": "he believes (with complete faith)"
+            }
           },
           {
             "id": "yuhibba",
             "word": "يُحِبَّ",
             "root": "ح-ب-ب",
             "pron": "yuḥibba",
-            "occ": 2,
-            "en": "he loves",
-            "ar": "يحب ويود"
+            "occurrences": [
+              2
+            ],
+            "gloss": {
+              "ar": "يحب ويود",
+              "en": "he loves"
+            }
           },
           {
             "id": "akhihi",
             "word": "أَخِيهِ",
             "root": "أ-خ-و",
             "pron": "akhīhi",
-            "occ": 1,
-            "en": "his brother",
-            "ar": "أخيه المسلم"
+            "occurrences": [
+              1
+            ],
+            "gloss": {
+              "ar": "أخيه المسلم",
+              "en": "his brother"
+            }
           },
           {
             "id": "linafsihi",
             "word": "لِنَفْسِهِ",
             "root": "ن-ف-س",
             "pron": "linafsihi",
-            "occ": 1,
-            "en": "for himself",
-            "ar": "لذاته ولنفسه"
+            "occurrences": [
+              1
+            ],
+            "gloss": {
+              "ar": "لذاته ولنفسه",
+              "en": "for himself"
+            }
           }
-        ]
+        ],
+        "blockVersion": 1
       }
-    ]
+    ],
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "complete"
   },
   {
     "id": "hadith-8",
@@ -469,31 +594,38 @@
       },
       "isnadType": "full"
     },
-    "schemaVersion": 1,
+    "schemaVersion": 2,
     "content": [
       {
         "type": "clauses",
-        "introAr": "عَنْ أَبِي ذَرٍّ رَضِيَ اللَّهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ:",
-        "introSub": {
-          "en": "On the authority of Abu Dharr — who said: The Messenger of God ﷺ said:"
-        },
         "items": [
           {
-            "id": 1,
-            "ar": "اتَّقِ اللَّهَ حَيْثُمَا كُنْتَ",
-            "en": "Fear God wherever you are,"
+            "id": "1",
+            "text": {
+              "ar": "اتَّقِ اللَّهَ حَيْثُمَا كُنْتَ",
+              "en": "Fear God wherever you are,"
+            }
           },
           {
-            "id": 2,
-            "ar": "وَأَتْبِعِ السَّيِّئَةَ الْحَسَنَةَ تَمْحُهَا",
-            "en": "and follow a bad deed with a good deed which will wipe it out,"
+            "id": "2",
+            "text": {
+              "ar": "وَأَتْبِعِ السَّيِّئَةَ الْحَسَنَةَ تَمْحُهَا",
+              "en": "and follow a bad deed with a good deed which will wipe it out,"
+            }
           },
           {
-            "id": 3,
-            "ar": "وَخَالِقِ النَّاسَ بِخُلُقٍ حَسَنٍ",
-            "en": "and treat people with good character."
+            "id": "3",
+            "text": {
+              "ar": "وَخَالِقِ النَّاسَ بِخُلُقٍ حَسَنٍ",
+              "en": "and treat people with good character."
+            }
           }
-        ]
+        ],
+        "blockVersion": 1,
+        "intro": {
+          "ar": "عَنْ أَبِي ذَرٍّ رَضِيَ اللَّهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ:",
+          "en": "On the authority of Abu Dharr — who said: The Messenger of God ﷺ said:"
+        }
       },
       {
         "type": "vocabulary",
@@ -503,67 +635,99 @@
             "word": "اتَّقِ",
             "root": "و-ق-ي",
             "pron": "ittaqi",
-            "occ": 1,
-            "en": "fear / be conscious of (God)",
-            "ar": "خف الله وراقبه"
+            "occurrences": [
+              1
+            ],
+            "gloss": {
+              "ar": "خف الله وراقبه",
+              "en": "fear / be conscious of (God)"
+            }
           },
           {
             "id": "haythuma",
             "word": "حَيْثُمَا",
             "root": "ح-ي-ث",
             "pron": "ḥaythumā",
-            "occ": 1,
-            "en": "wherever",
-            "ar": "في أي مكان"
+            "occurrences": [
+              1
+            ],
+            "gloss": {
+              "ar": "في أي مكان",
+              "en": "wherever"
+            }
           },
           {
             "id": "atbi",
             "word": "أَتْبِعْ",
             "root": "ت-ب-ع",
             "pron": "atbi'",
-            "occ": 1,
-            "en": "follow up / accompany",
-            "ar": "أتبع وألحق به"
+            "occurrences": [
+              1
+            ],
+            "gloss": {
+              "ar": "أتبع وألحق به",
+              "en": "follow up / accompany"
+            }
           },
           {
             "id": "sayyiah",
             "word": "السَّيِّئَةَ",
             "root": "س-و-أ",
             "pron": "as-sayyi'ah",
-            "occ": 1,
-            "en": "the bad deed / sin",
-            "ar": "السيئة والمعصية"
+            "occurrences": [
+              1
+            ],
+            "gloss": {
+              "ar": "السيئة والمعصية",
+              "en": "the bad deed / sin"
+            }
           },
           {
             "id": "hasanah",
             "word": "الْحَسَنَةَ",
             "root": "ح-س-ن",
             "pron": "al-ḥasanah",
-            "occ": 1,
-            "en": "the good deed",
-            "ar": "الحسنة والطاعة"
+            "occurrences": [
+              1
+            ],
+            "gloss": {
+              "ar": "الحسنة والطاعة",
+              "en": "the good deed"
+            }
           },
           {
             "id": "tamhuha",
             "word": "تَمْحُهَا",
             "root": "م-ح-و",
             "pron": "tamḥuhā",
-            "occ": 1,
-            "en": "it wipes it out",
-            "ar": "تمحوها وتزيل أثرها"
+            "occurrences": [
+              1
+            ],
+            "gloss": {
+              "ar": "تمحوها وتزيل أثرها",
+              "en": "it wipes it out"
+            }
           },
           {
             "id": "khuluq",
             "word": "خُلُقٍ",
             "root": "خ-ل-ق",
             "pron": "khuluq",
-            "occ": 1,
-            "en": "character / conduct",
-            "ar": "الخلق والسلوك الحسن"
+            "occurrences": [
+              1
+            ],
+            "gloss": {
+              "ar": "الخلق والسلوك الحسن",
+              "en": "character / conduct"
+            }
           }
-        ]
+        ],
+        "blockVersion": 1
       }
-    ]
+    ],
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "complete"
   },
   {
     "id": "hadith-9",
@@ -582,8 +746,11 @@
       },
       "isnadType": "full"
     },
-    "schemaVersion": 1,
-    "content": []
+    "schemaVersion": 2,
+    "content": [],
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "complete"
   },
   {
     "id": "hadith-10",
@@ -602,8 +769,11 @@
       },
       "isnadType": "full"
     },
-    "schemaVersion": 1,
-    "content": []
+    "schemaVersion": 2,
+    "content": [],
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "complete"
   },
   {
     "id": "hadith-related-1",
@@ -623,7 +793,10 @@
       "isnadType": "short"
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "complete"
   },
   {
     "id": "hadith-related-2",
@@ -643,7 +816,10 @@
       "isnadType": "short"
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "complete"
   },
   {
     "id": "verse-bayyinah",
@@ -656,14 +832,21 @@
     },
     "attributes": {
       "kind": "verse",
-      "ref": "98:5",
+      "ref": {
+        "surah": 98,
+        "ayahStart": 5,
+        "ayahEnd": 5
+      },
       "refLocalized": {
         "ar": "سورة البيّنة ٩٨:٥",
         "en": "Al-Bayyinah 98:5"
       }
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "complete"
   },
   {
     "id": "verse-isra",
@@ -676,14 +859,21 @@
     },
     "attributes": {
       "kind": "verse",
-      "ref": "17:19",
+      "ref": {
+        "surah": 17,
+        "ayahStart": 19,
+        "ayahEnd": 19
+      },
       "refLocalized": {
         "ar": "سورة الإسراء ١٧:١٩",
         "en": "Al-Isra 17:19"
       }
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "complete"
   },
   {
     "id": "concept-ikhlas",
@@ -698,7 +888,10 @@
       "kind": "concept"
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "complete"
   },
   {
     "id": "concept-tawakkul",
@@ -713,7 +906,10 @@
       "kind": "concept"
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "complete"
   },
   {
     "id": "concept-taqwa",
@@ -728,7 +924,10 @@
       "kind": "concept"
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "complete"
   },
   {
     "id": "concept-riya",
@@ -743,7 +942,10 @@
       "kind": "concept"
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "complete"
   },
   {
     "id": "concept-sabr",
@@ -758,7 +960,10 @@
       "kind": "concept"
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "complete"
   },
   {
     "id": "concept-tawbah",
@@ -773,7 +978,10 @@
       "kind": "concept"
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "complete"
   },
   {
     "id": "event-hijra",
@@ -786,10 +994,13 @@
     },
     "attributes": {
       "kind": "event",
-      "dates": "622 CE"
+      "dateStart": "622 CE"
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "complete"
   },
   {
     "id": "narrator-prophet",
@@ -802,15 +1013,19 @@
     },
     "attributes": {
       "kind": "narrator",
-      "dates": "570–632 CE",
       "grade": {
         "ar": "—",
         "en": "—"
       },
-      "isnadDepth": 0
+      "isnadDepth": 0,
+      "dateBirth": "570-01-01",
+      "dateDeath": "632-01-01"
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "stub"
   },
   {
     "id": "narrator-umar",
@@ -823,15 +1038,19 @@
     },
     "attributes": {
       "kind": "narrator",
-      "dates": "c. 584–644 CE",
       "grade": {
         "ar": "صحابي",
         "en": "Companion (Sahabi)"
       },
-      "isnadDepth": 1
+      "isnadDepth": 1,
+      "dateBirth": "584-01-01",
+      "dateDeath": "644-01-01"
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "stub"
   },
   {
     "id": "narrator-alqamah",
@@ -844,15 +1063,18 @@
     },
     "attributes": {
       "kind": "narrator",
-      "dates": "d. c. 80 AH",
       "grade": {
         "ar": "ثقة",
         "en": "Thiqah (trustworthy)"
       },
-      "isnadDepth": 2
+      "isnadDepth": 2,
+      "dateDeath": "80-01-01"
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "stub"
   },
   {
     "id": "narrator-ibrahim",
@@ -865,15 +1087,18 @@
     },
     "attributes": {
       "kind": "narrator",
-      "dates": "d. c. 120 AH",
       "grade": {
         "ar": "ثقة ثبت",
         "en": "Thiqah thabt (trustworthy, precise)"
       },
-      "isnadDepth": 3
+      "isnadDepth": 3,
+      "dateDeath": "120-01-01"
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "stub"
   },
   {
     "id": "narrator-yahya",
@@ -886,15 +1111,18 @@
     },
     "attributes": {
       "kind": "narrator",
-      "dates": "d. c. 143 AH",
       "grade": {
         "ar": "ثقة ثبت حجة",
         "en": "Thiqah thabt hujjah (authoritative)"
       },
-      "isnadDepth": 4
+      "isnadDepth": 4,
+      "dateDeath": "143-01-01"
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "stub"
   },
   {
     "id": "narrator-thawri",
@@ -907,16 +1135,18 @@
     },
     "attributes": {
       "kind": "narrator",
-      "dates": "d. 161 AH",
       "grade": {
         "ar": "ثقة حافظ",
         "en": "Thiqah hafiz"
       },
       "isnadDepth": 5,
-      "isnadBranch": true
+      "dateDeath": "161-01-01"
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "stub"
   },
   {
     "id": "narrator-malik",
@@ -929,16 +1159,18 @@
     },
     "attributes": {
       "kind": "narrator",
-      "dates": "d. 179 AH",
       "grade": {
         "ar": "ثقة، إمام",
         "en": "Thiqah, Imam"
       },
       "isnadDepth": 5,
-      "isnadBranch": true
+      "dateDeath": "179-01-01"
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "stub"
   },
   {
     "id": "narrator-uyaynah",
@@ -951,16 +1183,18 @@
     },
     "attributes": {
       "kind": "narrator",
-      "dates": "d. 198 AH",
       "grade": {
         "ar": "ثقة حافظ",
         "en": "Thiqah hafiz"
       },
       "isnadDepth": 5,
-      "isnadBranch": true
+      "dateDeath": "198-01-01"
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "stub"
   },
   {
     "id": "narrator-qattan",
@@ -973,16 +1207,18 @@
     },
     "attributes": {
       "kind": "narrator",
-      "dates": "d. 198 AH",
       "grade": {
         "ar": "ثقة، إمام في نقد الحديث",
         "en": "Thiqah, Imam of hadith criticism"
       },
       "isnadDepth": 5,
-      "isnadBranch": true
+      "dateDeath": "198-01-01"
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "stub"
   },
   {
     "id": "narrator-layth",
@@ -995,16 +1231,18 @@
     },
     "attributes": {
       "kind": "narrator",
-      "dates": "d. 175 AH",
       "grade": {
         "ar": "ثقة ثبت",
         "en": "Thiqah thabt"
       },
       "isnadDepth": 5,
-      "isnadBranch": true
+      "dateDeath": "175-01-01"
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "stub"
   },
   {
     "id": "narrator-zuhrī",
@@ -1017,15 +1255,18 @@
     },
     "attributes": {
       "kind": "narrator",
-      "dates": "d. 124 AH",
       "grade": {
         "ar": "ثقة، إمام",
         "en": "Thiqah, Imam"
       },
-      "isnadDepth": 4
+      "isnadDepth": 4,
+      "dateDeath": "124-01-01"
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "stub"
   },
   {
     "id": "narrator-ayyub",
@@ -1038,15 +1279,18 @@
     },
     "attributes": {
       "kind": "narrator",
-      "dates": "d. 131 AH",
       "grade": {
         "ar": "ثقة ثبت",
         "en": "Thiqah thabt"
       },
-      "isnadDepth": 4
+      "isnadDepth": 4,
+      "dateDeath": "131-01-01"
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "stub"
   },
   {
     "id": "narrator-hisham",
@@ -1059,15 +1303,18 @@
     },
     "attributes": {
       "kind": "narrator",
-      "dates": "d. 146 AH",
       "grade": {
         "ar": "ثقة",
         "en": "Thiqah"
       },
-      "isnadDepth": 4
+      "isnadDepth": 4,
+      "dateDeath": "146-01-01"
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "stub"
   },
   {
     "id": "narrator-shubah",
@@ -1080,16 +1327,18 @@
     },
     "attributes": {
       "kind": "narrator",
-      "dates": "d. 160 AH",
       "grade": {
         "ar": "ثقة، أمير المؤمنين في الحديث",
         "en": "Thiqah, Commander of the Faithful in Hadith"
       },
       "isnadDepth": 5,
-      "isnadBranch": true
+      "dateDeath": "160-01-01"
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "stub"
   },
   {
     "id": "narrator-waki",
@@ -1102,16 +1351,18 @@
     },
     "attributes": {
       "kind": "narrator",
-      "dates": "d. 197 AH",
       "grade": {
         "ar": "ثقة، حافظ",
         "en": "Thiqah, Hafiz"
       },
       "isnadDepth": 5,
-      "isnadBranch": true
+      "dateDeath": "197-01-01"
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "stub"
   },
   {
     "id": "narrator-abdrazzaq",
@@ -1124,16 +1375,18 @@
     },
     "attributes": {
       "kind": "narrator",
-      "dates": "d. 211 AH",
       "grade": {
         "ar": "ثقة",
         "en": "Thiqah"
       },
       "isnadDepth": 5,
-      "isnadBranch": true
+      "dateDeath": "211-01-01"
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "stub"
   },
   {
     "id": "narrator-ibn-abbaas",
@@ -1146,15 +1399,19 @@
     },
     "attributes": {
       "kind": "narrator",
-      "dates": "c. 619–687 CE",
       "grade": {
         "ar": "صحابي، حبر الأمة",
         "en": "Companion, Scholar of the Ummah"
       },
-      "isnadDepth": 1
+      "isnadDepth": 1,
+      "dateBirth": "619-01-01",
+      "dateDeath": "687-01-01"
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "stub"
   },
   {
     "id": "book-bukhari",
@@ -1171,7 +1428,18 @@
         "ar": "الإمام البخاري",
         "en": "Imam al-Bukhari"
       },
-      "eraLabel": "194–256 AH"
+      "eraLabel": {
+        "ar": "194–256 AH",
+        "en": "194–256 AH"
+      },
+      "digitization": {
+        "totalUnits": 100,
+        "authoredUnits": 0,
+        "unit": {
+          "ar": "وحدة",
+          "en": "units"
+        }
+      }
     },
     "digitization": {
       "totalUnits": 7563,
@@ -1181,7 +1449,10 @@
       }
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "stub"
   },
   {
     "id": "book-muslim",
@@ -1198,7 +1469,18 @@
         "ar": "الإمام مسلم بن الحجاج",
         "en": "Imam Muslim ibn al-Hajjaj"
       },
-      "eraLabel": "204–261 AH"
+      "eraLabel": {
+        "ar": "204–261 AH",
+        "en": "204–261 AH"
+      },
+      "digitization": {
+        "totalUnits": 100,
+        "authoredUnits": 0,
+        "unit": {
+          "ar": "وحدة",
+          "en": "units"
+        }
+      }
     },
     "digitization": {
       "totalUnits": 7500,
@@ -1208,7 +1490,10 @@
       }
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "stub"
   },
   {
     "id": "book-sharh-arbain",
@@ -1225,7 +1510,18 @@
         "ar": "الإمام النووي",
         "en": "Imam an-Nawawi"
       },
-      "eraLabel": "631–676 AH"
+      "eraLabel": {
+        "ar": "631–676 AH",
+        "en": "631–676 AH"
+      },
+      "digitization": {
+        "totalUnits": 100,
+        "authoredUnits": 0,
+        "unit": {
+          "ar": "وحدة",
+          "en": "units"
+        }
+      }
     },
     "digitization": {
       "totalUnits": 42,
@@ -1235,7 +1531,10 @@
       }
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "stub"
   },
   {
     "id": "book-jami-ulum",
@@ -1252,7 +1551,18 @@
         "ar": "ابن رجب الحنبلي",
         "en": "Ibn Rajab al-Hanbali"
       },
-      "eraLabel": "736–795 AH"
+      "eraLabel": {
+        "ar": "736–795 AH",
+        "en": "736–795 AH"
+      },
+      "digitization": {
+        "totalUnits": 100,
+        "authoredUnits": 0,
+        "unit": {
+          "ar": "وحدة",
+          "en": "units"
+        }
+      }
     },
     "digitization": {
       "totalUnits": 50,
@@ -1262,7 +1572,10 @@
       }
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "stub"
   },
   {
     "id": "book-fathalbari",
@@ -1279,7 +1592,18 @@
         "ar": "ابن حجر العسقلاني",
         "en": "Ibn Hajar al-Asqalani"
       },
-      "eraLabel": "773–852 AH"
+      "eraLabel": {
+        "ar": "773–852 AH",
+        "en": "773–852 AH"
+      },
+      "digitization": {
+        "totalUnits": 100,
+        "authoredUnits": 0,
+        "unit": {
+          "ar": "وحدة",
+          "en": "units"
+        }
+      }
     },
     "digitization": {
       "totalUnits": 9200,
@@ -1289,7 +1613,10 @@
       }
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "stub"
   },
   {
     "id": "book-tabaqat",
@@ -1306,7 +1633,18 @@
         "ar": "ابن سعد",
         "en": "Ibn Sa'd"
       },
-      "eraLabel": "168–230 AH"
+      "eraLabel": {
+        "ar": "168–230 AH",
+        "en": "168–230 AH"
+      },
+      "digitization": {
+        "totalUnits": 100,
+        "authoredUnits": 0,
+        "unit": {
+          "ar": "وحدة",
+          "en": "units"
+        }
+      }
     },
     "digitization": {
       "totalUnits": 4250,
@@ -1316,7 +1654,10 @@
       }
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "stub"
   },
   {
     "id": "book-bidayah",
@@ -1333,7 +1674,18 @@
         "ar": "ابن كثير",
         "en": "Ibn Kathir"
       },
-      "eraLabel": "701–774 AH"
+      "eraLabel": {
+        "ar": "701–774 AH",
+        "en": "701–774 AH"
+      },
+      "digitization": {
+        "totalUnits": 100,
+        "authoredUnits": 0,
+        "unit": {
+          "ar": "وحدة",
+          "en": "units"
+        }
+      }
     },
     "digitization": {
       "totalUnits": 14,
@@ -1343,7 +1695,10 @@
       }
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "stub"
   },
   {
     "id": "page-bukhari-1",
@@ -1358,13 +1713,15 @@
       "kind": "page",
       "bookId": "book-bukhari",
       "pageNum": 1,
-      "readingNodeId": "hadith-bukhari-1",
       "hadithIds": [
         "hadith-bukhari-1"
       ]
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "stub"
   },
   {
     "id": "page-bukhari-2",
@@ -1379,13 +1736,15 @@
       "kind": "page",
       "bookId": "book-bukhari",
       "pageNum": 2,
-      "readingNodeId": "hadith-bukhari-1",
       "hadithIds": [
         "hadith-bukhari-1"
       ]
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "stub"
   },
   {
     "id": "page-muslim-1",
@@ -1400,13 +1759,15 @@
       "kind": "page",
       "bookId": "book-muslim",
       "pageNum": 1,
-      "readingNodeId": "hadith-muslim-1",
       "hadithIds": [
         "hadith-muslim-1"
       ]
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "stub"
   },
   {
     "id": "page-muslim-2",
@@ -1421,13 +1782,15 @@
       "kind": "page",
       "bookId": "book-muslim",
       "pageNum": 10,
-      "readingNodeId": "hadith-muslim-1",
       "hadithIds": [
         "hadith-muslim-1"
       ]
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "stub"
   },
   {
     "id": "page-sharh-1",
@@ -1442,13 +1805,15 @@
       "kind": "page",
       "bookId": "book-sharh-arbain",
       "pageNum": 5,
-      "readingNodeId": "hadith-1",
       "hadithIds": [
         "hadith-1"
       ]
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "stub"
   },
   {
     "id": "page-jami-1",
@@ -1463,13 +1828,15 @@
       "kind": "page",
       "bookId": "book-jami-ulum",
       "pageNum": 12,
-      "readingNodeId": "hadith-jami-1",
       "hadithIds": [
         "hadith-jami-1"
       ]
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "stub"
   },
   {
     "id": "page-fathalbari-1",
@@ -1484,13 +1851,15 @@
       "kind": "page",
       "bookId": "book-fathalbari",
       "pageNum": 25,
-      "readingNodeId": "hadith-fath-1",
       "hadithIds": [
         "hadith-fath-1"
       ]
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "stub"
   },
   {
     "id": "page-tabaqat-umar",
@@ -1505,13 +1874,15 @@
       "kind": "page",
       "bookId": "book-tabaqat",
       "pageNum": 30,
-      "readingNodeId": "hadith-tabaqat-1",
       "hadithIds": [
         "hadith-tabaqat-1"
       ]
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "stub"
   },
   {
     "id": "page-bidayah-hijra",
@@ -1526,13 +1897,15 @@
       "kind": "page",
       "bookId": "book-bidayah",
       "pageNum": 3,
-      "readingNodeId": "hadith-bidayah-1",
       "hadithIds": [
         "hadith-bidayah-1"
       ]
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "stub"
   },
   {
     "id": "page-bukhari-3",
@@ -1547,13 +1920,15 @@
       "kind": "page",
       "bookId": "book-bukhari",
       "pageNum": 3,
-      "readingNodeId": "hadith-6",
       "hadithIds": [
         "hadith-6"
       ]
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "stub"
   },
   {
     "id": "page-muslim-3",
@@ -1568,13 +1943,15 @@
       "kind": "page",
       "bookId": "book-muslim",
       "pageNum": 3,
-      "readingNodeId": "hadith-8",
       "hadithIds": [
         "hadith-8"
       ]
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "stub"
   },
   {
     "id": "page-fathalbari-2",
@@ -1589,13 +1966,15 @@
       "kind": "page",
       "bookId": "book-fathalbari",
       "pageNum": 26,
-      "readingNodeId": "hadith-4",
       "hadithIds": [
         "hadith-4"
       ]
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "stub"
   },
   {
     "id": "hadith-bukhari-1",
@@ -1614,36 +1993,45 @@
       },
       "isnadType": "full"
     },
-    "schemaVersion": 1,
+    "schemaVersion": 2,
     "content": [
       {
         "type": "clauses",
-        "introAr": "حَدَّثَنَا الْحُمَيْدِيُّ عَبْدُ اللَّهِ بْنُ الزُّبَيْرِ ، قَالَ : حَدَّثَنَا سُفْيَانُ ، قَالَ : حَدَّثَنَا يَحْيَى بْنُ سَعِيدٍ الْأَنْصَارِيُّ ، قَالَ : أَخْبَرَنِي مُحَمَّدُ بْنُ إِبْرَاهِيمَ التَّيْمِيُّ ، أَنَّهُ سَمِعَ عَلْقَمَةَ بْنَ وَقَّاصٍ اللَّيْثِيَّ ، يَقُولُ : سَمِعْتُ عُمَرَ بْنَ الْخَطَّابِ رَضِيَ اللَّهُ عَنْهُ عَلَى الْمِنْبَرِ، قَالَ : سَمِعْتُ رَسُولَ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ، يَقُولُ :",
-        "introSub": {
-          "en": "Al-Humaydi 'Abdullah ibn az-Zubayr narrated to us, he said: Sufyan narrated to us, he said: Yahya ibn Sa'id al-Ansari narrated to us, he said: Muhammad ibn Ibrahim at-Taymi informed me, that he heard 'Alqama ibn Waqqas al-Laythi say: I heard 'Umar ibn al-Khattab — may God be pleased with him — upon the pulpit, saying: I heard the Messenger of God ﷺ say:"
-        },
         "items": [
           {
-            "id": 1,
-            "ar": "إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ،",
-            "en": "Actions are only judged by the intentions behind them,"
+            "id": "1",
+            "text": {
+              "ar": "إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ،",
+              "en": "Actions are only judged by the intentions behind them,"
+            }
           },
           {
-            "id": 2,
-            "ar": "وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى،",
-            "en": "and every person will be credited only for what they intended."
+            "id": "2",
+            "text": {
+              "ar": "وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى،",
+              "en": "and every person will be credited only for what they intended."
+            }
           },
           {
-            "id": 3,
-            "ar": "فَمَنْ كَانَتْ هِجْرَتُهُ إِلَى دُنْيَا يُصِيبُهَا، أَوْ إِلَى امْرَأَةٍ يَنْكِحُهَا،",
-            "en": "So whoever's emigration was for some worldly gain he sought, or to marry a woman,"
+            "id": "3",
+            "text": {
+              "ar": "فَمَنْ كَانَتْ هِجْرَتُهُ إِلَى دُنْيَا يُصِيبُهَا، أَوْ إِلَى امْرَأَةٍ يَنْكِحُهَا،",
+              "en": "So whoever's emigration was for some worldly gain he sought, or to marry a woman,"
+            }
           },
           {
-            "id": 4,
-            "ar": "فَهِجْرَتُهُ إِلَى مَا هَاجَرَ إِلَيْهِ",
-            "en": "their emigration counts only for what they emigrated for."
+            "id": "4",
+            "text": {
+              "ar": "فَهِجْرَتُهُ إِلَى مَا هَاجَرَ إِلَيْهِ",
+              "en": "their emigration counts only for what they emigrated for."
+            }
           }
-        ]
+        ],
+        "blockVersion": 1,
+        "intro": {
+          "ar": "حَدَّثَنَا الْحُمَيْدِيُّ عَبْدُ اللَّهِ بْنُ الزُّبَيْرِ ، قَالَ : حَدَّثَنَا سُفْيَانُ ، قَالَ : حَدَّثَنَا يَحْيَى بْنُ سَعِيدٍ الْأَنْصَارِيُّ ، قَالَ : أَخْبَرَنِي مُحَمَّدُ بْنُ إِبْرَاهِيمَ التَّيْمِيُّ ، أَنَّهُ سَمِعَ عَلْقَمَةَ بْنَ وَقَّاصٍ اللَّيْثِيَّ ، يَقُولُ : سَمِعْتُ عُمَرَ بْنَ الْخَطَّابِ رَضِيَ اللَّهُ عَنْهُ عَلَى الْمِنْبَرِ، قَالَ : سَمِعْتُ رَسُولَ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ، يَقُولُ :",
+          "en": "Al-Humaydi 'Abdullah ibn az-Zubayr narrated to us, he said: Sufyan narrated to us, he said: Yahya ibn Sa'id al-Ansari narrated to us, he said: Muhammad ibn Ibrahim at-Taymi informed me, that he heard 'Alqama ibn Waqqas al-Laythi say: I heard 'Umar ibn al-Khattab — may God be pleased with him — upon the pulpit, saying: I heard the Messenger of God ﷺ say:"
+        }
       },
       {
         "type": "vocabulary",
@@ -1653,47 +2041,68 @@
             "word": "الْأَعْمَالُ",
             "root": "ع-م-ل",
             "pron": "al-a'māl",
-            "occ": 1,
-            "en": "deeds, actions",
-            "ar": "الأفعال والتصرفات"
+            "occurrences": [
+              1
+            ],
+            "gloss": {
+              "ar": "الأفعال والتصرفات",
+              "en": "deeds, actions"
+            }
           },
           {
             "id": "b-niyya",
             "word": "النِّيَّاتِ",
             "root": "ن-و-ي",
             "pron": "an-niyyāt",
-            "occ": 1,
-            "en": "intentions",
-            "ar": "القصد الباطن للفعل"
+            "occurrences": [
+              1
+            ],
+            "gloss": {
+              "ar": "القصد الباطن للفعل",
+              "en": "intentions"
+            }
           },
           {
             "id": "b-imri",
             "word": "امْرِئٍ",
             "root": "م-ر-أ",
             "pron": "imri'in",
-            "occ": 1,
-            "en": "a person, individual",
-            "ar": "الشخص أو الفرد"
+            "occurrences": [
+              1
+            ],
+            "gloss": {
+              "ar": "الشخص أو الفرد",
+              "en": "a person, individual"
+            }
           },
           {
             "id": "b-hijra",
             "word": "هِجْرَتُهُ",
             "root": "ه-ج-ر",
             "pron": "hijratuhu",
-            "occ": 2,
-            "en": "his emigration",
-            "ar": "هجرته، انتقاله"
+            "occurrences": [
+              2
+            ],
+            "gloss": {
+              "ar": "هجرته، انتقاله",
+              "en": "his emigration"
+            }
           },
           {
             "id": "b-yankih",
             "word": "يَنْكِحُهَا",
             "root": "ن-ك-ح",
             "pron": "yankiḥuhā",
-            "occ": 1,
-            "en": "to marry her",
-            "ar": "يتزوج بها"
+            "occurrences": [
+              1
+            ],
+            "gloss": {
+              "ar": "يتزوج بها",
+              "en": "to marry her"
+            }
           }
-        ]
+        ],
+        "blockVersion": 1
       },
       {
         "type": "commentary",
@@ -1705,7 +2114,8 @@
         "note": {
           "en": "Bukhari opens his entire Sahih with this narration, signalling that the worth of every reported act of worship is settled first at the level of intention.",
           "ar": "افتتح البخاري صحيحه كله بهذا الحديث، مشيرًا إلى أن قيمة كل عبادة منقولة تُحسم أولًا من جهة النية."
-        }
+        },
+        "blockVersion": 1
       },
       {
         "type": "context",
@@ -1716,9 +2126,13 @@
         "body": {
           "en": "It is the hinge of the whole religion: two people may perform the identical outward deed and leave with entirely different reward, because only the unseen motive is being weighed.",
           "ar": "هو ميزان الدين كله: قد يفعل اثنان الفعل الظاهر نفسه فيخرجان بنتيجتين مختلفتين، لأن الموزون هو الدافع الخفي وحده."
-        }
+        },
+        "blockVersion": 1
       }
-    ]
+    ],
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "complete"
   },
   {
     "id": "hadith-bukhari-2",
@@ -1737,31 +2151,38 @@
       },
       "isnadType": "full"
     },
-    "schemaVersion": 1,
+    "schemaVersion": 2,
     "content": [
       {
         "type": "clauses",
-        "introAr": "حَدَّثَنَا عَبْدُ اللَّهِ بْنُ يُوسُفَ، قَالَ أَخْبَرَنَا مَالِكٌ، عَنْ هِشَامِ بْنِ عُرْوَةَ، عَنْ أَبِيهِ، عَنْ عَائِشَةَ أُمِّ الْمُؤْمِنِينَ رَضِيَ اللَّهُ عَنْهَا أَنَّ الْحَارِثَ بْنَ هِشَامٍ رَضِيَ اللَّهُ عَنْهُ سَأَلَ رَسُولَ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ فَقَالَ يَا رَسُولَ اللَّهِ كَيْفَ يَأْتِيكَ الْوَحْيُ فَقَالَ رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ:",
-        "introSub": {
-          "en": "Abdullah ibn Yusuf narrated to us, he said: Malik informed us, from Hisham ibn 'Urwah, from his father, from 'Aisha, Mother of the Believers — may God be pleased with her — that al-Harith ibn Hisham — may God be pleased with him — asked the Messenger of God ﷺ, saying: O Messenger of God, how does revelation come to you? The Messenger of God ﷺ said:"
-        },
         "items": [
           {
-            "id": 1,
-            "ar": "أَحْيَانًا يَأْتِينِي مِثْلَ صَلْصَلَةِ الْجَرَسِ وَهُوَ أَشَدُّهُ عَلَيَّ فَيُفْصَمُ عَنِّي وَقَدْ وَعَيْتُ عَنْهُ مَا قَالَ،",
-            "en": "Sometimes it comes to me like the ringing of a bell, and that is the hardest on me; then it leaves me and I have grasped what was said."
+            "id": "1",
+            "text": {
+              "ar": "أَحْيَانًا يَأْتِينِي مِثْلَ صَلْصَلَةِ الْجَرَسِ وَهُوَ أَشَدُّهُ عَلَيَّ فَيُفْصَمُ عَنِّي وَقَدْ وَعَيْتُ عَنْهُ مَا قَالَ،",
+              "en": "Sometimes it comes to me like the ringing of a bell, and that is the hardest on me; then it leaves me and I have grasped what was said."
+            }
           },
           {
-            "id": 2,
-            "ar": "وَأَحْيَانًا يَتَمَثَّلُ لِيَ الْمَلَكُ رَجُلًا فَيُكَلِّمُنِي فَأَعِي مَا يَقُولُ.",
-            "en": "And sometimes the angel takes the form of a man and speaks to me, and I grasp what he says."
+            "id": "2",
+            "text": {
+              "ar": "وَأَحْيَانًا يَتَمَثَّلُ لِيَ الْمَلَكُ رَجُلًا فَيُكَلِّمُنِي فَأَعِي مَا يَقُولُ.",
+              "en": "And sometimes the angel takes the form of a man and speaks to me, and I grasp what he says."
+            }
           },
           {
-            "id": 3,
-            "ar": "قَالَتْ عَائِشَةُ رَضِيَ اللَّهُ عَنْهَا وَلَقَدْ رَأَيْتُهُ يَنْزِلُ عَلَيْهِ الْوَحْيُ فِي الْيَوْمِ الشَّدِيدِ الْبَرْدِ فَيَفْصِمُ عَنْهُ وَإِنَّ جَبِينَهُ لَيَتَفَصَّدُ عَرَقًا.",
-            "en": "'Aisha — may God be pleased with her — added: I have seen revelation come down upon him on a bitterly cold day, and when it left him his forehead was beading with sweat."
+            "id": "3",
+            "text": {
+              "ar": "قَالَتْ عَائِشَةُ رَضِيَ اللَّهُ عَنْهَا وَلَقَدْ رَأَيْتُهُ يَنْزِلُ عَلَيْهِ الْوَحْيُ فِي الْيَوْمِ الشَّدِيدِ الْبَرْدِ فَيَفْصِمُ عَنْهُ وَإِنَّ جَبِينَهُ لَيَتَفَصَّدُ عَرَقًا.",
+              "en": "'Aisha — may God be pleased with her — added: I have seen revelation come down upon him on a bitterly cold day, and when it left him his forehead was beading with sweat."
+            }
           }
-        ]
+        ],
+        "blockVersion": 1,
+        "intro": {
+          "ar": "حَدَّثَنَا عَبْدُ اللَّهِ بْنُ يُوسُفَ، قَالَ أَخْبَرَنَا مَالِكٌ، عَنْ هِشَامِ بْنِ عُرْوَةَ، عَنْ أَبِيهِ، عَنْ عَائِشَةَ أُمِّ الْمُؤْمِنِينَ رَضِيَ اللَّهُ عَنْهَا أَنَّ الْحَارِثَ بْنَ هِشَامٍ رَضِيَ اللَّهُ عَنْهُ سَأَلَ رَسُولَ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ فَقَالَ يَا رَسُولَ اللَّهِ كَيْفَ يَأْتِيكَ الْوَحْيُ فَقَالَ رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ:",
+          "en": "Abdullah ibn Yusuf narrated to us, he said: Malik informed us, from Hisham ibn 'Urwah, from his father, from 'Aisha, Mother of the Believers — may God be pleased with her — that al-Harith ibn Hisham — may God be pleased with him — asked the Messenger of God ﷺ, saying: O Messenger of God, how does revelation come to you? The Messenger of God ﷺ said:"
+        }
       },
       {
         "type": "vocabulary",
@@ -1771,47 +2192,68 @@
             "word": "الْوَحْيُ",
             "root": "و-ح-ي",
             "pron": "al-wahy",
-            "occ": 2,
-            "en": "revelation",
-            "ar": "الإيحاء الإلهي للنبي"
+            "occurrences": [
+              2
+            ],
+            "gloss": {
+              "ar": "الإيحاء الإلهي للنبي",
+              "en": "revelation"
+            }
           },
           {
             "id": "b-jaras",
             "word": "صَلْصَلَةِ الْجَرَسِ",
             "root": "ص-ل-ص-ل",
             "pron": "ṣalṣalat al-jaras",
-            "occ": 1,
-            "en": "the ringing of a bell",
-            "ar": "صوت الجرس"
+            "occurrences": [
+              1
+            ],
+            "gloss": {
+              "ar": "صوت الجرس",
+              "en": "the ringing of a bell"
+            }
           },
           {
             "id": "b-tamaththal",
             "word": "يَتَمَثَّلُ",
             "root": "م-ث-ل",
             "pron": "yatamaththal",
-            "occ": 1,
-            "en": "takes the form of",
-            "ar": "يظهر بصورة"
+            "occurrences": [
+              1
+            ],
+            "gloss": {
+              "ar": "يظهر بصورة",
+              "en": "takes the form of"
+            }
           },
           {
             "id": "b-malak",
             "word": "الْمَلَكُ",
             "root": "م-ل-ك",
             "pron": "al-malak",
-            "occ": 1,
-            "en": "the angel",
-            "ar": "جبريل عليه السلام"
+            "occurrences": [
+              1
+            ],
+            "gloss": {
+              "ar": "جبريل عليه السلام",
+              "en": "the angel"
+            }
           },
           {
             "id": "b-tafas sad",
             "word": "يَتَفَصَّدُ",
             "root": "ف-ص-د",
             "pron": "yatafaṣṣad",
-            "occ": 1,
-            "en": "beads (with sweat)",
-            "ar": "يخرج عرقًا غزيرًا"
+            "occurrences": [
+              1
+            ],
+            "gloss": {
+              "ar": "يخرج عرقًا غزيرًا",
+              "en": "beads (with sweat)"
+            }
           }
-        ]
+        ],
+        "blockVersion": 1
       },
       {
         "type": "commentary",
@@ -1823,9 +2265,13 @@
         "note": {
           "en": "Placed immediately after the hadith of intention, this report shows the human side of how the Qur'an and Sunnah were received before they were ever transmitted.",
           "ar": "أورده البخاري عقب حديث النية مباشرة، ليبين الوجه الإنساني لكيفية نزول ما نُقل بعدُ من قرآن وسنة."
-        }
+        },
+        "blockVersion": 1
       }
-    ]
+    ],
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "complete"
   },
   {
     "id": "hadith-muslim-1",
@@ -1844,60 +2290,73 @@
       },
       "isnadType": "full"
     },
-    "schemaVersion": 1,
+    "schemaVersion": 2,
     "content": [
       {
         "type": "clauses",
-        "introAr": "حَدَّثَنِي أَبُو خَيْثَمَةَ زُهَيْرُ بْنُ حَرْبٍ حَدَّثَنَا وَكِيعٌ عَنْ كَهْمَسٍ عَنْ عَبْدِ اللَّهِ بْنِ بُرَيْدَةَ عَنْ يَحْيَى بْنِ يَعْمَرَ قَالَ كَانَ أَوَّلَ مَنْ قَالَ فِي الْقَدَرِ بِالْبَصْرَةِ مَعْبَدٌ الْجُهَنِيُّ فَانْطَلَقْتُ أَنَا وَحُمَيْدُ بْنُ عَبْدِ الرَّحْمَنِ الْحِمْيَرِيُّ حَاجَّيْنِ أَوْ مُعْتَمِرَيْنِ فَقُلْنَا لَوْ لَقِينَا أَحَدًا مِنْ أَصْحَابِ رَسُولِ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ فَسَأَلْنَاهُ عَمَّا يَقُولُ هَؤُلَاءِ فِي الْقَدَرِ فَوُفِّقَ لَنَا عَبْدُ اللَّهِ بْنُ عُمَرَ بْنِ الْخَطَّابِ دَاخِلًا الْمَسْجِدَ فَاكْتَنَفْتُهُ أَنَا وَصَاحِبِي أَحَدُنَا عَنْ يَمِينِهِ وَالآخَرُ عَنْ شِمَالِهِ فَظَنَنْتُ أَنَّ صَاحِبِي سَيَكِلُ الْكَلَامَ إِلَيَّ فَقُلْتُ أَبَا عَبْدِ الرَّحْمَنِ إِنَّهُ قَدْ ظَهَرَ قِبَلَنَا نَاسٌ يَقْرَءُونَ الْقُرْآنَ وَيَتَقَفَّرُونَ الْعِلْمَ وَأَنَّهُمْ يَزْعُمُونَ أَنْ لَا قَدَرَ وَأَنَّ الْأَمْرَ أُنُفٌ قَالَ فَإِذَا لَقِيتَ أُولَئِكَ فَأَخْبِرْهُمْ أَنِّي بَرِيءٌ مِنْهُمْ وَأَنَّهُمْ بُرَآءُ مِنِّي ثُمَّ قَالَ حَدَّثَنِي أَبِي عُمَرُ بْنُ الْخَطَّابِ قَالَ بَيْنَمَا نَحْنُ عِنْدَ رَسُولِ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ ذَاتَ يَوْمٍ إِذْ طَلَعَ عَلَيْنَا رَجُلٌ شَدِيدُ بَيَاضِ الثِّيَابِ شَدِيدُ سَوَادِ الشَّعْرِ لا يُرَى عَلَيْهِ أَثَرُ السَّفَرِ وَلا يَعْرِفُهُ مِنَّا أَحَدٌ حَتَّى جَلَسَ إِلَى النَّبِيِّ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ فَأَسْنَدَ رُكْبَتَيْهِ إِلَى رُكْبَتَيْهِ وَوَضَعَ كَفَّيْهِ عَلَى فَخِذَيْهِ وَقَالَ يَا مُحَمَّدُ أَخْبِرْنِي عَنِ الْإِسْلَامِ فَقَالَ رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ الْإِسْلَامُ أَنْ تَشْهَدَ أَنْ لَا إِلَهَ إِلَّا اللَّهُ وَأَنَّ مُحَمَّدًا رَسُولُ اللَّهِ وَتُقِيمَ الصَّلَاةَ وَتُؤْتِيَ الزَّكَاةَ وَتَصُومَ رَمَضَانَ وَتَحُجَّ الْبَيْتَ إِنِ اسْتَطَعْتَ إِلَيْهِ سَبِيلاً قَالَ صَدَقْتَ قَالَ فَعَجِبْنَا لَهُ يَسْأَلُهُ وَيُصَدِّقُهُ قَالَ فَأَخْبِرْنِي عَنِ الْإِيمَانِ قَالَ أَنْ تُؤْمِنَ بِاللَّهِ وَمَلَائِكَتِهِ وَكُتُبِهِ وَرُسُلِهِ وَالْيَوْمِ الْآخِرِ وَتُؤْمِنَ بِالْقَدَرِ خَيْرِهِ وَشَرِّهِ قَالَ صَدَقْتَ قَالَ فَأَخْبِرْنِي عَنِ الْإِحْسَانِ قَالَ أَنْ تَعْبُدَ اللَّهَ كَأَنَّكَ تَرَاهُ فَإِنْ لَمْ تَكُنْ تَرَاهُ فَإِنَّهُ يَرَاكَ قَالَ فَأَخْبِرْنِي عَنِ السَّاعَةِ قَالَ مَا الْمَسْئُولُ عَنْهَا بِأَعْلَمَ مِنَ السَّائِلِ قَالَ فَأَخْبِرْنِي عَنْ أَمَارَتِهَا قَالَ أَنْ تَلِدَ الْأَمَةُ رَبَّتَهَا وَأَنْ تَرَى الْحُفَاةَ الْعُرَاةَ الْعَالَةَ رِعَاءَ الشَّاءِ يَتَطَاوَلُونَ فِي الْبُنْيَانِ قَالَ ثُمَّ انْطَلَقَ فَلَبِثْتُ مَلِيًّا ثُمَّ قَالَ لِي يَا عُمَرُ أَتَدْرِي مَنِ السَّائِلُ قُلْتُ اللَّهُ وَرَسُولُهُ أَعْلَمُ قَالَ فَإِنَّهُ جِبْرِيلُ أَتَاكُمْ يُعَلِّمُكُمْ دِينَكُمْ:",
-        "introSub": {
+        "items": [
+          {
+            "id": "1",
+            "text": {
+              "ar": "«سَلُونِي» فَهَابُوهُ أَنْ يَسْأَلُوهُ، فَجَاءَ رَجُلٌ فَجَلَسَ عِنْدَ رُكْبَتَيْهِ،",
+              "en": "He said: 'Ask me' — they were in awe of asking him. Then a man came and sat by his knees,",
+              "fr": "Il dit: «Interrogez-moi» — ils craignaient de l'interroger. Un homme vint alors s'asseoir à ses genoux,",
+              "es": "Dijo: «Preguntadme» — temían preguntarle. Vino entonces un hombre y se sentó junto a sus rodillas,"
+            }
+          },
+          {
+            "id": "2",
+            "text": {
+              "ar": "فَقَالَ: يَا رَسُولَ اللَّهِ، مَا الْإِسْلَامُ؟ قَالَ: «لَا تُشْرِكْ بِاللَّهِ شَيْئًا، وَتُقِيمُ الصَّلَاةَ، وَتُؤْتِي الزَّكَاةَ، وَتَصُومُ رَمَضَانَ».",
+              "en": "and asked: 'O Messenger of God, what is Islam?' He said: 'That you associate nothing with God, establish the prayer, give the zakat, and fast Ramadan.'",
+              "fr": "et demanda: «Ô Messager de Dieu, qu'est-ce que l'islam?» Il dit: «Ne rien associer à Dieu, accomplir la prière, donner l'aumône, et jeûner Ramadan.»",
+              "es": "y preguntó: «Mensajero de Dios, ¿qué es el islam?» Dijo: «No asociar nada a Dios, hacer la oración, dar el zakat y ayunar Ramadán.»"
+            }
+          },
+          {
+            "id": "3",
+            "text": {
+              "ar": "قَالَ: صَدَقْتَ. قَالَ: فَأَخْبَرْنِي عَنِ الْإِيمَانِ؟ قَالَ: «أَنْ تُؤْمِنَ بِاللَّهِ وَمَلَائِكَتِهِ وَكُتُبِهِ وَرُسُلِهِ وَالْيَوْمِ الْآخِرِ، وَتُؤْمِنَ بِالْقَدَرِ خَيْرِهِ وَشَرِّهِ».",
+              "en": "He said: 'You have spoken the truth.' He asked: 'Inform me about Iman (faith).' He said: 'That you believe in God, His angels, His books, His messengers, the Last Day, and that you believe in the Divine Decree, its good and its ill.'",
+              "fr": "Il dit: «Tu as dit la vérité.» Il demanda: «Informe-moi sur la foi (iman).» Il dit: «Croire en Dieu, Ses anges, Ses livres, Ses messagers, le Jour dernier, et croire au Décret divin, son bien et son mal.»",
+              "es": "Dijo: «Has dicho la verdad.» Preguntó: «Informadme sobre la fe (iman).» Dijo: «Creer en Dios, Sus ángeles, Sus libros, Sus mensajeros, el Día Final, y creer en el Decreto divino, su bien y su mal.»"
+            }
+          },
+          {
+            "id": "4",
+            "text": {
+              "ar": "قَالَ: صَدَقْتَ. قَالَ: فَأَخْبَرْنِي عَنِ الْإِحْسَانِ؟ قَالَ: «أَنْ تَعْبُدَ اللَّهَ كَأَنَّكَ تَرَاهُ، فَإِنْ لَمْ تَكُنْ تَرَاهُ فَإِنَّهُ يَرَاكَ».",
+              "en": "He said: 'You have spoken the truth.' He asked: 'Inform me about Ihsan.' He said: 'That you worship God as if you see Him, for if you do not see Him, He surely sees you.'",
+              "fr": "Il dit: «Tu as dit la vérité.» Il demanda: «Informe-moi sur l'ihsan.» Il dit: «Adorer Dieu comme si tu Le voyais, car si tu ne Le vois pas, Lui te voit.»",
+              "es": "Dijo: «Has dicho la verdad.» Preguntó: «Informadme sobre el ihsan.» Dijo: «Adorar a Dios como si Lo vieras, pues si no Lo ves, Él te ve.»"
+            }
+          },
+          {
+            "id": "5",
+            "text": {
+              "ar": "قَالَ: صَدَقْتَ. قَالَ: فَأَخْبَرْنِي عَنِ السَّاعَةِ؟ قَالَ: «مَا الْمَسْئُولُ عَنْهَا بِأَعْلَمَ مِنَ السَّائِلِ».",
+              "en": "He said: 'You have spoken the truth.' He asked: 'Inform me about the Hour.' He said: 'The one asked knows no more of it than the one asking.'",
+              "fr": "Il dit: «Tu as dit la vérité.» Il demanda: «Informe-moi sur l'Heure.» Il dit: «Celui qui est interrogé n'en sait pas plus que celui qui interroge.»",
+              "es": "Dijo: «Has dicho la verdad.» Preguntó: «Informadme sobre la Hora.» Dijo: «Quien es preguntado no sabe más de ella que quien pregunta.»"
+            }
+          },
+          {
+            "id": "6",
+            "text": {
+              "ar": "ثُمَّ انْطَلَقَ، فَلَبِثْتُ مَلِيًّا، ثُمَّ قَالَ: «يَا عُمَرُ، أَتَدْرِي مَنِ السَّائِلُ؟» قُلْتُ: اللَّهُ وَرَسُولُهُ أَعْلَمُ. قَالَ: «فَإِنَّهُ جِبْرِيلُ أَتَاكُمْ يُعَلِّمُكُمْ دِينَكُمْ».",
+              "en": "Then the man left. After a while the Prophet said: 'O 'Umar, do you know who the questioner was?' I said: 'God and His Messenger know best.' He said: 'He was Gabriel, who came to teach you your religion.'",
+              "fr": "Puis l'homme partit. Après un moment, le Prophète dit: «Ô 'Umar, sais-tu qui était l'interrogateur?» Je dis: «Dieu et Son Messager savent mieux.» Il dit: «C'était Gabriel, venu vous enseigner votre religion.»",
+              "es": "Luego el hombre se fue. Pasado un rato, el Profeta dijo: «¡Oh 'Umar, sabes quién era el que preguntaba?» Dije: «Dios y Su Mensajero saben más.» Dijo: «Fue Gabriel, que vino a enseñaros vuestra religión.»"
+            }
+          }
+        ],
+        "blockVersion": 1,
+        "intro": {
+          "ar": "حَدَّثَنِي أَبُو خَيْثَمَةَ زُهَيْرُ بْنُ حَرْبٍ حَدَّثَنَا وَكِيعٌ عَنْ كَهْمَسٍ عَنْ عَبْدِ اللَّهِ بْنِ بُرَيْدَةَ عَنْ يَحْيَى بْنِ يَعْمَرَ قَالَ كَانَ أَوَّلَ مَنْ قَالَ فِي الْقَدَرِ بِالْبَصْرَةِ مَعْبَدٌ الْجُهَنِيُّ فَانْطَلَقْتُ أَنَا وَحُمَيْدُ بْنُ عَبْدِ الرَّحْمَنِ الْحِمْيَرِيُّ حَاجَّيْنِ أَوْ مُعْتَمِرَيْنِ فَقُلْنَا لَوْ لَقِينَا أَحَدًا مِنْ أَصْحَابِ رَسُولِ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ فَسَأَلْنَاهُ عَمَّا يَقُولُ هَؤُلَاءِ فِي الْقَدَرِ فَوُفِّقَ لَنَا عَبْدُ اللَّهِ بْنُ عُمَرَ بْنِ الْخَطَّابِ دَاخِلًا الْمَسْجِدَ فَاكْتَنَفْتُهُ أَنَا وَصَاحِبِي أَحَدُنَا عَنْ يَمِينِهِ وَالآخَرُ عَنْ شِمَالِهِ فَظَنَنْتُ أَنَّ صَاحِبِي سَيَكِلُ الْكَلَامَ إِلَيَّ فَقُلْتُ أَبَا عَبْدِ الرَّحْمَنِ إِنَّهُ قَدْ ظَهَرَ قِبَلَنَا نَاسٌ يَقْرَءُونَ الْقُرْآنَ وَيَتَقَفَّرُونَ الْعِلْمَ وَأَنَّهُمْ يَزْعُمُونَ أَنْ لَا قَدَرَ وَأَنَّ الْأَمْرَ أُنُفٌ قَالَ فَإِذَا لَقِيتَ أُولَئِكَ فَأَخْبِرْهُمْ أَنِّي بَرِيءٌ مِنْهُمْ وَأَنَّهُمْ بُرَآءُ مِنِّي ثُمَّ قَالَ حَدَّثَنِي أَبِي عُمَرُ بْنُ الْخَطَّابِ قَالَ بَيْنَمَا نَحْنُ عِنْدَ رَسُولِ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ ذَاتَ يَوْمٍ إِذْ طَلَعَ عَلَيْنَا رَجُلٌ شَدِيدُ بَيَاضِ الثِّيَابِ شَدِيدُ سَوَادِ الشَّعْرِ لا يُرَى عَلَيْهِ أَثَرُ السَّفَرِ وَلا يَعْرِفُهُ مِنَّا أَحَدٌ حَتَّى جَلَسَ إِلَى النَّبِيِّ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ فَأَسْنَدَ رُكْبَتَيْهِ إِلَى رُكْبَتَيْهِ وَوَضَعَ كَفَّيْهِ عَلَى فَخِذَيْهِ وَقَالَ يَا مُحَمَّدُ أَخْبِرْنِي عَنِ الْإِسْلَامِ فَقَالَ رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ الْإِسْلَامُ أَنْ تَشْهَدَ أَنْ لَا إِلَهَ إِلَّا اللَّهُ وَأَنَّ مُحَمَّدًا رَسُولُ اللَّهِ وَتُقِيمَ الصَّلَاةَ وَتُؤْتِيَ الزَّكَاةَ وَتَصُومَ رَمَضَانَ وَتَحُجَّ الْبَيْتَ إِنِ اسْتَطَعْتَ إِلَيْهِ سَبِيلاً قَالَ صَدَقْتَ قَالَ فَعَجِبْنَا لَهُ يَسْأَلُهُ وَيُصَدِّقُهُ قَالَ فَأَخْبِرْنِي عَنِ الْإِيمَانِ قَالَ أَنْ تُؤْمِنَ بِاللَّهِ وَمَلَائِكَتِهِ وَكُتُبِهِ وَرُسُلِهِ وَالْيَوْمِ الْآخِرِ وَتُؤْمِنَ بِالْقَدَرِ خَيْرِهِ وَشَرِّهِ قَالَ صَدَقْتَ قَالَ فَأَخْبِرْنِي عَنِ الْإِحْسَانِ قَالَ أَنْ تَعْبُدَ اللَّهَ كَأَنَّكَ تَرَاهُ فَإِنْ لَمْ تَكُنْ تَرَاهُ فَإِنَّهُ يَرَاكَ قَالَ فَأَخْبِرْنِي عَنِ السَّاعَةِ قَالَ مَا الْمَسْئُولُ عَنْهَا بِأَعْلَمَ مِنَ السَّائِلِ قَالَ فَأَخْبِرْنِي عَنْ أَمَارَتِهَا قَالَ أَنْ تَلِدَ الْأَمَةُ رَبَّتَهَا وَأَنْ تَرَى الْحُفَاةَ الْعُرَاةَ الْعَالَةَ رِعَاءَ الشَّاءِ يَتَطَاوَلُونَ فِي الْبُنْيَانِ قَالَ ثُمَّ انْطَلَقَ فَلَبِثْتُ مَلِيًّا ثُمَّ قَالَ لِي يَا عُمَرُ أَتَدْرِي مَنِ السَّائِلُ قُلْتُ اللَّهُ وَرَسُولُهُ أَعْلَمُ قَالَ فَإِنَّهُ جِبْرِيلُ أَتَاكُمْ يُعَلِّمُكُمْ دِينَكُمْ:",
           "en": "Abu Khaythamah Zuhayr ibn Harb narrated to us, Wakee' narrated to us, from Kahmas, from Abdullah ibn Buraydah, from Yahya ibn Ya'mur — he said: The first one who spoke of Divine Decree (qadar) in Basra was Ma'bad al-Juhani. I and Humaid ibn 'Abd ar-Rahman al-Himyari set out for pilgrimage or 'Umrah and said: Should we meet any of the Companions of the Messenger of God ﷺ, we shall ask them about what these people say about qadar. We were granted success and met Abdullah ibn Umar ibn al-Khattab entering the mosque. I and my companion surrounded him, one on his right and the other on his left. I expected my companion to leave the conversation to me, so I said: Abu 'Abd ar-Rahman! There have appeared among us people who recite the Qur'an and seek knowledge, and they claim that there is no Divine Decree and that affairs are not predestined. He said: When you meet such people, tell them that I am innocent of them and they are innocent of me. And by Him whom Abdullah ibn Umar swears by — if one of them had gold equal to Mount Uhud and spent it, Allah would not accept it until he believes in Divine Decree. He then said: My father Umar ibn al-Khattab told me: One day we were sitting with the Messenger of God ﷺ when there appeared before us a man dressed in pure white clothes, with extraordinarily black hair, showing no signs of travel, and none of us recognized him. He sat before the Prophet ﷺ, placed his knees against the Prophet's knees, and put his palms on his thighs, saying: O Muhammad, inform me about al-Islam. The Messenger of God ﷺ said: Al-Islam is that you testify there is no god but Allah and that Muhammad is the Messenger of God, establish the prayer, pay the zakat, fast Ramadan, and perform pilgrimage to the House if you are able to find a way. He said: You have spoken the truth. We were amazed that he would ask and then verify. He said: Inform me about iman (faith). He said: That you believe in Allah, His angels, His books, His messengers, the Last Day, and that you believe in Divine Decree, its good and its evil. He said: You have spoken the truth. He said: Inform me about ihsan (excellence in worship). He said: That you worship Allah as if you see Him, for if you do not see Him, He surely sees you. He said: Inform me about the Hour. He said: The one asked about it knows no more than the questioner. He said: Inform me about its signs. He said: That the slave-girl will give birth to her mistress, and that you will find barefoot, destitute, shepherdless sheep-herders competing in building tall structures. Then he left, and I remained for a long while. He then said to me: O Umar, do you know who the questioner was? I said: Allah and His Messenger know best. He said: He was Jibril (Gabriel). He came to teach you your religion.",
           "fr": "Selon Abu Khaythamah Zuhayr ibn Harb, qui a dit avoir entendu Wakee' dire, de Kahmas, Abdullah ibn Buraydah, Yahya ibn Ya'mur : Le premier à parler du décret divin à Bassorah fut Ma'bad al-Juhani. Je partis en pèlerinage avec Humaid ibn 'Abdur-Rahman al-Himyari et dis : Si nous rencontrions un compagnon du Prophète ﷺ, nous lui demanderions. Nous fîmes la rencontre d'Abdullah ibn Umar. Il dit : Informez-les que je suis innocent d'eux. Puis il raconta que son père Umar dit : Un homme vêtu de blanc apparut et demanda au Prophète ﷺ de lui enseigner l'islam, l'iman, l'ihsan, l'heure et ses signes. Puis il partit. Le Prophète ﷺ dit à Umar : C'était Gabriel, venu vous enseigner votre religion.",
           "es": "Según Abu Khaythamah Zuhayr ibn Harb, de Wakee', de Kahmas, Abdullah ibn Buraydah, Yahya ibn Ya'mur: El primero en hablar del decreto divino en Basora fue Ma'bad al-Juhani. Yo y Humaid salimos en peregrinación y encontramos a Abdullah ibn Umar. Dijo: Informadles que estoy inocente de ellos. Luego narró que su padre Umar dijo: Un hombre vestido de blanco apareció y preguntó al Profeta ﷺ sobre el islam, el iman, el ihsan, la Hora y sus señales. Luego se fue. El Profeta ﷺ dijo a Umar: Fue Gabriel, venu vous enseigner votre religion."
-        },
-        "items": [
-          {
-            "id": 1,
-            "ar": "«سَلُونِي» فَهَابُوهُ أَنْ يَسْأَلُوهُ، فَجَاءَ رَجُلٌ فَجَلَسَ عِنْدَ رُكْبَتَيْهِ،",
-            "en": "He said: 'Ask me' — they were in awe of asking him. Then a man came and sat by his knees,",
-            "fr": "Il dit: «Interrogez-moi» — ils craignaient de l'interroger. Un homme vint alors s'asseoir à ses genoux,",
-            "es": "Dijo: «Preguntadme» — temían preguntarle. Vino entonces un hombre y se sentó junto a sus rodillas,"
-          },
-          {
-            "id": 2,
-            "ar": "فَقَالَ: يَا رَسُولَ اللَّهِ، مَا الْإِسْلَامُ؟ قَالَ: «لَا تُشْرِكْ بِاللَّهِ شَيْئًا، وَتُقِيمُ الصَّلَاةَ، وَتُؤْتِي الزَّكَاةَ، وَتَصُومُ رَمَضَانَ».",
-            "en": "and asked: 'O Messenger of God, what is Islam?' He said: 'That you associate nothing with God, establish the prayer, give the zakat, and fast Ramadan.'",
-            "fr": "et demanda: «Ô Messager de Dieu, qu'est-ce que l'islam?» Il dit: «Ne rien associer à Dieu, accomplir la prière, donner l'aumône, et jeûner Ramadan.»",
-            "es": "y preguntó: «Mensajero de Dios, ¿qué es el islam?» Dijo: «No asociar nada a Dios, hacer la oración, dar el zakat y ayunar Ramadán.»"
-          },
-          {
-            "id": 3,
-            "ar": "قَالَ: صَدَقْتَ. قَالَ: فَأَخْبَرْنِي عَنِ الْإِيمَانِ؟ قَالَ: «أَنْ تُؤْمِنَ بِاللَّهِ وَمَلَائِكَتِهِ وَكُتُبِهِ وَرُسُلِهِ وَالْيَوْمِ الْآخِرِ، وَتُؤْمِنَ بِالْقَدَرِ خَيْرِهِ وَشَرِّهِ».",
-            "en": "He said: 'You have spoken the truth.' He asked: 'Inform me about Iman (faith).' He said: 'That you believe in God, His angels, His books, His messengers, the Last Day, and that you believe in the Divine Decree, its good and its ill.'",
-            "fr": "Il dit: «Tu as dit la vérité.» Il demanda: «Informe-moi sur la foi (iman).» Il dit: «Croire en Dieu, Ses anges, Ses livres, Ses messagers, le Jour dernier, et croire au Décret divin, son bien et son mal.»",
-            "es": "Dijo: «Has dicho la verdad.» Preguntó: «Informadme sobre la fe (iman).» Dijo: «Creer en Dios, Sus ángeles, Sus libros, Sus mensajeros, el Día Final, y creer en el Decreto divino, su bien y su mal.»"
-          },
-          {
-            "id": 4,
-            "ar": "قَالَ: صَدَقْتَ. قَالَ: فَأَخْبَرْنِي عَنِ الْإِحْسَانِ؟ قَالَ: «أَنْ تَعْبُدَ اللَّهَ كَأَنَّكَ تَرَاهُ، فَإِنْ لَمْ تَكُنْ تَرَاهُ فَإِنَّهُ يَرَاكَ».",
-            "en": "He said: 'You have spoken the truth.' He asked: 'Inform me about Ihsan.' He said: 'That you worship God as if you see Him, for if you do not see Him, He surely sees you.'",
-            "fr": "Il dit: «Tu as dit la vérité.» Il demanda: «Informe-moi sur l'ihsan.» Il dit: «Adorer Dieu comme si tu Le voyais, car si tu ne Le vois pas, Lui te voit.»",
-            "es": "Dijo: «Has dicho la verdad.» Preguntó: «Informadme sobre el ihsan.» Dijo: «Adorar a Dios como si Lo vieras, pues si no Lo ves, Él te ve.»"
-          },
-          {
-            "id": 5,
-            "ar": "قَالَ: صَدَقْتَ. قَالَ: فَأَخْبَرْنِي عَنِ السَّاعَةِ؟ قَالَ: «مَا الْمَسْئُولُ عَنْهَا بِأَعْلَمَ مِنَ السَّائِلِ».",
-            "en": "He said: 'You have spoken the truth.' He asked: 'Inform me about the Hour.' He said: 'The one asked knows no more of it than the one asking.'",
-            "fr": "Il dit: «Tu as dit la vérité.» Il demanda: «Informe-moi sur l'Heure.» Il dit: «Celui qui est interrogé n'en sait pas plus que celui qui interroge.»",
-            "es": "Dijo: «Has dicho la verdad.» Preguntó: «Informadme sobre la Hora.» Dijo: «Quien es preguntado no sabe más de ella que quien pregunta.»"
-          },
-          {
-            "id": 6,
-            "ar": "ثُمَّ انْطَلَقَ، فَلَبِثْتُ مَلِيًّا، ثُمَّ قَالَ: «يَا عُمَرُ، أَتَدْرِي مَنِ السَّائِلُ؟» قُلْتُ: اللَّهُ وَرَسُولُهُ أَعْلَمُ. قَالَ: «فَإِنَّهُ جِبْرِيلُ أَتَاكُمْ يُعَلِّمُكُمْ دِينَكُمْ».",
-            "en": "Then the man left. After a while the Prophet said: 'O 'Umar, do you know who the questioner was?' I said: 'God and His Messenger know best.' He said: 'He was Gabriel, who came to teach you your religion.'",
-            "fr": "Puis l'homme partit. Après un moment, le Prophète dit: «Ô 'Umar, sais-tu qui était l'interrogateur?» Je dis: «Dieu et Son Messager savent mieux.» Il dit: «C'était Gabriel, venu vous enseigner votre religion.»",
-            "es": "Luego el hombre se fue. Pasado un rato, el Profeta dijo: «¡Oh 'Umar, sabes quién era el que preguntaba?» Dije: «Dios y Su Mensajero saben más.» Dijo: «Fue Gabriel, que vino a enseñaros vuestra religión.»"
-          }
-        ]
+        }
       },
       {
         "type": "vocabulary",
@@ -1907,32 +2366,42 @@
             "word": "الْإِسْلَامُ",
             "root": "إ-س-ل-م",
             "pron": "al-islam",
-            "occ": 1,
-            "en": "Islam (outward submission)",
-            "ar": "الإسلام",
-            "nodeId": "concept-islam"
+            "occurrences": [
+              1
+            ],
+            "gloss": {
+              "ar": "الإسلام",
+              "en": "Islam (outward submission)"
+            }
           },
           {
             "id": "iman-j",
             "word": "الْإِيمَانِ",
             "root": "أ-م-ن",
             "pron": "al-iman",
-            "occ": 1,
-            "en": "Iman (faith)",
-            "ar": "الإيمان",
-            "nodeId": "concept-iman"
+            "occurrences": [
+              1
+            ],
+            "gloss": {
+              "ar": "الإيمان",
+              "en": "Iman (faith)"
+            }
           },
           {
             "id": "ihsan-j",
             "word": "الْإِحْسَانِ",
             "root": "ح-س-ن",
             "pron": "al-ihsan",
-            "occ": 1,
-            "en": "Ihsan (worship in awareness of God)",
-            "ar": "الإحسان",
-            "nodeId": "concept-ihsan"
+            "occurrences": [
+              1
+            ],
+            "gloss": {
+              "ar": "الإحسان",
+              "en": "Ihsan (worship in awareness of God)"
+            }
           }
-        ]
+        ],
+        "blockVersion": 1
       },
       {
         "type": "commentary",
@@ -1944,9 +2413,13 @@
         "note": {
           "en": "This hadith gathers the whole religion into three ascending degrees — Islam (outward deeds), Iman (inner belief), and Ihsan (worshipping as if one sees God). It is the very first hadith of Sahih Muslim.",
           "ar": "يجمع هذا الحديث الدين كله في ثلاث درجات متصاعدة — الإسلام (الأعمال الظاهرة)، والإيمان (العقائد الباطنة)، والإحسان (عبادة الله كأنك تراه). وهو أول حديث في صحيح مسلم."
-        }
+        },
+        "blockVersion": 1
       }
-    ]
+    ],
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "complete"
   },
   {
     "id": "hadith-naseeha",
@@ -1965,46 +2438,55 @@
       },
       "isnadType": "short"
     },
-    "schemaVersion": 1,
+    "schemaVersion": 2,
     "content": [
       {
         "type": "clauses",
-        "introAr": "عَنْ تَمِيمٍ الدَّارِيِّ أَنَّ رَسُولَ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ قَالَ:",
-        "introSub": {
+        "items": [
+          {
+            "id": "1",
+            "text": {
+              "ar": "الدِّينُ النَّصِيحَةُ،",
+              "en": "Religion is sincerity (naseeha),",
+              "fr": "La religion est la sincérité (conseil),",
+              "es": "La religión es sinceridad (consejo),"
+            }
+          },
+          {
+            "id": "2",
+            "text": {
+              "ar": "قُلْنَا: لِمَنْ؟",
+              "en": "We asked: To whom?",
+              "fr": "Nous demandâmes: À qui?",
+              "es": "Preguntamos: ¿Para quién?"
+            }
+          },
+          {
+            "id": "3",
+            "text": {
+              "ar": "قَالَ: لِلَّهِ وَلِكِتَابِهِ وَلِرَسُولِهِ",
+              "en": "He said: To God, to His Book, and to His Messenger,",
+              "fr": "Il dit: À Dieu, à Son Livre et à Son Messager,",
+              "es": "Dijo: A Dios, a Su Libro y a Su Mensajero,"
+            }
+          },
+          {
+            "id": "4",
+            "text": {
+              "ar": "وَلِأَئِمَّةِ الْمُسْلِمِينَ وَعَامَّتِهِمْ",
+              "en": "and to the leaders of the Muslims and their common folk.",
+              "fr": "et aux dirigeants des musulmans et à leur communauté.",
+              "es": "y a los líderes de los musulmanes y a su gente común."
+            }
+          }
+        ],
+        "blockVersion": 1,
+        "intro": {
+          "ar": "عَنْ تَمِيمٍ الدَّارِيِّ أَنَّ رَسُولَ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ قَالَ:",
           "en": "On the authority of Tamim al-Dari — who said: The Messenger of God ﷺ said:",
           "fr": "Selon Tamim al-Dari, qui a dit avoir entendu le Messager de Dieu déclarer :",
           "es": "Según Tamim al-Dari, quien dijo haber oído al Mensajero de Dios decir:"
-        },
-        "items": [
-          {
-            "id": 1,
-            "ar": "الدِّينُ النَّصِيحَةُ،",
-            "en": "Religion is sincerity (naseeha),",
-            "fr": "La religion est la sincérité (conseil),",
-            "es": "La religión es sinceridad (consejo),"
-          },
-          {
-            "id": 2,
-            "ar": "قُلْنَا: لِمَنْ؟",
-            "en": "We asked: To whom?",
-            "fr": "Nous demandâmes: À qui?",
-            "es": "Preguntamos: ¿Para quién?"
-          },
-          {
-            "id": 3,
-            "ar": "قَالَ: لِلَّهِ وَلِكِتَابِهِ وَلِرَسُولِهِ",
-            "en": "He said: To God, to His Book, and to His Messenger,",
-            "fr": "Il dit: À Dieu, à Son Livre et à Son Messager,",
-            "es": "Dijo: A Dios, a Su Libro y a Su Mensajero,"
-          },
-          {
-            "id": 4,
-            "ar": "وَلِأَئِمَّةِ الْمُسْلِمِينَ وَعَامَّتِهِمْ",
-            "en": "and to the leaders of the Muslims and their common folk.",
-            "fr": "et aux dirigeants des musulmans et à leur communauté.",
-            "es": "y a los líderes de los musulmanes y a su gente común."
-          }
-        ]
+        }
       },
       {
         "type": "vocabulary",
@@ -2014,22 +2496,29 @@
             "word": "الدِّينُ",
             "root": "د-ي-ن",
             "pron": "ad-deen",
-            "occ": 1,
-            "en": "religion",
-            "ar": "الدين",
-            "nodeId": "concept-ikhlas"
+            "occurrences": [
+              1
+            ],
+            "gloss": {
+              "ar": "الدين",
+              "en": "religion"
+            }
           },
           {
             "id": "naseeha-n",
             "word": "النَّصِيحَةُ",
             "root": "ن-ص-ح",
             "pron": "an-naseeha",
-            "occ": 1,
-            "en": "sincerity, sincere counsel",
-            "ar": "النصح والإخلاص",
-            "nodeId": "concept-ikhlas"
+            "occurrences": [
+              1
+            ],
+            "gloss": {
+              "ar": "النصح والإخلاص",
+              "en": "sincerity, sincere counsel"
+            }
           }
-        ]
+        ],
+        "blockVersion": 1
       },
       {
         "type": "commentary",
@@ -2041,9 +2530,13 @@
         "note": {
           "en": "Explains that naseeha — sincere advice — is the very substance of the religion: it is owed to God, His Book, His Messenger, and the Muslim community.",
           "ar": "يوضّح أن النصيحة هي جوهر الدين: حقّها واجب لله ولكتابه ولرسوله وللمسلمين عامتهم وخاصتهم."
-        }
+        },
+        "blockVersion": 1
       }
-    ]
+    ],
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "complete"
   },
   {
     "id": "hadith-jami-1",
@@ -2062,60 +2555,73 @@
       },
       "isnadType": "short"
     },
-    "schemaVersion": 1,
+    "schemaVersion": 2,
     "content": [
       {
         "type": "clauses",
-        "introAr": "عَنْ أَمِيرِ الْمُؤْمِنِينَ أَبِي حَفْصٍ عُمَرَ بْنِ الْخَطَّابِ رَضِيَ اللَّهُ عَنْهُ قَالَ: سَمِعْتُ رَسُولَ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ يَقُولُ:",
-        "introSub": {
+        "items": [
+          {
+            "id": "1",
+            "text": {
+              "ar": "إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ،",
+              "en": "Actions are only judged by the intentions behind them,",
+              "fr": "Les actes ne valent que par les intentions qui les animent,",
+              "es": "Las acciones solo valen según la intención que las mueve,"
+            }
+          },
+          {
+            "id": "2",
+            "text": {
+              "ar": "وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى،",
+              "en": "and every person will be credited only for what they intended.",
+              "fr": "et chacun n'obtient que ce qu'il a réellement voulu.",
+              "es": "y cada persona solo obtiene lo que realmente quiso alcanzar."
+            }
+          },
+          {
+            "id": "3",
+            "text": {
+              "ar": "فَمَنْ كَانَتْ هِجْرَتُهُ إِلَى اللَّهِ وَرَسُولِهِ",
+              "en": "So whoever's emigration was for the sake of God and His Messenger,",
+              "fr": "Ainsi, celui dont l'émigration visait Dieu et Son Messager,",
+              "es": "Así, quien emigra buscando a Dios y a Su Mensajero,"
+            }
+          },
+          {
+            "id": "4",
+            "text": {
+              "ar": "فَهِجْرَتُهُ إِلَى اللَّهِ وَرَسُولِهِ،",
+              "en": "their emigration counts for God and His Messenger.",
+              "fr": "son émigration compte pour Dieu et Son Messager.",
+              "es": "su emigración cuenta para Dios y Su Mensajero."
+            }
+          },
+          {
+            "id": "5",
+            "text": {
+              "ar": "وَمَنْ كَانَتْ هِجْرَتُهُ لِدُنْيَا يُصِيبُهَا أَوِ امْرَأَةٍ يَنْكِحُهَا",
+              "en": "And whoever's emigration was for some worldly gain, or to marry a woman,",
+              "fr": "Et celui dont l'émigration visait un gain de ce monde, ou le mariage avec une femme,",
+              "es": "Y quien emigra por un beneficio mundano, o para casarse con una mujer,"
+            }
+          },
+          {
+            "id": "6",
+            "text": {
+              "ar": "فَهِجْرَتُهُ إِلَى مَا هَاجَرَ إِلَيْهِ",
+              "en": "their emigration counts only for what they emigrated for.",
+              "fr": "son émigration ne compte que pour cela.",
+              "es": "su emigración solo cuenta para eso."
+            }
+          }
+        ],
+        "blockVersion": 1,
+        "intro": {
+          "ar": "عَنْ أَمِيرِ الْمُؤْمِنِينَ أَبِي حَفْصٍ عُمَرَ بْنِ الْخَطَّابِ رَضِيَ اللَّهُ عَنْهُ قَالَ: سَمِعْتُ رَسُولَ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ يَقُولُ:",
           "en": "On the authority of the Commander of the Faithful, Abu Hafs 'Umar ibn al-Khattab — who said: I heard the Messenger of God ﷺ say:",
           "fr": "Selon le commandeur des croyants, Abu Hafs 'Umar ibn al-Khattab, qui a dit avoir entendu le Messager de Dieu déclarer :",
           "es": "Según el comandante de los creyentes, Abu Hafs 'Umar ibn al-Khattab, quien dijo haber oído al Mensajero de Dios decir:"
-        },
-        "items": [
-          {
-            "id": 1,
-            "ar": "إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ،",
-            "en": "Actions are only judged by the intentions behind them,",
-            "fr": "Les actes ne valent que par les intentions qui les animent,",
-            "es": "Las acciones solo valen según la intención que las mueve,"
-          },
-          {
-            "id": 2,
-            "ar": "وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى،",
-            "en": "and every person will be credited only for what they intended.",
-            "fr": "et chacun n'obtient que ce qu'il a réellement voulu.",
-            "es": "y cada persona solo obtiene lo que realmente quiso alcanzar."
-          },
-          {
-            "id": 3,
-            "ar": "فَمَنْ كَانَتْ هِجْرَتُهُ إِلَى اللَّهِ وَرَسُولِهِ",
-            "en": "So whoever's emigration was for the sake of God and His Messenger,",
-            "fr": "Ainsi, celui dont l'émigration visait Dieu et Son Messager,",
-            "es": "Así, quien emigra buscando a Dios y a Su Mensajero,"
-          },
-          {
-            "id": 4,
-            "ar": "فَهِجْرَتُهُ إِلَى اللَّهِ وَرَسُولِهِ،",
-            "en": "their emigration counts for God and His Messenger.",
-            "fr": "son émigration compte pour Dieu et Son Messager.",
-            "es": "su emigración cuenta para Dios y Su Mensajero."
-          },
-          {
-            "id": 5,
-            "ar": "وَمَنْ كَانَتْ هِجْرَتُهُ لِدُنْيَا يُصِيبُهَا أَوِ امْرَأَةٍ يَنْكِحُهَا",
-            "en": "And whoever's emigration was for some worldly gain, or to marry a woman,",
-            "fr": "Et celui dont l'émigration visait un gain de ce monde, ou le mariage avec une femme,",
-            "es": "Y quien emigra por un beneficio mundano, o para casarse con una mujer,"
-          },
-          {
-            "id": 6,
-            "ar": "فَهِجْرَتُهُ إِلَى مَا هَاجَرَ إِلَيْهِ",
-            "en": "their emigration counts only for what they emigrated for.",
-            "fr": "son émigration ne compte que pour cela.",
-            "es": "su emigración solo cuenta para eso."
-          }
-        ]
+        }
       },
       {
         "type": "vocabulary",
@@ -2125,32 +2631,42 @@
             "word": "الْأَعْمَالُ",
             "root": "ع-م-ل",
             "pron": "al-a'māl",
-            "occ": 1,
-            "en": "deeds, actions",
-            "ar": "الأفعال والتصرفات",
-            "nodeId": "concept-ikhlas"
+            "occurrences": [
+              1
+            ],
+            "gloss": {
+              "ar": "الأفعال والتصرفات",
+              "en": "deeds, actions"
+            }
           },
           {
             "id": "niyyat-j",
             "word": "بِالنِّيَّاتِ",
             "root": "ن-و-ي",
             "pron": "bin-niyyāt",
-            "occ": 1,
-            "en": "by intentions",
-            "ar": "القصد الباطن للفعل",
-            "nodeId": "concept-ikhlas"
+            "occurrences": [
+              1
+            ],
+            "gloss": {
+              "ar": "القصد الباطن للفعل",
+              "en": "by intentions"
+            }
           },
           {
             "id": "hijra-j",
             "word": "هِجْرَتُهُ",
             "root": "ه-ج-ر",
             "pron": "hijratuhu",
-            "occ": 3,
-            "en": "his emigration",
-            "ar": "هجرته، انتقاله",
-            "nodeId": "event-hijra"
+            "occurrences": [
+              3
+            ],
+            "gloss": {
+              "ar": "هجرته، انتقاله",
+              "en": "his emigration"
+            }
           }
-        ]
+        ],
+        "blockVersion": 1
       },
       {
         "type": "commentary",
@@ -2162,9 +2678,13 @@
         "note": {
           "en": "Ibn Rajab opens his Jami' al-'Ulum wal-Hikam with this hadith — the first of an-Nawawi's Forty — calling it a root principle upon which the religion turns, since every deed is judged by its hidden motive.",
           "ar": "يفتتح ابن رجب «جامع العلوم والحكم» بهذا الحديث — أول الأحاديث الأربعين النووية — ويعدّه أصلاً عظيمًا تدور عليه الأحكام، إذ كل عمل يُحكم عليه بباطن قصده."
-        }
+        },
+        "blockVersion": 1
       }
-    ]
+    ],
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "complete"
   },
   {
     "id": "hadith-fath-1",
@@ -2183,32 +2703,37 @@
       },
       "isnadType": "short"
     },
-    "schemaVersion": 1,
+    "schemaVersion": 2,
     "content": [
       {
         "type": "clauses",
-        "introAr": "عَنْ أَمِيرِ الْمُؤْمِنِينَ أَبِي حَفْصٍ عُمَرَ بْنِ الْخَطَّابِ رَضِيَ اللَّهُ عَنْهُ قَالَ: سَمِعْتُ رَسُولَ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ يَقُولُ:",
-        "introSub": {
+        "items": [
+          {
+            "id": "1",
+            "text": {
+              "ar": "إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ،",
+              "en": "Actions are only judged by the intentions behind them,",
+              "fr": "Les actes ne valent que par les intentions qui les animent,",
+              "es": "Las acciones solo valen según la intención que las mueve,"
+            }
+          },
+          {
+            "id": "2",
+            "text": {
+              "ar": "وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى",
+              "en": "and every person will be credited only for what they intended.",
+              "fr": "et chacun n'obtient que ce qu'il a réellement voulu.",
+              "es": "y cada persona solo obtiene lo que realmente quiso alcanzar."
+            }
+          }
+        ],
+        "blockVersion": 1,
+        "intro": {
+          "ar": "عَنْ أَمِيرِ الْمُؤْمِنِينَ أَبِي حَفْصٍ عُمَرَ بْنِ الْخَطَّابِ رَضِيَ اللَّهُ عَنْهُ قَالَ: سَمِعْتُ رَسُولَ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ يَقُولُ:",
           "en": "On the authority of the Commander of the Faithful, Abu Hafs 'Umar ibn al-Khattab — who said: I heard the Messenger of God ﷺ say:",
           "fr": "Selon le commandeur des croyants, Abu Hafs 'Umar ibn al-Khattab, qui a dit avoir entendu le Messager de Dieu déclarer :",
           "es": "Según el comandante de los creyentes, Abu Hafs 'Umar ibn al-Khattab, quien dijo haber oído al Mensajero de Dios decir:"
-        },
-        "items": [
-          {
-            "id": 1,
-            "ar": "إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ،",
-            "en": "Actions are only judged by the intentions behind them,",
-            "fr": "Les actes ne valent que par les intentions qui les animent,",
-            "es": "Las acciones solo valen según la intención que las mueve,"
-          },
-          {
-            "id": 2,
-            "ar": "وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى",
-            "en": "and every person will be credited only for what they intended.",
-            "fr": "et chacun n'obtient que ce qu'il a réellement voulu.",
-            "es": "y cada persona solo obtiene lo que realmente quiso alcanzar."
-          }
-        ]
+        }
       },
       {
         "type": "vocabulary",
@@ -2218,22 +2743,29 @@
             "word": "الْأَعْمَالُ",
             "root": "ع-م-ل",
             "pron": "al-a'māl",
-            "occ": 1,
-            "en": "deeds, actions",
-            "ar": "الأفعال والتصرفات",
-            "nodeId": "concept-ikhlas"
+            "occurrences": [
+              1
+            ],
+            "gloss": {
+              "ar": "الأفعال والتصرفات",
+              "en": "deeds, actions"
+            }
           },
           {
             "id": "niyyat2",
             "word": "بِالنِّيَّاتِ",
             "root": "ن-و-ي",
             "pron": "bin-niyyāt",
-            "occ": 1,
-            "en": "by intentions",
-            "ar": "القصد الباطن للفعل",
-            "nodeId": "concept-ikhlas"
+            "occurrences": [
+              1
+            ],
+            "gloss": {
+              "ar": "القصد الباطن للفعل",
+              "en": "by intentions"
+            }
           }
-        ]
+        ],
+        "blockVersion": 1
       },
       {
         "type": "commentary",
@@ -2245,9 +2777,13 @@
         "note": {
           "en": "Opens his commentary on Sahih al-Bukhari with this hadith, noting that it is a root principle (qā'idah) upon which most of the rulings of the religion turn.",
           "ar": "يفتتح شرحه على صحيح البخاري بهذا الحديث، ويذكر أنه أصلٌ عظيم تدور عليه أكثرُ أحكام الشرع."
-        }
+        },
+        "blockVersion": 1
       }
-    ]
+    ],
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "complete"
   },
   {
     "id": "hadith-tabaqat-1",
@@ -2265,39 +2801,46 @@
         "en": "Biography & History"
       }
     },
-    "schemaVersion": 1,
+    "schemaVersion": 2,
     "content": [
       {
         "type": "clauses",
-        "introAr": "ذَكَرَ مُحَمَّدُ بْنُ سَعْدٍ فِي «الطَّبَقَاتِ الْكُبْرَى» بَدْءَ خَلْقِ النَّبِيِّ ﷺ وَنَسَبَهُ:",
-        "introSub": {
+        "items": [
+          {
+            "id": "1",
+            "text": {
+              "ar": "هُوَ مُحَمَّدُ بْنُ عَبْدِ اللَّهِ بْنِ عَبْدِ الْمُطَّلِبِ بْنِ هَاشِمٍ، مِنْ قُرَيْشٍ،",
+              "en": "He is Muhammad ibn 'Abd Allah ibn 'Abd al-Muttalib ibn Hashim, of the tribe of Quraysh,",
+              "fr": "Il est Muhammad ibn 'Abd Allah ibn 'Abd al-Muttalib ibn Hashim, de la tribu de Quraysh,",
+              "es": "Él es Muhammad ibn 'Abd Allah ibn 'Abd al-Muttalib ibn Hashim, de la tribu de Quraysh,"
+            }
+          },
+          {
+            "id": "2",
+            "text": {
+              "ar": "وَقُرَيْشٌ أَشْرَفُ عَرَبِ الْمَشْرِقِ وَالْمَغْرِبِ نَسَبًا،",
+              "en": "and Quraysh is the noblest of the Arabs of east and west in lineage,",
+              "fr": "et Quraysh est la plus noble des tribus arabes, d'Orient comme d'Occident, par sa lignée,",
+              "es": "y Quraysh es la más noble de las tribus árabes, de Oriente y Occidente, por su linaje,"
+            }
+          },
+          {
+            "id": "3",
+            "text": {
+              "ar": "وَهُوَ خَاتَمُ النَّبِيِّينَ، صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ.",
+              "en": "and he is the Seal of the Prophets, may God bless him and grant him peace.",
+              "fr": "et il est le Sceau des prophètes, que la paix et la bénédiction de Dieu soient sur lui.",
+              "es": "y él es el Sello de los Profetas, que la paz y las bendiciones de Dios sean con él."
+            }
+          }
+        ],
+        "blockVersion": 1,
+        "intro": {
+          "ar": "ذَكَرَ مُحَمَّدُ بْنُ سَعْدٍ فِي «الطَّبَقَاتِ الْكُبْرَى» بَدْءَ خَلْقِ النَّبِيِّ ﷺ وَنَسَبَهُ:",
           "en": "Muhammad ibn Sa'd, in al-Tabaqat al-Kubra, begins with the creation of the Prophet ﷺ and his lineage:",
           "fr": "Muhammad ibn Sa'd, dans al-Tabaqat al-Kubra, commence par la création du Prophète ﷺ et sa lignée :",
           "es": "Muhammad ibn Sa'd, en al-Tabaqat al-Kubra, comienza con la creación del Profeta ﷺ y su linaje:"
-        },
-        "items": [
-          {
-            "id": 1,
-            "ar": "هُوَ مُحَمَّدُ بْنُ عَبْدِ اللَّهِ بْنِ عَبْدِ الْمُطَّلِبِ بْنِ هَاشِمٍ، مِنْ قُرَيْشٍ،",
-            "en": "He is Muhammad ibn 'Abd Allah ibn 'Abd al-Muttalib ibn Hashim, of the tribe of Quraysh,",
-            "fr": "Il est Muhammad ibn 'Abd Allah ibn 'Abd al-Muttalib ibn Hashim, de la tribu de Quraysh,",
-            "es": "Él es Muhammad ibn 'Abd Allah ibn 'Abd al-Muttalib ibn Hashim, de la tribu de Quraysh,"
-          },
-          {
-            "id": 2,
-            "ar": "وَقُرَيْشٌ أَشْرَفُ عَرَبِ الْمَشْرِقِ وَالْمَغْرِبِ نَسَبًا،",
-            "en": "and Quraysh is the noblest of the Arabs of east and west in lineage,",
-            "fr": "et Quraysh est la plus noble des tribus arabes, d'Orient comme d'Occident, par sa lignée,",
-            "es": "y Quraysh es la más noble de las tribus árabes, de Oriente y Occidente, por su linaje,"
-          },
-          {
-            "id": 3,
-            "ar": "وَهُوَ خَاتَمُ النَّبِيِّينَ، صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ.",
-            "en": "and he is the Seal of the Prophets, may God bless him and grant him peace.",
-            "fr": "et il est le Sceau des prophètes, que la paix et la bénédiction de Dieu soient sur lui.",
-            "es": "y él es el Sello de los Profetas, que la paz y las bendiciones de Dios sean con él."
-          }
-        ]
+        }
       },
       {
         "type": "vocabulary",
@@ -2307,30 +2850,42 @@
             "word": "النَّبِيِّ",
             "root": "ن-ب-أ",
             "pron": "an-nabiyy",
-            "occ": 1,
-            "en": "the Prophet",
-            "ar": "النبي محمد ﷺ",
-            "nodeId": "narrator-prophet"
+            "occurrences": [
+              1
+            ],
+            "gloss": {
+              "ar": "النبي محمد ﷺ",
+              "en": "the Prophet"
+            }
           },
           {
             "id": "quraysh",
             "word": "قُرَيْشٍ",
             "root": "ق-ر-ش",
             "pron": "Quraysh",
-            "occ": 1,
-            "en": "Quraysh (the Prophet's tribe)",
-            "ar": "قريش"
+            "occurrences": [
+              1
+            ],
+            "gloss": {
+              "ar": "قريش",
+              "en": "Quraysh (the Prophet's tribe)"
+            }
           },
           {
             "id": "khatam",
             "word": "خَاتَمُ",
             "root": "خ-ت-م",
             "pron": "khatam",
-            "occ": 1,
-            "en": "the Seal (final)",
-            "ar": "الخاتم"
+            "occurrences": [
+              1
+            ],
+            "gloss": {
+              "ar": "الخاتم",
+              "en": "the Seal (final)"
+            }
           }
-        ]
+        ],
+        "blockVersion": 1
       },
       {
         "type": "context",
@@ -2341,9 +2896,13 @@
         "body": {
           "en": "Ibn Sa'd arranges the book by 'tabaqat' (generations): he opens with the Prophet ﷺ, then the first generation of his Companions, then the Followers — the structure that gives the work its name.",
           "ar": "رتّب ابن سعد كتابه على «الطبقات»: يبدأ بالنبي ﷺ، ثم الجيل الأول من أصحابه، ثم التابعين — وهو الهيكل الذي سُمّي به الكتاب."
-        }
+        },
+        "blockVersion": 1
       }
-    ]
+    ],
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "complete"
   },
   {
     "id": "hadith-bidayah-1",
@@ -2361,39 +2920,46 @@
         "en": "History"
       }
     },
-    "schemaVersion": 1,
+    "schemaVersion": 2,
     "content": [
       {
         "type": "clauses",
-        "introAr": "قَالَ ابْنُ كَثِيرٍ فِي مُقَدِّمَةِ «الْبِدَايَةِ وَالنِّهَايَةِ»:",
-        "introSub": {
+        "items": [
+          {
+            "id": "1",
+            "text": {
+              "ar": "أَمَّا بَعْدُ فَهَذَا الْكِتَابُ أَذْكُرُ فِيهِ مَبْدَأَ الْمَخْلُوقَاتِ:",
+              "en": "Now then: in this book I mention the beginning of created things:",
+              "fr": "Or donc: dans ce livre je mentionne le commencement des créatures :",
+              "es": "Pues bien: en este libro menciono el inicio de las criaturas:"
+            }
+          },
+          {
+            "id": "2",
+            "text": {
+              "ar": "مِنْ خَلْقِ الْعَرْشِ وَالْكُرْسِيِّ، وَالسَّمَوَاتِ، وَالْأَرْضِ وَمَا فِيهِنَّ،",
+              "en": "the creation of the Throne and the Chair (al-Kursi), the heavens and the earth and all that is in them,",
+              "fr": "la création du Trône et du Siège (al-Kursi), des cieux, de la terre et de ce qu'ils contiennent,",
+              "es": "la creación del Trono y del Asiento (al-Kursi), los cielos, la tierra y cuanto en ellos hay,"
+            }
+          },
+          {
+            "id": "3",
+            "text": {
+              "ar": "وَكَيْفِيَةِ خَلْقِ آدَمَ عَلَيْهِ السَّلَامُ، وَقَصَصِ الْأَنْبِيَاءِ.",
+              "en": "and the manner of the creation of Adam, peace be upon him, and the stories of the prophets.",
+              "fr": "ainsi que la façon dont Adam, sur lui la paix, fut créé, et les récits des prophètes.",
+              "es": "y la manera en que fue creado Adán, paz sea con él, y las historias de los profetas."
+            }
+          }
+        ],
+        "blockVersion": 1,
+        "intro": {
+          "ar": "قَالَ ابْنُ كَثِيرٍ فِي مُقَدِّمَةِ «الْبِدَايَةِ وَالنِّهَايَةِ»:",
           "en": "Ibn Kathir says in the introduction to al-Bidayah wa'n-Nihayah:",
           "fr": "Ibn Kathir dit dans l'introduction d'al-Bidayah wa'n-Nihayah :",
           "es": "Ibn Kathir dice en la introducción de al-Bidayah wa'n-Nihayah:"
-        },
-        "items": [
-          {
-            "id": 1,
-            "ar": "أَمَّا بَعْدُ فَهَذَا الْكِتَابُ أَذْكُرُ فِيهِ مَبْدَأَ الْمَخْلُوقَاتِ:",
-            "en": "Now then: in this book I mention the beginning of created things:",
-            "fr": "Or donc: dans ce livre je mentionne le commencement des créatures :",
-            "es": "Pues bien: en este libro menciono el inicio de las criaturas:"
-          },
-          {
-            "id": 2,
-            "ar": "مِنْ خَلْقِ الْعَرْشِ وَالْكُرْسِيِّ، وَالسَّمَوَاتِ، وَالْأَرْضِ وَمَا فِيهِنَّ،",
-            "en": "the creation of the Throne and the Chair (al-Kursi), the heavens and the earth and all that is in them,",
-            "fr": "la création du Trône et du Siège (al-Kursi), des cieux, de la terre et de ce qu'ils contiennent,",
-            "es": "la creación del Trono y del Asiento (al-Kursi), los cielos, la tierra y cuanto en ellos hay,"
-          },
-          {
-            "id": 3,
-            "ar": "وَكَيْفِيَةِ خَلْقِ آدَمَ عَلَيْهِ السَّلَامُ، وَقَصَصِ الْأَنْبِيَاءِ.",
-            "en": "and the manner of the creation of Adam, peace be upon him, and the stories of the prophets.",
-            "fr": "ainsi que la façon dont Adam, sur lui la paix, fut créé, et les récits des prophètes.",
-            "es": "y la manera en que fue creado Adán, paz sea con él, y las historias de los profetas."
-          }
-        ]
+        }
       },
       {
         "type": "vocabulary",
@@ -2403,41 +2969,55 @@
             "word": "الْعَرْشِ",
             "root": "ع-ر-ش",
             "pron": "al-'arsh",
-            "occ": 1,
-            "en": "the Throne of God",
-            "ar": "العرش",
-            "nodeId": "concept-creation"
+            "occurrences": [
+              1
+            ],
+            "gloss": {
+              "ar": "العرش",
+              "en": "the Throne of God"
+            }
           },
           {
             "id": "kursi",
             "word": "الْكُرْسِيِّ",
             "root": "ك-ر-س-ي",
             "pron": "al-kursi",
-            "occ": 1,
-            "en": "the Footstool / Chair (al-Kursi)",
-            "ar": "الكرسي",
-            "nodeId": "concept-creation"
+            "occurrences": [
+              1
+            ],
+            "gloss": {
+              "ar": "الكرسي",
+              "en": "the Footstool / Chair (al-Kursi)"
+            }
           },
           {
             "id": "khalq",
             "word": "الْمَخْلُوقَاتِ",
             "root": "خ-ل-ق",
             "pron": "al-makhlūqāt",
-            "occ": 1,
-            "en": "created things",
-            "ar": "المخلوقات",
-            "nodeId": "concept-creation"
+            "occurrences": [
+              1
+            ],
+            "gloss": {
+              "ar": "المخلوقات",
+              "en": "created things"
+            }
           },
           {
             "id": "adam",
             "word": "آدَمَ",
             "root": "آ-د-م",
             "pron": "Adam",
-            "occ": 1,
-            "en": "Adam, the first man",
-            "ar": "آدم عليه السلام"
+            "occurrences": [
+              1
+            ],
+            "gloss": {
+              "ar": "آدم عليه السلام",
+              "en": "Adam, the first man"
+            }
           }
-        ]
+        ],
+        "blockVersion": 1
       },
       {
         "type": "context",
@@ -2448,9 +3028,13 @@
         "body": {
           "en": "The title says it: the book spans from al-Bidayah (the Beginning — the creation of the heavens, the earth and Adam) to an-Nihayah (the End — the Resurrection and the Hereafter).",
           "ar": "عنوان الكتاب يدل عليه: يبدأ من «البداية» — خلق السماوات والأرض وآدم — وينتهي بـ«النهاية» — البعث والآخرة."
-        }
+        },
+        "blockVersion": 1
       }
-    ]
+    ],
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "complete"
   },
   {
     "id": "narrator-humaydi",
@@ -2463,7 +3047,6 @@
     },
     "attributes": {
       "kind": "narrator",
-      "dates": "d. 219 AH",
       "grade": {
         "ar": "ثقة حافظ",
         "en": "Thiqah hafiz"
@@ -2473,10 +3056,13 @@
         "en": "First to compile a Musnad. Narrated the Revelation hadith from Sufyan ath-Thawri."
       },
       "isnadDepth": 6,
-      "isnadBranch": true
+      "dateDeath": "219-01-01"
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "stub"
   },
   {
     "id": "narrator-ibn-buraida",
@@ -2489,7 +3075,6 @@
     },
     "attributes": {
       "kind": "narrator",
-      "dates": "d. ~105 AH",
       "grade": {
         "ar": "ثقة",
         "en": "Thiqah"
@@ -2498,11 +3083,13 @@
         "ar": "ابن القاضي بريدة الأسلمي، روى حديث جبريل عن يحيى بن يعمر.",
         "en": "Son of judge Burayda al-Aslami; narrated the Jibril hadith from Yahya ibn Ya'mar."
       },
-      "isnadDepth": 5,
-      "isnadBranch": false
+      "isnadDepth": 5
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "stub"
   },
   {
     "id": "narrator-aisha",
@@ -2515,7 +3102,6 @@
     },
     "attributes": {
       "kind": "narrator",
-      "dates": "613–678 CE",
       "grade": {
         "ar": "أم المؤمنين",
         "en": "Mother of the Believers"
@@ -2524,10 +3110,15 @@
         "ar": "ابنة أبي بكر الصديق، وأحب نساء النبي ﷺ إليه، وأكثر النساء روايةً للحديث، وعلمت أهل بيته ما لم يطلع عليه غيرها.",
         "en": "Daughter of Abu Bakr; the Prophet's ﷺ most beloved wife and the foremost woman narrator of hadith, uniquely transmitting the intimate life of his household."
       },
-      "isnadDepth": 1
+      "isnadDepth": 1,
+      "dateBirth": "613-01-01",
+      "dateDeath": "678-01-01"
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "stub"
   },
   {
     "id": "narrator-tamim",
@@ -2540,7 +3131,6 @@
     },
     "attributes": {
       "kind": "narrator",
-      "dates": "d. c. 40 AH / 661 CE",
       "grade": {
         "ar": "صحابي",
         "en": "Companion (Sahabi)"
@@ -2549,10 +3139,14 @@
         "ar": "وفد إلى النبي ﷺ وأسلم، وروى حديث «الدين النصيحة».",
         "en": "Came to the Prophet ﷺ as a delegate and embraced Islam; narrator of the 'Religion is sincerity' hadith."
       },
-      "isnadDepth": 1
+      "isnadDepth": 1,
+      "dateDeath": "40-01-01"
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "stub"
   },
   {
     "id": "narrator-ibn-umar",
@@ -2565,7 +3159,6 @@
     },
     "attributes": {
       "kind": "narrator",
-      "dates": "c. 610–693 CE",
       "grade": {
         "ar": "ثقة",
         "en": "Thiqah (trustworthy)"
@@ -2574,9 +3167,14 @@
         "ar": "ابن عُمر بن الخطاب، من كبار التابعين، وروى هذا الحديث عن النبي ﷺ.",
         "en": "Son of 'Umar ibn al-Khattab; a leading successor who narrated this hadith from the Prophet ﷺ."
       },
-      "isnadDepth": 1
+      "isnadDepth": 1,
+      "dateBirth": "610-01-01",
+      "dateDeath": "693-01-01"
     },
     "content": [],
-    "schemaVersion": 1
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "stub"
   }
 ]

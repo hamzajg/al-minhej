@@ -8,11 +8,6 @@ import { formatPct } from "@/lib/format";
 import type { IsnadDTO } from "@/domain/dto";
 import type { KnowledgeNode } from "@/domain/types";
 
-const TO_LABEL: Record<string, { en: string; ar: string }> = {
-  "book-bukhari": { en: "Bukhari", ar: "البخاري" },
-  "book-muslim": { en: "Muslim", ar: "مسلم" },
-};
-
 interface Props {
   isnad: IsnadDTO;
   activeId: string;
@@ -24,8 +19,8 @@ export function ChainOfNarration({ isnad, activeId, onSelect, onOpenSource }: Pr
   const { t, uiLang, dir } = useSettings();
 
   const activeNode: KnowledgeNode | undefined =
-    isnad.chain.find((p) => p.node.id === activeId)?.node ??
-    isnad.branches.find((b) => b.node.id === activeId)?.node ??
+    isnad.primary.find((p) => p.node.id === activeId)?.node ??
+    isnad.branches.find((b) => b.members.some((m) => m.node.id === activeId))?.members.find((m) => m.node.id === activeId)?.node ??
     isnad.books.find((b) => b.node.id === activeId)?.node;
 
   const isBookEntity = activeNode?.type === "BOOK";
@@ -49,12 +44,14 @@ export function ChainOfNarration({ isnad, activeId, onSelect, onOpenSource }: Pr
 
       <div className="relative ps-4.5">
         <div className="absolute top-1.5 bottom-1.5 start-[5px] w-0.5 bg-[var(--color-line)]" />
-        {isnad.chain.map(({ node, role, isNeck }) => {
-          const active = activeId === node.id;
+        {isnad.primary.map((person) => {
+          const active = activeId === person.node.id;
+          const depth = person.node.attributes.kind === "narrator" ? person.node.attributes.isnadDepth ?? 0 : 0;
+          const isNeck = depth === 4;
           return (
             <button
-              key={node.id}
-              onClick={() => onSelect(node.id)}
+              key={person.node.id}
+              onClick={() => onSelect(person.node.id)}
               className="flex items-start gap-2.5 w-full py-1.5 relative text-start"
             >
               <span
@@ -72,9 +69,9 @@ export function ChainOfNarration({ isnad, activeId, onSelect, onOpenSource }: Pr
                     active ? "font-bold text-[var(--color-gold)]" : "font-semibold text-[var(--color-ink)]",
                   ].join(" ")}
                 >
-                  {uiLang === "ar" ? node.title.ar : node.title.en}
+                  {uiLang === "ar" ? person.node.title.ar : person.node.title.en}
                 </div>
-                <div className="text-[10.5px] text-[var(--color-sub)]">{role[uiLang]}</div>
+                <div className="text-[10.5px] text-[var(--color-sub)]">{person.role[uiLang]}</div>
               </div>
             </button>
           );
@@ -84,26 +81,29 @@ export function ChainOfNarration({ isnad, activeId, onSelect, onOpenSource }: Pr
       <div className="text-[10.5px] text-[var(--color-sub)] my-2.5 ps-4.5">{t.transmittedBy}</div>
 
       <div className="flex flex-wrap gap-1.5 ps-4.5 mb-3.5">
-        {isnad.branches.map(({ node, toBookIds }) => {
-          const active = activeId === node.id;
-          return (
-            <button
-              key={node.id}
-              onClick={() => onSelect(node.id)}
-              className={[
-                "text-[11px] px-2.5 py-1.5 rounded-full border",
-                active
-                  ? "bg-[var(--color-gold)] text-[#241c0a] border-[var(--color-gold)]"
-                  : "bg-[var(--color-panel-2)] text-[var(--color-ink)] border-[var(--color-line)]",
-              ].join(" ")}
-            >
-              {uiLang === "ar" ? node.title.ar : node.title.en}{" "}
-              <span className="opacity-60">
-                {dir === "rtl" ? "←" : "→"}{" "}
-                {toBookIds.map((id) => TO_LABEL[id]?.[uiLang] ?? id).join(uiLang === "ar" ? "، " : ", ")}
-              </span>
-            </button>
-          );
+        {isnad.branches.map((branch) => {
+          const anchor = branch.anchors;
+          return branch.members.map((member) => {
+            const active = activeId === member.node.id;
+            return (
+              <button
+                key={member.node.id}
+                onClick={() => onSelect(member.node.id)}
+                className={[
+                  "text-[11px] px-2.5 py-1.5 rounded-full border",
+                  active
+                    ? "bg-[var(--color-gold)] text-[#241c0a] border-[var(--color-gold)]"
+                    : "bg-[var(--color-panel-2)] text-[var(--color-ink)] border-[var(--color-line)]",
+                ].join(" ")}
+              >
+                {uiLang === "ar" ? member.node.title.ar : member.node.title.en}{" "}
+                <span className="opacity-60">
+                  {dir === "rtl" ? "←" : "→"}{" "}
+                  {uiLang === "ar" ? anchor.node.title.ar : anchor.node.title.en}
+                </span>
+              </button>
+            );
+          });
         })}
       </div>
 
@@ -136,7 +136,11 @@ export function ChainOfNarration({ isnad, activeId, onSelect, onOpenSource }: Pr
 
           {activeNode.attributes.kind === "narrator" && (
             <>
-              <div className="text-[10.5px] text-[var(--color-sub)] mb-2">{activeNode.attributes.dates}</div>
+              {(activeNode.attributes.dateBirth || activeNode.attributes.dateDeath) && (
+                <div className="text-[10.5px] text-[var(--color-sub)] mb-2">
+                  {[activeNode.attributes.dateBirth, activeNode.attributes.dateDeath].filter(Boolean).join(" – ")}
+                </div>
+              )}
               <div className="inline-block text-[10.5px] font-semibold text-[var(--color-gold)] bg-[var(--color-gold)]/15 rounded-full px-2.5 py-1 mb-2.5">
                 {activeNode.attributes.grade[uiLang]}
               </div>
@@ -144,7 +148,9 @@ export function ChainOfNarration({ isnad, activeId, onSelect, onOpenSource }: Pr
           )}
 
           {activeNode.attributes.kind === "book" && (
-            <div className="text-[10.5px] text-[var(--color-sub)] mb-2">{activeNode.attributes.eraLabel}</div>
+            <div className="text-[10.5px] text-[var(--color-sub)] mb-2">
+              {activeNode.attributes.eraLabel[uiLang]}
+            </div>
           )}
 
           {isBookEntity && (

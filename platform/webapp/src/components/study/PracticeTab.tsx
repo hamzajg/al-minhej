@@ -6,7 +6,7 @@ import { getQuiz } from "@/lib/contentBlocks";
 import type { KnowledgeNode } from "@/domain/types";
 
 interface QuizAnswer {
-  picked: number;
+  pickedOptionId: string;
 }
 
 export function PracticeTab({ node }: { node: KnowledgeNode }) {
@@ -47,15 +47,17 @@ export function PracticeTab({ node }: { node: KnowledgeNode }) {
           const state = quizState[qi];
           return (
             <div key={qi} className="bg-[var(--color-panel)] border border-[var(--color-line)] rounded-xl p-3.5">
-              <div className="text-[12.5px] font-semibold mb-2.5">{q.q[uiLang]}</div>
+              <div className="text-[12.5px] font-semibold mb-2.5">
+                {q.question[uiLang as keyof typeof q.question]}
+              </div>
               <div className="grid gap-1.5">
-                {q.options.map((opt, oi) => {
-                  const picked = state?.picked === oi;
-                  const showCorrect = state !== undefined && oi === q.correct;
+                {q.options.map((opt) => {
+                  const picked = state?.pickedOptionId === opt.id;
+                  const showCorrect = state !== undefined && opt.id === q.correctOptionId;
                   return (
                     <button
-                      key={oi}
-                      onClick={() => setQuizState((s) => ({ ...s, [qi]: { picked: oi } }))}
+                      key={opt.id}
+                      onClick={() => setQuizState((s) => ({ ...s, [qi]: { pickedOptionId: opt.id } }))}
                       dir={dir}
                       className={[
                         "text-start px-3 py-2 rounded-lg text-xs border",
@@ -66,7 +68,7 @@ export function PracticeTab({ node }: { node: KnowledgeNode }) {
                           : "bg-[var(--color-panel-2)] border-[var(--color-line)]",
                       ].join(" ")}
                     >
-                      {opt[uiLang]}
+                      {opt.text[uiLang as keyof typeof opt.text]}
                     </button>
                   );
                 })}
@@ -75,10 +77,12 @@ export function PracticeTab({ node }: { node: KnowledgeNode }) {
                 <div
                   className={[
                     "text-[11.5px] mt-2",
-                    state.picked === q.correct ? "text-[var(--color-emerald)]" : "text-[var(--color-gold)]",
+                    state.pickedOptionId === q.correctOptionId
+                      ? "text-[var(--color-emerald)]"
+                      : "text-[var(--color-gold)]",
                   ].join(" ")}
                 >
-                  {state.picked === q.correct ? t.quizCorrect : t.quizWrong}
+                  {state.pickedOptionId === q.correctOptionId ? t.quizCorrect : t.quizWrong}
                 </div>
               )}
             </div>

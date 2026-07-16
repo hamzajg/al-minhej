@@ -263,7 +263,7 @@ export default function ReadingContent({ slug, bookContext }: ReadingContentProp
             copied={copied}
             onCopy={() => {
               const clauses = getClauses(dto.node);
-              navigator.clipboard?.writeText(clauses?.items.map((c) => c.ar).join(" ") ?? "");
+              navigator.clipboard?.writeText(clauses?.items.map((c) => c.text.ar).join(" ") ?? "");
               setCopied(true);
               setTimeout(() => setCopied(false), 1200);
             }}

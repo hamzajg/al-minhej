@@ -29,7 +29,7 @@ export function LibraryTab({ onOpenSource }: { onOpenSource: (id: string) => voi
               </div>
               {attrs && (
                 <div className="text-[10px] text-[var(--color-sub)] mb-1.5">
-                  {uiLang === "ar" ? attrs.author.ar : attrs.author.en} · {attrs.eraLabel}
+                  {uiLang === "ar" ? attrs.author.ar : attrs.author.en} · {uiLang === "ar" ? attrs.eraLabel.ar : attrs.eraLabel.en}
                 </div>
               )}
               <SourceProgressBar pct={pct} />

@@ -39,20 +39,20 @@ export function CompanionWidget({ node, bottomOffset = 20 }: { node: KnowledgeNo
             {t.companionNote}
           </div>
           <div className="grid gap-1.5 mb-2">
-            {ai.prompts.map((key, i) => (
+            {ai.items.map((item, i) => (
               <button
-                key={key}
+                key={item.key}
                 onClick={() => setAnswerIndex(i)}
                 dir={dir}
                 className="text-start text-xs px-2.5 py-1.5 rounded-lg bg-[var(--color-panel-2)] border border-[var(--color-line)] text-[var(--color-ink)]"
               >
-                {t.companionPromptLabels[key]}
+                {t.companionPromptLabels[item.key] ?? item.key}
               </button>
             ))}
           </div>
           {answerIndex !== null && (
             <div className="text-xs leading-relaxed bg-[var(--color-panel-2)] rounded-lg p-2.5 text-[var(--color-ink)]">
-              {ai.answers[uiLang][answerIndex]}
+              {ai.items[answerIndex].answer[uiLang as "ar" | "en"]}
             </div>
           )}
         </div>

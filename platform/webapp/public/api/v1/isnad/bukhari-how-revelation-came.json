@@ -1,0 +1,17 @@
+{
+  "primary": {
+    "id": "isnad-bukhari-how-revelation-came-primary",
+    "hadithId": "hadith-bukhari-2",
+    "role": "primary",
+    "links": [
+      {
+        "narratorId": "narrator-aisha",
+        "position": 0
+      }
+    ],
+    "terminatesAt": {
+      "kind": "narrator-prophet"
+    }
+  },
+  "branches": []
+}

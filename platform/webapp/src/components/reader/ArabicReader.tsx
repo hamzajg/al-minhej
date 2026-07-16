@@ -51,7 +51,7 @@ export function ArabicReader({
   // it reads on a physical page, instead of one block per clause.
   const words = useMemo(() => (clauses ? flattenClauseWords(clauses.items) : []), [clauses]);
 
-  const fullTranslation = clauses?.items.map((cl) => cl[subtitleLang]).join(" ") ?? "";
+  const fullTranslation = clauses?.items.map((cl) => cl.text[subtitleLang as "en" | "fr" | "es"] ?? "").join(" ") ?? "";
 
   if (!clauses) return null;
 
@@ -70,11 +70,11 @@ export function ArabicReader({
           className="block w-full text-center bg-transparent mb-[18px] max-w-[640px]"
         >
           <div dir="rtl" className="font-arabic text-[var(--color-sub)] leading-[1.9]" style={{ fontSize: 13.5 * fontScale }}>
-            {clauses.introAr}
+            {clauses.intro.ar}
           </div>
           {showTranslation && (
             <div className="text-[11px] text-[var(--color-sub)] opacity-75 mt-0.5 italic">
-              {clauses.introSub[subtitleLang]}
+              {clauses.intro[subtitleLang as "ar" | "en" | "fr" | "es"] ?? ""}
             </div>
           )}
           <div className="text-[10.5px] text-[var(--color-gold)] mt-1">{t.viewChain}</div>

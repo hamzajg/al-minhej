@@ -1,0 +1,17 @@
+{
+  "primary": {
+    "id": "isnad-naseeha-primary",
+    "hadithId": "hadith-naseeha",
+    "role": "primary",
+    "links": [
+      {
+        "narratorId": "narrator-tamim",
+        "position": 0
+      }
+    ],
+    "terminatesAt": {
+      "kind": "narrator-prophet"
+    }
+  },
+  "branches": []
+}

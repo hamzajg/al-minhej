@@ -1,123 +1,103 @@
-export interface Localized<T = string> {
-  ar: T;
-  en: T;
-}
+export type Locale = "ar" | "en" | "fr" | "es";
 
-export type NodeStatus = "draft" | "in_review" | "published";
+export type Localized<T = string> = Partial<Record<Locale, T>> & Pick<Record<Locale, T>, "ar" | "en">;
 
-export type NodeType =
-  | "BOOK"
-  | "PAGE"
-  | "HADITH"
-  | "VERSE"
-  | "NARRATOR"
-  | "EVENT"
-  | "CONCEPT";
+export type NodeStatus = "draft" | "in_review" | "approved" | "published" | "archived";
+
+export type NodeType = "HADITH" | "VERSE" | "CONCEPT" | "EVENT" | "NARRATOR" | "BOOK" | "PAGE";
+
+export type NodeId = string;
+export type Slug = string;
+
+export type DigitizationStatus = "stub" | "partial" | "complete";
 
 export type NodeAttributes =
-  | { kind: "book"; author: Localized<string>; eraLabel: string }
-  | { kind: "page"; bookId: string; pageNum: number; readingNodeId: string | null; hadithIds: string[] }
-  | { kind: "hadith"; grade: Localized<string>; isnadType?: "full" | "short" }
-  | { kind: "verse"; ref: string; refLocalized: Localized<string> }
+  | { kind: "hadith"; grade: Localized<string>; isnadType: "short" | "full" | "mursal" }
+  | { kind: "verse"; ref: { surah: number; ayahStart: number; ayahEnd: number }; refLocalized: Localized<string> }
+  | { kind: "concept" }
+  | { kind: "event"; dateStart: string; dateEnd?: string }
   | {
       kind: "narrator";
-      dates: string;
+      dateBirth?: string;
+      dateDeath?: string;
       grade: Localized<string>;
       isnadDepth?: number;
-      isnadBranch?: boolean;
     }
-  | { kind: "event"; dates?: string }
-  | { kind: "concept" };
+  | {
+      kind: "book";
+      author: Localized<string>;
+      eraLabel: Localized<string>;
+      digitization: {
+        totalUnits: number;
+        authoredUnits: number;
+        unit: Localized<string>;
+      };
+    }
+  | { kind: "page"; bookId: NodeId; pageNum: number; hadithIds: NodeId[] };
 
-export interface DigitizationTarget {
-  totalUnits: number;
-  unit: Localized<string>;
+/* ── Content block registry ── */
+
+interface ContentBlockBase {
+  type: string;
+  blockVersion: number;
 }
 
-export interface ClauseTextBlock {
-  type: "clauses";
-  introAr: string;
-  introSub: Record<"en" | "fr" | "es", string>;
-  items: {
-    id: number;
-    ar: string;
-    en: string;
-    fr: string;
-    es: string;
-  }[];
-}
-
-export interface VocabularyBlock {
-  type: "vocabulary";
-  entries: VocabEntry[];
+export interface ClauseItem {
+  id: string;
+  text: Localized<string>;
 }
 
 export interface VocabEntry {
   id: string;
   word: string;
-  root: string;
-  pron: string;
-  occ: number;
-  en: string;
-  ar: string;
+  root?: string;
+  pron?: string;
+  occurrences: number[];
+  gloss: Localized<string>;
 }
 
-export interface CommentaryBlock {
-  type: "commentary";
-  scholar: Localized<string>;
-  workNodeId: string;
-  note: Localized<string>;
+export interface AiPrompt {
+  key: string;
+  question: Localized<string>;
+  answer: Localized<string>;
 }
 
-export interface ContextBlock {
-  type: "context";
-  title: Localized<string>;
-  body: Localized<string>;
+export interface QuizOption {
+  id: string;
+  text: Localized<string>;
 }
 
-export interface AiContextBlock {
-  type: "ai_context";
-  explanation: Localized<string>;
-  prompts: string[];
-  answers: Record<"ar" | "en", string[]>;
-}
-
-export interface QuizBlock {
-  type: "quiz";
-  questions: {
-    q: Localized<string>;
-    options: Localized<string>[];
-    correct: number;
-  }[];
-}
-
-export interface OriginalTextBlock {
-  type: "original_text";
-  textAr: string;
-  textEn: string;
-  sourceRef: Localized<string>;
+export interface QuizQuestion {
+  question: Localized<string>;
+  options: QuizOption[];
+  correctOptionId: string;
 }
 
 export type ContentBlock =
-  | ClauseTextBlock
-  | VocabularyBlock
-  | CommentaryBlock
-  | ContextBlock
-  | AiContextBlock
-  | QuizBlock
-  | OriginalTextBlock;
+  | (ContentBlockBase & { type: "clauses"; intro: Localized<string>; items: ClauseItem[] })
+  | (ContentBlockBase & { type: "vocabulary"; entries: VocabEntry[] })
+  | (ContentBlockBase & { type: "commentary"; scholar: Localized<string>; workNodeId: NodeId; note: Localized<string> })
+  | (ContentBlockBase & { type: "context"; title: Localized<string>; body: Localized<string> })
+  | (ContentBlockBase & { type: "ai_context"; items: AiPrompt[] })
+  | (ContentBlockBase & { type: "quiz"; questions: QuizQuestion[] });
+
+/* ── Node ── */
 
 export interface KnowledgeNode {
-  id: string;
+  id: NodeId;
   type: NodeType;
-  slug: string;
+  slug: Slug;
   status: NodeStatus;
+  digitizationStatus: DigitizationStatus;
   title: Localized<string>;
   attributes: NodeAttributes;
   content: ContentBlock[];
-  digitization?: DigitizationTarget;
-  schemaVersion: number;
+  schemaVersion: 2;
+  createdAt: string;
+  updatedAt: string;
 }
+
+/* ── Relationship ── */
 
 export type RelationshipType =
   | "PART_OF"
@@ -136,9 +116,34 @@ export type RelationshipType =
   | "contextual";
 
 export interface Relationship {
-  id: string;
-  from: string;
-  to: string;
+  id: NodeId;
+  from: NodeId;
+  to: NodeId;
   type: RelationshipType;
-  metadata?: Record<string, string>;
+  generated: boolean;
+  metadata?: Record<string, Localized<string> | string | number>;
+}
+
+/* ── Isnad (first-class model) ── */
+
+export interface IsnadLink {
+  narratorId: NodeId;
+  position: number;
+  transmissionNote?: Localized<string>;
+}
+
+export interface IsnadChain {
+  id: string;
+  hadithId: NodeId;
+  role: "primary" | "branch";
+  branchesFrom?: { chainId: string; narratorId: NodeId; position: number };
+  links: IsnadLink[];
+  terminatesAt:
+    | { kind: "narrator-prophet" }
+    | { kind: "documented-leaf"; narratorId: NodeId; note: Localized<string> };
+}
+
+export interface IsnadData {
+  primary: IsnadChain;
+  branches: IsnadChain[];
 }

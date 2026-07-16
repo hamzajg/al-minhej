@@ -39,13 +39,14 @@ export default function BookReaderPage() {
           p.attributes.bookId === book.id &&
           p.attributes.pageNum === Number(pageNum)
       );
-      if (!page || page.attributes.kind !== "page" || !page.attributes.readingNodeId) {
+      if (!page || page.attributes.kind !== "page" || page.attributes.hadithIds.length === 0) {
         if (!cancelled) setError(true);
         return;
       }
 
+      // Use the first hadith on the page as the reading node
       const readingNode = await knowledgeRepository.findById(
-        page.attributes.readingNodeId
+        page.attributes.hadithIds[0]
       );
       if (!readingNode) {
         if (!cancelled) setError(true);

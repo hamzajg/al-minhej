@@ -24,9 +24,10 @@ export function VocabularyTab({ node, discovered, onDiscover }: Props) {
           ].join(" ")}
         >
           <div className="font-arabic text-xl mb-1">{v.word}</div>
-          <div className="text-[12.5px] font-semibold">{v[uiLang]}</div>
+          <div className="text-[12.5px] font-semibold">{v.gloss[uiLang as "ar" | "en"]}</div>
           <div className="text-[11px] text-[var(--color-sub)]">
-            {uiLang === "ar" ? "الجذر" : "root"} {v.root} · {v.pron}
+            {v.root && <>{uiLang === "ar" ? "الجذر" : "root"} {v.root}</>}
+            {v.pron && <> · {v.pron}</>}
           </div>
         </div>
       ))}

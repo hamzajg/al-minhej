@@ -1,6 +1,5 @@
-import type { KnowledgeRepository, RelationshipRepository } from "@/domain/repositories";
+import type { KnowledgeRepository, RelationshipRepository, IsnadRepository } from "@/domain/repositories";
 import type {
-  CommentaryBlock,
   KnowledgeNode,
   Localized,
 } from "@/domain/types";
@@ -23,20 +22,20 @@ const ROLE_BY_DEPTH: Localized<string>[] = [
   { ar: 'عنق السند — راوٍ واحد يمر به الإسناد كله', en: 'The single "neck" of the chain' },
 ];
 
-/**
- * Orchestrates one use case: "assemble everything connected to this node
- * so the frontend never has to." Equivalent to the `/v1/reading/{slug}`
- * handler described in the architecture doc, just running against the
- * in-memory repositories for now instead of an HTTP call.
- */
 export class AssembleReadingExperience {
   private nodes: KnowledgeRepository;
   private relationships: RelationshipRepository;
+  private isnad: IsnadRepository;
   private digitization: DigitizationProgressService;
 
-  constructor(nodes: KnowledgeRepository, relationships: RelationshipRepository) {
+  constructor(
+    nodes: KnowledgeRepository,
+    relationships: RelationshipRepository,
+    isnad: IsnadRepository
+  ) {
     this.nodes = nodes;
     this.relationships = relationships;
+    this.isnad = isnad;
     this.digitization = new DigitizationProgressService(nodes, relationships);
   }
 
@@ -57,7 +56,6 @@ export class AssembleReadingExperience {
     return { node, isnad, commentary, quranReferences, relatedHadith, deeperSource, graph };
   }
 
-  /** A book's live digitization progress, for anywhere a Source chip renders. */
   async progressFor(bookNode: KnowledgeNode): Promise<{ indexedUnits: number; pct: number }> {
     const [indexedUnits, pct] = await Promise.all([
       this.digitization.indexedUnitsFor(bookNode),
@@ -73,101 +71,10 @@ export class AssembleReadingExperience {
   /* ---------------- private assembly steps ---------------- */
 
   private async buildIsnad(hadith: KnowledgeNode): Promise<IsnadDTO> {
-    const isShort = hadith.attributes.kind === "hadith" && hadith.attributes.isnadType === "short";
-    const hadithEdges = await this.relationships.outgoingFrom(hadith.id);
-    const narratedByEdges = hadithEdges.filter((r) => r.type === "NARRATED_BY");
-    const directNarratorIds = narratedByEdges.map((r) => r.to);
+    const slug = hadith.slug;
+    const isnadData = await this.isnad.findByHadithSlug(slug);
 
-    const connectedNarratorIds = new Set<string>();
-    const visited = new Set<string>();
-    const queue = [...directNarratorIds];
-    while (queue.length > 0) {
-      const currentId = queue.shift()!;
-      if (visited.has(currentId)) continue;
-      visited.add(currentId);
-      const node = await this.nodes.findById(currentId);
-      if (node && node.type === "NARRATOR") {
-        connectedNarratorIds.add(currentId);
-        const [outgoing, incoming] = await Promise.all([
-          this.relationships.outgoingFrom(currentId),
-          this.relationships.incomingTo(currentId),
-        ]);
-        for (const rel of outgoing) {
-          if (rel.type === "NARRATED_BY" && rel.to.startsWith("narrator-") && !visited.has(rel.to)) {
-            queue.push(rel.to);
-          }
-        }
-        if (!isShort) {
-          for (const rel of incoming) {
-            if (rel.type === "NARRATED_BY" && rel.from.startsWith("narrator-") && !visited.has(rel.from)) {
-              queue.push(rel.from);
-            }
-          }
-        }
-      }
-    }
-
-    const allConnected = await this.nodes.findManyByIds([...connectedNarratorIds]);
-
-    let chainNarrators: KnowledgeNode[];
-    if (!isShort) {
-      // Find the deepest connected narrator (highest isnadDepth) as the chain start
-      const narratorsWithDepth = allConnected.filter(
-        (n) => n.attributes.kind === "narrator" && n.attributes.isnadDepth !== undefined
-      );
-      narratorsWithDepth.sort(
-        (a, b) => ((a.attributes as { isnadDepth?: number }).isnadDepth ?? 0) - ((b.attributes as { isnadDepth?: number }).isnadDepth ?? 0)
-      );
-      const deepest = narratorsWithDepth[narratorsWithDepth.length - 1];
-      if (!deepest) {
-        chainNarrators = [];
-      } else {
-        // Trace from deepest → Prophet via outgoing NARRATED_BY edges
-        const chainPath: KnowledgeNode[] = [];
-        const visitedChain = new Set<string>();
-        let currentId = deepest.id;
-        while (currentId && !visitedChain.has(currentId)) {
-          visitedChain.add(currentId);
-          const node = allConnected.find((n) => n.id === currentId);
-          if (!node) break;
-          chainPath.push(node);
-          const outgoing = await this.relationships.outgoingFrom(currentId);
-          const parentEdge = outgoing.find(
-            (r) => r.type === "NARRATED_BY" && r.to.startsWith("narrator-")
-          );
-          currentId = parentEdge?.to ?? "";
-        }
-        chainNarrators = chainPath;
-      }
-    } else {
-      chainNarrators = allConnected.filter(
-        (n) => n.attributes.kind === "narrator" && n.attributes.isnadDepth !== undefined
-      );
-    }
-
-    chainNarrators.sort((a, b) => {
-      const da = a.attributes.kind === "narrator" ? a.attributes.isnadDepth ?? 0 : 0;
-      const db = b.attributes.kind === "narrator" ? b.attributes.isnadDepth ?? 0 : 0;
-      return da - db;
-    });
-
-    const chainIds = new Set(chainNarrators.map((n) => n.id));
-    const chain: IsnadPersonDTO[] = chainNarrators.map((n) => {
-      const depth = n.attributes.kind === "narrator" ? n.attributes.isnadDepth ?? 0 : 0;
-      return { node: n, role: ROLE_BY_DEPTH[depth] ?? { ar: "راوٍ", en: "Narrator" }, isNeck: depth === 4 };
-    });
-
-    const branchNarrators = allConnected.filter(
-      (n) => n.attributes.kind === "narrator" && !chainIds.has(n.id)
-    );
-    const branches: IsnadBranchDTO[] = await Promise.all(
-      branchNarrators.map(async (n) => {
-        const outgoing = await this.relationships.outgoingFrom(n.id);
-        const toBookIds = outgoing.filter((r) => r.type === "REFERENCES" && r.to.startsWith("book-")).map((r) => r.to);
-        return { node: n, toBookIds };
-      })
-    );
-
+    // Build books list from PART_OF relationships
     const hadithPartOf = (await this.relationships.outgoingFrom(hadith.id)).filter(
       (r) => r.type === "PART_OF"
     );
@@ -175,16 +82,66 @@ export class AssembleReadingExperience {
     const books = hadithPartOf.map((r) => ({
       node: bookNodes.find((b) => b.id === r.to)!,
       locator: {
-        en: r.metadata?.locator_en ?? "",
-        ar: r.metadata?.locator_ar ?? "",
+        en: (r.metadata?.locator_en as string) ?? "",
+        ar: (r.metadata?.locator_ar as string) ?? "",
       },
     }));
 
-    return { chain, branches, books };
+    if (!isnadData) {
+      // Fallback: no isnad data, return empty chain
+      return { primary: [], branches: [], books };
+    }
+
+    // Resolve primary chain narrators
+    const primaryNarratorIds = isnadData.primary.links.map((l) => l.narratorId);
+    const primaryNarratorNodes = await this.nodes.findManyByIds(primaryNarratorIds);
+    const primary: IsnadPersonDTO[] = isnadData.primary.links.map((link) => {
+      const node = primaryNarratorNodes.find((n) => n.id === link.narratorId)!;
+      const depth = node.attributes.kind === "narrator" ? node.attributes.isnadDepth ?? 0 : 0;
+      return {
+        node,
+        role: ROLE_BY_DEPTH[depth] ?? { ar: "راوٍ", en: "Narrator" },
+        position: link.position,
+        transmissionNote: link.transmissionNote,
+      };
+    });
+
+    // Resolve branch chains
+    const branches: IsnadBranchDTO[] = [];
+    for (const branchChain of isnadData.branches) {
+      const branchNarratorIds = branchChain.links.map((l) => l.narratorId);
+      const branchNarratorNodes = await this.nodes.findManyByIds(branchNarratorIds);
+
+      // Find the anchor node (the primary chain narrator this branch connects to)
+      const anchorNode = primary.find(
+        (p) => p.node.id === branchChain.branchesFrom?.narratorId
+      );
+
+      const members: IsnadPersonDTO[] = branchChain.links.map((link) => {
+        const node = branchNarratorNodes.find((n) => n.id === link.narratorId)!;
+        const depth = node.attributes.kind === "narrator" ? node.attributes.isnadDepth ?? 0 : 0;
+        return {
+          node,
+          role: ROLE_BY_DEPTH[depth] ?? { ar: "راوٍ", en: "Narrator" },
+          position: link.position,
+          transmissionNote: link.transmissionNote,
+        };
+      });
+
+      if (anchorNode && members.length > 0) {
+        branches.push({
+          chain: branchChain,
+          anchors: anchorNode,
+          members,
+        });
+      }
+    }
+
+    return { primary, branches, books };
   }
 
   private async buildCommentary(hadith: KnowledgeNode): Promise<CommentaryEntryDTO[]> {
-    const blocks = hadith.content.filter((b): b is CommentaryBlock => b.type === "commentary");
+    const blocks = hadith.content.filter((b): b is Extract<import("@/domain/types").ContentBlock, { type: "commentary" }> => b.type === "commentary");
     const workNodes = await this.nodes.findManyByIds(blocks.map((b) => b.workNodeId));
     return blocks.map((b) => ({
       scholar: b.scholar,
@@ -204,9 +161,14 @@ export class AssembleReadingExperience {
     const targets = await this.nodes.findManyByIds(outgoing.map((r) => r.to));
     return outgoing.map((r) => ({
       node: targets.find((t) => t.id === r.to)!,
-      note: { en: r.metadata?.note_en ?? "", ar: r.metadata?.note_ar ?? "" },
-      quoteAr: r.metadata?.verse_ar,
-      srcLabel: r.metadata?.src_en ? { en: r.metadata.src_en, ar: r.metadata.src_ar ?? "" } : undefined,
+      note: {
+        en: (r.metadata?.note_en as string) ?? "",
+        ar: (r.metadata?.note_ar as string) ?? "",
+      },
+      quoteAr: r.metadata?.verse_ar as string,
+      srcLabel: r.metadata?.src_en
+        ? { en: r.metadata.src_en as string, ar: (r.metadata.src_ar as string) ?? "" }
+        : undefined,
     }));
   }
 
@@ -229,8 +191,8 @@ export class AssembleReadingExperience {
         const node = neighborNodes.find((n) => n.id === otherId);
         if (!node) return null;
         const detail: Localized<string> = {
-          en: e.metadata?.note_en ?? `${e.type.replace("_", " ").toLowerCase()}`,
-          ar: e.metadata?.note_ar ?? e.type,
+          en: (e.metadata?.note_en as string) ?? `${e.type.replace("_", " ").toLowerCase()}`,
+          ar: (e.metadata?.note_ar as string) ?? e.type,
         };
         return { node, relationshipType: e.type, detail } satisfies GraphNeighborDTO;
       })

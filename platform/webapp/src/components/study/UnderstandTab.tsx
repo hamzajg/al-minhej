@@ -17,9 +17,9 @@ export function UnderstandTab({ dto, onOpenSource }: Props) {
 
   return (
     <div className="grid gap-3.5">
-      {ai && (
+      {ai && ai.items.length > 0 && (
         <LabeledCard tone="gold" title={t.aiExplanationTitle} icon={<Sparkles size={13} />}>
-          {ai.explanation[uiLang]}
+          {ai.items[0].answer[uiLang as "ar" | "en"]}
         </LabeledCard>
       )}
 
