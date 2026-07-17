@@ -1,30 +1,10 @@
 [
   {
-    "id": "book-bidayah",
-    "slug": "al-bidayah-wan-nihayah"
-  },
-  {
-    "id": "book-tabaqat",
-    "slug": "al-tabaqat-al-kubra"
-  },
-  {
-    "id": "book-fathalbari",
-    "slug": "fath-al-bari"
-  },
-  {
-    "id": "book-jami-ulum",
-    "slug": "jami-al-ulum-wal-hikam"
+    "id": "book-arbain",
+    "slug": "al-arbain-al-nawawiyya"
   },
   {
     "id": "book-bukhari",
     "slug": "sahih-al-bukhari"
-  },
-  {
-    "id": "book-muslim",
-    "slug": "sahih-muslim"
-  },
-  {
-    "id": "book-sharh-arbain",
-    "slug": "sharh-al-arbain"
   }
 ]

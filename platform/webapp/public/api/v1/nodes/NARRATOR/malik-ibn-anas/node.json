@@ -3,22 +3,76 @@
   "type": "NARRATOR",
   "slug": "malik-ibn-anas",
   "status": "published",
+  "digitizationStatus": "complete",
   "title": {
     "ar": "مالك بن أنس",
     "en": "Malik ibn Anas"
   },
   "attributes": {
     "kind": "narrator",
+    "dateBirth": "٩٣ هـ / ٧١١ م",
+    "dateDeath": "١٧٩ هـ / ٧٩٥ م",
     "grade": {
-      "ar": "ثقة، إمام",
-      "en": "Thiqah, Imam"
+      "ar": "إمام دار الهجرة، رأس المتقنين",
+      "en": "Imam of the Abode of Emigration; foremost of the precise transmitters"
     },
-    "isnadDepth": 5,
-    "dateDeath": "179-01-01"
+    "isnadDepth": 4
   },
-  "content": [],
+  "content": [
+    {
+      "type": "biography",
+      "blockVersion": 1,
+      "kunya": {
+        "ar": "أبو عبد الله",
+        "en": "Abu 'Abdullah"
+      },
+      "nasab": {
+        "ar": "مالك بن أنس بن مالك بن أبي عامر الأصبحي المدني",
+        "en": "Malik ibn Anas ibn Malik ibn Abi 'Amir al-Asbahi, of Madinah"
+      },
+      "tabaqah": 7,
+      "tabaqahLabel": {
+        "ar": "الطبقة السابعة: كبار أتباع التابعين",
+        "en": "Tabaqah 7: senior successors of the Successors"
+      },
+      "birthPlace": {
+        "ar": "المدينة المنورة، ٩٣ هـ / ٧١١ م",
+        "en": "Madinah, 93 AH / 711 CE"
+      },
+      "deathInfo": {
+        "ar": "توفي بالمدينة سنة ١٧٩ هـ / ٧٩٥ م",
+        "en": "Died in Madinah, 179 AH / 795 CE"
+      },
+      "teachers": [
+        {
+          "narratorId": "narrator-hisham-urwah",
+          "note": {
+            "ar": "من أكثر شيوخه رواية",
+            "en": "among his most-transmitted-from teachers"
+          }
+        }
+      ],
+      "students": [
+        {
+          "narratorId": "narrator-abdullah-yusuf",
+          "note": {
+            "ar": "من أثبت من روى عنه الموطأ",
+            "en": "among the most precise transmitters of his Muwatta'"
+          }
+        }
+      ],
+      "taqribGrade": {
+        "ar": "إمام دار الهجرة، رأس المتقنين وكبير المتثبتين؛ قال البخاري: أصح الأسانيد كلها مالك عن نافع عن ابن عمر",
+        "en": "Imam of the Abode of Emigration, foremost of the precise; al-Bukhari said: 'the soundest chain of all is Malik, from Nafi', from Ibn 'Umar.'"
+      },
+      "taqribRef": "ابن حجر، تقريب التهذيب؛ ينظر أيضًا شمائل الأسانيد المختارة",
+      "summary": {
+        "ar": "إمام أهل المدينة وصاحب الموطأ، أُجمع على تقديم روايته وضبطه.",
+        "en": "Imam of the people of Madinah and author of al-Muwatta'; his transmission and precision were universally esteemed."
+      }
+    }
+  ],
   "schemaVersion": 2,
-  "createdAt": "2025-01-01T00:00:00.000Z",
-  "updatedAt": "2026-07-16T22:02:23.800Z",
-  "digitizationStatus": "stub"
+  "createdAt": "2026-07-17T00:00:00.000Z",
+  "updatedAt": "2026-07-17T00:00:00.000Z"
 }

@@ -1,75 +1,29 @@
 {
   "primary": {
     "id": "isnad-arbain-1-primary",
-    "hadithId": "hadith-1",
+    "hadithId": "hadith-arbain-1",
     "role": "primary",
     "links": [
       {
         "narratorId": "narrator-umar",
-        "position": 0
+        "position": 0,
+        "transmissionNote": {
+          "ar": "عَنْ ... قَالَ: سَمِعْتُ",
+          "en": "On the authority of ... who said: I heard"
+        }
+      },
+      {
+        "narratorId": "narrator-nawawi",
+        "position": 1,
+        "transmissionNote": {
+          "ar": "رَوَاهُ",
+          "en": "Compiled (with a shortened isnad, citing Bukhari & Muslim) by"
+        }
       }
     ],
     "terminatesAt": {
       "kind": "narrator-prophet"
     }
   },
-  "branches": [
-    {
-      "id": "isnad-arbain-1-branch-1",
-      "hadithId": "hadith-1",
-      "role": "branch",
-      "branchesFrom": {
-        "chainId": "isnad-arbain-1-primary",
-        "narratorId": "narrator-umar",
-        "position": 0
-      },
-      "links": [
-        {
-          "narratorId": "narrator-alqamah",
-          "position": 0
-        }
-      ],
-      "terminatesAt": {
-        "kind": "narrator-prophet"
-      }
-    },
-    {
-      "id": "isnad-arbain-1-branch-2",
-      "hadithId": "hadith-1",
-      "role": "branch",
-      "branchesFrom": {
-        "chainId": "isnad-arbain-1-primary",
-        "narratorId": "narrator-umar",
-        "position": 0
-      },
-      "links": [
-        {
-          "narratorId": "narrator-ayyub",
-          "position": 0
-        }
-      ],
-      "terminatesAt": {
-        "kind": "narrator-prophet"
-      }
-    },
-    {
-      "id": "isnad-arbain-1-branch-3",
-      "hadithId": "hadith-1",
-      "role": "branch",
-      "branchesFrom": {
-        "chainId": "isnad-arbain-1-primary",
-        "narratorId": "narrator-umar",
-        "position": 0
-      },
-      "links": [
-        {
-          "narratorId": "narrator-hisham",
-          "position": 0
-        }
-      ],
-      "terminatesAt": {
-        "kind": "narrator-prophet"
-      }
-    }
-  ]
+  "branches": []
 }

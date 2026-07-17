@@ -1,24 +1,77 @@
 {
-  "id": "narrator-ibrahim",
+  "id": "narrator-muhammad-ibrahim",
   "type": "NARRATOR",
   "slug": "muhammad-ibn-ibrahim",
   "status": "published",
+  "digitizationStatus": "complete",
   "title": {
     "ar": "محمد بن إبراهيم التيمي",
     "en": "Muhammad ibn Ibrahim at-Taymi"
   },
   "attributes": {
     "kind": "narrator",
+    "dateDeath": "c. 120 AH",
     "grade": {
       "ar": "ثقة ثبت",
       "en": "Thiqah thabt (trustworthy, precise)"
     },
-    "isnadDepth": 3,
-    "dateDeath": "120-01-01"
+    "isnadDepth": 3
   },
-  "content": [],
+  "content": [
+    {
+      "type": "biography",
+      "blockVersion": 1,
+      "kunya": {
+        "ar": "أبو عبد الله",
+        "en": "Abu 'Abdullah"
+      },
+      "nasab": {
+        "ar": "محمد بن إبراهيم بن الحارث التيمي القرشي المدني",
+        "en": "Muhammad ibn Ibrahim ibn al-Harith al-Taymi, of Quraysh, Madinah"
+      },
+      "tabaqah": 4,
+      "tabaqahLabel": {
+        "ar": "الطبقة الرابعة: من أوساط التابعين",
+        "en": "Tabaqah 4: middle-generation Successors"
+      },
+      "birthPlace": {
+        "ar": "المدينة المنورة",
+        "en": "Madinah"
+      },
+      "deathInfo": {
+        "ar": "توفي نحو سنة ١٢٠ هـ",
+        "en": "Died c. 120 AH"
+      },
+      "teachers": [
+        {
+          "narratorId": "narrator-alqamah",
+          "note": {
+            "ar": "سمعه يحدث عن عمر",
+            "en": "heard him narrate from 'Umar"
+          }
+        }
+      ],
+      "students": [
+        {
+          "narratorId": "narrator-yahya-ansari",
+          "note": {
+            "ar": "أخبره بهذا الحديث",
+            "en": "informed him of this hadith"
+          }
+        }
+      ],
+      "taqribGrade": {
+        "ar": "ثقة ثبت",
+        "en": "Thiqah, precise (thabt)"
+      },
+      "taqribRef": "ابن حجر، تقريب التهذيب، ت ٥٨٠٥",
+      "summary": {
+        "ar": "من ثقات التابعين بالمدينة، حديثه هذا من أشهر ما رواه.",
+        "en": "Among the reliable Madinan Successors; this narration is among the most famous reports he transmitted."
+      }
+    }
+  ],
   "schemaVersion": 2,
-  "createdAt": "2025-01-01T00:00:00.000Z",
-  "updatedAt": "2026-07-16T22:02:23.800Z",
-  "digitizationStatus": "stub"
+  "createdAt": "2026-07-17T00:00:00.000Z",
+  "updatedAt": "2026-07-17T00:00:00.000Z"
 }

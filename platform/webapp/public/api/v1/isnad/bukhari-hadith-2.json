@@ -1,0 +1,53 @@
+{
+  "primary": {
+    "id": "isnad-bukhari-hadith-2-primary",
+    "hadithId": "hadith-bukhari-2",
+    "role": "primary",
+    "links": [
+      {
+        "narratorId": "narrator-aisha",
+        "position": 0,
+        "transmissionNote": {
+          "ar": "عَنْ",
+          "en": "on the authority of"
+        }
+      },
+      {
+        "narratorId": "narrator-urwah",
+        "position": 1,
+        "transmissionNote": {
+          "ar": "عَنْ أَبِيهِ",
+          "en": "from his father"
+        }
+      },
+      {
+        "narratorId": "narrator-hisham-urwah",
+        "position": 2,
+        "transmissionNote": {
+          "ar": "عَنْ هِشَامِ بْنِ عُرْوَةَ",
+          "en": "from Hisham ibn 'Urwah"
+        }
+      },
+      {
+        "narratorId": "narrator-malik",
+        "position": 3,
+        "transmissionNote": {
+          "ar": "أَخْبَرَنَا",
+          "en": "informed us"
+        }
+      },
+      {
+        "narratorId": "narrator-abdullah-yusuf",
+        "position": 4,
+        "transmissionNote": {
+          "ar": "حَدَّثَنَا",
+          "en": "narrated to us"
+        }
+      }
+    ],
+    "terminatesAt": {
+      "kind": "narrator-prophet"
+    }
+  },
+  "branches": []
+}

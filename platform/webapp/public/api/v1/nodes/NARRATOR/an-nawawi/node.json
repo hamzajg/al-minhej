@@ -1,0 +1,62 @@
+{
+  "id": "narrator-nawawi",
+  "type": "NARRATOR",
+  "slug": "an-nawawi",
+  "status": "published",
+  "digitizationStatus": "complete",
+  "title": {
+    "ar": "الإمام النووي",
+    "en": "Imam Yahya ibn Sharaf an-Nawawi"
+  },
+  "attributes": {
+    "kind": "narrator",
+    "dateBirth": "631 AH / 1234 CE",
+    "dateDeath": "676 AH / 1277 CE",
+    "grade": {
+      "ar": "إمام، حافظ",
+      "en": "Imam, Hafiz"
+    },
+    "isnadDepth": 0
+  },
+  "content": [
+    {
+      "type": "biography",
+      "blockVersion": 1,
+      "kunya": {
+        "ar": "أبو زكريا",
+        "en": "Abu Zakariyya"
+      },
+      "nasab": {
+        "ar": "يحيى بن شرف بن مري النووي الدمشقي الشافعي",
+        "en": "Yahya ibn Sharaf ibn Murri al-Nawawi, of Damascus, Shafi'i jurist"
+      },
+      "tabaqah": null,
+      "tabaqahLabel": {
+        "ar": "مصنّف متأخر، ليس من رجال السند القديم",
+        "en": "Later compiler, not part of the ancient chain of transmitters"
+      },
+      "birthPlace": {
+        "ar": "نوى، قرب دمشق، ٦٣١ هـ / ١٢٣٣ م",
+        "en": "Nawa, near Damascus, 631 AH / 1233 CE"
+      },
+      "deathInfo": {
+        "ar": "توفي بنوى سنة ٦٧٦ هـ / ١٢٧٧ م",
+        "en": "Died in Nawa, 676 AH / 1277 CE"
+      },
+      "teachers": [],
+      "students": [],
+      "taqribGrade": {
+        "ar": "إمام حافظ فقيه شافعي",
+        "en": "Imam, hafiz, Shafi'i jurist"
+      },
+      "taqribRef": "السخاوي، المنهل العذب الروي في ترجمة النووي",
+      "summary": {
+        "ar": "مصنّف الأربعين النووية، جمعها من الصحيحين وغيرهما مقتصرًا غالبًا على إسناد مختصر لأنها مشهورة.",
+        "en": "Compiler of al-Arba'in al-Nawawiyyah, gathered from the two Sahihs and elsewhere, usually citing a shortened chain since the reports were already well known."
+      }
+    }
+  ],
+  "schemaVersion": 2,
+  "createdAt": "2026-07-17T00:00:00.000Z",
+  "updatedAt": "2026-07-17T00:00:00.000Z"
+}

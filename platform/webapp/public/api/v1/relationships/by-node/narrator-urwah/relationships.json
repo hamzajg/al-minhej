@@ -1,0 +1,23 @@
+[
+  {
+    "id": "r-v1-gen-25",
+    "from": "narrator-hisham-urwah",
+    "to": "narrator-urwah",
+    "type": "NARRATED_BY",
+    "generated": true
+  },
+  {
+    "id": "r-v1-gen-26",
+    "from": "narrator-urwah",
+    "to": "narrator-aisha",
+    "type": "NARRATED_BY",
+    "generated": true
+  },
+  {
+    "id": "r-v1-gen-32",
+    "from": "narrator-zuhri",
+    "to": "narrator-urwah",
+    "type": "NARRATED_BY",
+    "generated": true
+  }
+]

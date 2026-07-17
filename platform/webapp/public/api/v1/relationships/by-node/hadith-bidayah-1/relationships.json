@@ -1,9 +1,0 @@
-[
-  {
-    "id": "r-hadith-bidayah-1-book-bidayah",
-    "from": "hadith-bidayah-1",
-    "to": "book-bidayah",
-    "type": "PART_OF",
-    "generated": true
-  }
-]

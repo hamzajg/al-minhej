@@ -1,16 +1,52 @@
 [
   {
-    "id": "r-hadith-bukhari-2-book-bukhari",
+    "id": "r-v1-gen-6",
     "from": "hadith-bukhari-2",
     "to": "book-bukhari",
     "type": "PART_OF",
+    "generated": true,
+    "metadata": {
+      "locator_en": "Page 2",
+      "locator_ar": "الصفحة 2"
+    }
+  },
+  {
+    "id": "r-v1-gen-11",
+    "from": "book-bukhari",
+    "to": "hadith-bukhari-2",
+    "type": "EXPLAINS",
     "generated": true
   },
   {
-    "id": "r-hadith-bukhari-2-narrator-aisha",
+    "id": "r-v1-gen-28",
     "from": "hadith-bukhari-2",
-    "to": "narrator-aisha",
-    "type": "NARRATED_BY",
-    "generated": true
+    "to": "narrator-prophet",
+    "type": "full_chain_source",
+    "generated": true,
+    "metadata": {
+      "locator_en": "isnad-bukhari-hadith-2-primary"
+    }
+  },
+  {
+    "id": "r-v1-them-21",
+    "from": "hadith-bukhari-2",
+    "to": "concept-wahy",
+    "type": "thematic_link",
+    "generated": false,
+    "metadata": {
+      "note_en": "Direct account of the modes of revelation.",
+      "note_ar": "بيان مباشر لكيفيات الوحي."
+    }
+  },
+  {
+    "id": "r-v1-sim-23",
+    "from": "hadith-bukhari-2",
+    "to": "hadith-bukhari-3",
+    "type": "SIMILAR_TO",
+    "generated": false,
+    "metadata": {
+      "note_en": "Both narrated by 'A'ishah on the topic of revelation.",
+      "note_ar": "كلاهما من رواية عائشة في موضوع الوحي."
+    }
   }
 ]

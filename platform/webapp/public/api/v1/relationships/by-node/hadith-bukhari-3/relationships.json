@@ -1,0 +1,52 @@
+[
+  {
+    "id": "r-v1-gen-8",
+    "from": "hadith-bukhari-3",
+    "to": "book-bukhari",
+    "type": "PART_OF",
+    "generated": true,
+    "metadata": {
+      "locator_en": "Page 3",
+      "locator_ar": "الصفحة 3"
+    }
+  },
+  {
+    "id": "r-v1-gen-12",
+    "from": "book-bukhari",
+    "to": "hadith-bukhari-3",
+    "type": "EXPLAINS",
+    "generated": true
+  },
+  {
+    "id": "r-v1-gen-35",
+    "from": "hadith-bukhari-3",
+    "to": "narrator-prophet",
+    "type": "full_chain_source",
+    "generated": true,
+    "metadata": {
+      "locator_en": "isnad-bukhari-hadith-3-primary"
+    }
+  },
+  {
+    "id": "r-v1-them-22",
+    "from": "hadith-bukhari-3",
+    "to": "concept-wahy",
+    "type": "thematic_link",
+    "generated": false,
+    "metadata": {
+      "note_en": "Foundational account of how revelation began.",
+      "note_ar": "بيان تأسيسي لبدء الوحي."
+    }
+  },
+  {
+    "id": "r-v1-sim-23",
+    "from": "hadith-bukhari-2",
+    "to": "hadith-bukhari-3",
+    "type": "SIMILAR_TO",
+    "generated": false,
+    "metadata": {
+      "note_en": "Both narrated by 'A'ishah on the topic of revelation.",
+      "note_ar": "كلاهما من رواية عائشة في موضوع الوحي."
+    }
+  }
+]

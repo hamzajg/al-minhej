@@ -1,0 +1,61 @@
+{
+  "primary": {
+    "id": "isnad-bukhari-hadith-3-primary",
+    "hadithId": "hadith-bukhari-3",
+    "role": "primary",
+    "links": [
+      {
+        "narratorId": "narrator-aisha",
+        "position": 0,
+        "transmissionNote": {
+          "ar": "أَنَّهَا قَالَتْ",
+          "en": "who said"
+        }
+      },
+      {
+        "narratorId": "narrator-urwah",
+        "position": 1,
+        "transmissionNote": {
+          "ar": "عَنْ عُرْوَةَ بْنِ الزُّبَيْرِ",
+          "en": "from 'Urwah ibn al-Zubayr"
+        }
+      },
+      {
+        "narratorId": "narrator-zuhri",
+        "position": 2,
+        "transmissionNote": {
+          "ar": "عَنِ ابْنِ شِهَابٍ",
+          "en": "from Ibn Shihab"
+        }
+      },
+      {
+        "narratorId": "narrator-uqayl",
+        "position": 3,
+        "transmissionNote": {
+          "ar": "عَنْ عُقَيْلٍ",
+          "en": "from 'Uqayl"
+        }
+      },
+      {
+        "narratorId": "narrator-layth",
+        "position": 4,
+        "transmissionNote": {
+          "ar": "حَدَّثَنَا",
+          "en": "narrated to us"
+        }
+      },
+      {
+        "narratorId": "narrator-yahya-bukayr",
+        "position": 5,
+        "transmissionNote": {
+          "ar": "حَدَّثَنَا",
+          "en": "narrated to us"
+        }
+      }
+    ],
+    "terminatesAt": {
+      "kind": "narrator-prophet"
+    }
+  },
+  "branches": []
+}

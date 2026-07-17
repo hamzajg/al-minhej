@@ -1,0 +1,78 @@
+{
+  "id": "narrator-zuhri",
+  "type": "NARRATOR",
+  "slug": "ibn-shihab-al-zuhri",
+  "status": "published",
+  "digitizationStatus": "complete",
+  "title": {
+    "ar": "ابن شهاب الزهري",
+    "en": "Ibn Shihab al-Zuhri"
+  },
+  "attributes": {
+    "kind": "narrator",
+    "dateBirth": "٥٨ هـ / ٦٧٨ م",
+    "dateDeath": "١٢٤ هـ / ٧٤٢ م",
+    "grade": {
+      "ar": "ثقة حافظ فقيه متفق على جلالته",
+      "en": "Thiqah, hafiz, jurist; his eminence is agreed upon by all"
+    },
+    "isnadDepth": 3
+  },
+  "content": [
+    {
+      "type": "biography",
+      "blockVersion": 1,
+      "kunya": {
+        "ar": "أبو بكر",
+        "en": "Abu Bakr"
+      },
+      "nasab": {
+        "ar": "محمد بن مسلم بن عبيد الله بن شهاب الزهري القرشي المدني",
+        "en": "Muhammad ibn Muslim ibn 'Ubaydullah ibn Shihab al-Zuhri, of Quraysh"
+      },
+      "tabaqah": 4,
+      "tabaqahLabel": {
+        "ar": "الطبقة الرابعة: من أوساط التابعين",
+        "en": "Tabaqah 4: middle-generation Successors"
+      },
+      "birthPlace": {
+        "ar": "المدينة المنورة، نحو ٥٨ هـ",
+        "en": "Madinah, c. 58 AH"
+      },
+      "deathInfo": {
+        "ar": "توفي بشغب سنة ١٢٤ هـ / ٧٤٢ م",
+        "en": "Died at Shaghb, 124 AH / 742 CE"
+      },
+      "teachers": [
+        {
+          "narratorId": "narrator-urwah",
+          "note": {
+            "ar": "من أخص شيوخه بالمدينة",
+            "en": "among his closest Madinan teachers"
+          }
+        }
+      ],
+      "students": [
+        {
+          "narratorId": "narrator-uqayl",
+          "note": {
+            "ar": "من أثبت من روى عنه بمصر والشام",
+            "en": "among his most precise Egyptian/Syrian transmitters"
+          }
+        }
+      ],
+      "taqribGrade": {
+        "ar": "ثقة حافظ فقيه متفق على جلالته وإتقانه، أول من دوّن الحديث بأمر عمر بن عبد العزيز",
+        "en": "Thiqah, hafiz, jurist — his eminence and precision are unanimously agreed upon; the first to formally codify hadith, by order of 'Umar ibn 'Abd al-'Aziz"
+      },
+      "taqribRef": "ابن حجر، تقريب التهذيب، ت ٦٢٩٦",
+      "summary": {
+        "ar": "أحد أعلام التابعين في الحديث والفقه، له فضل السبق في تدوين الحديث النبوي.",
+        "en": "One of the towering scholars of the Successors in hadith and fiqh, credited with pioneering the formal recording of hadith."
+      }
+    }
+  ],
+  "schemaVersion": 2,
+  "createdAt": "2026-07-17T00:00:00.000Z",
+  "updatedAt": "2026-07-17T00:00:00.000Z"
+}

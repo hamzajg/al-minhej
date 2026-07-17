@@ -1,26 +1,26 @@
 [
   {
-    "id": "r-hadith1-bayyinah",
-    "from": "hadith-1",
+    "id": "r-v1-ref-17",
+    "from": "hadith-bukhari-1",
     "to": "verse-bayyinah",
     "type": "REFERENCES",
+    "generated": false,
     "metadata": {
       "note_en": "Commands sincerity of purpose in worship.",
       "note_ar": "تأمر بالإخلاص في العبادة.",
       "verse_ar": "وَمَا أُمِرُوا إِلَّا لِيَعْبُدُوا اللَّهَ مُخْلِصِينَ لَهُ الدِّينَ"
-    },
-    "generated": false
+    }
   },
   {
-    "id": "r-hadith4-bayyinah",
-    "from": "hadith-4",
+    "id": "r-v1-ref-18",
+    "from": "hadith-arbain-1",
     "to": "verse-bayyinah",
     "type": "REFERENCES",
+    "generated": false,
     "metadata": {
-      "note_en": "Sincerity in all matters.",
-      "note_ar": "الإخلاص في كل الأمور.",
+      "note_en": "Commands sincerity of purpose in worship.",
+      "note_ar": "تأمر بالإخلاص في العبادة.",
       "verse_ar": "وَمَا أُمِرُوا إِلَّا لِيَعْبُدُوا اللَّهَ مُخْلِصِينَ لَهُ الدِّينَ"
-    },
-    "generated": false
+    }
   }
 ]

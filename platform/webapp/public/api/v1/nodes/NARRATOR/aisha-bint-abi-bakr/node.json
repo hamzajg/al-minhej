@@ -3,27 +3,75 @@
   "type": "NARRATOR",
   "slug": "aisha-bint-abi-bakr",
   "status": "published",
+  "digitizationStatus": "complete",
   "title": {
-    "ar": "عائشة بنت أبي بكر",
-    "en": "Aisha bint Abi Bakr"
+    "ar": "عائشة أم المؤمنين",
+    "en": "'A'ishah, Mother of the Believers"
   },
   "attributes": {
     "kind": "narrator",
+    "dateDeath": "٥٨ هـ / ٦٧٨ م",
     "grade": {
       "ar": "أم المؤمنين",
       "en": "Mother of the Believers"
     },
-    "note": {
-      "ar": "ابنة أبي بكر الصديق، وأحب نساء النبي ﷺ إليه، وأكثر النساء روايةً للحديث، وعلمت أهل بيته ما لم يطلع عليه غيرها.",
-      "en": "Daughter of Abu Bakr; the Prophet's ﷺ most beloved wife and the foremost woman narrator of hadith, uniquely transmitting the intimate life of his household."
-    },
-    "isnadDepth": 1,
-    "dateBirth": "613-01-01",
-    "dateDeath": "678-01-01"
+    "isnadDepth": 1
   },
-  "content": [],
+  "content": [
+    {
+      "type": "biography",
+      "blockVersion": 1,
+      "kunya": {
+        "ar": "أم عبد الله",
+        "en": "Umm 'Abdullah"
+      },
+      "nasab": {
+        "ar": "عائشة بنت أبي بكر الصديق عبد الله بن أبي قحافة التيمية القرشية",
+        "en": "'A'ishah bint Abi Bakr al-Siddiq, of Quraysh"
+      },
+      "tabaqah": 1,
+      "tabaqahLabel": {
+        "ar": "الطبقة الأولى: كبار الصحابة",
+        "en": "Tabaqah 1: senior Companions"
+      },
+      "birthPlace": {
+        "ar": "مكة المكرمة، نحو ٦١٤ م",
+        "en": "Makkah, c. 614 CE"
+      },
+      "deathInfo": {
+        "ar": "توفيت بالمدينة سنة ٥٨ هـ / ٦٧٨ م، ودُفنت بالبقيع",
+        "en": "Died in Madinah, 58 AH / 678 CE; buried in al-Baqi'"
+      },
+      "teachers": [
+        {
+          "narratorId": "narrator-prophet",
+          "note": {
+            "ar": "زوجه، وأكثر الصحابة رواية عنه من النساء",
+            "en": "his wife, and the most prolific female narrator from him"
+          }
+        }
+      ],
+      "students": [
+        {
+          "narratorId": "narrator-urwah",
+          "note": {
+            "ar": "ابن أختها أسماء، وأخص من روى عنها",
+            "en": "her sister Asma's son, and among her closest transmitters"
+          }
+        }
+      ],
+      "taqribGrade": {
+        "ar": "صحابية، أفقه نساء الأمة",
+        "en": "Companion; the most learned woman of the ummah in jurisprudence"
+      },
+      "taqribRef": "ابن حجر، الإصابة في تمييز الصحابة",
+      "summary": {
+        "ar": "من أكثر الصحابة رواية للحديث مطلقًا، ومرجع كبير في الفقه والتفسير وسيرة النبي ﷺ في بيته.",
+        "en": "Among the most prolific narrators of hadith of any Companion, and a major authority on jurisprudence, exegesis, and the Prophet's ﷺ life at home."
+      }
+    }
+  ],
   "schemaVersion": 2,
-  "createdAt": "2025-01-01T00:00:00.000Z",
-  "updatedAt": "2026-07-16T22:02:23.800Z",
-  "digitizationStatus": "stub"
+  "createdAt": "2026-07-17T00:00:00.000Z",
+  "updatedAt": "2026-07-17T00:00:00.000Z"
 }

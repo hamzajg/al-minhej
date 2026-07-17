@@ -418,7 +418,7 @@ build **fails** (not warns) on any §8 violation. No served file is ever hand-ed
 4. **Retire `legacy/**`** once all consumers are migrated and one release cycle has passed with
    no legacy traffic (add a build-time counter/log if you want hard evidence before deleting it).
 5. **Future schema bumps** follow the same pattern: new `schemaVersionN` folder under `v1/` (or a
-   new `v2/` root for breaking changes), generated adapter to the prior version, consumers migrate
+   new `v1/` root for breaking changes), generated adapter to the prior version, consumers migrate
    at their own pace, old version retired after a deprecation window.
 
 ---

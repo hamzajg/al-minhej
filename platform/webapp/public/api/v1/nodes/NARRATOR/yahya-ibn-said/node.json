@@ -1,24 +1,78 @@
 {
-  "id": "narrator-yahya",
+  "id": "narrator-yahya-ansari",
   "type": "NARRATOR",
   "slug": "yahya-ibn-said",
   "status": "published",
+  "digitizationStatus": "complete",
   "title": {
     "ar": "يحيى بن سعيد الأنصاري",
     "en": "Yahya ibn Sa'id al-Ansari"
   },
   "attributes": {
     "kind": "narrator",
+    "dateBirth": "c. 654 CE",
+    "dateDeath": "c. 143 AH / 761 CE",
     "grade": {
-      "ar": "ثقة ثبت حجة",
-      "en": "Thiqah thabt hujjah (authoritative)"
+      "ar": "ثقة، قاضي المدينة",
+      "en": "Thiqah, Qadi of Medina"
     },
-    "isnadDepth": 4,
-    "dateDeath": "143-01-01"
+    "isnadDepth": 4
   },
-  "content": [],
+  "content": [
+    {
+      "type": "biography",
+      "blockVersion": 1,
+      "kunya": {
+        "ar": "أبو سعيد",
+        "en": "Abu Sa'id"
+      },
+      "nasab": {
+        "ar": "يحيى بن سعيد بن قيس الأنصاري المدني",
+        "en": "Yahya ibn Sa'id ibn Qays al-Ansari, of Madinah"
+      },
+      "tabaqah": 6,
+      "tabaqahLabel": {
+        "ar": "الطبقة السادسة: من صغار التابعين",
+        "en": "Tabaqah 6: junior Successors"
+      },
+      "birthPlace": {
+        "ar": "المدينة المنورة، نحو ٦٥ هـ",
+        "en": "Madinah, c. 65 AH"
+      },
+      "deathInfo": {
+        "ar": "توفي بالهاشمية سنة ١٤٣ أو ١٤٤ هـ / ٧٦١ م، وتولى قضاء المدينة",
+        "en": "Died c. 143–144 AH / 761 CE; served as Qadi of Madinah"
+      },
+      "teachers": [
+        {
+          "narratorId": "narrator-muhammad-ibrahim",
+          "note": {
+            "ar": "روى عنه بواسطة أخذه عن علقمة",
+            "en": "transmitted from him, who in turn related from 'Alqamah"
+          }
+        }
+      ],
+      "students": [
+        {
+          "narratorId": "narrator-sufyan-uyaynah",
+          "note": {
+            "ar": "من أخص من أخذ عنه",
+            "en": "among his closest students"
+          }
+        }
+      ],
+      "taqribGrade": {
+        "ar": "ثقة ثبت",
+        "en": "Thiqah, precise (thabt)"
+      },
+      "taqribRef": "ابن حجر، تقريب التهذيب، ت ٧٥٥٣",
+      "summary": {
+        "ar": "فقيه المدينة وقاضيها، من أوثق التابعين في الحديث.",
+        "en": "Jurist and judge of Madinah, among the most reliable of the Successors in hadith."
+      }
+    }
+  ],
   "schemaVersion": 2,
-  "createdAt": "2025-01-01T00:00:00.000Z",
-  "updatedAt": "2026-07-16T22:02:23.800Z",
-  "digitizationStatus": "stub"
+  "createdAt": "2026-07-17T00:00:00.000Z",
+  "updatedAt": "2026-07-17T00:00:00.000Z"
 }

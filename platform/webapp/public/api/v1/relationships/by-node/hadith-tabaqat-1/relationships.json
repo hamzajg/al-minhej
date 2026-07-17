@@ -1,9 +1,0 @@
-[
-  {
-    "id": "r-hadith-tabaqat-1-book-tabaqat",
-    "from": "hadith-tabaqat-1",
-    "to": "book-tabaqat",
-    "type": "PART_OF",
-    "generated": true
-  }
-]

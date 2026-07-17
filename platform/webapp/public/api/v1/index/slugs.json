@@ -1,0 +1,126 @@
+{
+  "al-arbain-al-nawawiyya": {
+    "id": "book-arbain",
+    "type": "BOOK"
+  },
+  "sahih-al-bukhari": {
+    "id": "book-bukhari",
+    "type": "BOOK"
+  },
+  "ikhlas": {
+    "id": "concept-ikhlas",
+    "type": "CONCEPT"
+  },
+  "wahy": {
+    "id": "concept-wahy",
+    "type": "CONCEPT"
+  },
+  "hijra": {
+    "id": "event-hijra",
+    "type": "EVENT"
+  },
+  "arbain-1": {
+    "id": "hadith-arbain-1",
+    "type": "HADITH"
+  },
+  "bukhari-hadith-1": {
+    "id": "hadith-bukhari-1",
+    "type": "HADITH"
+  },
+  "bukhari-hadith-2": {
+    "id": "hadith-bukhari-2",
+    "type": "HADITH"
+  },
+  "bukhari-hadith-3": {
+    "id": "hadith-bukhari-3",
+    "type": "HADITH"
+  },
+  "abdullah-ibn-yusuf-al-tinnisi": {
+    "id": "narrator-abdullah-yusuf",
+    "type": "NARRATOR"
+  },
+  "aisha-bint-abi-bakr": {
+    "id": "narrator-aisha",
+    "type": "NARRATOR"
+  },
+  "al-humaydi": {
+    "id": "narrator-humaydi",
+    "type": "NARRATOR"
+  },
+  "al-layth-ibn-sad": {
+    "id": "narrator-layth",
+    "type": "NARRATOR"
+  },
+  "alqamah-ibn-waqqas": {
+    "id": "narrator-alqamah",
+    "type": "NARRATOR"
+  },
+  "an-nawawi": {
+    "id": "narrator-nawawi",
+    "type": "NARRATOR"
+  },
+  "hisham-ibn-urwah": {
+    "id": "narrator-hisham-urwah",
+    "type": "NARRATOR"
+  },
+  "ibn-shihab-al-zuhri": {
+    "id": "narrator-zuhri",
+    "type": "NARRATOR"
+  },
+  "malik-ibn-anas": {
+    "id": "narrator-malik",
+    "type": "NARRATOR"
+  },
+  "muhammad-ibn-ibrahim": {
+    "id": "narrator-muhammad-ibrahim",
+    "type": "NARRATOR"
+  },
+  "prophet-muhammad": {
+    "id": "narrator-prophet",
+    "type": "NARRATOR"
+  },
+  "sufyan-ibn-uyaynah": {
+    "id": "narrator-sufyan-uyaynah",
+    "type": "NARRATOR"
+  },
+  "umar-ibn-al-khattab": {
+    "id": "narrator-umar",
+    "type": "NARRATOR"
+  },
+  "uqayl-ibn-khalid": {
+    "id": "narrator-uqayl",
+    "type": "NARRATOR"
+  },
+  "urwah-ibn-al-zubayr": {
+    "id": "narrator-urwah",
+    "type": "NARRATOR"
+  },
+  "yahya-ibn-bukayr": {
+    "id": "narrator-yahya-bukayr",
+    "type": "NARRATOR"
+  },
+  "yahya-ibn-said": {
+    "id": "narrator-yahya-ansari",
+    "type": "NARRATOR"
+  },
+  "arbain-page-1": {
+    "id": "page-arbain-1",
+    "type": "PAGE"
+  },
+  "bukhari-page-1": {
+    "id": "page-bukhari-1",
+    "type": "PAGE"
+  },
+  "bukhari-page-2": {
+    "id": "page-bukhari-2",
+    "type": "PAGE"
+  },
+  "bukhari-page-3": {
+    "id": "page-bukhari-3",
+    "type": "PAGE"
+  },
+  "bayyinah-98-5": {
+    "id": "verse-bayyinah",
+    "type": "VERSE"
+  }
+}

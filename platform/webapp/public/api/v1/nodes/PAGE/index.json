@@ -1,7 +1,7 @@
 [
   {
-    "id": "page-bidayah-hijra",
-    "slug": "bidayah-hijra"
+    "id": "page-arbain-1",
+    "slug": "arbain-page-1"
   },
   {
     "id": "page-bukhari-1",
@@ -14,37 +14,5 @@
   {
     "id": "page-bukhari-3",
     "slug": "bukhari-page-3"
-  },
-  {
-    "id": "page-fathalbari-1",
-    "slug": "fathalbari-page-1"
-  },
-  {
-    "id": "page-fathalbari-2",
-    "slug": "fathalbari-page-2"
-  },
-  {
-    "id": "page-jami-1",
-    "slug": "jami-page-1"
-  },
-  {
-    "id": "page-muslim-1",
-    "slug": "muslim-page-1"
-  },
-  {
-    "id": "page-muslim-2",
-    "slug": "muslim-page-2"
-  },
-  {
-    "id": "page-muslim-3",
-    "slug": "muslim-page-3"
-  },
-  {
-    "id": "page-sharh-1",
-    "slug": "sharh-page-1"
-  },
-  {
-    "id": "page-tabaqat-umar",
-    "slug": "tabaqat-umar"
   }
 ]

@@ -3,26 +3,67 @@
   "type": "NARRATOR",
   "slug": "al-humaydi",
   "status": "published",
+  "digitizationStatus": "complete",
   "title": {
-    "ar": "الحميدي عبد الله بن الزبير",
-    "en": "Al-Humaydi: Abdullah ibn az-Zubayr"
+    "ar": "عبد الله بن الزبير الحميدي",
+    "en": "'Abdullah ibn al-Zubayr al-Humaydi"
   },
   "attributes": {
     "kind": "narrator",
+    "dateDeath": "219 AH / 834 CE",
     "grade": {
-      "ar": "ثقة حافظ",
-      "en": "Thiqah hafiz"
+      "ar": "ثقة، شيخ الحرم",
+      "en": "Thiqah, Shaykh al-Haram"
     },
-    "note": {
-      "ar": "أول من صنف المسند. روى حديث بدء الوحي عن سفيان الثوري.",
-      "en": "First to compile a Musnad. Narrated the Revelation hadith from Sufyan ath-Thawri."
-    },
-    "isnadDepth": 6,
-    "dateDeath": "219-01-01"
+    "isnadDepth": 6
   },
-  "content": [],
+  "content": [
+    {
+      "type": "biography",
+      "blockVersion": 1,
+      "kunya": {
+        "ar": "أبو بكر",
+        "en": "Abu Bakr"
+      },
+      "nasab": {
+        "ar": "عبد الله بن الزبير بن عيسى الحميدي القرشي الأسدي",
+        "en": "'Abdullah ibn al-Zubayr ibn 'Isa al-Humaydi al-Qurashi"
+      },
+      "tabaqah": 10,
+      "tabaqahLabel": {
+        "ar": "الطبقة العاشرة: كبار الآخذين عن تبع الأتباع",
+        "en": "Tabaqah 10: senior students of the successors' successors"
+      },
+      "birthPlace": {
+        "ar": "مكة المكرمة",
+        "en": "Makkah"
+      },
+      "deathInfo": {
+        "ar": "توفي سنة ٢١٩ هـ / ٨٣٤ م، شيخ الحرم المكي",
+        "en": "Died 219 AH / 834 CE; the resident hadith shaykh of the Sacred Mosque"
+      },
+      "teachers": [
+        {
+          "narratorId": "narrator-sufyan-uyaynah",
+          "note": {
+            "ar": "أخص تلاميذه وراوية كتابه",
+            "en": "his closest student and transmitter of his corpus"
+          }
+        }
+      ],
+      "students": [],
+      "taqribGrade": {
+        "ar": "ثقة فقيه، من أثبت أصحاب ابن عيينة",
+        "en": "Thiqah, jurist; among the most precise transmitters from Ibn 'Uyaynah"
+      },
+      "taqribRef": "ابن حجر، تقريب التهذيب، ت ٣٣٣٠",
+      "summary": {
+        "ar": "أول شيخ في أول إسناد في صحيح البخاري؛ إمام حافظ صنّف مسندًا معروفًا باسمه.",
+        "en": "The first teacher in the first isnad of Sahih al-Bukhari; a hafiz who authored a well-known Musnad bearing his name."
+      }
+    }
+  ],
   "schemaVersion": 2,
-  "createdAt": "2025-01-01T00:00:00.000Z",
-  "updatedAt": "2026-07-16T22:02:23.800Z",
-  "digitizationStatus": "stub"
+  "createdAt": "2026-07-17T00:00:00.000Z",
+  "updatedAt": "2026-07-17T00:00:00.000Z"
 }

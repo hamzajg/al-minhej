@@ -1,20 +1,24 @@
 [
   {
-    "id": "r-hadith1-hijra",
-    "from": "hadith-1",
+    "id": "r-v1-ctx-19",
+    "from": "hadith-bukhari-1",
     "to": "event-hijra",
-    "type": "REFERENCES",
+    "type": "contextual",
+    "generated": false,
     "metadata": {
       "note_en": "The hijrah — the example used in the hadith.",
       "note_ar": "الهجرة — المثال الذي يستخدمه الحديث."
-    },
-    "generated": false
+    }
   },
   {
-    "id": "r-page12-event",
-    "from": "page-bidayah-hijra",
+    "id": "r-v1-ctx-20",
+    "from": "hadith-arbain-1",
     "to": "event-hijra",
     "type": "contextual",
-    "generated": false
+    "generated": false,
+    "metadata": {
+      "note_en": "The hijrah — the example used in the hadith.",
+      "note_ar": "الهجرة — المثال الذي يستخدمه الحديث."
+    }
   }
 ]

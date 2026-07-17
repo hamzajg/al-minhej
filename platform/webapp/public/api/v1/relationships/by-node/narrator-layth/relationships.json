@@ -1,16 +1,16 @@
 [
   {
-    "id": "r-layth-yahya",
-    "from": "narrator-layth",
-    "to": "narrator-yahya",
+    "id": "r-v1-gen-29",
+    "from": "narrator-yahya-bukayr",
+    "to": "narrator-layth",
     "type": "NARRATED_BY",
     "generated": true
   },
   {
-    "id": "r-layth-muslim",
+    "id": "r-v1-gen-30",
     "from": "narrator-layth",
-    "to": "book-muslim",
-    "type": "REFERENCES",
-    "generated": false
+    "to": "narrator-uqayl",
+    "type": "NARRATED_BY",
+    "generated": true
   }
 ]

@@ -3,23 +3,76 @@
   "type": "NARRATOR",
   "slug": "umar-ibn-al-khattab",
   "status": "published",
+  "digitizationStatus": "complete",
   "title": {
     "ar": "عمر بن الخطاب",
     "en": "'Umar ibn al-Khattab"
   },
   "attributes": {
     "kind": "narrator",
+    "dateBirth": "c. 584 CE",
+    "dateDeath": "644 CE",
     "grade": {
       "ar": "صحابي",
       "en": "Companion (Sahabi)"
     },
-    "isnadDepth": 1,
-    "dateBirth": "584-01-01",
-    "dateDeath": "644-01-01"
+    "isnadDepth": 1
   },
-  "content": [],
+  "content": [
+    {
+      "type": "biography",
+      "blockVersion": 1,
+      "kunya": {
+        "ar": "أبو حفص",
+        "en": "Abu Hafs"
+      },
+      "nasab": {
+        "ar": "عمر بن الخطاب بن نفيل العدوي القرشي",
+        "en": "'Umar ibn al-Khattab ibn Nufayl al-'Adawi, of Quraysh"
+      },
+      "tabaqah": 1,
+      "tabaqahLabel": {
+        "ar": "الطبقة الأولى: كبار الصحابة",
+        "en": "Tabaqah 1: senior Companions"
+      },
+      "birthPlace": {
+        "ar": "مكة المكرمة، نحو ٥٨٤ م",
+        "en": "Makkah, c. 584 CE"
+      },
+      "deathInfo": {
+        "ar": "استُشهد بالمدينة سنة ٢٣ هـ / ٦٤٤ م طعنًا في المحراب",
+        "en": "Martyred in Madinah, 23 AH / 644 CE, stabbed while leading prayer"
+      },
+      "teachers": [
+        {
+          "narratorId": "narrator-prophet",
+          "note": {
+            "ar": "سمع منه مباشرة",
+            "en": "heard directly from him"
+          }
+        }
+      ],
+      "students": [
+        {
+          "narratorId": "narrator-alqamah",
+          "note": {
+            "ar": "سمعه على المنبر",
+            "en": "heard him from the pulpit"
+          }
+        }
+      ],
+      "taqribGrade": {
+        "ar": "صحابي، ثاني الخلفاء الراشدين",
+        "en": "Companion; second of the Rightly-Guided Caliphs"
+      },
+      "taqribRef": "ابن حجر، الإصابة في تمييز الصحابة",
+      "summary": {
+        "ar": "أمير المؤمنين الثاني، من أفقه الصحابة وأشدهم في الحق، رواية هذا الحديث عنه على المنبر مشهورة متواترة عنه.",
+        "en": "Second Rightly-Guided Caliph, among the most learned and resolute Companions; his narration of this hadith from the pulpit is famous and widely transmitted from him."
+      }
+    }
+  ],
   "schemaVersion": 2,
-  "createdAt": "2025-01-01T00:00:00.000Z",
-  "updatedAt": "2026-07-16T22:02:23.800Z",
-  "digitizationStatus": "stub"
+  "createdAt": "2026-07-17T00:00:00.000Z",
+  "updatedAt": "2026-07-17T00:00:00.000Z"
 }

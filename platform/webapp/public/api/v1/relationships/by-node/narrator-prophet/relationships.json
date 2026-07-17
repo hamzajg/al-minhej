@@ -1,44 +1,56 @@
 [
   {
-    "id": "r-umar-prophet",
+    "id": "r-v1-gen-14",
     "from": "narrator-umar",
     "to": "narrator-prophet",
     "type": "NARRATED_BY",
     "generated": true
   },
   {
-    "id": "r-zuhrī-prophet",
-    "from": "narrator-zuhrī",
+    "id": "r-v1-gen-15",
+    "from": "hadith-arbain-1",
     "to": "narrator-prophet",
-    "type": "NARRATED_BY",
-    "generated": true
+    "type": "full_chain_source",
+    "generated": true,
+    "metadata": {
+      "locator_en": "isnad-arbain-1-primary"
+    }
   },
   {
-    "id": "r-ibnabbas-prophet",
-    "from": "narrator-ibn-abbaas",
+    "id": "r-v1-gen-22",
+    "from": "hadith-bukhari-1",
     "to": "narrator-prophet",
-    "type": "NARRATED_BY",
-    "generated": true
+    "type": "full_chain_source",
+    "generated": true,
+    "metadata": {
+      "locator_en": "isnad-bukhari-hadith-1-primary"
+    }
   },
   {
-    "id": "r-narrator-aisha-narrator-prophet",
+    "id": "r-v1-gen-27",
     "from": "narrator-aisha",
     "to": "narrator-prophet",
     "type": "NARRATED_BY",
     "generated": true
   },
   {
-    "id": "r-narrator-ibn-umar-narrator-prophet",
-    "from": "narrator-ibn-umar",
+    "id": "r-v1-gen-28",
+    "from": "hadith-bukhari-2",
     "to": "narrator-prophet",
-    "type": "NARRATED_BY",
-    "generated": true
+    "type": "full_chain_source",
+    "generated": true,
+    "metadata": {
+      "locator_en": "isnad-bukhari-hadith-2-primary"
+    }
   },
   {
-    "id": "r-narrator-tamim-narrator-prophet",
-    "from": "narrator-tamim",
+    "id": "r-v1-gen-35",
+    "from": "hadith-bukhari-3",
     "to": "narrator-prophet",
-    "type": "NARRATED_BY",
-    "generated": true
+    "type": "full_chain_source",
+    "generated": true,
+    "metadata": {
+      "locator_en": "isnad-bukhari-hadith-3-primary"
+    }
   }
 ]

@@ -3,6 +3,7 @@
   "type": "PAGE",
   "slug": "bukhari-page-3",
   "status": "published",
+  "digitizationStatus": "complete",
   "title": {
     "ar": "صفحة ٣ — صحيح البخاري",
     "en": "Page 3 — Sahih al-Bukhari"
@@ -12,12 +13,11 @@
     "bookId": "book-bukhari",
     "pageNum": 3,
     "hadithIds": [
-      "hadith-6"
+      "hadith-bukhari-3"
     ]
   },
   "content": [],
   "schemaVersion": 2,
-  "createdAt": "2025-01-01T00:00:00.000Z",
-  "updatedAt": "2026-07-16T22:02:23.800Z",
-  "digitizationStatus": "stub"
+  "createdAt": "2026-07-17T00:00:00.000Z",
+  "updatedAt": "2026-07-17T00:00:00.000Z"
 }

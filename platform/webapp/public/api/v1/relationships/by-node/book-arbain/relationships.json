@@ -1,0 +1,27 @@
+[
+  {
+    "id": "r-v1-gen-1",
+    "from": "page-arbain-1",
+    "to": "book-arbain",
+    "type": "contained_in",
+    "generated": true
+  },
+  {
+    "id": "r-v1-gen-2",
+    "from": "hadith-arbain-1",
+    "to": "book-arbain",
+    "type": "PART_OF",
+    "generated": true,
+    "metadata": {
+      "locator_en": "Page 1",
+      "locator_ar": "الصفحة 1"
+    }
+  },
+  {
+    "id": "r-v1-gen-9",
+    "from": "book-arbain",
+    "to": "hadith-arbain-1",
+    "type": "EXPLAINS",
+    "generated": true
+  }
+]

@@ -1,8 +1,8 @@
 [
   {
-    "id": "r-humaydi-thawri",
+    "id": "r-v1-gen-16",
     "from": "narrator-humaydi",
-    "to": "narrator-thawri",
+    "to": "narrator-sufyan-uyaynah",
     "type": "NARRATED_BY",
     "generated": true
   }

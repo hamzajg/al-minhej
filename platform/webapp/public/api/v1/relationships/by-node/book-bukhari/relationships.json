@@ -1,120 +1,77 @@
 [
   {
-    "id": "r-hadith1-bukhari",
-    "from": "hadith-1",
-    "to": "book-bukhari",
-    "type": "PART_OF",
-    "metadata": {
-      "locator_en": "Book 1, Hadith 1",
-      "locator_ar": "الكتاب ١، الحديث ١"
-    },
-    "generated": true
-  },
-  {
-    "id": "r-hadith3-bukhari",
-    "from": "hadith-3",
-    "to": "book-bukhari",
-    "type": "PART_OF",
-    "metadata": {
-      "locator_en": "Book 2, Hadith 8",
-      "locator_ar": "الكتاب ٢، الحديث ٨"
-    },
-    "generated": true
-  },
-  {
-    "id": "r-hadith5-bukhari",
-    "from": "hadith-5",
-    "to": "book-bukhari",
-    "type": "PART_OF",
-    "metadata": {
-      "locator_en": "Book 3, Hadith 71",
-      "locator_ar": "الكتاب ٣، الحديث ٧١"
-    },
-    "generated": true
-  },
-  {
-    "id": "r-hadith6-bukhari",
-    "from": "hadith-6",
-    "to": "book-bukhari",
-    "type": "PART_OF",
-    "metadata": {
-      "locator_en": "Book 56, Hadith 140",
-      "locator_ar": "الكتاب ٥٦، الحديث ١٤٠"
-    },
-    "generated": true
-  },
-  {
-    "id": "r-hadith10-tirmidhi",
-    "from": "hadith-10",
-    "to": "book-bukhari",
-    "type": "PART_OF",
-    "metadata": {
-      "locator_en": "Book 27, Hadith 200",
-      "locator_ar": "الكتاب ٢٧، الحديث ٢٠٠"
-    },
-    "generated": true
-  },
-  {
-    "id": "r-thawri-bukhari",
-    "from": "narrator-thawri",
-    "to": "book-bukhari",
-    "type": "REFERENCES",
-    "generated": false
-  },
-  {
-    "id": "r-malik-bukhari",
-    "from": "narrator-malik",
-    "to": "book-bukhari",
-    "type": "REFERENCES",
-    "generated": false
-  },
-  {
-    "id": "r-qattan-bukhari",
-    "from": "narrator-qattan",
-    "to": "book-bukhari",
-    "type": "REFERENCES",
-    "generated": false
-  },
-  {
-    "id": "r-shubah-bukhari",
-    "from": "narrator-shubah",
-    "to": "book-bukhari",
-    "type": "REFERENCES",
-    "generated": false
-  },
-  {
-    "id": "r-page1-book",
+    "id": "r-v1-gen-3",
     "from": "page-bukhari-1",
     "to": "book-bukhari",
     "type": "contained_in",
     "generated": true
   },
   {
-    "id": "r-page2-book",
+    "id": "r-v1-gen-4",
+    "from": "hadith-bukhari-1",
+    "to": "book-bukhari",
+    "type": "PART_OF",
+    "generated": true,
+    "metadata": {
+      "locator_en": "Page 1",
+      "locator_ar": "الصفحة 1"
+    }
+  },
+  {
+    "id": "r-v1-gen-5",
     "from": "page-bukhari-2",
     "to": "book-bukhari",
     "type": "contained_in",
     "generated": true
   },
   {
-    "id": "r-page3-book",
+    "id": "r-v1-gen-6",
+    "from": "hadith-bukhari-2",
+    "to": "book-bukhari",
+    "type": "PART_OF",
+    "generated": true,
+    "metadata": {
+      "locator_en": "Page 2",
+      "locator_ar": "الصفحة 2"
+    }
+  },
+  {
+    "id": "r-v1-gen-7",
     "from": "page-bukhari-3",
     "to": "book-bukhari",
     "type": "contained_in",
     "generated": true
   },
   {
-    "id": "r-hadith-bukhari-1-book-bukhari",
-    "from": "hadith-bukhari-1",
+    "id": "r-v1-gen-8",
+    "from": "hadith-bukhari-3",
     "to": "book-bukhari",
     "type": "PART_OF",
+    "generated": true,
+    "metadata": {
+      "locator_en": "Page 3",
+      "locator_ar": "الصفحة 3"
+    }
+  },
+  {
+    "id": "r-v1-gen-10",
+    "from": "book-bukhari",
+    "to": "hadith-bukhari-1",
+    "type": "EXPLAINS",
     "generated": true
   },
   {
-    "id": "r-hadith-bukhari-2-book-bukhari",
-    "from": "hadith-bukhari-2",
-    "to": "book-bukhari",
-    "type": "PART_OF",
+    "id": "r-v1-gen-11",
+    "from": "book-bukhari",
+    "to": "hadith-bukhari-2",
+    "type": "EXPLAINS",
+    "generated": true
+  },
+  {
+    "id": "r-v1-gen-12",
+    "from": "book-bukhari",
+    "to": "hadith-bukhari-3",
+    "type": "EXPLAINS",
     "generated": true
   }
 ]

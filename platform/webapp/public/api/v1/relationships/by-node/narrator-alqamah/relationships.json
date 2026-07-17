@@ -1,23 +1,16 @@
 [
   {
-    "id": "r-alqamah-umar",
-    "from": "narrator-alqamah",
-    "to": "narrator-umar",
-    "type": "NARRATED_BY",
-    "generated": true
-  },
-  {
-    "id": "r-ibrahim-alqamah",
-    "from": "narrator-ibrahim",
+    "id": "r-v1-gen-19",
+    "from": "narrator-muhammad-ibrahim",
     "to": "narrator-alqamah",
     "type": "NARRATED_BY",
     "generated": true
   },
   {
-    "id": "r-alqamah-tabaqat",
+    "id": "r-v1-gen-20",
     "from": "narrator-alqamah",
-    "to": "book-tabaqat",
-    "type": "REFERENCES",
-    "generated": false
+    "to": "narrator-umar",
+    "type": "NARRATED_BY",
+    "generated": true
   }
 ]

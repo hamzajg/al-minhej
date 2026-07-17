@@ -1,0 +1,166 @@
+{
+  "id": "hadith-bukhari-3",
+  "type": "HADITH",
+  "slug": "bukhari-hadith-3",
+  "status": "published",
+  "digitizationStatus": "complete",
+  "title": {
+    "ar": "أول ما بدئ به رسول الله ﷺ من الوحي",
+    "en": "How revelation first began for the Messenger of God ﷺ"
+  },
+  "attributes": {
+    "kind": "hadith",
+    "grade": {
+      "ar": "صحيح البخاري",
+      "en": "Sahih al-Bukhari"
+    },
+    "isnadType": "full"
+  },
+  "content": [
+    {
+      "type": "clauses",
+      "blockVersion": 1,
+      "intro": {
+        "ar": "حَدَّثَنَا يَحْيَى بْنُ بُكَيْرٍ، قَالَ: حَدَّثَنَا اللَّيْثُ، عَنْ عُقَيْلٍ، عَنِ ابْنِ شِهَابٍ، عَنْ عُرْوَةَ بْنِ الزُّبَيْرِ، عَنْ عَائِشَةَ أُمِّ الْمُؤْمِنِينَ أَنَّهَا قَالَتْ:",
+        "en": "Yahya ibn Bukayr narrated to us, he said: al-Layth narrated to us, from 'Uqayl, from Ibn Shihab, from 'Urwah ibn al-Zubayr, from 'A'ishah, Mother of the Believers, who said:"
+      },
+      "items": [
+        {
+          "id": "c1",
+          "text": {
+            "ar": "أَوَّلُ مَا بُدِئَ بِهِ رَسُولُ اللَّهِ صلى الله عليه وسلم مِنَ الْوَحْيِ الرُّؤْيَا الصَّالِحَةُ فِي النَّوْمِ، فَكَانَ لَا يَرَى رُؤْيَا إِلَّا جَاءَتْ مِثْلَ فَلَقِ الصُّبْحِ،",
+            "en": "The very first stage of what the Messenger of God ﷺ received of revelation was the true vision in sleep — he would not see a vision except that it came true as clearly as the break of dawn."
+          }
+        },
+        {
+          "id": "c2",
+          "text": {
+            "ar": "ثُمَّ حُبِّبَ إِلَيْهِ الْخَلَاءُ، وَكَانَ يَخْلُو بِغَارِ حِرَاءٍ فَيَتَحَنَّثُ فِيهِ، وَهُوَ التَّعَبُّدُ، اللَّيَالِيَ ذَوَاتِ الْعَدَدِ قَبْلَ أَنْ يَنْزِعَ إِلَى أَهْلِهِ، وَيَتَزَوَّدُ لِذَلِكَ، ثُمَّ يَرْجِعُ إِلَى خَدِيجَةَ فَيَتَزَوَّدُ لِمِثْلِهَا،",
+            "en": "Then solitude was made dear to him, and he would go alone to the cave of Hira' and devote himself there to worship — that is, seclusion for a number of nights — before returning to his family, taking provisions for it and then returning to Khadijah to take provisions again for the same,"
+          }
+        },
+        {
+          "id": "c3",
+          "text": {
+            "ar": "حَتَّى جَاءَهُ الْحَقُّ وَهُوَ فِي غَارِ حِرَاءٍ، فَجَاءَهُ الْمَلَكُ فَقَالَ: اقْرَأْ. قَالَ: مَا أَنَا بِقَارِئٍ. قَالَ: فَأَخَذَنِي فَغَطَّنِي حَتَّى بَلَغَ مِنِّي الْجَهْدَ، ثُمَّ أَرْسَلَنِي فَقَالَ: اقْرَأْ. قُلْتُ: مَا أَنَا بِقَارِئٍ. فَأَخَذَنِي فَغَطَّنِي الثَّانِيَةَ حَتَّى بَلَغَ مِنِّي الْجَهْدَ، ثُمَّ أَرْسَلَنِي فَقَالَ: اقْرَأْ. فَقُلْتُ: مَا أَنَا بِقَارِئٍ. فَأَخَذَنِي فَغَطَّنِي الثَّالِثَةَ، ثُمَّ أَرْسَلَنِي فَقَالَ:",
+            "en": "until the truth came to him while he was in the cave of Hira'. The angel came to him and said: 'Read.' He said: 'I cannot read.' He said: 'He seized me and pressed me until I reached the limit of my endurance, then released me and said: Read.' I said: 'I cannot read.' 'So he seized me and pressed me a second time until I reached the limit of my endurance, then released me and said: Read.' I said: 'I cannot read.' 'So he seized me and pressed me a third time, then released me and said:'"
+          }
+        },
+        {
+          "id": "c4",
+          "text": {
+            "ar": "اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ، خَلَقَ الْإِنْسَانَ مِنْ عَلَقٍ، اقْرَأْ وَرَبُّكَ الْأَكْرَمُ.",
+            "en": "'Read: In the name of your Lord who created — created man from a clinging clot. Read: and your Lord is the Most Generous.'"
+          }
+        },
+        {
+          "id": "c5",
+          "text": {
+            "ar": "فَرَجَعَ بِهَا رَسُولُ اللَّهِ صلى الله عليه وسلم يَرْجُفُ فُؤَادُهُ، فَدَخَلَ عَلَى خَدِيجَةَ بِنْتِ خُوَيْلِدٍ رَضِيَ اللَّهُ عَنْهَا فَقَالَ: زَمِّلُونِي زَمِّلُونِي. فَزَمَّلُوهُ حَتَّى ذَهَبَ عَنْهُ الرَّوْعُ، فَقَالَ لِخَدِيجَةَ وَأَخْبَرَهَا الْخَبَرَ: لَقَدْ خَشِيتُ عَلَى نَفْسِي.",
+            "en": "The Messenger of God ﷺ returned with it, his heart pounding, and went in to Khadijah bint Khuwaylid and said: 'Cover me, cover me!' So they covered him until his fear left him. He said to Khadijah, telling her what had happened: 'I feared for myself.'"
+          }
+        }
+      ]
+    },
+    {
+      "type": "vocabulary",
+      "blockVersion": 1,
+      "entries": [
+        {
+          "id": "tahannuth",
+          "word": "يَتَحَنَّثُ",
+          "root": "ح-ن-ث",
+          "pron": "yataḥannath",
+          "occurrences": [
+            2
+          ],
+          "gloss": {
+            "ar": "يتعبد وينفرد عن الناس",
+            "en": "devotes himself to worship in seclusion"
+          }
+        },
+        {
+          "id": "iqra",
+          "word": "اقْرَأْ",
+          "root": "ق-ر-أ",
+          "pron": "iqra'",
+          "occurrences": [
+            3,
+            4
+          ],
+          "gloss": {
+            "ar": "أمر بالقراءة، أول كلمة نزلت من القرآن",
+            "en": "'Read' — a command; the first word revealed of the Qur'an"
+          }
+        },
+        {
+          "id": "zammiluni",
+          "word": "زَمِّلُونِي",
+          "root": "ز-م-ل",
+          "pron": "zammilūnī",
+          "occurrences": [
+            5
+          ],
+          "gloss": {
+            "ar": "غطوني ولفوني بثوب",
+            "en": "wrap me, cover me with a garment"
+          }
+        }
+      ]
+    },
+    {
+      "type": "commentary",
+      "blockVersion": 1,
+      "scholar": {
+        "ar": "ابن حجر العسقلاني",
+        "en": "Ibn Hajar al-'Asqalani"
+      },
+      "workNodeId": "book-bukhari",
+      "note": {
+        "ar": "هذا الحديث هو الأصل في قصة بدء الوحي وأول ما نزل من القرآن، وفيه دلالة على شدة الوحي وهيبته على النبي ﷺ في أول أمره.",
+        "en": "This report is the foundational account of the very beginning of revelation and the first verses of the Qur'an, and it shows the intensity and awe the experience of revelation carried for the Prophet ﷺ at its outset."
+      }
+    },
+    {
+      "type": "context",
+      "blockVersion": 1,
+      "title": {
+        "ar": "غار حراء",
+        "en": "The Cave of Hira'"
+      },
+      "body": {
+        "ar": "كهف صغير في جبل النور شمال مكة، كان يعتزل فيه النبي ﷺ قبل البعثة، وفيه نزل عليه أول الوحي.",
+        "en": "A small cave on Jabal al-Nur north of Makkah, where the Prophet ﷺ would withdraw before his mission began, and where the first revelation came down to him."
+      }
+    },
+    {
+      "type": "ai_context",
+      "blockVersion": 1,
+      "items": [
+        {
+          "key": "why_iqra",
+          "question": {
+            "en": "Why does the angel say 'Read' to someone who says he can't read?"
+          },
+          "answer": {
+            "en": "Part of the point is precisely that he *couldn't* read — the Qur'an's arrival didn't depend on his own learning or literary skill, which is itself taken as a sign that the words were not his own composition.",
+            "ar": "من مغزى الموقف أنه لم يكن يعرف القراءة أصلاً — فمجيء القرآن لم يعتمد على علمه أو قدرته الأدبية، وهذا نفسه يُعد من أدلة أن الكلام ليس من تأليفه."
+          }
+        },
+        {
+          "key": "why_scared",
+          "question": {
+            "en": "Why was the Prophet ﷺ frightened rather than joyful?"
+          },
+          "answer": {
+            "en": "An overwhelming, entirely new experience — being physically seized by an angel and addressed for the first time — understandably produced fear before understanding settled in; Khadijah's reassurance follows immediately in the fuller narration.",
+            "ar": "كانت تجربة هائلة وجديدة كليًا — أن يُمسك به ملك ويُخاطب لأول مرة — فأثار ذلك خوفًا طبيعيًا قبل أن يستقر الفهم، وقد جاء تطمين خديجة له مباشرة في تتمة الرواية."
+          }
+        }
+      ]
+    }
+  ],
+  "schemaVersion": 2,
+  "createdAt": "2026-07-17T00:00:00.000Z",
+  "updatedAt": "2026-07-17T00:00:00.000Z"
+}

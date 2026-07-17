@@ -1,23 +1,64 @@
 [
   {
-    "id": "r-hadith1-bukhari1-chain",
-    "from": "hadith-1",
-    "to": "hadith-bukhari-1",
-    "type": "full_chain_source",
-    "generated": true
-  },
-  {
-    "id": "r-hadith-bukhari-1-book-bukhari",
+    "id": "r-v1-gen-4",
     "from": "hadith-bukhari-1",
     "to": "book-bukhari",
     "type": "PART_OF",
+    "generated": true,
+    "metadata": {
+      "locator_en": "Page 1",
+      "locator_ar": "الصفحة 1"
+    }
+  },
+  {
+    "id": "r-v1-gen-10",
+    "from": "book-bukhari",
+    "to": "hadith-bukhari-1",
+    "type": "EXPLAINS",
     "generated": true
   },
   {
-    "id": "r-hadith-bukhari-1-narrator-umar",
+    "id": "r-v1-gen-22",
     "from": "hadith-bukhari-1",
-    "to": "narrator-umar",
-    "type": "NARRATED_BY",
-    "generated": true
+    "to": "narrator-prophet",
+    "type": "full_chain_source",
+    "generated": true,
+    "metadata": {
+      "locator_en": "isnad-bukhari-hadith-1-primary"
+    }
+  },
+  {
+    "id": "r-v1-core-15",
+    "from": "hadith-bukhari-1",
+    "to": "concept-ikhlas",
+    "type": "core_concept",
+    "generated": false,
+    "metadata": {
+      "note_en": "Ikhlas — purifying intention.",
+      "note_ar": "الإخلاص — تصفية النية."
+    }
+  },
+  {
+    "id": "r-v1-ref-17",
+    "from": "hadith-bukhari-1",
+    "to": "verse-bayyinah",
+    "type": "REFERENCES",
+    "generated": false,
+    "metadata": {
+      "note_en": "Commands sincerity of purpose in worship.",
+      "note_ar": "تأمر بالإخلاص في العبادة.",
+      "verse_ar": "وَمَا أُمِرُوا إِلَّا لِيَعْبُدُوا اللَّهَ مُخْلِصِينَ لَهُ الدِّينَ"
+    }
+  },
+  {
+    "id": "r-v1-ctx-19",
+    "from": "hadith-bukhari-1",
+    "to": "event-hijra",
+    "type": "contextual",
+    "generated": false,
+    "metadata": {
+      "note_en": "The hijrah — the example used in the hadith.",
+      "note_ar": "الهجرة — المثال الذي يستخدمه الحديث."
+    }
   }
 ]

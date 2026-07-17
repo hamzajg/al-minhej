@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 2,
+  "builtAt": "2026-07-17T00:00:00.000Z",
+  "counts": {
+    "BOOK": 2,
+    "CONCEPT": 2,
+    "EVENT": 1,
+    "HADITH": 4,
+    "NARRATOR": 17,
+    "PAGE": 4,
+    "VERSE": 1
+  },
+  "localeCoverage": {
+    "ar": {
+      "nodes": 31,
+      "percentOfTotal": 100.0
+    },
+    "en": {
+      "nodes": 31,
+      "percentOfTotal": 100.0
+    },
+    "fr": {
+      "nodes": 0,
+      "percentOfTotal": 0.0
+    },
+    "es": {
+      "nodes": 0,
+      "percentOfTotal": 0.0
+    }
+  },
+  "digitizationStatusCounts": {
+    "stub": 0,
+    "partial": 3,
+    "complete": 28
+  },
+  "relationshipCounts": {
+    "generated": 32,
+    "handAuthored": 9,
+    "total": 41
+  }
+}

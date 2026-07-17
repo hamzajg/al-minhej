@@ -1,30 +1,16 @@
 [
   {
-    "id": "r-malik-yahya",
-    "from": "narrator-malik",
-    "to": "narrator-yahya",
+    "id": "r-v1-gen-23",
+    "from": "narrator-abdullah-yusuf",
+    "to": "narrator-malik",
     "type": "NARRATED_BY",
     "generated": true
   },
   {
-    "id": "r-malik-bukhari",
+    "id": "r-v1-gen-24",
     "from": "narrator-malik",
-    "to": "book-bukhari",
-    "type": "REFERENCES",
-    "generated": false
-  },
-  {
-    "id": "r-malik-muslim",
-    "from": "narrator-malik",
-    "to": "book-muslim",
-    "type": "REFERENCES",
-    "generated": false
-  },
-  {
-    "id": "r-malik-zuhrī-collected",
-    "from": "narrator-malik",
-    "to": "narrator-zuhrī",
-    "type": "collected_in",
+    "to": "narrator-hisham-urwah",
+    "type": "NARRATED_BY",
     "generated": true
   }
 ]

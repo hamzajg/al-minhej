@@ -1,8 +1,9 @@
 {
-  "id": "hadith-1",
+  "id": "hadith-arbain-1",
   "type": "HADITH",
   "slug": "arbain-1",
   "status": "published",
+  "digitizationStatus": "complete",
   "title": {
     "ar": "إنما الأعمال بالنيات",
     "en": "Actions are judged by intentions"
@@ -10,200 +11,118 @@
   "attributes": {
     "kind": "hadith",
     "grade": {
-      "ar": "صحيح، متفق عليه",
-      "en": "Sahih, agreed upon"
+      "ar": "متفق عليه (البخاري ومسلم)",
+      "en": "Agreed upon (al-Bukhari and Muslim)"
     },
     "isnadType": "short"
   },
-  "schemaVersion": 2,
   "content": [
     {
       "type": "clauses",
-      "items": [
-        {
-          "id": "1",
-          "text": {
-            "ar": "إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ،",
-            "en": "Actions are only judged by the intentions behind them,",
-            "fr": "Les actes ne valent que par les intentions qui les animent,",
-            "es": "Las acciones solo valen según la intención que las mueve,"
-          }
-        },
-        {
-          "id": "2",
-          "text": {
-            "ar": "وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى،",
-            "en": "and every person will be credited only for what they intended.",
-            "fr": "et chacun n'obtient que ce qu'il a réellement voulu.",
-            "es": "y cada persona solo obtiene lo que realmente quiso alcanzar."
-          }
-        },
-        {
-          "id": "3",
-          "text": {
-            "ar": "فَمَنْ كَانَتْ هِجْرَتُهُ إِلَى اللَّهِ وَرَسُولِهِ",
-            "en": "So whoever's emigration was for the sake of God and His Messenger,",
-            "fr": "Ainsi, celui dont l'émigration visait Dieu et Son Messager,",
-            "es": "Así, quien emigra buscando a Dios y a Su Mensajero,"
-          }
-        },
-        {
-          "id": "4",
-          "text": {
-            "ar": "فَهِجْرَتُهُ إِلَى اللَّهِ وَرَسُولِهِ،",
-            "en": "their emigration counts for God and His Messenger.",
-            "fr": "son émigration compte pour Dieu et Son Messager.",
-            "es": "su emigración cuenta para Dios y Su Mensajero."
-          }
-        },
-        {
-          "id": "5",
-          "text": {
-            "ar": "وَمَنْ كَانَتْ هِجْرَتُهُ لِدُنْيَا يُصِيبُهَا أَوِ امْرَأَةٍ يَنْكِحُهَا",
-            "en": "And whoever's emigration was for some worldly gain, or to marry a woman,",
-            "fr": "Et celui dont l'émigration visait un gain de ce monde, ou le mariage avec une femme,",
-            "es": "Y quien emigra por un beneficio mundano, o para casarse con una mujer,"
-          }
-        },
-        {
-          "id": "6",
-          "text": {
-            "ar": "فَهِجْرَتُهُ إِلَى مَا هَاجَرَ إِلَيْهِ",
-            "en": "their emigration counts only for what they emigrated for.",
-            "fr": "son émigration ne compte que pour cela.",
-            "es": "su emigración solo cuenta para eso."
-          }
-        }
-      ],
       "blockVersion": 1,
       "intro": {
-        "ar": "عَنْ أَمِيرِ الْمُؤْمِنِينَ أَبِي حَفْصٍ عُمَرَ بْنِ الْخَطَّابِ رَضِيَ اللَّهُ عَنْهُ قَالَ: سَمِعْتُ رَسُولَ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ يَقُولُ:",
-        "en": "On the authority of the Commander of the Faithful, Abu Hafs 'Umar ibn al-Khattab — who said: I heard the Messenger of God ﷺ say:",
-        "fr": "Selon le commandeur des croyants, Abu Hafs 'Umar ibn al-Khattab, qui a dit avoir entendu le Messager de Dieu déclarer :",
-        "es": "Según el comandante de los creyentes, Abu Hafs 'Umar ibn al-Khattab, quien dijo haber oído al Mensajero de Dios decir:"
-      }
+        "ar": "عَنْ أَمِيرِ الْمُؤْمِنِينَ أَبِي حَفْصٍ عُمَرَ بْنِ الْخَطَّابِ رَضِيَ اللَّهُ عَنْهُ قَالَ: سَمِعْتُ رَسُولَ اللَّهِ صلى الله عليه وسلم يَقُولُ:",
+        "en": "On the authority of the Commander of the Faithful, Abu Hafs 'Umar ibn al-Khattab — may God be pleased with him — who said: I heard the Messenger of God ﷺ say:"
+      },
+      "items": [
+        {
+          "id": "c1",
+          "text": {
+            "ar": "إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ،",
+            "en": "Actions are only judged by the intentions behind them,"
+          }
+        },
+        {
+          "id": "c2",
+          "text": {
+            "ar": "وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى،",
+            "en": "and every person will be credited only for what they intended."
+          }
+        },
+        {
+          "id": "c3",
+          "text": {
+            "ar": "فَمَنْ كَانَتْ هِجْرَتُهُ إِلَى اللَّهِ وَرَسُولِهِ",
+            "en": "So whoever's emigration was for the sake of God and His Messenger,"
+          }
+        },
+        {
+          "id": "c4",
+          "text": {
+            "ar": "فَهِجْرَتُهُ إِلَى اللَّهِ وَرَسُولِهِ،",
+            "en": "their emigration counts for God and His Messenger."
+          }
+        },
+        {
+          "id": "c5",
+          "text": {
+            "ar": "وَمَنْ كَانَتْ هِجْرَتُهُ لِدُنْيَا يُصِيبُهَا أَوِ امْرَأَةٍ يَنْكِحُهَا",
+            "en": "And whoever's emigration was for some worldly gain, or to marry a woman,"
+          }
+        },
+        {
+          "id": "c6",
+          "text": {
+            "ar": "فَهِجْرَتُهُ إِلَى مَا هَاجَرَ إِلَيْهِ",
+            "en": "their emigration counts only for what they emigrated for."
+          }
+        }
+      ]
     },
     {
       "type": "vocabulary",
+      "blockVersion": 1,
       "entries": [
         {
           "id": "amal",
           "word": "الْأَعْمَالُ",
           "root": "ع-م-ل",
           "pron": "al-a'māl",
-          "occurrences": [
-            1
-          ],
-          "gloss": {
-            "ar": "الأفعال والتصرفات",
-            "en": "deeds, actions"
-          }
+          "occurrences": [1],
+          "gloss": { "ar": "الأفعال والتصرفات", "en": "deeds, actions" }
         },
         {
           "id": "niyyat",
-          "word": "بِالنِّيَّاتِ",
+          "word": "النِّيَّاتِ",
           "root": "ن-و-ي",
-          "pron": "bin-niyyāt",
-          "occurrences": [
-            1
-          ],
-          "gloss": {
-            "ar": "القصد الباطن للفعل",
-            "en": "by intentions"
-          }
+          "pron": "an-niyyāt",
+          "occurrences": [1],
+          "gloss": { "ar": "القصد الباطن للفعل", "en": "by intentions" }
         },
         {
-          "id": "imri",
-          "word": "امْرِئٍ",
-          "root": "م-ر-أ",
-          "pron": "imri'in",
-          "occurrences": [
-            1
-          ],
-          "gloss": {
-            "ar": "الشخص أو الفرد",
-            "en": "a person, individual"
-          }
-        },
-        {
-          "id": "hijratuh1",
+          "id": "hijra",
           "word": "هِجْرَتُهُ",
           "root": "ه-ج-ر",
           "pron": "hijratuhu",
-          "occurrences": [
-            3
-          ],
-          "gloss": {
-            "ar": "هجرته، انتقاله",
-            "en": "his emigration"
-          }
-        },
-        {
-          "id": "yusibuha",
-          "word": "يُصِيبُهَا",
-          "root": "ص-و-ب",
-          "pron": "yuṣībuhā",
-          "occurrences": [
-            1
-          ],
-          "gloss": {
-            "ar": "يحصل عليها من الدنيا",
-            "en": "to attain / gain it"
-          }
-        },
-        {
-          "id": "yankihuha",
-          "word": "يَنْكِحُهَا",
-          "root": "ن-ك-ح",
-          "pron": "yankiḥuhā",
-          "occurrences": [
-            1
-          ],
-          "gloss": {
-            "ar": "يتزوج بها",
-            "en": "to marry her"
-          }
+          "occurrences": [3, 4, 5, 6],
+          "gloss": { "ar": "هجرته، انتقاله", "en": "his emigration" }
         }
-      ],
-      "blockVersion": 1
+      ]
     },
     {
       "type": "commentary",
+      "blockVersion": 1,
       "scholar": {
         "ar": "الإمام النووي",
         "en": "Imam an-Nawawi"
       },
-      "workNodeId": "book-sharh-arbain",
+      "workNodeId": "book-arbain",
       "note": {
-        "en": "Opens his forty-hadith collection with this narration, calling it a third of all knowledge — every act of worship is judged first at the level of intention.",
-        "ar": "يفتتح مجموعته من الأربعين حديثًا بهذا الحديث، ويصفه بأنه ثلث العلم — لأن كل عمل عبادة يُحكم عليه أولًا من جهة النية."
-      },
-      "blockVersion": 1
-    },
-    {
-      "type": "commentary",
-      "scholar": {
-        "ar": "ابن رجب الحنبلي",
-        "en": "Ibn Rajab al-Hanbali"
-      },
-      "workNodeId": "book-jami-ulum",
-      "note": {
-        "en": "Explains the hadith addresses the unseen motive, not the outward form — two people doing the same deed can leave with entirely different outcomes.",
-        "ar": "يوضّح أن الحديث يتناول الباعث الخفي لا صورة العمل الظاهرة — فقد يقوم شخصان بنفس الفعل ويخرجان بنتيجتين مختلفتين تمامًا."
-      },
-      "blockVersion": 1
+        "ar": "يفتتح مجموعته من الأربعين حديثًا بهذا الحديث، ويصفه بأنه ثلث العلم — لأن كل عمل عبادة يُحكم عليه أولًا من جهة النية.",
+        "en": "He opens his collection of forty hadith with this narration, calling it a third of all knowledge — every act of worship is judged first at the level of intention."
+      }
     },
     {
       "type": "context",
+      "blockVersion": 1,
       "title": {
         "ar": "لماذا الهجرة تحديدًا؟",
         "en": "Why hijrah, specifically?"
       },
       "body": {
-        "en": "Hijrah was the costliest act a believer could make. Using it as the example makes the point unmissable: if even that can be emptied by motive, nothing is exempt.",
-        "ar": "كانت الهجرة أغلى ما يمكن أن يقدّمه المؤمن. اختيارها مثالًا يجعل الفكرة لا لبس فيها: إن كانت الهجرة نفسها تُفرَّغ من قيمتها بسبب الدافع، فلا شيء يُستثنى."
-      },
-      "blockVersion": 1
+        "ar": "كانت الهجرة أغلى ما يمكن أن يقدّمه المؤمن. اختيارها مثالًا يجعل الفكرة لا لبس فيها: إن كانت الهجرة نفسها تُفرَّغ من قيمتها بسبب الدافع، فلا شيء يُستثنى.",
+        "en": "Hijrah was the costliest act a believer could make. Using it as the example makes the point unmissable: if even that can be emptied by motive, nothing is exempt."
+      }
     },
     {
       "type": "ai_context",
@@ -211,104 +130,42 @@
       "items": [
         {
           "key": "explain_12",
-          "question": {
-            "en": "explain_12"
-          },
+          "question": { "en": "What is this hadith really saying?" },
           "answer": {
-            "en": "It's like getting credit for homework based on why you did it — copying it to avoid trouble doesn't count the same as doing it to learn. God looks at your 'why', not just the finished page.",
-            "ar": "الأمر أشبه بالحصول على درجة في الواجب المدرسي بناءً على سبب قيامك به — نسخه لتجنّب المشكلة لا يُحسب مثل أدائه للتعلّم فعلًا. الله ينظر إلى «لماذا» فعلت الشيء، لا فقط إلى الصفحة المكتملة."
-          }
-        },
-        {
-          "key": "practical_example",
-          "question": {
-            "en": "practical_example"
-          },
-          "answer": {
-            "en": "Two students study the same night — one to genuinely understand and help others, one only to show off a grade. Same action, different intention, different weight.",
-            "ar": "طالبان يذاكران في نفس الليلة — أحدهما ليفهم فعلًا ويفيد غيره، والآخر فقط ليتباهى بالدرجة. الفعل نفسه، لكن النية مختلفة، والوزن مختلف."
+            "ar": "النية هي الفاتورة المرفقة بكل عمل. قد يقوم شخصان بنفس الفعل الظاهر، لكنهما يخرجان بنتيجتين مختلفتين تمامًا، لأن قيمة العمل تُقاس بما قصده صاحبه.",
+            "en": "Intention is the invoice attached to every action. Two people doing the same visible act can walk away with entirely different results, because the deed is only ever worth what they meant by it."
           }
         },
         {
           "key": "why_chain",
-          "question": {
-            "en": "why_chain"
-          },
+          "question": { "en": "Why is this hadith so foundational?" },
           "answer": {
-            "en": "The chain (isnad) is how scholars verified a saying actually reached the Prophet ﷺ reliably — checking that every link was trustworthy and precise, generation by generation.",
-            "ar": "السند هو الطريقة التي تحقّق بها العلماء من وصول القول فعلًا إلى النبي ﷺ بشكل موثوق — بالتأكد أن كل حلقة كانت أمينة ودقيقة، جيلًا بعد جيل."
+            "ar": "قال الإمام الشافعي إن هذا الحديث ثلث العلم، لأن أعمال الإنسان تشمل قلبه ولسانه وجوارحه، فالنية في القلب هي ثلث العمل.",
+            "en": "Imam ash-Shafi'i said this hadith constitutes a third of all knowledge, because human action involves the heart, the tongue and the limbs — and intention in the heart is one third of action."
           }
         }
       ]
     },
     {
       "type": "quiz",
+      "blockVersion": 1,
       "questions": [
         {
           "question": {
-            "en": "What determines the value of an action?",
-            "ar": "ما الذي يحدد قيمة العمل؟"
+            "ar": "ما الذي يحدد قيمة العمل؟",
+            "en": "What determines the value of an action?"
           },
           "options": [
-            {
-              "id": "opt-0-0",
-              "text": {
-                "en": "Its visible size",
-                "ar": "حجمه الظاهر"
-              }
-            },
-            {
-              "id": "opt-0-1",
-              "text": {
-                "en": "The intention behind it",
-                "ar": "النية وراءه"
-              }
-            },
-            {
-              "id": "opt-0-2",
-              "text": {
-                "en": "Who witnesses it",
-                "ar": "من يشهده"
-              }
-            }
+            { "id": "o1", "text": { "ar": "حجمه الظاهر", "en": "Its visible size" } },
+            { "id": "o2", "text": { "ar": "النية وراءه", "en": "The intention behind it" } },
+            { "id": "o3", "text": { "ar": "من يشهده", "en": "Who witnesses it" } }
           ],
-          "correctOptionId": "opt-0-1"
-        },
-        {
-          "question": {
-            "en": "What example does the hadith use for mixed intentions?",
-            "ar": "ما المثال الذي يستخدمه الحديث لاختلاط النية؟"
-          },
-          "options": [
-            {
-              "id": "opt-1-0",
-              "text": {
-                "en": "Public prayer",
-                "ar": "الصلاة العلنية"
-              }
-            },
-            {
-              "id": "opt-1-1",
-              "text": {
-                "en": "Emigration (hijrah)",
-                "ar": "الهجرة"
-              }
-            },
-            {
-              "id": "opt-1-2",
-              "text": {
-                "en": "Anonymous charity",
-                "ar": "الصدقة السرية"
-              }
-            }
-          ],
-          "correctOptionId": "opt-1-1"
+          "correctOptionId": "o2"
         }
-      ],
-      "blockVersion": 1
+      ]
     }
   ],
-  "createdAt": "2025-01-01T00:00:00.000Z",
-  "updatedAt": "2026-07-16T22:02:23.800Z",
-  "digitizationStatus": "complete"
+  "schemaVersion": 2,
+  "createdAt": "2026-07-17T00:00:00.000Z",
+  "updatedAt": "2026-07-17T00:00:00.000Z"
 }

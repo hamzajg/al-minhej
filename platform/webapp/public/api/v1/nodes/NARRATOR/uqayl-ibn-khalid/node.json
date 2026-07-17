@@ -1,0 +1,74 @@
+{
+  "id": "narrator-uqayl",
+  "type": "NARRATOR",
+  "slug": "uqayl-ibn-khalid",
+  "status": "published",
+  "digitizationStatus": "complete",
+  "title": {
+    "ar": "عقيل بن خالد",
+    "en": "'Uqayl ibn Khalid"
+  },
+  "attributes": {
+    "kind": "narrator",
+    "dateDeath": "نحو ١٤٤ هـ",
+    "grade": {
+      "ar": "ثقة ثبت",
+      "en": "Thiqah, precise (thabt)"
+    },
+    "isnadDepth": 4
+  },
+  "content": [
+    {
+      "type": "biography",
+      "blockVersion": 1,
+      "kunya": {
+        "ar": "أبو خالد",
+        "en": "Abu Khalid"
+      },
+      "nasab": {
+        "ar": "عقيل بن خالد بن عقيل الأيلي، مولى عثمان بن عفان",
+        "en": "'Uqayl ibn Khalid ibn 'Uqayl al-Ayli, client of 'Uthman ibn 'Affan"
+      },
+      "tabaqah": 6,
+      "tabaqahLabel": {
+        "ar": "الطبقة السادسة: من صغار التابعين",
+        "en": "Tabaqah 6: junior Successors"
+      },
+      "birthPlace": null,
+      "deathInfo": {
+        "ar": "توفي بأيلة نحو سنة ١٤٤ هـ",
+        "en": "Died at Aylah, c. 144 AH"
+      },
+      "teachers": [
+        {
+          "narratorId": "narrator-zuhri",
+          "note": {
+            "ar": "أوثق من روى عنه",
+            "en": "among his most reliable transmitters"
+          }
+        }
+      ],
+      "students": [
+        {
+          "narratorId": "narrator-layth",
+          "note": {
+            "ar": "من أخص من روى عنه بمصر",
+            "en": "among his closest Egyptian transmitters"
+          }
+        }
+      ],
+      "taqribGrade": {
+        "ar": "ثقة ثبت",
+        "en": "Thiqah, precise (thabt)"
+      },
+      "taqribRef": "ابن حجر، تقريب التهذيب، ت ٤٦٨٦",
+      "summary": {
+        "ar": "من أوثق أصحاب الزهري، استوطن أيلة ونقل عنه علمًا كثيرًا.",
+        "en": "Among the most reliable companions of al-Zuhri; settled in Aylah and transmitted a great deal of his learning."
+      }
+    }
+  ],
+  "schemaVersion": 2,
+  "createdAt": "2026-07-17T00:00:00.000Z",
+  "updatedAt": "2026-07-17T00:00:00.000Z"
+}

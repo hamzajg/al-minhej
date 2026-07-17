@@ -3,17 +3,11 @@
   "type": "VERSE",
   "slug": "bayyinah-98-5",
   "status": "published",
-  "title": {
-    "ar": "سورة البيّنة ٩٨:٥",
-    "en": "Al-Bayyinah 98:5"
-  },
+  "digitizationStatus": "complete",
+  "title": { "ar": "سورة البيّنة ٩٨:٥", "en": "Al-Bayyinah 98:5" },
   "attributes": {
     "kind": "verse",
-    "ref": {
-      "surah": 98,
-      "ayahStart": 5,
-      "ayahEnd": 5
-    },
+    "ref": { "surah": 98, "ayahStart": 5, "ayahEnd": 5 },
     "refLocalized": {
       "ar": "سورة البيّنة ٩٨:٥",
       "en": "Al-Bayyinah 98:5"
@@ -21,7 +15,6 @@
   },
   "content": [],
   "schemaVersion": 2,
-  "createdAt": "2025-01-01T00:00:00.000Z",
-  "updatedAt": "2026-07-16T22:02:23.800Z",
-  "digitizationStatus": "complete"
+  "createdAt": "2026-07-17T00:00:00.000Z",
+  "updatedAt": "2026-07-17T00:00:00.000Z"
 }

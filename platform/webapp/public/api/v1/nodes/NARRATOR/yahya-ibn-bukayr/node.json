@@ -1,0 +1,70 @@
+{
+  "id": "narrator-yahya-bukayr",
+  "type": "NARRATOR",
+  "slug": "yahya-ibn-bukayr",
+  "status": "published",
+  "digitizationStatus": "complete",
+  "title": {
+    "ar": "يحيى بن بكير",
+    "en": "Yahya ibn Bukayr"
+  },
+  "attributes": {
+    "kind": "narrator",
+    "dateBirth": "١٥٤ هـ / ٧٧١ م",
+    "dateDeath": "٢٣١ هـ / ٨٤٥ م",
+    "grade": {
+      "ar": "صدوق، من شيوخ البخاري المباشرين",
+      "en": "Saduq (truthful); one of al-Bukhari's direct teachers"
+    },
+    "isnadDepth": 6
+  },
+  "content": [
+    {
+      "type": "biography",
+      "blockVersion": 1,
+      "kunya": {
+        "ar": "أبو زكريا",
+        "en": "Abu Zakariyya"
+      },
+      "nasab": {
+        "ar": "يحيى بن عبد الله بن بكير المخزومي، مولاهم المصري",
+        "en": "Yahya ibn 'Abdullah ibn Bukayr al-Makhzumi, client of Banu Makhzum, Egypt"
+      },
+      "tabaqah": 10,
+      "tabaqahLabel": {
+        "ar": "الطبقة العاشرة: كبار الآخذين عن تبع الأتباع",
+        "en": "Tabaqah 10: senior students of the successors' successors"
+      },
+      "birthPlace": {
+        "ar": "مصر، ١٥٤ هـ / ٧٧١ م",
+        "en": "Egypt, 154 AH / 771 CE"
+      },
+      "deathInfo": {
+        "ar": "توفي بمصر سنة ٢٣١ هـ / ٨٤٥ م",
+        "en": "Died in Egypt, 231 AH / 845 CE"
+      },
+      "teachers": [
+        {
+          "narratorId": "narrator-layth",
+          "note": {
+            "ar": "أخص شيوخه وأكثرهم رواية عنه",
+            "en": "his closest and most-transmitted-from teacher"
+          }
+        }
+      ],
+      "students": [],
+      "taqribGrade": {
+        "ar": "صدوق، من أثبت الناس في الليث، وهو أحد شيوخ البخاري المباشرين",
+        "en": "Saduq (truthful); among the most reliable transmitters of al-Layth, and one of al-Bukhari's direct teachers"
+      },
+      "taqribRef": "ابن حجر، تقريب التهذيب، ت ٧٥٦٤",
+      "summary": {
+        "ar": "من كبار شيوخ البخاري، اعتمد عليه في نقل حديث الليث بن سعد خاصة.",
+        "en": "One of al-Bukhari's principal teachers, relied upon especially for transmitting the hadith of al-Layth ibn Sa'd."
+      }
+    }
+  ],
+  "schemaVersion": 2,
+  "createdAt": "2026-07-17T00:00:00.000Z",
+  "updatedAt": "2026-07-17T00:00:00.000Z"
+}

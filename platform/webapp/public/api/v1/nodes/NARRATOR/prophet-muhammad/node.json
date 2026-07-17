@@ -3,23 +3,256 @@
   "type": "NARRATOR",
   "slug": "prophet-muhammad",
   "status": "published",
+  "digitizationStatus": "complete",
   "title": {
     "ar": "النبي محمد ﷺ",
     "en": "Prophet Muhammad ﷺ"
   },
   "attributes": {
     "kind": "narrator",
+    "dateBirth": "570 CE",
+    "dateDeath": "632 CE",
     "grade": {
       "ar": "—",
       "en": "—"
     },
-    "isnadDepth": 0,
-    "dateBirth": "570-01-01",
-    "dateDeath": "632-01-01"
+    "isnadDepth": 0
   },
-  "content": [],
+  "content": [
+    {
+      "type": "lineage",
+      "blockVersion": 1,
+      "personNodeId": "narrator-prophet",
+      "chain": [
+        {
+          "name": {
+            "ar": "محمد",
+            "en": "Muhammad"
+          },
+          "note": {
+            "ar": "رسول الله ﷺ",
+            "en": "Messenger of God ﷺ"
+          }
+        },
+        {
+          "name": {
+            "ar": "عبد الله",
+            "en": "Abdullah"
+          },
+          "note": {
+            "ar": "والد النبي، توفي قبل مولده",
+            "en": "the Prophet's father; died before his birth"
+          }
+        },
+        {
+          "name": {
+            "ar": "عبد المطلب",
+            "en": "Abd al-Muttalib"
+          },
+          "note": {
+            "ar": "سيد قريش، حفر بئر زمزم",
+            "en": "chief of Quraysh; re-dug the well of Zamzam"
+          }
+        },
+        {
+          "name": {
+            "ar": "هاشم",
+            "en": "Hashim"
+          },
+          "note": {
+            "ar": "جد بني هاشم",
+            "en": "eponym of Banu Hashim"
+          }
+        },
+        {
+          "name": {
+            "ar": "عبد مناف",
+            "en": "Abd Manaf"
+          }
+        },
+        {
+          "name": {
+            "ar": "قصي",
+            "en": "Qusayy"
+          },
+          "note": {
+            "ar": "جمع بطون قريش حول الكعبة",
+            "en": "united the clans of Quraysh around the Ka'bah"
+          }
+        },
+        {
+          "name": {
+            "ar": "كلاب",
+            "en": "Kilab"
+          }
+        },
+        {
+          "name": {
+            "ar": "مرة",
+            "en": "Murrah"
+          }
+        },
+        {
+          "name": {
+            "ar": "كعب",
+            "en": "Ka'b"
+          }
+        },
+        {
+          "name": {
+            "ar": "لؤي",
+            "en": "Lu'ayy"
+          }
+        },
+        {
+          "name": {
+            "ar": "غالب",
+            "en": "Ghalib"
+          }
+        },
+        {
+          "name": {
+            "ar": "فهر",
+            "en": "Fihr"
+          },
+          "note": {
+            "ar": "يُلقَّب قريش، جد القبيلة",
+            "en": "known as 'Quraysh' — eponym of the tribe"
+          }
+        },
+        {
+          "name": {
+            "ar": "مالك",
+            "en": "Malik"
+          }
+        },
+        {
+          "name": {
+            "ar": "النضر",
+            "en": "al-Nadr"
+          }
+        },
+        {
+          "name": {
+            "ar": "كنانة",
+            "en": "Kinanah"
+          }
+        },
+        {
+          "name": {
+            "ar": "خزيمة",
+            "en": "Khuzaymah"
+          }
+        },
+        {
+          "name": {
+            "ar": "مدركة",
+            "en": "Mudrikah"
+          }
+        },
+        {
+          "name": {
+            "ar": "إلياس",
+            "en": "Ilyas"
+          }
+        },
+        {
+          "name": {
+            "ar": "مضر",
+            "en": "Mudar"
+          }
+        },
+        {
+          "name": {
+            "ar": "نزار",
+            "en": "Nizar"
+          }
+        },
+        {
+          "name": {
+            "ar": "معد",
+            "en": "Ma'add"
+          }
+        },
+        {
+          "name": {
+            "ar": "عدنان",
+            "en": "Adnan"
+          },
+          "note": {
+            "ar": "آخر حلقة متفق عليها بالإجماع بين النسّابين",
+            "en": "last link agreed upon unanimously by genealogists"
+          }
+        }
+      ],
+      "agreementNote": {
+        "ar": "اتفق أهل السير والأنساب على صحة هذا النسب إلى عدنان دون خلاف. أما ما فوق عدنان إلى إسماعيل بن إبراهيم عليهما السلام فمختلف في تفصيل أسمائه وإن كان لا خلاف أن عدنان من ولد إسماعيل.",
+        "en": "Biographers and genealogists agree unanimously on this lineage up to Adnan. What lies between Adnan and Isma'il ibn Ibrahim (peace be upon them) is disputed in its exact names, though there is no dispute that Adnan descends from Isma'il."
+      },
+      "disputedBeyond": {
+        "afterName": {
+          "ar": "عدنان",
+          "en": "Adnan"
+        },
+        "note": {
+          "ar": "السلسلة من عدنان إلى إسماعيل عليه السلام غير محررة بإجماع، ولذلك لا تُدرج هنا كحلقات مؤكدة.",
+          "en": "The chain from Adnan up to Isma'il (peace be upon him) is not established by consensus and is therefore not listed here as confirmed links."
+        }
+      }
+    },
+    {
+      "type": "biography",
+      "blockVersion": 1,
+      "kunya": {
+        "ar": "أبو القاسم",
+        "en": "Abu al-Qasim"
+      },
+      "nasab": {
+        "ar": "محمد بن عبد الله بن عبد المطلب بن هاشم القرشي الهاشمي",
+        "en": "Muhammad ibn Abdullah ibn Abd al-Muttalib ibn Hashim, of Banu Hashim, Quraysh"
+      },
+      "tabaqah": null,
+      "tabaqahLabel": {
+        "ar": "لا ينطبق عليه نظام الطبقات — هو مصدر الوحي",
+        "en": "Outside the tabaqat system — the source of revelation itself"
+      },
+      "birthPlace": {
+        "ar": "مكة المكرمة، عام الفيل (٥٧٠ م تقريبًا)",
+        "en": "Makkah, the Year of the Elephant (c. 570 CE)"
+      },
+      "deathInfo": {
+        "ar": "توفي بالمدينة المنورة سنة ١١ هـ / ٦٣٢ م، ودُفن في حجرة عائشة رضي الله عنها",
+        "en": "Died in Madinah, 11 AH / 632 CE; buried in the chamber of 'A'ishah"
+      },
+      "teachers": [],
+      "students": [
+        {
+          "narratorId": "narrator-umar",
+          "note": {
+            "ar": "من كبار الصحابة الملازمين",
+            "en": "senior Companion in close attendance"
+          }
+        },
+        {
+          "narratorId": "narrator-aisha",
+          "note": {
+            "ar": "زوجه، أم المؤمنين",
+            "en": "his wife, Mother of the Believers"
+          }
+        }
+      ],
+      "taqribGrade": {
+        "ar": "—",
+        "en": "—"
+      },
+      "taqribRef": "",
+      "summary": {
+        "ar": "خاتم الأنبياء والمرسلين، بُعث بمكة وهاجر إلى المدينة، وهو مصدر الوحي الذي نقله عنه الصحابة رضي الله عنهم بالتواتر والآحاد.",
+        "en": "The final Prophet and Messenger, sent in Makkah and emigrated to Madinah; the source of the revelation transmitted from him by the Companions through both mass-transmitted and single-chain reports."
+      }
+    }
+  ],
   "schemaVersion": 2,
-  "createdAt": "2025-01-01T00:00:00.000Z",
-  "updatedAt": "2026-07-16T22:02:23.800Z",
-  "digitizationStatus": "stub"
+  "createdAt": "2026-07-17T00:00:00.000Z",
+  "updatedAt": "2026-07-17T00:00:00.000Z"
 }

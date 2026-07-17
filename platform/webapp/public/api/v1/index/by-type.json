@@ -1,0 +1,47 @@
+{
+  "BOOK": [
+    "book-arbain",
+    "book-bukhari"
+  ],
+  "CONCEPT": [
+    "concept-ikhlas",
+    "concept-wahy"
+  ],
+  "EVENT": [
+    "event-hijra"
+  ],
+  "HADITH": [
+    "hadith-arbain-1",
+    "hadith-bukhari-1",
+    "hadith-bukhari-2",
+    "hadith-bukhari-3"
+  ],
+  "NARRATOR": [
+    "narrator-abdullah-yusuf",
+    "narrator-aisha",
+    "narrator-humaydi",
+    "narrator-layth",
+    "narrator-alqamah",
+    "narrator-nawawi",
+    "narrator-hisham-urwah",
+    "narrator-zuhri",
+    "narrator-malik",
+    "narrator-muhammad-ibrahim",
+    "narrator-prophet",
+    "narrator-sufyan-uyaynah",
+    "narrator-umar",
+    "narrator-uqayl",
+    "narrator-urwah",
+    "narrator-yahya-bukayr",
+    "narrator-yahya-ansari"
+  ],
+  "PAGE": [
+    "page-arbain-1",
+    "page-bukhari-1",
+    "page-bukhari-2",
+    "page-bukhari-3"
+  ],
+  "VERSE": [
+    "verse-bayyinah"
+  ]
+}

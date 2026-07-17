@@ -1,0 +1,66 @@
+{
+  "id": "narrator-abdullah-yusuf",
+  "type": "NARRATOR",
+  "slug": "abdullah-ibn-yusuf-al-tinnisi",
+  "status": "published",
+  "digitizationStatus": "complete",
+  "title": {
+    "ar": "عبد الله بن يوسف التنيسي",
+    "en": "'Abdullah ibn Yusuf al-Tinnisi"
+  },
+  "attributes": {
+    "kind": "narrator",
+    "dateDeath": "٢١٨ هـ / ٨٣٣ م",
+    "grade": {
+      "ar": "ثقة متقن، من أثبت الناس في الموطأ",
+      "en": "Thiqah, precise; among the most exacting transmitters of the Muwatta'"
+    },
+    "isnadDepth": 5
+  },
+  "content": [
+    {
+      "type": "biography",
+      "blockVersion": 1,
+      "kunya": {
+        "ar": "أبو محمد",
+        "en": "Abu Muhammad"
+      },
+      "nasab": {
+        "ar": "عبد الله بن يوسف الكلاعي التنيسي، أصله من دمشق",
+        "en": "'Abdullah ibn Yusuf al-Kala'i al-Tinnisi, originally of Damascus"
+      },
+      "tabaqah": 10,
+      "tabaqahLabel": {
+        "ar": "الطبقة العاشرة: كبار الآخذين عن تبع الأتباع",
+        "en": "Tabaqah 10: senior students of the successors' successors"
+      },
+      "birthPlace": null,
+      "deathInfo": {
+        "ar": "توفي سنة ٢١٨ هـ / ٨٣٣ م",
+        "en": "Died 218 AH / 833 CE"
+      },
+      "teachers": [
+        {
+          "narratorId": "narrator-malik",
+          "note": {
+            "ar": "من أثبت من روى عنه الموطأ",
+            "en": "among the most precise transmitters of his Muwatta'"
+          }
+        }
+      ],
+      "students": [],
+      "taqribGrade": {
+        "ar": "ثقة متقن، من أثبت الناس في الموطأ",
+        "en": "Thiqah, precise; among the most exacting transmitters of the Muwatta'"
+      },
+      "taqribRef": "ابن حجر، تقريب التهذيب؛ السلاسل المختارة من صحيح البخاري",
+      "summary": {
+        "ar": "شيخ البخاري الأول في صحيحه؛ فتح به كتابه بأصح الطرق عن مالك.",
+        "en": "al-Bukhari's very first teacher cited in the Sahih; he opens the book through him with one of the soundest routes from Malik."
+      }
+    }
+  ],
+  "schemaVersion": 2,
+  "createdAt": "2026-07-17T00:00:00.000Z",
+  "updatedAt": "2026-07-17T00:00:00.000Z"
+}

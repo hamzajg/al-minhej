@@ -1,24 +1,78 @@
 {
-  "id": "narrator-hisham",
+  "id": "narrator-hisham-urwah",
   "type": "NARRATOR",
   "slug": "hisham-ibn-urwah",
   "status": "published",
+  "digitizationStatus": "complete",
   "title": {
     "ar": "هشام بن عروة",
     "en": "Hisham ibn 'Urwah"
   },
   "attributes": {
     "kind": "narrator",
+    "dateBirth": "٦١ هـ / ٦٨٠ م",
+    "dateDeath": "١٤٥ أو ١٤٦ هـ / ٧٦٣ م",
     "grade": {
-      "ar": "ثقة",
-      "en": "Thiqah"
+      "ar": "ثقة ثبت فقيه",
+      "en": "Thiqah, precise (thabt), jurist"
     },
-    "isnadDepth": 4,
-    "dateDeath": "146-01-01"
+    "isnadDepth": 3
   },
-  "content": [],
+  "content": [
+    {
+      "type": "biography",
+      "blockVersion": 1,
+      "kunya": {
+        "ar": "أبو المنذر",
+        "en": "Abu al-Mundhir"
+      },
+      "nasab": {
+        "ar": "هشام بن عروة بن الزبير بن العوام الأسدي القرشي المدني",
+        "en": "Hisham ibn 'Urwah ibn al-Zubayr, of Quraysh, Madinah"
+      },
+      "tabaqah": 5,
+      "tabaqahLabel": {
+        "ar": "الطبقة الخامسة: من صغار التابعين وكبار أتباعهم",
+        "en": "Tabaqah 5: junior Successors / senior successors-of-Successors"
+      },
+      "birthPlace": {
+        "ar": "المدينة المنورة، ٦١ هـ / ٦٨٠ م",
+        "en": "Madinah, 61 AH / 680 CE"
+      },
+      "deathInfo": {
+        "ar": "توفي ببغداد سنة ١٤٥ أو ١٤٦ هـ / ٧٦٣ م",
+        "en": "Died in Baghdad, 145 or 146 AH / 763 CE"
+      },
+      "teachers": [
+        {
+          "narratorId": "narrator-urwah",
+          "note": {
+            "ar": "أبوه، وأوثق من روى عنه",
+            "en": "his father, and his most reliable source"
+          }
+        }
+      ],
+      "students": [
+        {
+          "narratorId": "narrator-malik",
+          "note": {
+            "ar": "من كبار من روى عنه بالمدينة",
+            "en": "among his major Madinan transmitters"
+          }
+        }
+      ],
+      "taqribGrade": {
+        "ar": "ثقة، فقيه، ثبت، إلا أن بعض أهل المدينة أنكروا عليه ما حدّث به بالعراق",
+        "en": "Thiqah, jurist, precise — though some Madinans questioned what he narrated after moving to Iraq"
+      },
+      "taqribRef": "ابن حجر، تقريب التهذيب، ٢/٣١٩",
+      "summary": {
+        "ar": "فقيه محدث، روى عن أبيه عروة أكثر علمه، وروى عنه كبار الأئمة كمالك والثوري وابن عيينة والليث.",
+        "en": "A jurist-traditionist who took most of his learning from his father 'Urwah; transmitted from by great imams such as Malik, al-Thawri, Ibn 'Uyaynah, and al-Layth."
+      }
+    }
+  ],
   "schemaVersion": 2,
-  "createdAt": "2025-01-01T00:00:00.000Z",
-  "updatedAt": "2026-07-16T22:02:23.800Z",
-  "digitizationStatus": "stub"
+  "createdAt": "2026-07-17T00:00:00.000Z",
+  "updatedAt": "2026-07-17T00:00:00.000Z"
 }

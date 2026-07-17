@@ -3,22 +3,76 @@
   "type": "NARRATOR",
   "slug": "al-layth-ibn-sad",
   "status": "published",
+  "digitizationStatus": "complete",
   "title": {
     "ar": "الليث بن سعد",
-    "en": "Al-Layth ibn Sa'd"
+    "en": "al-Layth ibn Sa'd"
   },
   "attributes": {
     "kind": "narrator",
+    "dateBirth": "٩٤ هـ / ٧١٣ م",
+    "dateDeath": "١٧٥ هـ / ٧٩١ م",
     "grade": {
-      "ar": "ثقة ثبت",
-      "en": "Thiqah thabt"
+      "ar": "ثقة ثبت فقيه إمام مشهور",
+      "en": "Thiqah, precise, jurist; a renowned imam"
     },
-    "isnadDepth": 5,
-    "dateDeath": "175-01-01"
+    "isnadDepth": 5
   },
-  "content": [],
+  "content": [
+    {
+      "type": "biography",
+      "blockVersion": 1,
+      "kunya": {
+        "ar": "أبو الحارث",
+        "en": "Abu al-Harith"
+      },
+      "nasab": {
+        "ar": "الليث بن سعد بن عبد الرحمن الفهمي، إمام أهل مصر",
+        "en": "al-Layth ibn Sa'd ibn 'Abd al-Rahman al-Fahmi, imam of the people of Egypt"
+      },
+      "tabaqah": 8,
+      "tabaqahLabel": {
+        "ar": "الطبقة الثامنة: من كبار أتباع التابعين",
+        "en": "Tabaqah 8: senior successors of the Successors"
+      },
+      "birthPlace": {
+        "ar": "قلقشندة، مصر، ٩٤ هـ / ٧١٣ م",
+        "en": "Qalqashandah, Egypt, 94 AH / 713 CE"
+      },
+      "deathInfo": {
+        "ar": "توفي بمصر سنة ١٧٥ هـ / ٧٩١ م",
+        "en": "Died in Egypt, 175 AH / 791 CE"
+      },
+      "teachers": [
+        {
+          "narratorId": "narrator-uqayl",
+          "note": {
+            "ar": "من أخص شيوخه في حديث الزهري",
+            "en": "among his closest sources for al-Zuhri's hadith"
+          }
+        }
+      ],
+      "students": [
+        {
+          "narratorId": "narrator-yahya-bukayr",
+          "note": {
+            "ar": "من أثبت أصحابه المصريين",
+            "en": "among his most precise Egyptian students"
+          }
+        }
+      ],
+      "taqribGrade": {
+        "ar": "ثقة ثبت فقيه إمام مشهور، قال الشافعي: الليث أفقه من مالك إلا أن أصحابه لم يقوموا به",
+        "en": "Thiqah, precise, jurist, renowned imam — al-Shafi'i said: 'al-Layth was a greater jurist than Malik, but his students did not do him justice.'"
+      },
+      "taqribRef": "ابن حجر، تقريب التهذيب، ت ٥٧٩٤",
+      "summary": {
+        "ar": "إمام أهل مصر في الفقه والحديث في عصره، عُرف بسعة علمه وجوده.",
+        "en": "The leading imam of Egypt in jurisprudence and hadith of his era, known for the breadth of his learning and generosity."
+      }
+    }
+  ],
   "schemaVersion": 2,
-  "createdAt": "2025-01-01T00:00:00.000Z",
-  "updatedAt": "2026-07-16T22:02:23.800Z",
-  "digitizationStatus": "stub"
+  "createdAt": "2026-07-17T00:00:00.000Z",
+  "updatedAt": "2026-07-17T00:00:00.000Z"
 }

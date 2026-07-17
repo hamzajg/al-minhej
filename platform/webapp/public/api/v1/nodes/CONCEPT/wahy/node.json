@@ -1,0 +1,31 @@
+{
+  "id": "concept-wahy",
+  "type": "CONCEPT",
+  "slug": "wahy",
+  "status": "published",
+  "digitizationStatus": "partial",
+  "title": {
+    "ar": "الوحي",
+    "en": "Revelation (Wahy)"
+  },
+  "attributes": {
+    "kind": "concept"
+  },
+  "content": [
+    {
+      "type": "context",
+      "blockVersion": 1,
+      "title": {
+        "ar": "ما هو الوحي؟",
+        "en": "What is Wahy?"
+      },
+      "body": {
+        "ar": "إعلام الله تعالى لأنبيائه بما يريد إطلاعهم عليه من الشرع، بطرق عدة منها صلصلة الجرس وتمثل الملك رجلاً والرؤيا الصادقة.",
+        "en": "God's communication to His prophets of what He wills to convey of revealed law, coming in several modes — a sound like a ringing bell, an angel appearing as a man, or true dreams."
+      }
+    }
+  ],
+  "schemaVersion": 2,
+  "createdAt": "2026-07-17T00:00:00.000Z",
+  "updatedAt": "2026-07-17T00:00:00.000Z"
+}

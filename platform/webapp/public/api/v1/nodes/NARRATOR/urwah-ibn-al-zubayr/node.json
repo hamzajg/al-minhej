@@ -1,0 +1,78 @@
+{
+  "id": "narrator-urwah",
+  "type": "NARRATOR",
+  "slug": "urwah-ibn-al-zubayr",
+  "status": "published",
+  "digitizationStatus": "complete",
+  "title": {
+    "ar": "عروة بن الزبير",
+    "en": "'Urwah ibn al-Zubayr"
+  },
+  "attributes": {
+    "kind": "narrator",
+    "dateBirth": "نحو ٢٩ هـ",
+    "dateDeath": "٩٤ هـ / ٧١٢ م",
+    "grade": {
+      "ar": "ثقة فقيه، أحد الفقهاء السبعة",
+      "en": "Thiqah, jurist; one of the Seven Jurists of Madinah"
+    },
+    "isnadDepth": 2
+  },
+  "content": [
+    {
+      "type": "biography",
+      "blockVersion": 1,
+      "kunya": {
+        "ar": "أبو عبد الله",
+        "en": "Abu 'Abdullah"
+      },
+      "nasab": {
+        "ar": "عروة بن الزبير بن العوام الأسدي القرشي المدني",
+        "en": "'Urwah ibn al-Zubayr ibn al-'Awwam, of Quraysh, Madinah"
+      },
+      "tabaqah": 3,
+      "tabaqahLabel": {
+        "ar": "الطبقة الثالثة: من وسط التابعين",
+        "en": "Tabaqah 3: middle-generation Successors"
+      },
+      "birthPlace": {
+        "ar": "المدينة المنورة، نحو ٢٩ هـ",
+        "en": "Madinah, c. 29 AH"
+      },
+      "deathInfo": {
+        "ar": "توفي بالمدينة سنة ٩٤ هـ / ٧١٢ م",
+        "en": "Died in Madinah, 94 AH / 712 CE"
+      },
+      "teachers": [
+        {
+          "narratorId": "narrator-aisha",
+          "note": {
+            "ar": "خالته، وأخص من أخذ عنها فقهًا وحديثًا",
+            "en": "his maternal aunt, and his closest source for her fiqh and hadith"
+          }
+        }
+      ],
+      "students": [
+        {
+          "narratorId": "narrator-hisham-urwah",
+          "note": {
+            "ar": "ابنه، وأخص الرواة عنه",
+            "en": "his son and his closest transmitter"
+          }
+        }
+      ],
+      "taqribGrade": {
+        "ar": "ثقة فقيه مشهور، أحد الفقهاء السبعة بالمدينة",
+        "en": "Thiqah, celebrated jurist; one of the Seven Fuqaha of Madinah"
+      },
+      "taqribRef": "ابن حجر، تقريب التهذيب، ت ٤٥٣٩",
+      "summary": {
+        "ar": "ابن أخت عائشة عبر أمه أسماء، ومن أعلم الناس بحديثها وسيرة النبي ﷺ، وابنه هشام أخص من روى عنه.",
+        "en": "Nephew of 'A'ishah through his mother Asma', and among those most learned in her hadith and the Prophet's biography; his son Hisham was his closest transmitter."
+      }
+    }
+  ],
+  "schemaVersion": 2,
+  "createdAt": "2026-07-17T00:00:00.000Z",
+  "updatedAt": "2026-07-17T00:00:00.000Z"
+}

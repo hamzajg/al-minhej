@@ -3,22 +3,75 @@
   "type": "NARRATOR",
   "slug": "alqamah-ibn-waqqas",
   "status": "published",
+  "digitizationStatus": "complete",
   "title": {
-    "ar": "علقمة بن وقّاص",
-    "en": "'Alqamah ibn Waqqas"
+    "ar": "علقمة بن وقاص اللَّيْثِي",
+    "en": "'Alqama ibn Waqqas al-Laythi"
   },
   "attributes": {
     "kind": "narrator",
+    "dateDeath": "c. 80 AH",
     "grade": {
       "ar": "ثقة",
       "en": "Thiqah (trustworthy)"
     },
-    "isnadDepth": 2,
-    "dateDeath": "80-01-01"
+    "isnadDepth": 2
   },
-  "content": [],
+  "content": [
+    {
+      "type": "biography",
+      "blockVersion": 1,
+      "kunya": {
+        "ar": "أبو عبد الله",
+        "en": "Abu 'Abdullah"
+      },
+      "nasab": {
+        "ar": "علقمة بن وقاص بن محصن الليثي الكناني المدني",
+        "en": "'Alqamah ibn Waqqas ibn Muhsin al-Laythi, of Kinanah, Madinah"
+      },
+      "tabaqah": 2,
+      "tabaqahLabel": {
+        "ar": "الطبقة الثانية: من كبار التابعين",
+        "en": "Tabaqah 2: senior Successors"
+      },
+      "birthPlace": {
+        "ar": "المدينة المنورة",
+        "en": "Madinah"
+      },
+      "deathInfo": {
+        "ar": "توفي في خلافة عبد الملك بن مروان، نحو ٨٠ هـ",
+        "en": "Died during the caliphate of 'Abd al-Malik ibn Marwan, c. 80 AH"
+      },
+      "teachers": [
+        {
+          "narratorId": "narrator-umar",
+          "note": {
+            "ar": "سمعه يخطب على المنبر",
+            "en": "heard him deliver this from the pulpit"
+          }
+        }
+      ],
+      "students": [
+        {
+          "narratorId": "narrator-muhammad-ibrahim",
+          "note": {
+            "ar": "سمع منه هذا الحديث",
+            "en": "heard this hadith from him"
+          }
+        }
+      ],
+      "taqribGrade": {
+        "ar": "ثقة",
+        "en": "Thiqah (trustworthy)"
+      },
+      "taqribRef": "ابن حجر، تقريب التهذيب، ت ٤٦٨٠",
+      "summary": {
+        "ar": "من ثقات التابعين بالمدينة، معدود في الطبقة الثانية.",
+        "en": "A reliable Madinan Successor, counted among the second generation."
+      }
+    }
+  ],
   "schemaVersion": 2,
-  "createdAt": "2025-01-01T00:00:00.000Z",
-  "updatedAt": "2026-07-16T22:02:23.800Z",
-  "digitizationStatus": "stub"
+  "createdAt": "2026-07-17T00:00:00.000Z",
+  "updatedAt": "2026-07-17T00:00:00.000Z"
 }

@@ -1,24 +1,78 @@
 {
-  "id": "narrator-uyaynah",
+  "id": "narrator-sufyan-uyaynah",
   "type": "NARRATOR",
   "slug": "sufyan-ibn-uyaynah",
   "status": "published",
+  "digitizationStatus": "complete",
   "title": {
     "ar": "سفيان بن عيينة",
     "en": "Sufyan ibn 'Uyaynah"
   },
   "attributes": {
     "kind": "narrator",
+    "dateBirth": "107 AH / 725 CE",
+    "dateDeath": "198 AH / 814 CE",
     "grade": {
       "ar": "ثقة حافظ",
       "en": "Thiqah hafiz"
     },
-    "isnadDepth": 5,
-    "dateDeath": "198-01-01"
+    "isnadDepth": 5
   },
-  "content": [],
+  "content": [
+    {
+      "type": "biography",
+      "blockVersion": 1,
+      "kunya": {
+        "ar": "أبو محمد",
+        "en": "Abu Muhammad"
+      },
+      "nasab": {
+        "ar": "سفيان بن عيينة بن أبي عمران الهلالي الكوفي ثم المكي",
+        "en": "Sufyan ibn 'Uyaynah ibn Abi 'Imran al-Hilali, of Kufah then Makkah"
+      },
+      "tabaqah": 8,
+      "tabaqahLabel": {
+        "ar": "الطبقة الثامنة: من كبار أتباع التابعين",
+        "en": "Tabaqah 8: senior successors of the Successors"
+      },
+      "birthPlace": {
+        "ar": "الكوفة، ١٠٧ هـ / ٧٢٥ م",
+        "en": "Kufah, 107 AH / 725 CE"
+      },
+      "deathInfo": {
+        "ar": "توفي بمكة سنة ١٩٨ هـ / ٨١٤ م",
+        "en": "Died in Makkah, 198 AH / 814 CE"
+      },
+      "teachers": [
+        {
+          "narratorId": "narrator-yahya-ansari",
+          "note": {
+            "ar": "من كبار شيوخه بالمدينة",
+            "en": "one of his principal Madinan teachers"
+          }
+        }
+      ],
+      "students": [
+        {
+          "narratorId": "narrator-humaydi",
+          "note": {
+            "ar": "أخص من روى عنه بمكة",
+            "en": "his closest Makkan transmitter"
+          }
+        }
+      ],
+      "taqribGrade": {
+        "ar": "ثقة حافظ فقيه إمام حجة",
+        "en": "Thiqah, hafiz, jurist, authoritative imam"
+      },
+      "taqribRef": "ابن حجر، تقريب التهذيب، ت ٢٤٥١",
+      "summary": {
+        "ar": "أحد أئمة الحديث الكبار بمكة، له نحو سبعين سنة في طلب العلم وروايته.",
+        "en": "One of the great hadith imams of Makkah, with roughly seventy years spent seeking and transmitting knowledge."
+      }
+    }
+  ],
   "schemaVersion": 2,
-  "createdAt": "2025-01-01T00:00:00.000Z",
-  "updatedAt": "2026-07-16T22:02:23.800Z",
-  "digitizationStatus": "stub"
+  "createdAt": "2026-07-17T00:00:00.000Z",
+  "updatedAt": "2026-07-17T00:00:00.000Z"
 }

@@ -1,0 +1,24 @@
+[
+  {
+    "id": "r-v1-them-21",
+    "from": "hadith-bukhari-2",
+    "to": "concept-wahy",
+    "type": "thematic_link",
+    "generated": false,
+    "metadata": {
+      "note_en": "Direct account of the modes of revelation.",
+      "note_ar": "بيان مباشر لكيفيات الوحي."
+    }
+  },
+  {
+    "id": "r-v1-them-22",
+    "from": "hadith-bukhari-3",
+    "to": "concept-wahy",
+    "type": "thematic_link",
+    "generated": false,
+    "metadata": {
+      "note_en": "Foundational account of how revelation began.",
+      "note_ar": "بيان تأسيسي لبدء الوحي."
+    }
+  }
+]

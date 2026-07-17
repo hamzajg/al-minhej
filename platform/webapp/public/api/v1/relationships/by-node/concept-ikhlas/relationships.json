@@ -1,20 +1,24 @@
 [
   {
-    "id": "r-hadith1-ikhlas",
-    "from": "hadith-1",
+    "id": "r-v1-core-15",
+    "from": "hadith-bukhari-1",
     "to": "concept-ikhlas",
     "type": "core_concept",
+    "generated": false,
     "metadata": {
       "note_en": "Ikhlas — purifying intention.",
       "note_ar": "الإخلاص — تصفية النية."
-    },
-    "generated": false
+    }
   },
   {
-    "id": "r-hadith4-ikhlas",
-    "from": "hadith-4",
+    "id": "r-v1-core-16",
+    "from": "hadith-arbain-1",
     "to": "concept-ikhlas",
     "type": "core_concept",
-    "generated": false
+    "generated": false,
+    "metadata": {
+      "note_en": "Ikhlas — purifying intention.",
+      "note_ar": "الإخلاص — تصفية النية."
+    }
   }
 ]
