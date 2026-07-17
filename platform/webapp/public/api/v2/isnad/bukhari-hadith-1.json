@@ -1,0 +1,17 @@
+{
+  "primary": {
+    "id": "isnad-bukhari-hadith-1-primary",
+    "hadithId": "hadith-bukhari-1",
+    "role": "primary",
+    "links": [
+      { "narratorId": "narrator-humaydi", "position": 0, "transmissionNote": { "ar": "حَدَّثَنَا", "en": "He narrated to us" } },
+      { "narratorId": "narrator-sufyan-uyaynah", "position": 1, "transmissionNote": { "ar": "حَدَّثَنَا", "en": "He narrated to us" } },
+      { "narratorId": "narrator-yahya-ansari", "position": 2, "transmissionNote": { "ar": "حَدَّثَنَا", "en": "He narrated to us" } },
+      { "narratorId": "narrator-muhammad-ibrahim", "position": 3, "transmissionNote": { "ar": "أَخْبَرَنِي", "en": "He informed me" } },
+      { "narratorId": "narrator-alqamah", "position": 4, "transmissionNote": { "ar": "يَقُولُ: سَمِعْتُ", "en": "He said: I heard" } },
+      { "narratorId": "narrator-umar", "position": 5, "transmissionNote": { "ar": "عَلَى الْمِنْبَرِ قَالَ: سَمِعْتُ", "en": "Upon the pulpit, said: I heard" } }
+    ],
+    "terminatesAt": { "kind": "narrator-prophet" }
+  },
+  "branches": []
+}

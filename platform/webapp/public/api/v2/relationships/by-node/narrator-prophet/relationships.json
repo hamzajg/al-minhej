@@ -1,0 +1,16 @@
+[
+  {
+    "id": "r-v2-nar-2",
+    "from": "narrator-umar",
+    "to": "narrator-prophet",
+    "type": "NARRATED_BY",
+    "generated": true
+  },
+  {
+    "id": "r-v2-nar-8",
+    "from": "narrator-umar",
+    "to": "narrator-prophet",
+    "type": "NARRATED_BY",
+    "generated": true
+  }
+]

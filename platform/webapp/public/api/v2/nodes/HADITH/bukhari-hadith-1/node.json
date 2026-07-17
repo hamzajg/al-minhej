@@ -1,0 +1,214 @@
+{
+  "id": "hadith-bukhari-1",
+  "type": "HADITH",
+  "slug": "bukhari-hadith-1",
+  "status": "published",
+  "digitizationStatus": "complete",
+  "title": {
+    "ar": "إنما الأعمال بالنيات",
+    "en": "Actions are judged by intentions"
+  },
+  "attributes": {
+    "kind": "hadith",
+    "grade": {
+      "ar": "صحيح البخاري",
+      "en": "Sahih al-Bukhari"
+    },
+    "isnadType": "full"
+  },
+  "content": [
+    {
+      "type": "clauses",
+      "blockVersion": 1,
+      "intro": {
+        "ar": "حَدَّثَنَا الْحُمَيْدِيُّ عَبْدُ اللَّهِ بْنُ الزُّبَيْرِ، قَالَ: حَدَّثَنَا سُفْيَانُ، قَالَ: حَدَّثَنَا يَحْيَى بْنُ سَعِيدٍ الْأَنْصَارِيُّ، قَالَ: أَخْبَرَنِي مُحَمَّدُ بْنُ إِبْرَاهِيمَ التَّيْمِيُّ، أَنَّهُ سَمِعَ عَلْقَمَةَ بْنَ وَقَّاصٍ اللَّيْثِيَّ، يَقُولُ: سَمِعْتُ عُمَرَ بْنَ الْخَطَّابِ رَضِيَ اللَّهُ عَنْهُ عَلَى الْمِنْبَرِ، قَالَ: سَمِعْتُ رَسُولَ اللَّهِ صلى الله عليه وسلم يَقُولُ:",
+        "en": "Al-Humaydi 'Abdullah ibn az-Zubayr narrated to us, he said: Sufyan narrated to us, he said: Yahya ibn Sa'id al-Ansari narrated to us, he said: Muhammad ibn Ibrahim at-Taymi informed me, that he heard 'Alqama ibn Waqqas al-Laythi say: I heard 'Umar ibn al-Khattab — may God be pleased with him — upon the pulpit, saying: I heard the Messenger of God ﷺ say:"
+      },
+      "items": [
+        {
+          "id": "c1",
+          "text": {
+            "ar": "إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ،",
+            "en": "Actions are only judged by the intentions behind them,"
+          }
+        },
+        {
+          "id": "c2",
+          "text": {
+            "ar": "وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى،",
+            "en": "and every person will be credited only for what they intended."
+          }
+        },
+        {
+          "id": "c3",
+          "text": {
+            "ar": "فَمَنْ كَانَتْ هِجْرَتُهُ إِلَى دُنْيَا يُصِيبُهَا، أَوْ إِلَى امْرَأَةٍ يَنْكِحُهَا،",
+            "en": "So whoever's emigration was for some worldly gain he sought, or to marry a woman,"
+          }
+        },
+        {
+          "id": "c4",
+          "text": {
+            "ar": "فَهِجْرَتُهُ إِلَى مَا هَاجَرَ إِلَيْهِ",
+            "en": "their emigration counts only for what they emigrated for."
+          }
+        }
+      ]
+    },
+    {
+      "type": "vocabulary",
+      "blockVersion": 1,
+      "entries": [
+        {
+          "id": "amal",
+          "word": "الْأَعْمَالُ",
+          "root": "ع-م-ل",
+          "pron": "al-a'māl",
+          "occurrences": [1],
+          "gloss": {
+            "ar": "الأفعال والتصرفات",
+            "en": "deeds, actions"
+          }
+        },
+        {
+          "id": "niyyat",
+          "word": "النِّيَّاتِ",
+          "root": "ن-و-ي",
+          "pron": "an-niyyāt",
+          "occurrences": [1],
+          "gloss": {
+            "ar": "القصد الباطن للفعل",
+            "en": "intentions"
+          }
+        },
+        {
+          "id": "imri",
+          "word": "امْرِئٍ",
+          "root": "م-ر-أ",
+          "pron": "imri'in",
+          "occurrences": [2],
+          "gloss": {
+            "ar": "الشخص أو الفرد",
+            "en": "a person, individual"
+          }
+        },
+        {
+          "id": "hijra",
+          "word": "هِجْرَتُهُ",
+          "root": "ه-ج-ر",
+          "pron": "hijratuhu",
+          "occurrences": [3, 4],
+          "gloss": {
+            "ar": "هجرته، انتقاله",
+            "en": "his emigration"
+          }
+        },
+        {
+          "id": "yankih",
+          "word": "يَنْكِحُهَا",
+          "root": "ن-ك-ح",
+          "pron": "yankiḥuhā",
+          "occurrences": [3],
+          "gloss": {
+            "ar": "يتزوج بها",
+            "en": "to marry her"
+          }
+        }
+      ]
+    },
+    {
+      "type": "commentary",
+      "blockVersion": 1,
+      "scholar": {
+        "ar": "ابن حجر العسقلاني",
+        "en": "Ibn Hajar al-Asqalani"
+      },
+      "workNodeId": "book-bukhari",
+      "note": {
+        "ar": "افتتح البخاري صحيحه كله بهذا الحديث، مشيرًا إلى أن قيمة كل عبادة منقولة تُحسم أولًا من جهة النية.",
+        "en": "Bukhari opens his entire Sahih with this narration, signalling that the worth of every reported act of worship is settled first at the level of intention."
+      }
+    },
+    {
+      "type": "context",
+      "blockVersion": 1,
+      "title": {
+        "ar": "لماذا افتتح به البخاري؟",
+        "en": "Why does Bukhari open with it?"
+      },
+      "body": {
+        "ar": "هو ميزان الدين كله: قد يفعل اثنان الفعل الظاهر نفسه فيخرجان بنتيجتين مختلفتين، لأن الموزون هو الدافع الخفي وحده.",
+        "en": "It is the hinge of the whole religion: two people may perform the identical outward deed and leave with entirely different reward, because only the unseen motive is being weighed."
+      }
+    },
+    {
+      "type": "ai_context",
+      "blockVersion": 1,
+      "items": [
+        {
+          "key": "explain_12",
+          "question": {
+            "en": "What is this hadith really saying?"
+          },
+          "answer": {
+            "ar": "النية هي الفاتورة المرفقة بكل عمل — فهي ما يُحاسَب عليه المرء فعليًا. قد يقوم شخصان بنفس الفعل الظاهر، لكنهما يخرجان بنتيجتين مختلفتين، لأن قيمة العمل تُقاس بما قصده صاحبه.",
+            "en": "Intention is the invoice attached to every action — it's what's actually being billed. Two people doing the same visible act can walk away with entirely different results, because the deed is only ever worth what they meant by it."
+          }
+        },
+        {
+          "key": "practical_example",
+          "question": {
+            "en": "Can you give a practical example?"
+          },
+          "answer": {
+            "ar": "طالبان يذاكران في نفس الليلة — أحدهما ليفهم فعلًا ويفيد غيره، والآخر فقط ليتباهى بالدرجة. الفعل نفسه، لكن النية مختلفة، والوزن مختلف.",
+            "en": "Two students study the same night — one to genuinely understand and help others, one only to show off a grade. Same action, different intention, different weight."
+          }
+        },
+        {
+          "key": "why_chain",
+          "question": {
+            "en": "Why is the chain (isnad) shown?"
+          },
+          "answer": {
+            "ar": "السند هو الطريقة التي تحقّق بها العلماء من وصول القول فعلًا إلى النبي ﷺ بشكل موثوق — بالتأكد أن كل حلقة كانت أمينة ودقيقة، جيلًا بعد جيل.",
+            "en": "The chain (isnad) is how scholars verified a saying actually reached the Prophet ﷺ reliably — checking that every link was trustworthy and precise, generation by generation."
+          }
+        }
+      ]
+    },
+    {
+      "type": "quiz",
+      "blockVersion": 1,
+      "questions": [
+        {
+          "question": {
+            "ar": "ما الذي يحدد قيمة العمل؟",
+            "en": "What determines the value of an action?"
+          },
+          "options": [
+            { "id": "o1", "text": { "ar": "حجمه الظاهر", "en": "Its visible size" } },
+            { "id": "o2", "text": { "ar": "النية وراءه", "en": "The intention behind it" } },
+            { "id": "o3", "text": { "ar": "من يشهده", "en": "Who witnesses it" } }
+          ],
+          "correctOptionId": "o2"
+        },
+        {
+          "question": {
+            "ar": "ما المثال الذي يستخدمه الحديث لاختلاط النية؟",
+            "en": "What example does the hadith use for mixed intentions?"
+          },
+          "options": [
+            { "id": "o1", "text": { "ar": "الصلاة العلنية", "en": "Public prayer" } },
+            { "id": "o2", "text": { "ar": "الهجرة", "en": "Emigration (hijrah)" } },
+            { "id": "o3", "text": { "ar": "الصدقة السرية", "en": "Anonymous charity" } }
+          ],
+          "correctOptionId": "o2"
+        }
+      ]
+    }
+  ],
+  "schemaVersion": 2,
+  "createdAt": "2026-07-17T00:00:00.000Z",
+  "updatedAt": "2026-07-17T00:00:00.000Z"
+}

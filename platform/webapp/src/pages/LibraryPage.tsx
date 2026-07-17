@@ -1,33 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Library, Lock, Search, Moon, Sun } from "lucide-react";
+import { Library, Search, Moon, Sun } from "lucide-react";
 import { useSettings } from "@/context/SettingsContext";
-
-const SHELF_BOOKS = [
-  { id: "bukhari", slug: "sahih-al-bukhari", ar: "صحيح البخاري", en: "Sahih al-Bukhari", authorAr: "الإمام البخاري", authorEn: "Imam al-Bukhari", total: "7,563", unitAr: "حديث", unitEn: "hadith", active: true },
-  { id: "muslim", slug: "sahih-muslim", ar: "صحيح مسلم", en: "Sahih Muslim", authorAr: "الإمام مسلم", authorEn: "Imam Muslim", total: "7,500", unitAr: "حديث", unitEn: "hadith", active: true },
-  { id: "sharh-arbain", slug: "sharh-al-arbain", ar: "شرح الأربعين النووية", en: "Sharh al-Arba'in", authorAr: "الإمام النووي", authorEn: "Imam an-Nawawi", total: "42", unitAr: "شرح", unitEn: "commentaries", active: true },
-  { id: "jami-ulum", slug: "jami-al-ulum-wal-hikam", ar: "جامع العلوم والحكم", en: "Jami' al-'Ulum", authorAr: "ابن رجب", authorEn: "Ibn Rajab", total: "50", unitAr: "باب", unitEn: "chapters", active: true },
-  { id: "fathalbari", slug: "fath-al-bari", ar: "فتح الباري", en: "Fath al-Bari", authorAr: "ابن حجر", authorEn: "Ibn Hajar", total: "9,200", unitAr: "صفحة", unitEn: "pages", active: true },
-  { id: "tabaqat", slug: "al-tabaqat-al-kubra", ar: "الطبقات الكبرى", en: "Al-Tabaqat al-Kubra", authorAr: "ابن سعد", authorEn: "Ibn Sa'd", total: "4,250", unitAr: "ترجمة", unitEn: "biographies", active: true },
-  { id: "bidayah", slug: "al-bidayah-wan-nihayah", ar: "البداية والنهاية", en: "Al-Bidayah wa'n-Nihayah", authorAr: "ابن كثير", authorEn: "Ibn Kathir", total: "14", unitAr: "مجلد", unitEn: "volumes", active: true },
-];
+import { knowledgeRepository } from "@/application/container";
+import type { KnowledgeNode } from "@/domain/types";
 
 export default function LibraryPage() {
   const { t, uiLang, dir, dark, setUiLang, toggleDark } = useSettings();
   const navigate = useNavigate();
-  const [toast, setToast] = useState<string | null>(null);
+  const [books, setBooks] = useState<KnowledgeNode[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const showToast = (message: string) => {
-    setToast(message);
-    setTimeout(() => setToast(null), 2400);
-  };
+  useEffect(() => {
+    let cancelled = false;
+    knowledgeRepository.listByType("BOOK").then((list) => {
+      if (!cancelled) {
+        setBooks(list);
+        setLoading(false);
+      }
+    });
+    return () => { cancelled = true; };
+  }, []);
 
-  const openBook = (book: typeof SHELF_BOOKS[0]) => {
-    if (!book.active) {
-      showToast(t.bookNotOpen);
-      return;
-    }
+  const openBook = (book: KnowledgeNode) => {
     navigate(`/reading/book/${book.slug}/page/1`);
   };
 
@@ -89,34 +84,36 @@ export default function LibraryPage() {
           </div>
 
           <div className="grid gap-4" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))" }}>
-            {SHELF_BOOKS.map((book) => (
-              <button key={book.id} onClick={() => openBook(book)} className="book-card"
-                style={{ textAlign: "start", cursor: "pointer", border: "1px solid var(--color-line)", borderRadius: 14, background: "var(--color-panel)", padding: 0, overflow: "hidden", opacity: book.active ? 1 : 0.6 }}>
-                <div className="h-[90px] flex items-center justify-center relative" style={{ background: "linear-gradient(135deg, var(--color-emerald), color-mix(in srgb, var(--color-emerald) 80%, transparent))" }}>
-                  <span className="font-arabic text-[22px]" style={{ color: "var(--color-gold)" }}>{book.ar.slice(0, 1)}</span>
-                  {!book.active && (
-                    <div className="absolute top-2 inset-inline-end-2 w-[22px] h-[22px] rounded-full grid place-items-center" style={{ background: "rgba(0,0,0,.35)" }}>
-                      <Lock size={11} color="#fff" />
-                    </div>
-                  )}
-                </div>
-                <div style={{ padding: 12 }}>
-                  <div className="text-[12.5px] font-bold mb-1" style={{ lineHeight: 1.35, color: "var(--color-ink)" }}>{uiLang === "ar" ? book.ar : book.en}</div>
-                  <div className="text-[10px] mb-1.5" style={{ color: "var(--color-sub)" }}>{uiLang === "ar" ? book.authorAr : book.authorEn}</div>
-                  <div className="text-[9.5px]" style={{ color: "var(--color-gold)" }}>{book.total} {uiLang === "ar" ? book.unitAr : book.unitEn}</div>
-                </div>
-              </button>
-            ))}
+            {loading && (
+              <div className="text-[12px]" style={{ color: "var(--color-sub)" }}>{uiLang === "ar" ? "جارٍ التحميل…" : "Loading…"}</div>
+            )}
+            {!loading && books.length === 0 && (
+              <div className="text-[12px]" style={{ color: "var(--color-sub)" }}>{uiLang === "ar" ? "لا توجد كتب." : "No books available."}</div>
+            )}
+            {books.map((book) => {
+              const attrs = book.attributes.kind === "book" ? book.attributes : null;
+              const title = book.title[uiLang] ?? book.title.en;
+              const author = attrs?.author ? (attrs.author[uiLang] ?? attrs.author.en) : "";
+              const total = attrs?.digitization ? attrs.digitization.totalUnits : 0;
+              const unit = attrs?.digitization?.unit ? (attrs.digitization.unit[uiLang] ?? attrs.digitization.unit.en) : "";
+              const initial = (book.title.ar ?? title).slice(0, 1);
+              return (
+                <button key={book.id} onClick={() => openBook(book)} className="book-card"
+                  style={{ textAlign: "start", cursor: "pointer", border: "1px solid var(--color-line)", borderRadius: 14, background: "var(--color-panel)", padding: 0, overflow: "hidden", opacity: 1 }}>
+                  <div className="h-[90px] flex items-center justify-center relative" style={{ background: "linear-gradient(135deg, var(--color-emerald), color-mix(in srgb, var(--color-emerald) 80%, transparent))" }}>
+                    <span className="font-arabic text-[22px]" style={{ color: "var(--color-gold)" }}>{initial}</span>
+                  </div>
+                  <div style={{ padding: 12 }}>
+                    <div className="text-[12.5px] font-bold mb-1" style={{ lineHeight: 1.35, color: "var(--color-ink)" }}>{title}</div>
+                    <div className="text-[10px] mb-1.5" style={{ color: "var(--color-sub)" }}>{author}</div>
+                    <div className="text-[9.5px]" style={{ color: "var(--color-gold)" }}>{total.toLocaleString()} {unit}</div>
+                  </div>
+                </button>
+              );
+            })}
           </div>
         </div>
       </div>
-
-      {toast && (
-        <div className="fixed top-[66px] inset-x-1/2 -translate-x-1/2 z-[99] px-[18px] py-[10px] rounded-full text-xs whitespace-nowrap animate-[toastInLib_0.25s_ease]"
-          style={{ background: "var(--color-ink)", color: "var(--color-bg)", boxShadow: "0 12px 30px -10px rgba(0,0,0,.4)" }}>
-          {toast}
-        </div>
-      )}
     </div>
   );
 }

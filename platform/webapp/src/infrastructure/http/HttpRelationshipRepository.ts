@@ -1,7 +1,7 @@
 import type { RelationshipRepository } from "@/domain/repositories";
 import type { Relationship } from "@/domain/types";
 
-const API_BASE = "/api/v1";
+const API_BASE = import.meta.env.VITE_API_BASE ?? "/api/v2";
 
 let cachedRelationships: Relationship[] | null = null;
 

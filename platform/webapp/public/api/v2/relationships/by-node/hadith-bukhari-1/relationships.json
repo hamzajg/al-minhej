@@ -1,0 +1,54 @@
+[
+  {
+    "id": "r-v2-part-12",
+    "from": "hadith-bukhari-1",
+    "to": "book-bukhari",
+    "type": "PART_OF",
+    "generated": true,
+    "metadata": {
+      "locator_en": "Book 1, Hadith 1",
+      "locator_ar": "الكتاب ١، الحديث ١"
+    }
+  },
+  {
+    "id": "r-v2-expl-14",
+    "from": "book-bukhari",
+    "to": "hadith-bukhari-1",
+    "type": "EXPLAINS",
+    "generated": true
+  },
+  {
+    "id": "r-v2-core-15",
+    "from": "hadith-bukhari-1",
+    "to": "concept-ikhlas",
+    "type": "core_concept",
+    "generated": false,
+    "metadata": {
+      "note_en": "Ikhlas — purifying intention.",
+      "note_ar": "الإخلاص — تصفية النية."
+    }
+  },
+  {
+    "id": "r-v2-ref-17",
+    "from": "hadith-bukhari-1",
+    "to": "verse-bayyinah",
+    "type": "REFERENCES",
+    "generated": false,
+    "metadata": {
+      "note_en": "Commands sincerity of purpose in worship.",
+      "note_ar": "تأمر بالإخلاص في العبادة.",
+      "verse_ar": "وَمَا أُمِرُوا إِلَّا لِيَعْبُدُوا اللَّهَ مُخْلِصِينَ لَهُ الدِّينَ"
+    }
+  },
+  {
+    "id": "r-v2-ctx-19",
+    "from": "hadith-bukhari-1",
+    "to": "event-hijra",
+    "type": "contextual",
+    "generated": false,
+    "metadata": {
+      "note_en": "The hijrah — the example used in the hadith.",
+      "note_ar": "الهجرة — المثال الذي يستخدمه الحديث."
+    }
+  }
+]

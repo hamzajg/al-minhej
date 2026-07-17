@@ -1,0 +1,30 @@
+[
+  {
+    "id": "r-v2-nar-1",
+    "from": "narrator-nawawi",
+    "to": "narrator-umar",
+    "type": "NARRATED_BY",
+    "generated": true
+  },
+  {
+    "id": "r-v2-nar-2",
+    "from": "narrator-umar",
+    "to": "narrator-prophet",
+    "type": "NARRATED_BY",
+    "generated": true
+  },
+  {
+    "id": "r-v2-nar-7",
+    "from": "narrator-alqamah",
+    "to": "narrator-umar",
+    "type": "NARRATED_BY",
+    "generated": true
+  },
+  {
+    "id": "r-v2-nar-8",
+    "from": "narrator-umar",
+    "to": "narrator-prophet",
+    "type": "NARRATED_BY",
+    "generated": true
+  }
+]

@@ -1,0 +1,34 @@
+{
+  "id": "book-arbain",
+  "type": "BOOK",
+  "slug": "al-arbain-al-nawawiyya",
+  "status": "published",
+  "digitizationStatus": "partial",
+  "title": {
+    "ar": "الأربعون النووية",
+    "en": "Al-Arba'un an-Nawawiyya (An-Nawawi's Forty Hadith)"
+  },
+  "attributes": {
+    "kind": "book",
+    "author": {
+      "ar": "الإمام النووي",
+      "en": "Imam Yahya ibn Sharaf an-Nawawi"
+    },
+    "eraLabel": {
+      "ar": "631–676 هـ",
+      "en": "631–676 AH"
+    },
+    "digitization": {
+      "totalUnits": 42,
+      "authoredUnits": 1,
+      "unit": {
+        "ar": "حديث",
+        "en": "hadith"
+      }
+    }
+  },
+  "content": [],
+  "schemaVersion": 2,
+  "createdAt": "2026-07-17T00:00:00.000Z",
+  "updatedAt": "2026-07-17T00:00:00.000Z"
+}

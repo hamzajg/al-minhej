@@ -1,0 +1,18 @@
+{
+  "id": "narrator-alqamah",
+  "type": "NARRATOR",
+  "slug": "alqamah-ibn-waqqas",
+  "status": "published",
+  "digitizationStatus": "complete",
+  "title": { "ar": "علقمة بن وقاص اللَّيْثِي", "en": "'Alqama ibn Waqqas al-Laythi" },
+  "attributes": {
+    "kind": "narrator",
+    "dateDeath": "c. 80 AH",
+    "grade": { "ar": "ثقة", "en": "Thiqah (trustworthy)" },
+    "isnadDepth": 2
+  },
+  "content": [],
+  "schemaVersion": 2,
+  "createdAt": "2026-07-17T00:00:00.000Z",
+  "updatedAt": "2026-07-17T00:00:00.000Z"
+}

@@ -1,0 +1,171 @@
+{
+  "id": "hadith-arbain-1",
+  "type": "HADITH",
+  "slug": "arbain-1",
+  "status": "published",
+  "digitizationStatus": "complete",
+  "title": {
+    "ar": "إنما الأعمال بالنيات",
+    "en": "Actions are judged by intentions"
+  },
+  "attributes": {
+    "kind": "hadith",
+    "grade": {
+      "ar": "متفق عليه (البخاري ومسلم)",
+      "en": "Agreed upon (al-Bukhari and Muslim)"
+    },
+    "isnadType": "short"
+  },
+  "content": [
+    {
+      "type": "clauses",
+      "blockVersion": 1,
+      "intro": {
+        "ar": "عَنْ أَمِيرِ الْمُؤْمِنِينَ أَبِي حَفْصٍ عُمَرَ بْنِ الْخَطَّابِ رَضِيَ اللَّهُ عَنْهُ قَالَ: سَمِعْتُ رَسُولَ اللَّهِ صلى الله عليه وسلم يَقُولُ:",
+        "en": "On the authority of the Commander of the Faithful, Abu Hafs 'Umar ibn al-Khattab — may God be pleased with him — who said: I heard the Messenger of God ﷺ say:"
+      },
+      "items": [
+        {
+          "id": "c1",
+          "text": {
+            "ar": "إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ،",
+            "en": "Actions are only judged by the intentions behind them,"
+          }
+        },
+        {
+          "id": "c2",
+          "text": {
+            "ar": "وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى،",
+            "en": "and every person will be credited only for what they intended."
+          }
+        },
+        {
+          "id": "c3",
+          "text": {
+            "ar": "فَمَنْ كَانَتْ هِجْرَتُهُ إِلَى اللَّهِ وَرَسُولِهِ",
+            "en": "So whoever's emigration was for the sake of God and His Messenger,"
+          }
+        },
+        {
+          "id": "c4",
+          "text": {
+            "ar": "فَهِجْرَتُهُ إِلَى اللَّهِ وَرَسُولِهِ،",
+            "en": "their emigration counts for God and His Messenger."
+          }
+        },
+        {
+          "id": "c5",
+          "text": {
+            "ar": "وَمَنْ كَانَتْ هِجْرَتُهُ لِدُنْيَا يُصِيبُهَا أَوِ امْرَأَةٍ يَنْكِحُهَا",
+            "en": "And whoever's emigration was for some worldly gain, or to marry a woman,"
+          }
+        },
+        {
+          "id": "c6",
+          "text": {
+            "ar": "فَهِجْرَتُهُ إِلَى مَا هَاجَرَ إِلَيْهِ",
+            "en": "their emigration counts only for what they emigrated for."
+          }
+        }
+      ]
+    },
+    {
+      "type": "vocabulary",
+      "blockVersion": 1,
+      "entries": [
+        {
+          "id": "amal",
+          "word": "الْأَعْمَالُ",
+          "root": "ع-م-ل",
+          "pron": "al-a'māl",
+          "occurrences": [1],
+          "gloss": { "ar": "الأفعال والتصرفات", "en": "deeds, actions" }
+        },
+        {
+          "id": "niyyat",
+          "word": "النِّيَّاتِ",
+          "root": "ن-و-ي",
+          "pron": "an-niyyāt",
+          "occurrences": [1],
+          "gloss": { "ar": "القصد الباطن للفعل", "en": "by intentions" }
+        },
+        {
+          "id": "hijra",
+          "word": "هِجْرَتُهُ",
+          "root": "ه-ج-ر",
+          "pron": "hijratuhu",
+          "occurrences": [3, 4, 5, 6],
+          "gloss": { "ar": "هجرته، انتقاله", "en": "his emigration" }
+        }
+      ]
+    },
+    {
+      "type": "commentary",
+      "blockVersion": 1,
+      "scholar": {
+        "ar": "الإمام النووي",
+        "en": "Imam an-Nawawi"
+      },
+      "workNodeId": "book-arbain",
+      "note": {
+        "ar": "يفتتح مجموعته من الأربعين حديثًا بهذا الحديث، ويصفه بأنه ثلث العلم — لأن كل عمل عبادة يُحكم عليه أولًا من جهة النية.",
+        "en": "He opens his collection of forty hadith with this narration, calling it a third of all knowledge — every act of worship is judged first at the level of intention."
+      }
+    },
+    {
+      "type": "context",
+      "blockVersion": 1,
+      "title": {
+        "ar": "لماذا الهجرة تحديدًا؟",
+        "en": "Why hijrah, specifically?"
+      },
+      "body": {
+        "ar": "كانت الهجرة أغلى ما يمكن أن يقدّمه المؤمن. اختيارها مثالًا يجعل الفكرة لا لبس فيها: إن كانت الهجرة نفسها تُفرَّغ من قيمتها بسبب الدافع، فلا شيء يُستثنى.",
+        "en": "Hijrah was the costliest act a believer could make. Using it as the example makes the point unmissable: if even that can be emptied by motive, nothing is exempt."
+      }
+    },
+    {
+      "type": "ai_context",
+      "blockVersion": 1,
+      "items": [
+        {
+          "key": "explain_12",
+          "question": { "en": "What is this hadith really saying?" },
+          "answer": {
+            "ar": "النية هي الفاتورة المرفقة بكل عمل. قد يقوم شخصان بنفس الفعل الظاهر، لكنهما يخرجان بنتيجتين مختلفتين تمامًا، لأن قيمة العمل تُقاس بما قصده صاحبه.",
+            "en": "Intention is the invoice attached to every action. Two people doing the same visible act can walk away with entirely different results, because the deed is only ever worth what they meant by it."
+          }
+        },
+        {
+          "key": "why_chain",
+          "question": { "en": "Why is this hadith so foundational?" },
+          "answer": {
+            "ar": "قال الإمام الشافعي إن هذا الحديث ثلث العلم، لأن أعمال الإنسان تشمل قلبه ولسانه وجوارحه، فالنية في القلب هي ثلث العمل.",
+            "en": "Imam ash-Shafi'i said this hadith constitutes a third of all knowledge, because human action involves the heart, the tongue and the limbs — and intention in the heart is one third of action."
+          }
+        }
+      ]
+    },
+    {
+      "type": "quiz",
+      "blockVersion": 1,
+      "questions": [
+        {
+          "question": {
+            "ar": "ما الذي يحدد قيمة العمل؟",
+            "en": "What determines the value of an action?"
+          },
+          "options": [
+            { "id": "o1", "text": { "ar": "حجمه الظاهر", "en": "Its visible size" } },
+            { "id": "o2", "text": { "ar": "النية وراءه", "en": "The intention behind it" } },
+            { "id": "o3", "text": { "ar": "من يشهده", "en": "Who witnesses it" } }
+          ],
+          "correctOptionId": "o2"
+        }
+      ]
+    }
+  ],
+  "schemaVersion": 2,
+  "createdAt": "2026-07-17T00:00:00.000Z",
+  "updatedAt": "2026-07-17T00:00:00.000Z"
+}

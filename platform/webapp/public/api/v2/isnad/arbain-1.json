@@ -1,0 +1,13 @@
+{
+  "primary": {
+    "id": "isnad-arbain-1-primary",
+    "hadithId": "hadith-arbain-1",
+    "role": "primary",
+    "links": [
+      { "narratorId": "narrator-nawawi", "position": 0, "transmissionNote": { "ar": "رَوَاهُ", "en": "He compiled it in" } },
+      { "narratorId": "narrator-umar", "position": 1, "transmissionNote": { "ar": "عَنْ ... قَالَ: سَمِعْتُ", "en": "On the authority of ... who said: I heard" } }
+    ],
+    "terminatesAt": { "kind": "narrator-prophet" }
+  },
+  "branches": []
+}

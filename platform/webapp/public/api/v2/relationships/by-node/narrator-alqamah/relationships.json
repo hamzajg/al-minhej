@@ -1,0 +1,16 @@
+[
+  {
+    "id": "r-v2-nar-6",
+    "from": "narrator-muhammad-ibrahim",
+    "to": "narrator-alqamah",
+    "type": "NARRATED_BY",
+    "generated": true
+  },
+  {
+    "id": "r-v2-nar-7",
+    "from": "narrator-alqamah",
+    "to": "narrator-umar",
+    "type": "NARRATED_BY",
+    "generated": true
+  }
+]

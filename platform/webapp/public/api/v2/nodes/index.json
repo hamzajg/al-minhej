@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 2,
+  "builtAt": "2026-07-17T08:43:33.911Z",
+  "source": "public/api/v2/nodes",
+  "layout": "public/api/v2/nodes/<TYPE>/<slug>/node.json",
+  "counts": {
+    "BOOK": 2,
+    "CONCEPT": 1,
+    "EVENT": 1,
+    "HADITH": 2,
+    "NARRATOR": 8,
+    "PAGE": 2,
+    "VERSE": 1
+  },
+  "total": 17,
+  "nodes": [
+    {
+      "type": "BOOK",
+      "id": "book-arbain",
+      "slug": "al-arbain-al-nawawiyya"
+    },
+    {
+      "type": "BOOK",
+      "id": "book-bukhari",
+      "slug": "sahih-al-bukhari"
+    },
+    {
+      "type": "CONCEPT",
+      "id": "concept-ikhlas",
+      "slug": "ikhlas"
+    },
+    {
+      "type": "EVENT",
+      "id": "event-hijra",
+      "slug": "hijra"
+    },
+    {
+      "type": "HADITH",
+      "id": "hadith-arbain-1",
+      "slug": "arbain-1"
+    },
+    {
+      "type": "HADITH",
+      "id": "hadith-bukhari-1",
+      "slug": "bukhari-hadith-1"
+    },
+    {
+      "type": "NARRATOR",
+      "id": "narrator-humaydi",
+      "slug": "al-humaydi"
+    },
+    {
+      "type": "NARRATOR",
+      "id": "narrator-alqamah",
+      "slug": "alqamah-ibn-waqqas"
+    },
+    {
+      "type": "NARRATOR",
+      "id": "narrator-nawawi",
+      "slug": "an-nawawi"
+    },
+    {
+      "type": "NARRATOR",
+      "id": "narrator-muhammad-ibrahim",
+      "slug": "muhammad-ibn-ibrahim"
+    },
+    {
+      "type": "NARRATOR",
+      "id": "narrator-prophet",
+      "slug": "prophet-muhammad"
+    },
+    {
+      "type": "NARRATOR",
+      "id": "narrator-sufyan-uyaynah",
+      "slug": "sufyan-ibn-uyaynah"
+    },
+    {
+      "type": "NARRATOR",
+      "id": "narrator-umar",
+      "slug": "umar-ibn-al-khattab"
+    },
+    {
+      "type": "NARRATOR",
+      "id": "narrator-yahya-ansari",
+      "slug": "yahya-ibn-said"
+    },
+    {
+      "type": "PAGE",
+      "id": "page-arbain-1",
+      "slug": "arbain-page-1"
+    },
+    {
+      "type": "PAGE",
+      "id": "page-bukhari-1",
+      "slug": "bukhari-page-1"
+    },
+    {
+      "type": "VERSE",
+      "id": "verse-bayyinah",
+      "slug": "bayyinah-98-5"
+    }
+  ]
+}

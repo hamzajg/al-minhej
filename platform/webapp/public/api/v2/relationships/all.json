@@ -1,0 +1,176 @@
+[
+  {
+    "id": "r-v2-nar-1",
+    "from": "narrator-nawawi",
+    "to": "narrator-umar",
+    "type": "NARRATED_BY",
+    "generated": true
+  },
+  {
+    "id": "r-v2-nar-2",
+    "from": "narrator-umar",
+    "to": "narrator-prophet",
+    "type": "NARRATED_BY",
+    "generated": true
+  },
+  {
+    "id": "r-v2-nar-3",
+    "from": "narrator-humaydi",
+    "to": "narrator-sufyan-uyaynah",
+    "type": "NARRATED_BY",
+    "generated": true
+  },
+  {
+    "id": "r-v2-nar-4",
+    "from": "narrator-sufyan-uyaynah",
+    "to": "narrator-yahya-ansari",
+    "type": "NARRATED_BY",
+    "generated": true
+  },
+  {
+    "id": "r-v2-nar-5",
+    "from": "narrator-yahya-ansari",
+    "to": "narrator-muhammad-ibrahim",
+    "type": "NARRATED_BY",
+    "generated": true
+  },
+  {
+    "id": "r-v2-nar-6",
+    "from": "narrator-muhammad-ibrahim",
+    "to": "narrator-alqamah",
+    "type": "NARRATED_BY",
+    "generated": true
+  },
+  {
+    "id": "r-v2-nar-7",
+    "from": "narrator-alqamah",
+    "to": "narrator-umar",
+    "type": "NARRATED_BY",
+    "generated": true
+  },
+  {
+    "id": "r-v2-nar-8",
+    "from": "narrator-umar",
+    "to": "narrator-prophet",
+    "type": "NARRATED_BY",
+    "generated": true
+  },
+  {
+    "id": "r-v2-cont-9",
+    "from": "page-arbain-1",
+    "to": "book-arbain",
+    "type": "contained_in",
+    "generated": true
+  },
+  {
+    "id": "r-v2-part-10",
+    "from": "hadith-arbain-1",
+    "to": "book-arbain",
+    "type": "PART_OF",
+    "generated": true,
+    "metadata": {
+      "locator_en": "Hadith 1",
+      "locator_ar": "الحديث ١"
+    }
+  },
+  {
+    "id": "r-v2-cont-11",
+    "from": "page-bukhari-1",
+    "to": "book-bukhari",
+    "type": "contained_in",
+    "generated": true
+  },
+  {
+    "id": "r-v2-part-12",
+    "from": "hadith-bukhari-1",
+    "to": "book-bukhari",
+    "type": "PART_OF",
+    "generated": true,
+    "metadata": {
+      "locator_en": "Book 1, Hadith 1",
+      "locator_ar": "الكتاب ١، الحديث ١"
+    }
+  },
+  {
+    "id": "r-v2-expl-13",
+    "from": "book-arbain",
+    "to": "hadith-arbain-1",
+    "type": "EXPLAINS",
+    "generated": true
+  },
+  {
+    "id": "r-v2-expl-14",
+    "from": "book-bukhari",
+    "to": "hadith-bukhari-1",
+    "type": "EXPLAINS",
+    "generated": true
+  },
+  {
+    "id": "r-v2-core-15",
+    "from": "hadith-bukhari-1",
+    "to": "concept-ikhlas",
+    "type": "core_concept",
+    "generated": false,
+    "metadata": {
+      "note_en": "Ikhlas — purifying intention.",
+      "note_ar": "الإخلاص — تصفية النية."
+    }
+  },
+  {
+    "id": "r-v2-core-16",
+    "from": "hadith-arbain-1",
+    "to": "concept-ikhlas",
+    "type": "core_concept",
+    "generated": false,
+    "metadata": {
+      "note_en": "Ikhlas — purifying intention.",
+      "note_ar": "الإخلاص — تصفية النية."
+    }
+  },
+  {
+    "id": "r-v2-ref-17",
+    "from": "hadith-bukhari-1",
+    "to": "verse-bayyinah",
+    "type": "REFERENCES",
+    "generated": false,
+    "metadata": {
+      "note_en": "Commands sincerity of purpose in worship.",
+      "note_ar": "تأمر بالإخلاص في العبادة.",
+      "verse_ar": "وَمَا أُمِرُوا إِلَّا لِيَعْبُدُوا اللَّهَ مُخْلِصِينَ لَهُ الدِّينَ"
+    }
+  },
+  {
+    "id": "r-v2-ref-18",
+    "from": "hadith-arbain-1",
+    "to": "verse-bayyinah",
+    "type": "REFERENCES",
+    "generated": false,
+    "metadata": {
+      "note_en": "Commands sincerity of purpose in worship.",
+      "note_ar": "تأمر بالإخلاص في العبادة.",
+      "verse_ar": "وَمَا أُمِرُوا إِلَّا لِيَعْبُدُوا اللَّهَ مُخْلِصِينَ لَهُ الدِّينَ"
+    }
+  },
+  {
+    "id": "r-v2-ctx-19",
+    "from": "hadith-bukhari-1",
+    "to": "event-hijra",
+    "type": "contextual",
+    "generated": false,
+    "metadata": {
+      "note_en": "The hijrah — the example used in the hadith.",
+      "note_ar": "الهجرة — المثال الذي يستخدمه الحديث."
+    }
+  },
+  {
+    "id": "r-v2-ctx-20",
+    "from": "hadith-arbain-1",
+    "to": "event-hijra",
+    "type": "contextual",
+    "generated": false,
+    "metadata": {
+      "note_en": "The hijrah — the example used in the hadith.",
+      "note_ar": "الهجرة — المثال الذي يستخدمه الحديث."
+    }
+  }
+]

@@ -1,0 +1,9 @@
+[
+  {
+    "id": "r-v2-nar-1",
+    "from": "narrator-nawawi",
+    "to": "narrator-umar",
+    "type": "NARRATED_BY",
+    "generated": true
+  }
+]

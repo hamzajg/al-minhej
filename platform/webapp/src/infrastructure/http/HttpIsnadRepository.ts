@@ -1,7 +1,7 @@
 import type { IsnadRepository } from "@/domain/repositories";
 import type { IsnadData } from "@/domain/types";
 
-const API_BASE = "/api/v1";
+const API_BASE = import.meta.env.VITE_API_BASE ?? "/api/v2";
 
 let cache: Record<string, IsnadData> = {};
 

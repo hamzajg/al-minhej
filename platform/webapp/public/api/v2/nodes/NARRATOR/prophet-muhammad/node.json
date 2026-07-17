@@ -1,0 +1,19 @@
+{
+  "id": "narrator-prophet",
+  "type": "NARRATOR",
+  "slug": "prophet-muhammad",
+  "status": "published",
+  "digitizationStatus": "complete",
+  "title": { "ar": "النبي محمد ﷺ", "en": "Prophet Muhammad ﷺ" },
+  "attributes": {
+    "kind": "narrator",
+    "dateBirth": "570 CE",
+    "dateDeath": "632 CE",
+    "grade": { "ar": "—", "en": "—" },
+    "isnadDepth": 0
+  },
+  "content": [],
+  "schemaVersion": 2,
+  "createdAt": "2026-07-17T00:00:00.000Z",
+  "updatedAt": "2026-07-17T00:00:00.000Z"
+}
