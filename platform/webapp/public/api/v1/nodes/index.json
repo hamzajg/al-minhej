@@ -1,16 +1,368 @@
 {
   "schemaVersion": 2,
-  "builtAt": "2026-07-17T04:07:30.454Z",
-  "source": "src/infrastructure/memory/data/nodes.json",
+  "builtAt": "2026-07-17T04:23:37.039Z",
+  "source": "public/api/v1/nodes",
   "layout": "public/api/v1/nodes/<TYPE>/<slug>/node.json",
   "counts": {
-    "HADITH": 20,
-    "VERSE": 2,
+    "BOOK": 7,
     "CONCEPT": 6,
     "EVENT": 1,
+    "HADITH": 20,
     "NARRATOR": 22,
-    "BOOK": 7,
-    "PAGE": 12
+    "PAGE": 12,
+    "VERSE": 2
   },
-  "total": 70
+  "total": 70,
+  "nodes": [
+    {
+      "type": "BOOK",
+      "id": "book-bidayah",
+      "slug": "al-bidayah-wan-nihayah"
+    },
+    {
+      "type": "BOOK",
+      "id": "book-tabaqat",
+      "slug": "al-tabaqat-al-kubra"
+    },
+    {
+      "type": "BOOK",
+      "id": "book-fathalbari",
+      "slug": "fath-al-bari"
+    },
+    {
+      "type": "BOOK",
+      "id": "book-jami-ulum",
+      "slug": "jami-al-ulum-wal-hikam"
+    },
+    {
+      "type": "BOOK",
+      "id": "book-bukhari",
+      "slug": "sahih-al-bukhari"
+    },
+    {
+      "type": "BOOK",
+      "id": "book-muslim",
+      "slug": "sahih-muslim"
+    },
+    {
+      "type": "BOOK",
+      "id": "book-sharh-arbain",
+      "slug": "sharh-al-arbain"
+    },
+    {
+      "type": "CONCEPT",
+      "id": "concept-ikhlas",
+      "slug": "ikhlas"
+    },
+    {
+      "type": "CONCEPT",
+      "id": "concept-riya",
+      "slug": "riya"
+    },
+    {
+      "type": "CONCEPT",
+      "id": "concept-sabr",
+      "slug": "sabr"
+    },
+    {
+      "type": "CONCEPT",
+      "id": "concept-taqwa",
+      "slug": "taqwa"
+    },
+    {
+      "type": "CONCEPT",
+      "id": "concept-tawakkul",
+      "slug": "tawakkul"
+    },
+    {
+      "type": "CONCEPT",
+      "id": "concept-tawbah",
+      "slug": "tawbah"
+    },
+    {
+      "type": "EVENT",
+      "id": "event-hijra",
+      "slug": "hijra"
+    },
+    {
+      "type": "HADITH",
+      "id": "hadith-1",
+      "slug": "arbain-1"
+    },
+    {
+      "type": "HADITH",
+      "id": "hadith-2",
+      "slug": "arbain-2"
+    },
+    {
+      "type": "HADITH",
+      "id": "hadith-3",
+      "slug": "arbain-3"
+    },
+    {
+      "type": "HADITH",
+      "id": "hadith-4",
+      "slug": "arbain-6"
+    },
+    {
+      "type": "HADITH",
+      "id": "hadith-bidayah-1",
+      "slug": "bidayah-1"
+    },
+    {
+      "type": "HADITH",
+      "id": "hadith-5",
+      "slug": "bukhari-hadith-52"
+    },
+    {
+      "type": "HADITH",
+      "id": "hadith-6",
+      "slug": "bukhari-hadith-6951"
+    },
+    {
+      "type": "HADITH",
+      "id": "hadith-bukhari-2",
+      "slug": "bukhari-how-revelation-came"
+    },
+    {
+      "type": "HADITH",
+      "id": "hadith-bukhari-1",
+      "slug": "bukhari-revelation-intentions"
+    },
+    {
+      "type": "HADITH",
+      "id": "hadith-fath-1",
+      "slug": "fath-1"
+    },
+    {
+      "type": "HADITH",
+      "id": "hadith-jami-1",
+      "slug": "jami-1"
+    },
+    {
+      "type": "HADITH",
+      "id": "hadith-muslim-1",
+      "slug": "muslim-1"
+    },
+    {
+      "type": "HADITH",
+      "id": "hadith-9",
+      "slug": "muslim-hadith-2584"
+    },
+    {
+      "type": "HADITH",
+      "id": "hadith-7",
+      "slug": "muslim-hadith-45"
+    },
+    {
+      "type": "HADITH",
+      "id": "hadith-8",
+      "slug": "muslim-hadith-99"
+    },
+    {
+      "type": "HADITH",
+      "id": "hadith-naseeha",
+      "slug": "naseeha"
+    },
+    {
+      "type": "HADITH",
+      "id": "hadith-related-1",
+      "slug": "related-1"
+    },
+    {
+      "type": "HADITH",
+      "id": "hadith-related-2",
+      "slug": "related-2"
+    },
+    {
+      "type": "HADITH",
+      "id": "hadith-tabaqat-1",
+      "slug": "tabaqat-1"
+    },
+    {
+      "type": "HADITH",
+      "id": "hadith-10",
+      "slug": "tirmidhi-hadith-2516"
+    },
+    {
+      "type": "NARRATOR",
+      "id": "narrator-abdrazzaq",
+      "slug": "abd-ar-razzaq-as-sanani"
+    },
+    {
+      "type": "NARRATOR",
+      "id": "narrator-ibn-abbaas",
+      "slug": "abdullah-ibn-abbas"
+    },
+    {
+      "type": "NARRATOR",
+      "id": "narrator-ibn-buraida",
+      "slug": "abdullah-ibn-buraida"
+    },
+    {
+      "type": "NARRATOR",
+      "id": "narrator-ibn-umar",
+      "slug": "abdullah-ibn-umar"
+    },
+    {
+      "type": "NARRATOR",
+      "id": "narrator-aisha",
+      "slug": "aisha-bint-abi-bakr"
+    },
+    {
+      "type": "NARRATOR",
+      "id": "narrator-humaydi",
+      "slug": "al-humaydi"
+    },
+    {
+      "type": "NARRATOR",
+      "id": "narrator-layth",
+      "slug": "al-layth-ibn-sad"
+    },
+    {
+      "type": "NARRATOR",
+      "id": "narrator-alqamah",
+      "slug": "alqamah-ibn-waqqas"
+    },
+    {
+      "type": "NARRATOR",
+      "id": "narrator-ayyub",
+      "slug": "ayyub-as-sakhtiyani"
+    },
+    {
+      "type": "NARRATOR",
+      "id": "narrator-hisham",
+      "slug": "hisham-ibn-urwah"
+    },
+    {
+      "type": "NARRATOR",
+      "id": "narrator-zuhrī",
+      "slug": "ibn-shihab-az-zuhrī"
+    },
+    {
+      "type": "NARRATOR",
+      "id": "narrator-malik",
+      "slug": "malik-ibn-anas"
+    },
+    {
+      "type": "NARRATOR",
+      "id": "narrator-ibrahim",
+      "slug": "muhammad-ibn-ibrahim"
+    },
+    {
+      "type": "NARRATOR",
+      "id": "narrator-prophet",
+      "slug": "prophet-muhammad"
+    },
+    {
+      "type": "NARRATOR",
+      "id": "narrator-shubah",
+      "slug": "shubah-ibn-al-hajjaj"
+    },
+    {
+      "type": "NARRATOR",
+      "id": "narrator-thawri",
+      "slug": "sufyan-ath-thawri"
+    },
+    {
+      "type": "NARRATOR",
+      "id": "narrator-uyaynah",
+      "slug": "sufyan-ibn-uyaynah"
+    },
+    {
+      "type": "NARRATOR",
+      "id": "narrator-tamim",
+      "slug": "tamim-ad-dari"
+    },
+    {
+      "type": "NARRATOR",
+      "id": "narrator-umar",
+      "slug": "umar-ibn-al-khattab"
+    },
+    {
+      "type": "NARRATOR",
+      "id": "narrator-waki",
+      "slug": "waki-ibn-al-jarrah"
+    },
+    {
+      "type": "NARRATOR",
+      "id": "narrator-yahya",
+      "slug": "yahya-ibn-said"
+    },
+    {
+      "type": "NARRATOR",
+      "id": "narrator-qattan",
+      "slug": "yahya-ibn-said-al-qattan"
+    },
+    {
+      "type": "PAGE",
+      "id": "page-bidayah-hijra",
+      "slug": "bidayah-hijra"
+    },
+    {
+      "type": "PAGE",
+      "id": "page-bukhari-1",
+      "slug": "bukhari-page-1"
+    },
+    {
+      "type": "PAGE",
+      "id": "page-bukhari-2",
+      "slug": "bukhari-page-2"
+    },
+    {
+      "type": "PAGE",
+      "id": "page-bukhari-3",
+      "slug": "bukhari-page-3"
+    },
+    {
+      "type": "PAGE",
+      "id": "page-fathalbari-1",
+      "slug": "fathalbari-page-1"
+    },
+    {
+      "type": "PAGE",
+      "id": "page-fathalbari-2",
+      "slug": "fathalbari-page-2"
+    },
+    {
+      "type": "PAGE",
+      "id": "page-jami-1",
+      "slug": "jami-page-1"
+    },
+    {
+      "type": "PAGE",
+      "id": "page-muslim-1",
+      "slug": "muslim-page-1"
+    },
+    {
+      "type": "PAGE",
+      "id": "page-muslim-2",
+      "slug": "muslim-page-2"
+    },
+    {
+      "type": "PAGE",
+      "id": "page-muslim-3",
+      "slug": "muslim-page-3"
+    },
+    {
+      "type": "PAGE",
+      "id": "page-sharh-1",
+      "slug": "sharh-page-1"
+    },
+    {
+      "type": "PAGE",
+      "id": "page-tabaqat-umar",
+      "slug": "tabaqat-umar"
+    },
+    {
+      "type": "VERSE",
+      "id": "verse-bayyinah",
+      "slug": "bayyinah-98-5"
+    },
+    {
+      "type": "VERSE",
+      "id": "verse-isra",
+      "slug": "isra-17-19"
+    }
+  ]
 }

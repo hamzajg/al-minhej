@@ -1003,31 +1003,6 @@
     "digitizationStatus": "complete"
   },
   {
-    "id": "narrator-prophet",
-    "type": "NARRATOR",
-    "slug": "prophet-muhammad",
-    "status": "published",
-    "title": {
-      "ar": "النبي محمد ﷺ",
-      "en": "Prophet Muhammad ﷺ"
-    },
-    "attributes": {
-      "kind": "narrator",
-      "grade": {
-        "ar": "—",
-        "en": "—"
-      },
-      "isnadDepth": 0,
-      "dateBirth": "570-01-01",
-      "dateDeath": "632-01-01"
-    },
-    "content": [],
-    "schemaVersion": 2,
-    "createdAt": "2025-01-01T00:00:00.000Z",
-    "updatedAt": "2026-07-16T22:02:23.800Z",
-    "digitizationStatus": "stub"
-  },
-  {
     "id": "narrator-umar",
     "type": "NARRATOR",
     "slug": "umar-ibn-al-khattab",
@@ -3172,6 +3147,75 @@
       "dateDeath": "693-01-01"
     },
     "content": [],
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "stub"
+  },
+  {
+    "id": "bukhari-page-1",
+    "type": "PAGE",
+    "slug": "bukhari-page-1",
+    "status": "published",
+    "title": {
+      "ar": "صفحة ١",
+      "en": "Page 1"
+    },
+    "attributes": {
+      "kind": "page",
+      "bookId": "bukhari",
+      "pageNum": 1,
+      "hadithIds": [
+        "hadith-1",
+        "hadith-2"
+      ]
+    },
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "stub"
+  },
+  {
+    "id": "bukhari-page-2",
+    "type": "PAGE",
+    "slug": "bukhari-page-2",
+    "status": "published",
+    "title": {
+      "ar": "صفحة ٢",
+      "en": "Page 2"
+    },
+    "attributes": {
+      "kind": "page",
+      "bookId": "bukhari",
+      "pageNum": 2,
+      "hadithIds": [
+        "hadith-3",
+        "hadith-4"
+      ]
+    },
+    "schemaVersion": 2,
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2026-07-16T22:02:23.800Z",
+    "digitizationStatus": "stub"
+  },
+  {
+    "id": "bukhari-page-3",
+    "type": "PAGE",
+    "slug": "bukhari-page-3",
+    "status": "published",
+    "title": {
+      "ar": "صفحة ٣",
+      "en": "Page 3"
+    },
+    "attributes": {
+      "kind": "page",
+      "bookId": "bukhari",
+      "pageNum": 3,
+      "hadithIds": [
+        "hadith-5",
+        "hadith-6"
+      ]
+    },
     "schemaVersion": 2,
     "createdAt": "2025-01-01T00:00:00.000Z",
     "updatedAt": "2026-07-16T22:02:23.800Z",

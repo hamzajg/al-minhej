@@ -16,12 +16,40 @@
     "slug": "arbain-6"
   },
   {
+    "id": "hadith-bidayah-1",
+    "slug": "bidayah-1"
+  },
+  {
     "id": "hadith-5",
     "slug": "bukhari-hadith-52"
   },
   {
     "id": "hadith-6",
     "slug": "bukhari-hadith-6951"
+  },
+  {
+    "id": "hadith-bukhari-2",
+    "slug": "bukhari-how-revelation-came"
+  },
+  {
+    "id": "hadith-bukhari-1",
+    "slug": "bukhari-revelation-intentions"
+  },
+  {
+    "id": "hadith-fath-1",
+    "slug": "fath-1"
+  },
+  {
+    "id": "hadith-jami-1",
+    "slug": "jami-1"
+  },
+  {
+    "id": "hadith-muslim-1",
+    "slug": "muslim-1"
+  },
+  {
+    "id": "hadith-9",
+    "slug": "muslim-hadith-2584"
   },
   {
     "id": "hadith-7",
@@ -32,12 +60,8 @@
     "slug": "muslim-hadith-99"
   },
   {
-    "id": "hadith-9",
-    "slug": "muslim-hadith-2584"
-  },
-  {
-    "id": "hadith-10",
-    "slug": "tirmidhi-hadith-2516"
+    "id": "hadith-naseeha",
+    "slug": "naseeha"
   },
   {
     "id": "hadith-related-1",
@@ -48,35 +72,11 @@
     "slug": "related-2"
   },
   {
-    "id": "hadith-bukhari-1",
-    "slug": "bukhari-revelation-intentions"
-  },
-  {
-    "id": "hadith-bukhari-2",
-    "slug": "bukhari-how-revelation-came"
-  },
-  {
-    "id": "hadith-muslim-1",
-    "slug": "muslim-1"
-  },
-  {
-    "id": "hadith-naseeha",
-    "slug": "naseeha"
-  },
-  {
-    "id": "hadith-jami-1",
-    "slug": "jami-1"
-  },
-  {
-    "id": "hadith-fath-1",
-    "slug": "fath-1"
-  },
-  {
     "id": "hadith-tabaqat-1",
     "slug": "tabaqat-1"
   },
   {
-    "id": "hadith-bidayah-1",
-    "slug": "bidayah-1"
+    "id": "hadith-10",
+    "slug": "tirmidhi-hadith-2516"
   }
 ]

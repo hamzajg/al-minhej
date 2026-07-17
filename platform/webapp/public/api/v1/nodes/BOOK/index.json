@@ -1,5 +1,21 @@
 [
   {
+    "id": "book-bidayah",
+    "slug": "al-bidayah-wan-nihayah"
+  },
+  {
+    "id": "book-tabaqat",
+    "slug": "al-tabaqat-al-kubra"
+  },
+  {
+    "id": "book-fathalbari",
+    "slug": "fath-al-bari"
+  },
+  {
+    "id": "book-jami-ulum",
+    "slug": "jami-al-ulum-wal-hikam"
+  },
+  {
     "id": "book-bukhari",
     "slug": "sahih-al-bukhari"
   },
@@ -10,21 +26,5 @@
   {
     "id": "book-sharh-arbain",
     "slug": "sharh-al-arbain"
-  },
-  {
-    "id": "book-jami-ulum",
-    "slug": "jami-al-ulum-wal-hikam"
-  },
-  {
-    "id": "book-fathalbari",
-    "slug": "fath-al-bari"
-  },
-  {
-    "id": "book-tabaqat",
-    "slug": "al-tabaqat-al-kubra"
-  },
-  {
-    "id": "book-bidayah",
-    "slug": "al-bidayah-wan-nihayah"
   }
 ]

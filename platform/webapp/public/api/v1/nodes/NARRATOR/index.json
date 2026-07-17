@@ -1,47 +1,35 @@
 [
   {
-    "id": "narrator-prophet",
-    "slug": "prophet-muhammad"
+    "id": "narrator-abdrazzaq",
+    "slug": "abd-ar-razzaq-as-sanani"
   },
   {
-    "id": "narrator-umar",
-    "slug": "umar-ibn-al-khattab"
+    "id": "narrator-ibn-abbaas",
+    "slug": "abdullah-ibn-abbas"
   },
   {
-    "id": "narrator-alqamah",
-    "slug": "alqamah-ibn-waqqas"
+    "id": "narrator-ibn-buraida",
+    "slug": "abdullah-ibn-buraida"
   },
   {
-    "id": "narrator-ibrahim",
-    "slug": "muhammad-ibn-ibrahim"
+    "id": "narrator-ibn-umar",
+    "slug": "abdullah-ibn-umar"
   },
   {
-    "id": "narrator-yahya",
-    "slug": "yahya-ibn-said"
+    "id": "narrator-aisha",
+    "slug": "aisha-bint-abi-bakr"
   },
   {
-    "id": "narrator-thawri",
-    "slug": "sufyan-ath-thawri"
-  },
-  {
-    "id": "narrator-malik",
-    "slug": "malik-ibn-anas"
-  },
-  {
-    "id": "narrator-uyaynah",
-    "slug": "sufyan-ibn-uyaynah"
-  },
-  {
-    "id": "narrator-qattan",
-    "slug": "yahya-ibn-said-al-qattan"
+    "id": "narrator-humaydi",
+    "slug": "al-humaydi"
   },
   {
     "id": "narrator-layth",
     "slug": "al-layth-ibn-sad"
   },
   {
-    "id": "narrator-zuhrī",
-    "slug": "ibn-shihab-az-zuhrī"
+    "id": "narrator-alqamah",
+    "slug": "alqamah-ibn-waqqas"
   },
   {
     "id": "narrator-ayyub",
@@ -52,39 +40,51 @@
     "slug": "hisham-ibn-urwah"
   },
   {
+    "id": "narrator-zuhrī",
+    "slug": "ibn-shihab-az-zuhrī"
+  },
+  {
+    "id": "narrator-malik",
+    "slug": "malik-ibn-anas"
+  },
+  {
+    "id": "narrator-ibrahim",
+    "slug": "muhammad-ibn-ibrahim"
+  },
+  {
+    "id": "narrator-prophet",
+    "slug": "prophet-muhammad"
+  },
+  {
     "id": "narrator-shubah",
     "slug": "shubah-ibn-al-hajjaj"
   },
   {
-    "id": "narrator-waki",
-    "slug": "waki-ibn-al-jarrah"
+    "id": "narrator-thawri",
+    "slug": "sufyan-ath-thawri"
   },
   {
-    "id": "narrator-abdrazzaq",
-    "slug": "abd-ar-razzaq-as-sanani"
-  },
-  {
-    "id": "narrator-ibn-abbaas",
-    "slug": "abdullah-ibn-abbas"
-  },
-  {
-    "id": "narrator-humaydi",
-    "slug": "al-humaydi"
-  },
-  {
-    "id": "narrator-ibn-buraida",
-    "slug": "abdullah-ibn-buraida"
-  },
-  {
-    "id": "narrator-aisha",
-    "slug": "aisha-bint-abi-bakr"
+    "id": "narrator-uyaynah",
+    "slug": "sufyan-ibn-uyaynah"
   },
   {
     "id": "narrator-tamim",
     "slug": "tamim-ad-dari"
   },
   {
-    "id": "narrator-ibn-umar",
-    "slug": "abdullah-ibn-umar"
+    "id": "narrator-umar",
+    "slug": "umar-ibn-al-khattab"
+  },
+  {
+    "id": "narrator-waki",
+    "slug": "waki-ibn-al-jarrah"
+  },
+  {
+    "id": "narrator-yahya",
+    "slug": "yahya-ibn-said"
+  },
+  {
+    "id": "narrator-qattan",
+    "slug": "yahya-ibn-said-al-qattan"
   }
 ]

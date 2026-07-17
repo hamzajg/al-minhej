@@ -9,7 +9,8 @@ async function fetchNodes(): Promise<KnowledgeNode[]> {
   if (cachedNodes) return cachedNodes;
   const res = await fetch(`${API_BASE}/nodes/index.json`);
   if (!res.ok) throw new Error(`Failed to fetch nodes index: ${res.status}`);
-  const entries = (await res.json()) as { id: string; type: string; slug: string }[];
+  const manifest = (await res.json()) as { nodes: { id: string; type: string; slug: string }[] };
+  const entries = manifest.nodes ?? [];
   cachedNodes = await Promise.all(
     entries.map((e) => fetchNode(e.type, e.slug))
   );
