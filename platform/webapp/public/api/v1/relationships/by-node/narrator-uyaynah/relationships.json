@@ -1,0 +1,16 @@
+[
+  {
+    "id": "r-uyaynah-yahya",
+    "from": "narrator-uyaynah",
+    "to": "narrator-yahya",
+    "type": "NARRATED_BY",
+    "generated": true
+  },
+  {
+    "id": "r-uyaynah-muslim",
+    "from": "narrator-uyaynah",
+    "to": "book-muslim",
+    "type": "REFERENCES",
+    "generated": false
+  }
+]

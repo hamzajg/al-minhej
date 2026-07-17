@@ -1,0 +1,24 @@
+{
+  "id": "narrator-alqamah",
+  "type": "NARRATOR",
+  "slug": "alqamah-ibn-waqqas",
+  "status": "published",
+  "title": {
+    "ar": "علقمة بن وقّاص",
+    "en": "'Alqamah ibn Waqqas"
+  },
+  "attributes": {
+    "kind": "narrator",
+    "grade": {
+      "ar": "ثقة",
+      "en": "Thiqah (trustworthy)"
+    },
+    "isnadDepth": 2,
+    "dateDeath": "80-01-01"
+  },
+  "content": [],
+  "schemaVersion": 2,
+  "createdAt": "2025-01-01T00:00:00.000Z",
+  "updatedAt": "2026-07-16T22:02:23.800Z",
+  "digitizationStatus": "stub"
+}

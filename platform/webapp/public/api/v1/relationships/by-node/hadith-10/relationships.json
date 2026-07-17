@@ -1,0 +1,30 @@
+[
+  {
+    "id": "r-hadith10-umar",
+    "from": "hadith-10",
+    "to": "narrator-umar",
+    "type": "NARRATED_BY",
+    "metadata": {
+      "depth": "1"
+    },
+    "generated": true
+  },
+  {
+    "id": "r-hadith10-tirmidhi",
+    "from": "hadith-10",
+    "to": "book-bukhari",
+    "type": "PART_OF",
+    "metadata": {
+      "locator_en": "Book 27, Hadith 200",
+      "locator_ar": "الكتاب ٢٧، الحديث ٢٠٠"
+    },
+    "generated": true
+  },
+  {
+    "id": "r-hadith10-umar-ref",
+    "from": "hadith-10",
+    "to": "narrator-umar",
+    "type": "narrator_in",
+    "generated": true
+  }
+]

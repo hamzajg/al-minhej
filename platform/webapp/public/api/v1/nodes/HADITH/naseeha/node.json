@@ -1,0 +1,117 @@
+{
+  "id": "hadith-naseeha",
+  "type": "HADITH",
+  "slug": "naseeha",
+  "status": "published",
+  "title": {
+    "ar": "الدين النصيحة",
+    "en": "Religion is sincerity"
+  },
+  "attributes": {
+    "kind": "hadith",
+    "grade": {
+      "ar": "صحيح مسلم",
+      "en": "Sahih Muslim"
+    },
+    "isnadType": "short"
+  },
+  "schemaVersion": 2,
+  "content": [
+    {
+      "type": "clauses",
+      "items": [
+        {
+          "id": "1",
+          "text": {
+            "ar": "الدِّينُ النَّصِيحَةُ،",
+            "en": "Religion is sincerity (naseeha),",
+            "fr": "La religion est la sincérité (conseil),",
+            "es": "La religión es sinceridad (consejo),"
+          }
+        },
+        {
+          "id": "2",
+          "text": {
+            "ar": "قُلْنَا: لِمَنْ؟",
+            "en": "We asked: To whom?",
+            "fr": "Nous demandâmes: À qui?",
+            "es": "Preguntamos: ¿Para quién?"
+          }
+        },
+        {
+          "id": "3",
+          "text": {
+            "ar": "قَالَ: لِلَّهِ وَلِكِتَابِهِ وَلِرَسُولِهِ",
+            "en": "He said: To God, to His Book, and to His Messenger,",
+            "fr": "Il dit: À Dieu, à Son Livre et à Son Messager,",
+            "es": "Dijo: A Dios, a Su Libro y a Su Mensajero,"
+          }
+        },
+        {
+          "id": "4",
+          "text": {
+            "ar": "وَلِأَئِمَّةِ الْمُسْلِمِينَ وَعَامَّتِهِمْ",
+            "en": "and to the leaders of the Muslims and their common folk.",
+            "fr": "et aux dirigeants des musulmans et à leur communauté.",
+            "es": "y a los líderes de los musulmanes y a su gente común."
+          }
+        }
+      ],
+      "blockVersion": 1,
+      "intro": {
+        "ar": "عَنْ تَمِيمٍ الدَّارِيِّ أَنَّ رَسُولَ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ قَالَ:",
+        "en": "On the authority of Tamim al-Dari — who said: The Messenger of God ﷺ said:",
+        "fr": "Selon Tamim al-Dari, qui a dit avoir entendu le Messager de Dieu déclarer :",
+        "es": "Según Tamim al-Dari, quien dijo haber oído al Mensajero de Dios decir:"
+      }
+    },
+    {
+      "type": "vocabulary",
+      "entries": [
+        {
+          "id": "deen-n",
+          "word": "الدِّينُ",
+          "root": "د-ي-ن",
+          "pron": "ad-deen",
+          "occurrences": [
+            1
+          ],
+          "gloss": {
+            "ar": "الدين",
+            "en": "religion"
+          }
+        },
+        {
+          "id": "naseeha-n",
+          "word": "النَّصِيحَةُ",
+          "root": "ن-ص-ح",
+          "pron": "an-naseeha",
+          "occurrences": [
+            1
+          ],
+          "gloss": {
+            "ar": "النصح والإخلاص",
+            "en": "sincerity, sincere counsel"
+          }
+        }
+      ],
+      "blockVersion": 1
+    },
+    {
+      "type": "commentary",
+      "scholar": {
+        "ar": "ابن رجب الحنبلي",
+        "en": "Ibn Rajab al-Hanbali"
+      },
+      "workNodeId": "book-jami-ulum",
+      "note": {
+        "en": "Explains that naseeha — sincere advice — is the very substance of the religion: it is owed to God, His Book, His Messenger, and the Muslim community.",
+        "ar": "يوضّح أن النصيحة هي جوهر الدين: حقّها واجب لله ولكتابه ولرسوله وللمسلمين عامتهم وخاصتهم."
+      },
+      "blockVersion": 1
+    }
+  ],
+  "createdAt": "2025-01-01T00:00:00.000Z",
+  "updatedAt": "2026-07-16T22:02:23.800Z",
+  "digitizationStatus": "complete"
+}

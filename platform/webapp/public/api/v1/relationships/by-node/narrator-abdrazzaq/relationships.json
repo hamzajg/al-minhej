@@ -1,0 +1,16 @@
+[
+  {
+    "id": "r-abdrazzaq-yahya",
+    "from": "narrator-abdrazzaq",
+    "to": "narrator-yahya",
+    "type": "NARRATED_BY",
+    "generated": true
+  },
+  {
+    "id": "r-abdrazzaq-muslim",
+    "from": "narrator-abdrazzaq",
+    "to": "book-muslim",
+    "type": "REFERENCES",
+    "generated": false
+  }
+]

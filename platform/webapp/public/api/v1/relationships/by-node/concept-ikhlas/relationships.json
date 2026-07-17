@@ -1,0 +1,20 @@
+[
+  {
+    "id": "r-hadith1-ikhlas",
+    "from": "hadith-1",
+    "to": "concept-ikhlas",
+    "type": "core_concept",
+    "metadata": {
+      "note_en": "Ikhlas — purifying intention.",
+      "note_ar": "الإخلاص — تصفية النية."
+    },
+    "generated": false
+  },
+  {
+    "id": "r-hadith4-ikhlas",
+    "from": "hadith-4",
+    "to": "concept-ikhlas",
+    "type": "core_concept",
+    "generated": false
+  }
+]

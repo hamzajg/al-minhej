@@ -1,0 +1,9 @@
+[
+  {
+    "id": "r-hadith1-tawakkul",
+    "from": "hadith-1",
+    "to": "concept-tawakkul",
+    "type": "thematic_link",
+    "generated": false
+  }
+]

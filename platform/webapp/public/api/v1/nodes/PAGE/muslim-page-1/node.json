@@ -1,0 +1,23 @@
+{
+  "id": "page-muslim-1",
+  "type": "PAGE",
+  "slug": "muslim-page-1",
+  "status": "published",
+  "title": {
+    "ar": "صفحة ١ — صحيح مسلم",
+    "en": "Page 1 — Sahih Muslim"
+  },
+  "attributes": {
+    "kind": "page",
+    "bookId": "book-muslim",
+    "pageNum": 1,
+    "hadithIds": [
+      "hadith-muslim-1"
+    ]
+  },
+  "content": [],
+  "schemaVersion": 2,
+  "createdAt": "2025-01-01T00:00:00.000Z",
+  "updatedAt": "2026-07-16T22:02:23.800Z",
+  "digitizationStatus": "stub"
+}

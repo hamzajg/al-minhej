@@ -1,0 +1,24 @@
+{
+  "id": "narrator-layth",
+  "type": "NARRATOR",
+  "slug": "al-layth-ibn-sad",
+  "status": "published",
+  "title": {
+    "ar": "الليث بن سعد",
+    "en": "Al-Layth ibn Sa'd"
+  },
+  "attributes": {
+    "kind": "narrator",
+    "grade": {
+      "ar": "ثقة ثبت",
+      "en": "Thiqah thabt"
+    },
+    "isnadDepth": 5,
+    "dateDeath": "175-01-01"
+  },
+  "content": [],
+  "schemaVersion": 2,
+  "createdAt": "2025-01-01T00:00:00.000Z",
+  "updatedAt": "2026-07-16T22:02:23.800Z",
+  "digitizationStatus": "stub"
+}

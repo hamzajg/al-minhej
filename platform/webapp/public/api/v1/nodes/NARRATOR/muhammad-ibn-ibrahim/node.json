@@ -1,0 +1,24 @@
+{
+  "id": "narrator-ibrahim",
+  "type": "NARRATOR",
+  "slug": "muhammad-ibn-ibrahim",
+  "status": "published",
+  "title": {
+    "ar": "محمد بن إبراهيم التيمي",
+    "en": "Muhammad ibn Ibrahim at-Taymi"
+  },
+  "attributes": {
+    "kind": "narrator",
+    "grade": {
+      "ar": "ثقة ثبت",
+      "en": "Thiqah thabt (trustworthy, precise)"
+    },
+    "isnadDepth": 3,
+    "dateDeath": "120-01-01"
+  },
+  "content": [],
+  "schemaVersion": 2,
+  "createdAt": "2025-01-01T00:00:00.000Z",
+  "updatedAt": "2026-07-16T22:02:23.800Z",
+  "digitizationStatus": "stub"
+}

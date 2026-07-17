@@ -1,0 +1,24 @@
+{
+  "id": "narrator-hisham",
+  "type": "NARRATOR",
+  "slug": "hisham-ibn-urwah",
+  "status": "published",
+  "title": {
+    "ar": "هشام بن عروة",
+    "en": "Hisham ibn 'Urwah"
+  },
+  "attributes": {
+    "kind": "narrator",
+    "grade": {
+      "ar": "ثقة",
+      "en": "Thiqah"
+    },
+    "isnadDepth": 4,
+    "dateDeath": "146-01-01"
+  },
+  "content": [],
+  "schemaVersion": 2,
+  "createdAt": "2025-01-01T00:00:00.000Z",
+  "updatedAt": "2026-07-16T22:02:23.800Z",
+  "digitizationStatus": "stub"
+}

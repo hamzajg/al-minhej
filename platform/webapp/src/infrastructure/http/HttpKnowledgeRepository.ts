@@ -1,16 +1,25 @@
 import type { KnowledgeRepository } from "@/domain/repositories";
 import type { KnowledgeNode, NodeType } from "@/domain/types";
 
-const API_BASE = "/api";
+const API_BASE = "/api/v1";
 
 let cachedNodes: KnowledgeNode[] | null = null;
 
 async function fetchNodes(): Promise<KnowledgeNode[]> {
   if (cachedNodes) return cachedNodes;
-  const res = await fetch(`${API_BASE}/knowledge/nodes.json`);
-  if (!res.ok) throw new Error(`Failed to fetch nodes: ${res.status}`);
-  cachedNodes = (await res.json()) as KnowledgeNode[];
+  const res = await fetch(`${API_BASE}/nodes/index.json`);
+  if (!res.ok) throw new Error(`Failed to fetch nodes index: ${res.status}`);
+  const entries = (await res.json()) as { id: string; type: string; slug: string }[];
+  cachedNodes = await Promise.all(
+    entries.map((e) => fetchNode(e.type, e.slug))
+  );
   return cachedNodes;
+}
+
+async function fetchNode(type: string, slug: string): Promise<KnowledgeNode> {
+  const res = await fetch(`${API_BASE}/nodes/${type}/${slug}/node.json`);
+  if (!res.ok) throw new Error(`Failed to fetch node ${type}/${slug}: ${res.status}`);
+  return (await res.json()) as KnowledgeNode;
 }
 
 export class HttpKnowledgeRepository implements KnowledgeRepository {

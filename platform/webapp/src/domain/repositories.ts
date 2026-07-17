@@ -2,10 +2,10 @@ import type { IsnadData, KnowledgeNode, NodeType, Relationship } from "./types";
 
 /**
  * Storage-agnostic contracts. Application services depend on these
- * interfaces only. `infrastructure/memory/*` implements them today;
- * swapping in a real HTTP-backed or Mongo-backed implementation later
- * means writing a new class that satisfies the same interface — nothing
- * above this line changes.
+ * interfaces only. `infrastructure/http/*` implements them today against
+ * the static JSON served from `public/api/**`; swapping in a real
+ * backend later means writing a new class that satisfies the same
+ * interface — nothing above this line changes.
  */
 export interface KnowledgeRepository {
   findBySlug(slug: string): Promise<KnowledgeNode | null>;

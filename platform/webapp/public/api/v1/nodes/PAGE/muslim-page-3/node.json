@@ -1,0 +1,23 @@
+{
+  "id": "page-muslim-3",
+  "type": "PAGE",
+  "slug": "muslim-page-3",
+  "status": "published",
+  "title": {
+    "ar": "صفحة ٣ — صحيح مسلم",
+    "en": "Page 3 — Sahih Muslim"
+  },
+  "attributes": {
+    "kind": "page",
+    "bookId": "book-muslim",
+    "pageNum": 3,
+    "hadithIds": [
+      "hadith-8"
+    ]
+  },
+  "content": [],
+  "schemaVersion": 2,
+  "createdAt": "2025-01-01T00:00:00.000Z",
+  "updatedAt": "2026-07-16T22:02:23.800Z",
+  "digitizationStatus": "stub"
+}

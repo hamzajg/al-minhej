@@ -1,0 +1,25 @@
+{
+  "id": "narrator-ibn-abbaas",
+  "type": "NARRATOR",
+  "slug": "abdullah-ibn-abbas",
+  "status": "published",
+  "title": {
+    "ar": "عبد الله بن عباس",
+    "en": "'Abdullah ibn 'Abbas"
+  },
+  "attributes": {
+    "kind": "narrator",
+    "grade": {
+      "ar": "صحابي، حبر الأمة",
+      "en": "Companion, Scholar of the Ummah"
+    },
+    "isnadDepth": 1,
+    "dateBirth": "619-01-01",
+    "dateDeath": "687-01-01"
+  },
+  "content": [],
+  "schemaVersion": 2,
+  "createdAt": "2025-01-01T00:00:00.000Z",
+  "updatedAt": "2026-07-16T22:02:23.800Z",
+  "digitizationStatus": "stub"
+}

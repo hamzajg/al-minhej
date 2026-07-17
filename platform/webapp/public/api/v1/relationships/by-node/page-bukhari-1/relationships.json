@@ -1,0 +1,16 @@
+[
+  {
+    "id": "r-page1-book",
+    "from": "page-bukhari-1",
+    "to": "book-bukhari",
+    "type": "contained_in",
+    "generated": true
+  },
+  {
+    "id": "r-page1-hadith5",
+    "from": "page-bukhari-1",
+    "to": "hadith-5",
+    "type": "contextual",
+    "generated": false
+  }
+]

@@ -1,0 +1,58 @@
+[
+  {
+    "id": "r-hadith2-umar",
+    "from": "hadith-2",
+    "to": "narrator-umar",
+    "type": "NARRATED_BY",
+    "metadata": {
+      "depth": "1"
+    },
+    "generated": true
+  },
+  {
+    "id": "r-hadith2-muslim",
+    "from": "hadith-2",
+    "to": "book-muslim",
+    "type": "PART_OF",
+    "metadata": {
+      "locator_en": "Book 1, Hadith 1",
+      "locator_ar": "الكتاب ١، الحديث ١"
+    },
+    "generated": true
+  },
+  {
+    "id": "r-sharh-h2-explains",
+    "from": "book-sharh-arbain",
+    "to": "hadith-2",
+    "type": "EXPLAINS",
+    "generated": false
+  },
+  {
+    "id": "r-hadith2-tawbah",
+    "from": "hadith-2",
+    "to": "concept-tawbah",
+    "type": "thematic_link",
+    "generated": false
+  },
+  {
+    "id": "r-hadith2-umar-ref",
+    "from": "hadith-2",
+    "to": "narrator-umar",
+    "type": "narrator_in",
+    "generated": true
+  },
+  {
+    "id": "r-hadith2-hadith3-rel",
+    "from": "hadith-2",
+    "to": "hadith-3",
+    "type": "related_hadith",
+    "generated": false
+  },
+  {
+    "id": "r-hadith2-bukhari1-chain",
+    "from": "hadith-2",
+    "to": "hadith-muslim-1",
+    "type": "full_chain_source",
+    "generated": true
+  }
+]

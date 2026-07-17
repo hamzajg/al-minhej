@@ -1,0 +1,41 @@
+{
+  "id": "book-tabaqat",
+  "type": "BOOK",
+  "slug": "al-tabaqat-al-kubra",
+  "status": "published",
+  "title": {
+    "ar": "الطبقات الكبرى",
+    "en": "Al-Tabaqat al-Kubra"
+  },
+  "attributes": {
+    "kind": "book",
+    "author": {
+      "ar": "ابن سعد",
+      "en": "Ibn Sa'd"
+    },
+    "eraLabel": {
+      "ar": "168–230 AH",
+      "en": "168–230 AH"
+    },
+    "digitization": {
+      "totalUnits": 100,
+      "authoredUnits": 0,
+      "unit": {
+        "ar": "وحدة",
+        "en": "units"
+      }
+    }
+  },
+  "digitization": {
+    "totalUnits": 4250,
+    "unit": {
+      "ar": "ترجمة",
+      "en": "biographies"
+    }
+  },
+  "content": [],
+  "schemaVersion": 2,
+  "createdAt": "2025-01-01T00:00:00.000Z",
+  "updatedAt": "2026-07-16T22:02:23.800Z",
+  "digitizationStatus": "stub"
+}

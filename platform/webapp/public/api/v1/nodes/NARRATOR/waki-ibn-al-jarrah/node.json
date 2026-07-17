@@ -1,0 +1,24 @@
+{
+  "id": "narrator-waki",
+  "type": "NARRATOR",
+  "slug": "waki-ibn-al-jarrah",
+  "status": "published",
+  "title": {
+    "ar": "وكيع بن الجراح",
+    "en": "Waki' ibn al-Jarrah"
+  },
+  "attributes": {
+    "kind": "narrator",
+    "grade": {
+      "ar": "ثقة، حافظ",
+      "en": "Thiqah, Hafiz"
+    },
+    "isnadDepth": 5,
+    "dateDeath": "197-01-01"
+  },
+  "content": [],
+  "schemaVersion": 2,
+  "createdAt": "2025-01-01T00:00:00.000Z",
+  "updatedAt": "2026-07-16T22:02:23.800Z",
+  "digitizationStatus": "stub"
+}

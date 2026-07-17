@@ -1,0 +1,131 @@
+[
+  {
+    "id": "r-hadith1-muslim",
+    "from": "hadith-1",
+    "to": "book-muslim",
+    "type": "PART_OF",
+    "metadata": {
+      "locator_en": "Hadith 1907",
+      "locator_ar": "الحديث ١٩٠٧"
+    },
+    "generated": true
+  },
+  {
+    "id": "r-hadith2-muslim",
+    "from": "hadith-2",
+    "to": "book-muslim",
+    "type": "PART_OF",
+    "metadata": {
+      "locator_en": "Book 1, Hadith 1",
+      "locator_ar": "الكتاب ١، الحديث ١"
+    },
+    "generated": true
+  },
+  {
+    "id": "r-hadith3-muslim",
+    "from": "hadith-3",
+    "to": "book-muslim",
+    "type": "PART_OF",
+    "metadata": {
+      "locator_en": "Book 1, Hadith 20",
+      "locator_ar": "الكتاب ١، الحديث ٢٠"
+    },
+    "generated": true
+  },
+  {
+    "id": "r-hadith7-muslim",
+    "from": "hadith-7",
+    "to": "book-muslim",
+    "type": "PART_OF",
+    "metadata": {
+      "locator_en": "Book 1, Hadith 72",
+      "locator_ar": "الكتاب ١، الحديث ٧٢"
+    },
+    "generated": true
+  },
+  {
+    "id": "r-hadith8-muslim",
+    "from": "hadith-8",
+    "to": "book-muslim",
+    "type": "PART_OF",
+    "metadata": {
+      "locator_en": "Book 1, Hadith 78",
+      "locator_ar": "الكتاب ١، الحديث ٧٨"
+    },
+    "generated": true
+  },
+  {
+    "id": "r-hadith9-muslim",
+    "from": "hadith-9",
+    "to": "book-muslim",
+    "type": "PART_OF",
+    "metadata": {
+      "locator_en": "Book 45, Hadith 260",
+      "locator_ar": "الكتاب ٤٥، الحديث ٢٦٠"
+    },
+    "generated": true
+  },
+  {
+    "id": "r-malik-muslim",
+    "from": "narrator-malik",
+    "to": "book-muslim",
+    "type": "REFERENCES",
+    "generated": false
+  },
+  {
+    "id": "r-uyaynah-muslim",
+    "from": "narrator-uyaynah",
+    "to": "book-muslim",
+    "type": "REFERENCES",
+    "generated": false
+  },
+  {
+    "id": "r-layth-muslim",
+    "from": "narrator-layth",
+    "to": "book-muslim",
+    "type": "REFERENCES",
+    "generated": false
+  },
+  {
+    "id": "r-waki-muslim",
+    "from": "narrator-waki",
+    "to": "book-muslim",
+    "type": "REFERENCES",
+    "generated": false
+  },
+  {
+    "id": "r-abdrazzaq-muslim",
+    "from": "narrator-abdrazzaq",
+    "to": "book-muslim",
+    "type": "REFERENCES",
+    "generated": false
+  },
+  {
+    "id": "r-page4-book",
+    "from": "page-muslim-1",
+    "to": "book-muslim",
+    "type": "contained_in",
+    "generated": true
+  },
+  {
+    "id": "r-page5-book",
+    "from": "page-muslim-2",
+    "to": "book-muslim",
+    "type": "contained_in",
+    "generated": true
+  },
+  {
+    "id": "r-page6-book",
+    "from": "page-muslim-3",
+    "to": "book-muslim",
+    "type": "contained_in",
+    "generated": true
+  },
+  {
+    "id": "r-hadith-muslim-1-book-muslim",
+    "from": "hadith-muslim-1",
+    "to": "book-muslim",
+    "type": "PART_OF",
+    "generated": true
+  }
+]

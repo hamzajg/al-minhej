@@ -1,0 +1,16 @@
+[
+  {
+    "id": "r-page10-book",
+    "from": "page-fathalbari-2",
+    "to": "book-fathalbari",
+    "type": "contained_in",
+    "generated": true
+  },
+  {
+    "id": "r-page10-hadith4",
+    "from": "page-fathalbari-2",
+    "to": "hadith-4",
+    "type": "contextual",
+    "generated": false
+  }
+]

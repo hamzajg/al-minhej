@@ -1,0 +1,23 @@
+{
+  "id": "page-fathalbari-2",
+  "type": "PAGE",
+  "slug": "fathalbari-page-2",
+  "status": "published",
+  "title": {
+    "ar": "صفحة ٢ — فتح الباري",
+    "en": "Page 2 — Fath al-Bari"
+  },
+  "attributes": {
+    "kind": "page",
+    "bookId": "book-fathalbari",
+    "pageNum": 26,
+    "hadithIds": [
+      "hadith-4"
+    ]
+  },
+  "content": [],
+  "schemaVersion": 2,
+  "createdAt": "2025-01-01T00:00:00.000Z",
+  "updatedAt": "2026-07-16T22:02:23.800Z",
+  "digitizationStatus": "stub"
+}

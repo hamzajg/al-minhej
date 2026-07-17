@@ -1,0 +1,119 @@
+{
+  "id": "hadith-tabaqat-1",
+  "type": "HADITH",
+  "slug": "tabaqat-1",
+  "status": "published",
+  "title": {
+    "ar": "ذِكْرُ رَسُولِ اللَّهِ ﷺ وَطَبَقَاتُ أَصْحَابِهِ",
+    "en": "The Prophet ﷺ and the generations of his Companions"
+  },
+  "attributes": {
+    "kind": "hadith",
+    "grade": {
+      "ar": "سيرة وتاريخ",
+      "en": "Biography & History"
+    }
+  },
+  "schemaVersion": 2,
+  "content": [
+    {
+      "type": "clauses",
+      "items": [
+        {
+          "id": "1",
+          "text": {
+            "ar": "هُوَ مُحَمَّدُ بْنُ عَبْدِ اللَّهِ بْنِ عَبْدِ الْمُطَّلِبِ بْنِ هَاشِمٍ، مِنْ قُرَيْشٍ،",
+            "en": "He is Muhammad ibn 'Abd Allah ibn 'Abd al-Muttalib ibn Hashim, of the tribe of Quraysh,",
+            "fr": "Il est Muhammad ibn 'Abd Allah ibn 'Abd al-Muttalib ibn Hashim, de la tribu de Quraysh,",
+            "es": "Él es Muhammad ibn 'Abd Allah ibn 'Abd al-Muttalib ibn Hashim, de la tribu de Quraysh,"
+          }
+        },
+        {
+          "id": "2",
+          "text": {
+            "ar": "وَقُرَيْشٌ أَشْرَفُ عَرَبِ الْمَشْرِقِ وَالْمَغْرِبِ نَسَبًا،",
+            "en": "and Quraysh is the noblest of the Arabs of east and west in lineage,",
+            "fr": "et Quraysh est la plus noble des tribus arabes, d'Orient comme d'Occident, par sa lignée,",
+            "es": "y Quraysh es la más noble de las tribus árabes, de Oriente y Occidente, por su linaje,"
+          }
+        },
+        {
+          "id": "3",
+          "text": {
+            "ar": "وَهُوَ خَاتَمُ النَّبِيِّينَ، صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ.",
+            "en": "and he is the Seal of the Prophets, may God bless him and grant him peace.",
+            "fr": "et il est le Sceau des prophètes, que la paix et la bénédiction de Dieu soient sur lui.",
+            "es": "y él es el Sello de los Profetas, que la paz y las bendiciones de Dios sean con él."
+          }
+        }
+      ],
+      "blockVersion": 1,
+      "intro": {
+        "ar": "ذَكَرَ مُحَمَّدُ بْنُ سَعْدٍ فِي «الطَّبَقَاتِ الْكُبْرَى» بَدْءَ خَلْقِ النَّبِيِّ ﷺ وَنَسَبَهُ:",
+        "en": "Muhammad ibn Sa'd, in al-Tabaqat al-Kubra, begins with the creation of the Prophet ﷺ and his lineage:",
+        "fr": "Muhammad ibn Sa'd, dans al-Tabaqat al-Kubra, commence par la création du Prophète ﷺ et sa lignée :",
+        "es": "Muhammad ibn Sa'd, en al-Tabaqat al-Kubra, comienza con la creación del Profeta ﷺ y su linaje:"
+      }
+    },
+    {
+      "type": "vocabulary",
+      "entries": [
+        {
+          "id": "nabi",
+          "word": "النَّبِيِّ",
+          "root": "ن-ب-أ",
+          "pron": "an-nabiyy",
+          "occurrences": [
+            1
+          ],
+          "gloss": {
+            "ar": "النبي محمد ﷺ",
+            "en": "the Prophet"
+          }
+        },
+        {
+          "id": "quraysh",
+          "word": "قُرَيْشٍ",
+          "root": "ق-ر-ش",
+          "pron": "Quraysh",
+          "occurrences": [
+            1
+          ],
+          "gloss": {
+            "ar": "قريش",
+            "en": "Quraysh (the Prophet's tribe)"
+          }
+        },
+        {
+          "id": "khatam",
+          "word": "خَاتَمُ",
+          "root": "خ-ت-م",
+          "pron": "khatam",
+          "occurrences": [
+            1
+          ],
+          "gloss": {
+            "ar": "الخاتم",
+            "en": "the Seal (final)"
+          }
+        }
+      ],
+      "blockVersion": 1
+    },
+    {
+      "type": "context",
+      "title": {
+        "ar": "لماذا تُفتتح الطبقات بالنبي ﷺ؟",
+        "en": "Why does al-Tabaqat begin with the Prophet ﷺ?"
+      },
+      "body": {
+        "en": "Ibn Sa'd arranges the book by 'tabaqat' (generations): he opens with the Prophet ﷺ, then the first generation of his Companions, then the Followers — the structure that gives the work its name.",
+        "ar": "رتّب ابن سعد كتابه على «الطبقات»: يبدأ بالنبي ﷺ، ثم الجيل الأول من أصحابه، ثم التابعين — وهو الهيكل الذي سُمّي به الكتاب."
+      },
+      "blockVersion": 1
+    }
+  ],
+  "createdAt": "2025-01-01T00:00:00.000Z",
+  "updatedAt": "2026-07-16T22:02:23.800Z",
+  "digitizationStatus": "complete"
+}

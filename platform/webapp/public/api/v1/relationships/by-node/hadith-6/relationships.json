@@ -1,0 +1,44 @@
+[
+  {
+    "id": "r-hadith6-umar",
+    "from": "hadith-6",
+    "to": "narrator-umar",
+    "type": "NARRATED_BY",
+    "metadata": {
+      "depth": "1"
+    },
+    "generated": true
+  },
+  {
+    "id": "r-hadith6-bukhari",
+    "from": "hadith-6",
+    "to": "book-bukhari",
+    "type": "PART_OF",
+    "metadata": {
+      "locator_en": "Book 56, Hadith 140",
+      "locator_ar": "الكتاب ٥٦، الحديث ١٤٠"
+    },
+    "generated": true
+  },
+  {
+    "id": "r-hadith6-riya",
+    "from": "hadith-6",
+    "to": "concept-riya",
+    "type": "core_concept",
+    "generated": false
+  },
+  {
+    "id": "r-page3-hadith6",
+    "from": "page-bukhari-3",
+    "to": "hadith-6",
+    "type": "contextual",
+    "generated": false
+  },
+  {
+    "id": "r-hadith6-umar-ref",
+    "from": "hadith-6",
+    "to": "narrator-umar",
+    "type": "narrator_in",
+    "generated": true
+  }
+]

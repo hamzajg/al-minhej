@@ -1,0 +1,132 @@
+{
+  "id": "hadith-bidayah-1",
+  "type": "HADITH",
+  "slug": "bidayah-1",
+  "status": "published",
+  "title": {
+    "ar": "مَبْدَأُ الْخَلْقِ",
+    "en": "The beginning of creation"
+  },
+  "attributes": {
+    "kind": "hadith",
+    "grade": {
+      "ar": "تاريخ",
+      "en": "History"
+    }
+  },
+  "schemaVersion": 2,
+  "content": [
+    {
+      "type": "clauses",
+      "items": [
+        {
+          "id": "1",
+          "text": {
+            "ar": "أَمَّا بَعْدُ فَهَذَا الْكِتَابُ أَذْكُرُ فِيهِ مَبْدَأَ الْمَخْلُوقَاتِ:",
+            "en": "Now then: in this book I mention the beginning of created things:",
+            "fr": "Or donc: dans ce livre je mentionne le commencement des créatures :",
+            "es": "Pues bien: en este libro menciono el inicio de las criaturas:"
+          }
+        },
+        {
+          "id": "2",
+          "text": {
+            "ar": "مِنْ خَلْقِ الْعَرْشِ وَالْكُرْسِيِّ، وَالسَّمَوَاتِ، وَالْأَرْضِ وَمَا فِيهِنَّ،",
+            "en": "the creation of the Throne and the Chair (al-Kursi), the heavens and the earth and all that is in them,",
+            "fr": "la création du Trône et du Siège (al-Kursi), des cieux, de la terre et de ce qu'ils contiennent,",
+            "es": "la creación del Trono y del Asiento (al-Kursi), los cielos, la tierra y cuanto en ellos hay,"
+          }
+        },
+        {
+          "id": "3",
+          "text": {
+            "ar": "وَكَيْفِيَةِ خَلْقِ آدَمَ عَلَيْهِ السَّلَامُ، وَقَصَصِ الْأَنْبِيَاءِ.",
+            "en": "and the manner of the creation of Adam, peace be upon him, and the stories of the prophets.",
+            "fr": "ainsi que la façon dont Adam, sur lui la paix, fut créé, et les récits des prophètes.",
+            "es": "y la manera en que fue creado Adán, paz sea con él, y las historias de los profetas."
+          }
+        }
+      ],
+      "blockVersion": 1,
+      "intro": {
+        "ar": "قَالَ ابْنُ كَثِيرٍ فِي مُقَدِّمَةِ «الْبِدَايَةِ وَالنِّهَايَةِ»:",
+        "en": "Ibn Kathir says in the introduction to al-Bidayah wa'n-Nihayah:",
+        "fr": "Ibn Kathir dit dans l'introduction d'al-Bidayah wa'n-Nihayah :",
+        "es": "Ibn Kathir dice en la introducción de al-Bidayah wa'n-Nihayah:"
+      }
+    },
+    {
+      "type": "vocabulary",
+      "entries": [
+        {
+          "id": "arsh",
+          "word": "الْعَرْشِ",
+          "root": "ع-ر-ش",
+          "pron": "al-'arsh",
+          "occurrences": [
+            1
+          ],
+          "gloss": {
+            "ar": "العرش",
+            "en": "the Throne of God"
+          }
+        },
+        {
+          "id": "kursi",
+          "word": "الْكُرْسِيِّ",
+          "root": "ك-ر-س-ي",
+          "pron": "al-kursi",
+          "occurrences": [
+            1
+          ],
+          "gloss": {
+            "ar": "الكرسي",
+            "en": "the Footstool / Chair (al-Kursi)"
+          }
+        },
+        {
+          "id": "khalq",
+          "word": "الْمَخْلُوقَاتِ",
+          "root": "خ-ل-ق",
+          "pron": "al-makhlūqāt",
+          "occurrences": [
+            1
+          ],
+          "gloss": {
+            "ar": "المخلوقات",
+            "en": "created things"
+          }
+        },
+        {
+          "id": "adam",
+          "word": "آدَمَ",
+          "root": "آ-د-م",
+          "pron": "Adam",
+          "occurrences": [
+            1
+          ],
+          "gloss": {
+            "ar": "آدم عليه السلام",
+            "en": "Adam, the first man"
+          }
+        }
+      ],
+      "blockVersion": 1
+    },
+    {
+      "type": "context",
+      "title": {
+        "ar": "لماذا تبدأ «البداية والنهاية» بالخلق؟",
+        "en": "Why does al-Bidayah wa'n-Nihayah begin with creation?"
+      },
+      "body": {
+        "en": "The title says it: the book spans from al-Bidayah (the Beginning — the creation of the heavens, the earth and Adam) to an-Nihayah (the End — the Resurrection and the Hereafter).",
+        "ar": "عنوان الكتاب يدل عليه: يبدأ من «البداية» — خلق السماوات والأرض وآدم — وينتهي بـ«النهاية» — البعث والآخرة."
+      },
+      "blockVersion": 1
+    }
+  ],
+  "createdAt": "2025-01-01T00:00:00.000Z",
+  "updatedAt": "2026-07-16T22:02:23.800Z",
+  "digitizationStatus": "complete"
+}

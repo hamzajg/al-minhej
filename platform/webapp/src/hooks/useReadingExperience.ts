@@ -10,9 +10,9 @@ interface State {
 
 /**
  * Resolves to the same shape a real `GET /v1/reading/{slug}` would return.
- * Modeled as async + loading state even though the memory provider
- * resolves instantly, specifically so swapping to a real `fetch()` later
- * doesn't change how any component consumes this hook.
+ * Modeled as async + loading state against the static JSON served from
+ * `public/api/v1/**`, so any component consuming this hook is already
+ * shaped for a real network-backed provider.
  */
 export function useReadingExperience(slug: string | undefined) {
   const [state, setState] = useState<State>({ data: null, loading: true, notFound: false });

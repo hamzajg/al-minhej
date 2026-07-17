@@ -1,0 +1,30 @@
+[
+  {
+    "id": "r-umar-bidayah",
+    "from": "narrator-umar",
+    "to": "book-bidayah",
+    "type": "REFERENCES",
+    "generated": false
+  },
+  {
+    "id": "r-ibnabbaas-bidayah",
+    "from": "narrator-ibn-abbaas",
+    "to": "book-bidayah",
+    "type": "REFERENCES",
+    "generated": false
+  },
+  {
+    "id": "r-page12-book",
+    "from": "page-bidayah-hijra",
+    "to": "book-bidayah",
+    "type": "contained_in",
+    "generated": true
+  },
+  {
+    "id": "r-hadith-bidayah-1-book-bidayah",
+    "from": "hadith-bidayah-1",
+    "to": "book-bidayah",
+    "type": "PART_OF",
+    "generated": true
+  }
+]

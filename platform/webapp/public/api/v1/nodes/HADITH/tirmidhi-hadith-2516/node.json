@@ -1,0 +1,23 @@
+{
+  "id": "hadith-10",
+  "type": "HADITH",
+  "slug": "tirmidhi-hadith-2516",
+  "status": "published",
+  "title": {
+    "ar": "حسن الخلق",
+    "en": "Good character"
+  },
+  "attributes": {
+    "kind": "hadith",
+    "grade": {
+      "ar": "صحيح الترمذي",
+      "en": "Sahih at-Tirmidhi"
+    },
+    "isnadType": "full"
+  },
+  "schemaVersion": 2,
+  "content": [],
+  "createdAt": "2025-01-01T00:00:00.000Z",
+  "updatedAt": "2026-07-16T22:02:23.800Z",
+  "digitizationStatus": "complete"
+}

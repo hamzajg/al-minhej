@@ -1,0 +1,24 @@
+{
+  "id": "narrator-thawri",
+  "type": "NARRATOR",
+  "slug": "sufyan-ath-thawri",
+  "status": "published",
+  "title": {
+    "ar": "سفيان الثوري",
+    "en": "Sufyan ath-Thawri"
+  },
+  "attributes": {
+    "kind": "narrator",
+    "grade": {
+      "ar": "ثقة حافظ",
+      "en": "Thiqah hafiz"
+    },
+    "isnadDepth": 5,
+    "dateDeath": "161-01-01"
+  },
+  "content": [],
+  "schemaVersion": 2,
+  "createdAt": "2025-01-01T00:00:00.000Z",
+  "updatedAt": "2026-07-16T22:02:23.800Z",
+  "digitizationStatus": "stub"
+}

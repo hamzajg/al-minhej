@@ -1,0 +1,28 @@
+{
+  "id": "narrator-humaydi",
+  "type": "NARRATOR",
+  "slug": "al-humaydi",
+  "status": "published",
+  "title": {
+    "ar": "الحميدي عبد الله بن الزبير",
+    "en": "Al-Humaydi: Abdullah ibn az-Zubayr"
+  },
+  "attributes": {
+    "kind": "narrator",
+    "grade": {
+      "ar": "ثقة حافظ",
+      "en": "Thiqah hafiz"
+    },
+    "note": {
+      "ar": "أول من صنف المسند. روى حديث بدء الوحي عن سفيان الثوري.",
+      "en": "First to compile a Musnad. Narrated the Revelation hadith from Sufyan ath-Thawri."
+    },
+    "isnadDepth": 6,
+    "dateDeath": "219-01-01"
+  },
+  "content": [],
+  "schemaVersion": 2,
+  "createdAt": "2025-01-01T00:00:00.000Z",
+  "updatedAt": "2026-07-16T22:02:23.800Z",
+  "digitizationStatus": "stub"
+}

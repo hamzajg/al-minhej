@@ -1,0 +1,23 @@
+{
+  "id": "hadith-related-1",
+  "type": "HADITH",
+  "slug": "related-1",
+  "status": "published",
+  "title": {
+    "ar": "أفضل الأعمال",
+    "en": "A small act, sincerely done"
+  },
+  "attributes": {
+    "kind": "hadith",
+    "grade": {
+      "ar": "متفق عليه",
+      "en": "Agreed upon"
+    },
+    "isnadType": "short"
+  },
+  "content": [],
+  "schemaVersion": 2,
+  "createdAt": "2025-01-01T00:00:00.000Z",
+  "updatedAt": "2026-07-16T22:02:23.800Z",
+  "digitizationStatus": "complete"
+}

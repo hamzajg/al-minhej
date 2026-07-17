@@ -1,0 +1,29 @@
+{
+  "id": "narrator-ibn-umar",
+  "type": "NARRATOR",
+  "slug": "abdullah-ibn-umar",
+  "status": "published",
+  "title": {
+    "ar": "عبد الله بن عمر",
+    "en": "Abdullah ibn 'Umar"
+  },
+  "attributes": {
+    "kind": "narrator",
+    "grade": {
+      "ar": "ثقة",
+      "en": "Thiqah (trustworthy)"
+    },
+    "note": {
+      "ar": "ابن عُمر بن الخطاب، من كبار التابعين، وروى هذا الحديث عن النبي ﷺ.",
+      "en": "Son of 'Umar ibn al-Khattab; a leading successor who narrated this hadith from the Prophet ﷺ."
+    },
+    "isnadDepth": 1,
+    "dateBirth": "610-01-01",
+    "dateDeath": "693-01-01"
+  },
+  "content": [],
+  "schemaVersion": 2,
+  "createdAt": "2025-01-01T00:00:00.000Z",
+  "updatedAt": "2026-07-16T22:02:23.800Z",
+  "digitizationStatus": "stub"
+}

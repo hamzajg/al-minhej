@@ -1,0 +1,23 @@
+{
+  "id": "page-sharh-1",
+  "type": "PAGE",
+  "slug": "sharh-page-1",
+  "status": "published",
+  "title": {
+    "ar": "صفحة ١ — شرح الأربعين",
+    "en": "Page 1 — Sharh al-Arba'in"
+  },
+  "attributes": {
+    "kind": "page",
+    "bookId": "book-sharh-arbain",
+    "pageNum": 5,
+    "hadithIds": [
+      "hadith-1"
+    ]
+  },
+  "content": [],
+  "schemaVersion": 2,
+  "createdAt": "2025-01-01T00:00:00.000Z",
+  "updatedAt": "2026-07-16T22:02:23.800Z",
+  "digitizationStatus": "stub"
+}

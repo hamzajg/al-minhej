@@ -1,0 +1,24 @@
+{
+  "id": "narrator-zuhrī",
+  "type": "NARRATOR",
+  "slug": "ibn-shihab-az-zuhrī",
+  "status": "published",
+  "title": {
+    "ar": "ابن شهاب الزهري",
+    "en": "Ibn Shihab az-Zuhri"
+  },
+  "attributes": {
+    "kind": "narrator",
+    "grade": {
+      "ar": "ثقة، إمام",
+      "en": "Thiqah, Imam"
+    },
+    "isnadDepth": 4,
+    "dateDeath": "124-01-01"
+  },
+  "content": [],
+  "schemaVersion": 2,
+  "createdAt": "2025-01-01T00:00:00.000Z",
+  "updatedAt": "2026-07-16T22:02:23.800Z",
+  "digitizationStatus": "stub"
+}

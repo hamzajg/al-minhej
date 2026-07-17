@@ -1,0 +1,16 @@
+[
+  {
+    "id": "r-qattan-yahya",
+    "from": "narrator-qattan",
+    "to": "narrator-yahya",
+    "type": "NARRATED_BY",
+    "generated": true
+  },
+  {
+    "id": "r-qattan-bukhari",
+    "from": "narrator-qattan",
+    "to": "book-bukhari",
+    "type": "REFERENCES",
+    "generated": false
+  }
+]

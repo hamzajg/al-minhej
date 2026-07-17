@@ -1,0 +1,24 @@
+{
+  "id": "narrator-abdrazzaq",
+  "type": "NARRATOR",
+  "slug": "abd-ar-razzaq-as-sanani",
+  "status": "published",
+  "title": {
+    "ar": "عبد الرزاق الصنعاني",
+    "en": "'Abd ar-Razzaq as-San'ani"
+  },
+  "attributes": {
+    "kind": "narrator",
+    "grade": {
+      "ar": "ثقة",
+      "en": "Thiqah"
+    },
+    "isnadDepth": 5,
+    "dateDeath": "211-01-01"
+  },
+  "content": [],
+  "schemaVersion": 2,
+  "createdAt": "2025-01-01T00:00:00.000Z",
+  "updatedAt": "2026-07-16T22:02:23.800Z",
+  "digitizationStatus": "stub"
+}

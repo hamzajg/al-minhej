@@ -1,0 +1,16 @@
+[
+  {
+    "id": "r-hadith-bukhari-2-narrator-aisha",
+    "from": "hadith-bukhari-2",
+    "to": "narrator-aisha",
+    "type": "NARRATED_BY",
+    "generated": true
+  },
+  {
+    "id": "r-narrator-aisha-narrator-prophet",
+    "from": "narrator-aisha",
+    "to": "narrator-prophet",
+    "type": "NARRATED_BY",
+    "generated": true
+  }
+]

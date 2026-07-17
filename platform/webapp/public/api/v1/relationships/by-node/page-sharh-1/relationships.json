@@ -1,0 +1,16 @@
+[
+  {
+    "id": "r-page7-book",
+    "from": "page-sharh-1",
+    "to": "book-sharh-arbain",
+    "type": "contained_in",
+    "generated": true
+  },
+  {
+    "id": "r-page7-hadith1",
+    "from": "page-sharh-1",
+    "to": "hadith-1",
+    "type": "contextual",
+    "generated": false
+  }
+]

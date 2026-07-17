@@ -1,0 +1,30 @@
+[
+  {
+    "id": "r-hadith9-umar",
+    "from": "hadith-9",
+    "to": "narrator-umar",
+    "type": "NARRATED_BY",
+    "metadata": {
+      "depth": "1"
+    },
+    "generated": true
+  },
+  {
+    "id": "r-hadith9-muslim",
+    "from": "hadith-9",
+    "to": "book-muslim",
+    "type": "PART_OF",
+    "metadata": {
+      "locator_en": "Book 45, Hadith 260",
+      "locator_ar": "الكتاب ٤٥، الحديث ٢٦٠"
+    },
+    "generated": true
+  },
+  {
+    "id": "r-hadith9-umar-ref",
+    "from": "hadith-9",
+    "to": "narrator-umar",
+    "type": "narrator_in",
+    "generated": true
+  }
+]

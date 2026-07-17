@@ -1,0 +1,90 @@
+[
+  {
+    "id": "narrator-prophet",
+    "slug": "prophet-muhammad"
+  },
+  {
+    "id": "narrator-umar",
+    "slug": "umar-ibn-al-khattab"
+  },
+  {
+    "id": "narrator-alqamah",
+    "slug": "alqamah-ibn-waqqas"
+  },
+  {
+    "id": "narrator-ibrahim",
+    "slug": "muhammad-ibn-ibrahim"
+  },
+  {
+    "id": "narrator-yahya",
+    "slug": "yahya-ibn-said"
+  },
+  {
+    "id": "narrator-thawri",
+    "slug": "sufyan-ath-thawri"
+  },
+  {
+    "id": "narrator-malik",
+    "slug": "malik-ibn-anas"
+  },
+  {
+    "id": "narrator-uyaynah",
+    "slug": "sufyan-ibn-uyaynah"
+  },
+  {
+    "id": "narrator-qattan",
+    "slug": "yahya-ibn-said-al-qattan"
+  },
+  {
+    "id": "narrator-layth",
+    "slug": "al-layth-ibn-sad"
+  },
+  {
+    "id": "narrator-zuhrī",
+    "slug": "ibn-shihab-az-zuhrī"
+  },
+  {
+    "id": "narrator-ayyub",
+    "slug": "ayyub-as-sakhtiyani"
+  },
+  {
+    "id": "narrator-hisham",
+    "slug": "hisham-ibn-urwah"
+  },
+  {
+    "id": "narrator-shubah",
+    "slug": "shubah-ibn-al-hajjaj"
+  },
+  {
+    "id": "narrator-waki",
+    "slug": "waki-ibn-al-jarrah"
+  },
+  {
+    "id": "narrator-abdrazzaq",
+    "slug": "abd-ar-razzaq-as-sanani"
+  },
+  {
+    "id": "narrator-ibn-abbaas",
+    "slug": "abdullah-ibn-abbas"
+  },
+  {
+    "id": "narrator-humaydi",
+    "slug": "al-humaydi"
+  },
+  {
+    "id": "narrator-ibn-buraida",
+    "slug": "abdullah-ibn-buraida"
+  },
+  {
+    "id": "narrator-aisha",
+    "slug": "aisha-bint-abi-bakr"
+  },
+  {
+    "id": "narrator-tamim",
+    "slug": "tamim-ad-dari"
+  },
+  {
+    "id": "narrator-ibn-umar",
+    "slug": "abdullah-ibn-umar"
+  }
+]

@@ -1,0 +1,27 @@
+{
+  "id": "narrator-ibn-buraida",
+  "type": "NARRATOR",
+  "slug": "abdullah-ibn-buraida",
+  "status": "published",
+  "title": {
+    "ar": "عبد الله بن بريدة",
+    "en": "Abdullah ibn Buraida"
+  },
+  "attributes": {
+    "kind": "narrator",
+    "grade": {
+      "ar": "ثقة",
+      "en": "Thiqah"
+    },
+    "note": {
+      "ar": "ابن القاضي بريدة الأسلمي، روى حديث جبريل عن يحيى بن يعمر.",
+      "en": "Son of judge Burayda al-Aslami; narrated the Jibril hadith from Yahya ibn Ya'mar."
+    },
+    "isnadDepth": 5
+  },
+  "content": [],
+  "schemaVersion": 2,
+  "createdAt": "2025-01-01T00:00:00.000Z",
+  "updatedAt": "2026-07-16T22:02:23.800Z",
+  "digitizationStatus": "stub"
+}

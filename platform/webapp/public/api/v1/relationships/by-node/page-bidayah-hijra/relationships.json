@@ -1,0 +1,16 @@
+[
+  {
+    "id": "r-page12-book",
+    "from": "page-bidayah-hijra",
+    "to": "book-bidayah",
+    "type": "contained_in",
+    "generated": true
+  },
+  {
+    "id": "r-page12-event",
+    "from": "page-bidayah-hijra",
+    "to": "event-hijra",
+    "type": "contextual",
+    "generated": false
+  }
+]

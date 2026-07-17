@@ -1,0 +1,24 @@
+{
+  "id": "narrator-uyaynah",
+  "type": "NARRATOR",
+  "slug": "sufyan-ibn-uyaynah",
+  "status": "published",
+  "title": {
+    "ar": "سفيان بن عيينة",
+    "en": "Sufyan ibn 'Uyaynah"
+  },
+  "attributes": {
+    "kind": "narrator",
+    "grade": {
+      "ar": "ثقة حافظ",
+      "en": "Thiqah hafiz"
+    },
+    "isnadDepth": 5,
+    "dateDeath": "198-01-01"
+  },
+  "content": [],
+  "schemaVersion": 2,
+  "createdAt": "2025-01-01T00:00:00.000Z",
+  "updatedAt": "2026-07-16T22:02:23.800Z",
+  "digitizationStatus": "stub"
+}

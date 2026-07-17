@@ -1,0 +1,99 @@
+{
+  "id": "hadith-7",
+  "type": "HADITH",
+  "slug": "muslim-hadith-45",
+  "status": "published",
+  "title": {
+    "ar": "لا يؤمن أحدكم حتى يحب لأخيه ما يحب لنفسه",
+    "en": "None of you truly believes until he loves for his brother what he loves for himself"
+  },
+  "attributes": {
+    "kind": "hadith",
+    "grade": {
+      "ar": "صحيح مسلم",
+      "en": "Sahih Muslim"
+    },
+    "isnadType": "full"
+  },
+  "schemaVersion": 2,
+  "content": [
+    {
+      "type": "clauses",
+      "items": [
+        {
+          "id": "1",
+          "text": {
+            "ar": "لَا يُؤْمِنُ أَحَدُكُمْ حَتَّى يُحِبَّ لِأَخِيهِ مَا يُحِبُّ لِنَفْسِهِ",
+            "en": "None of you truly believes until he loves for his brother what he loves for himself."
+          }
+        }
+      ],
+      "blockVersion": 1,
+      "intro": {
+        "ar": "عَنْ أَنَسِ بْنِ مَالِكٍ رَضِيَ اللَّهُ عَنْهُ عَنِ النَّبِيِّ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ قَالَ:",
+        "en": "On the authority of Anas ibn Malik — from the Prophet ﷺ who said:"
+      }
+    },
+    {
+      "type": "vocabulary",
+      "entries": [
+        {
+          "id": "yumin",
+          "word": "يُؤْمِنُ",
+          "root": "أ-م-ن",
+          "pron": "yu'minu",
+          "occurrences": [
+            1
+          ],
+          "gloss": {
+            "ar": "يؤمن إيمانًا كاملاً",
+            "en": "he believes (with complete faith)"
+          }
+        },
+        {
+          "id": "yuhibba",
+          "word": "يُحِبَّ",
+          "root": "ح-ب-ب",
+          "pron": "yuḥibba",
+          "occurrences": [
+            2
+          ],
+          "gloss": {
+            "ar": "يحب ويود",
+            "en": "he loves"
+          }
+        },
+        {
+          "id": "akhihi",
+          "word": "أَخِيهِ",
+          "root": "أ-خ-و",
+          "pron": "akhīhi",
+          "occurrences": [
+            1
+          ],
+          "gloss": {
+            "ar": "أخيه المسلم",
+            "en": "his brother"
+          }
+        },
+        {
+          "id": "linafsihi",
+          "word": "لِنَفْسِهِ",
+          "root": "ن-ف-س",
+          "pron": "linafsihi",
+          "occurrences": [
+            1
+          ],
+          "gloss": {
+            "ar": "لذاته ولنفسه",
+            "en": "for himself"
+          }
+        }
+      ],
+      "blockVersion": 1
+    }
+  ],
+  "createdAt": "2025-01-01T00:00:00.000Z",
+  "updatedAt": "2026-07-16T22:02:23.800Z",
+  "digitizationStatus": "complete"
+}

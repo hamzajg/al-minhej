@@ -1,0 +1,15 @@
+[
+  {
+    "id": "r-hadith1-related2",
+    "from": "hadith-1",
+    "to": "hadith-related-2",
+    "type": "SIMILAR_TO",
+    "metadata": {
+      "note_en": "God looks at hearts and deeds.",
+      "note_ar": "الله ينظر إلى قلوبكم وأعمالكم.",
+      "src_en": "Sahih Muslim",
+      "src_ar": "صحيح مسلم"
+    },
+    "generated": false
+  }
+]

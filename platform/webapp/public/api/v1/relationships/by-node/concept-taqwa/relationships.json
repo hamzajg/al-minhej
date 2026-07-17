@@ -1,0 +1,9 @@
+[
+  {
+    "id": "r-hadith4-taqwa",
+    "from": "hadith-4",
+    "to": "concept-taqwa",
+    "type": "core_concept",
+    "generated": false
+  }
+]

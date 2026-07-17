@@ -1,0 +1,37 @@
+[
+  {
+    "id": "r-fathalbari-explains",
+    "from": "book-fathalbari",
+    "to": "hadith-1",
+    "type": "EXPLAINS",
+    "generated": false
+  },
+  {
+    "id": "r-fathalbari-h4-explains",
+    "from": "book-fathalbari",
+    "to": "hadith-4",
+    "type": "EXPLAINS",
+    "generated": false
+  },
+  {
+    "id": "r-page9-book",
+    "from": "page-fathalbari-1",
+    "to": "book-fathalbari",
+    "type": "contained_in",
+    "generated": true
+  },
+  {
+    "id": "r-page10-book",
+    "from": "page-fathalbari-2",
+    "to": "book-fathalbari",
+    "type": "contained_in",
+    "generated": true
+  },
+  {
+    "id": "r-hadith-fath-1-book-fathalbari",
+    "from": "hadith-fath-1",
+    "to": "book-fathalbari",
+    "type": "PART_OF",
+    "generated": true
+  }
+]

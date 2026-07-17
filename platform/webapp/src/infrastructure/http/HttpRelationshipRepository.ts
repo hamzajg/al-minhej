@@ -1,13 +1,13 @@
 import type { RelationshipRepository } from "@/domain/repositories";
 import type { Relationship } from "@/domain/types";
 
-const API_BASE = "/api";
+const API_BASE = "/api/v1";
 
 let cachedRelationships: Relationship[] | null = null;
 
 async function fetchRelationships(): Promise<Relationship[]> {
   if (cachedRelationships) return cachedRelationships;
-  const res = await fetch(`${API_BASE}/knowledge/relationships.json`);
+  const res = await fetch(`${API_BASE}/relationships/all.json`);
   if (!res.ok) throw new Error(`Failed to fetch relationships: ${res.status}`);
   cachedRelationships = (await res.json()) as Relationship[];
   return cachedRelationships;

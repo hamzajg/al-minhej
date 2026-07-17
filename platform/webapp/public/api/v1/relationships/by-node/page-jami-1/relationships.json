@@ -1,0 +1,16 @@
+[
+  {
+    "id": "r-page8-book",
+    "from": "page-jami-1",
+    "to": "book-jami-ulum",
+    "type": "contained_in",
+    "generated": true
+  },
+  {
+    "id": "r-page8-hadith1",
+    "from": "page-jami-1",
+    "to": "hadith-1",
+    "type": "contextual",
+    "generated": false
+  }
+]

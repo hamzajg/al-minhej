@@ -1,0 +1,152 @@
+{
+  "id": "hadith-8",
+  "type": "HADITH",
+  "slug": "muslim-hadith-99",
+  "status": "published",
+  "title": {
+    "ar": "اتق الله حيثما كنت",
+    "en": "Fear God wherever you are"
+  },
+  "attributes": {
+    "kind": "hadith",
+    "grade": {
+      "ar": "صحيح مسلم",
+      "en": "Sahih Muslim"
+    },
+    "isnadType": "full"
+  },
+  "schemaVersion": 2,
+  "content": [
+    {
+      "type": "clauses",
+      "items": [
+        {
+          "id": "1",
+          "text": {
+            "ar": "اتَّقِ اللَّهَ حَيْثُمَا كُنْتَ",
+            "en": "Fear God wherever you are,"
+          }
+        },
+        {
+          "id": "2",
+          "text": {
+            "ar": "وَأَتْبِعِ السَّيِّئَةَ الْحَسَنَةَ تَمْحُهَا",
+            "en": "and follow a bad deed with a good deed which will wipe it out,"
+          }
+        },
+        {
+          "id": "3",
+          "text": {
+            "ar": "وَخَالِقِ النَّاسَ بِخُلُقٍ حَسَنٍ",
+            "en": "and treat people with good character."
+          }
+        }
+      ],
+      "blockVersion": 1,
+      "intro": {
+        "ar": "عَنْ أَبِي ذَرٍّ رَضِيَ اللَّهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ:",
+        "en": "On the authority of Abu Dharr — who said: The Messenger of God ﷺ said:"
+      }
+    },
+    {
+      "type": "vocabulary",
+      "entries": [
+        {
+          "id": "ittaqi",
+          "word": "اتَّقِ",
+          "root": "و-ق-ي",
+          "pron": "ittaqi",
+          "occurrences": [
+            1
+          ],
+          "gloss": {
+            "ar": "خف الله وراقبه",
+            "en": "fear / be conscious of (God)"
+          }
+        },
+        {
+          "id": "haythuma",
+          "word": "حَيْثُمَا",
+          "root": "ح-ي-ث",
+          "pron": "ḥaythumā",
+          "occurrences": [
+            1
+          ],
+          "gloss": {
+            "ar": "في أي مكان",
+            "en": "wherever"
+          }
+        },
+        {
+          "id": "atbi",
+          "word": "أَتْبِعْ",
+          "root": "ت-ب-ع",
+          "pron": "atbi'",
+          "occurrences": [
+            1
+          ],
+          "gloss": {
+            "ar": "أتبع وألحق به",
+            "en": "follow up / accompany"
+          }
+        },
+        {
+          "id": "sayyiah",
+          "word": "السَّيِّئَةَ",
+          "root": "س-و-أ",
+          "pron": "as-sayyi'ah",
+          "occurrences": [
+            1
+          ],
+          "gloss": {
+            "ar": "السيئة والمعصية",
+            "en": "the bad deed / sin"
+          }
+        },
+        {
+          "id": "hasanah",
+          "word": "الْحَسَنَةَ",
+          "root": "ح-س-ن",
+          "pron": "al-ḥasanah",
+          "occurrences": [
+            1
+          ],
+          "gloss": {
+            "ar": "الحسنة والطاعة",
+            "en": "the good deed"
+          }
+        },
+        {
+          "id": "tamhuha",
+          "word": "تَمْحُهَا",
+          "root": "م-ح-و",
+          "pron": "tamḥuhā",
+          "occurrences": [
+            1
+          ],
+          "gloss": {
+            "ar": "تمحوها وتزيل أثرها",
+            "en": "it wipes it out"
+          }
+        },
+        {
+          "id": "khuluq",
+          "word": "خُلُقٍ",
+          "root": "خ-ل-ق",
+          "pron": "khuluq",
+          "occurrences": [
+            1
+          ],
+          "gloss": {
+            "ar": "الخلق والسلوك الحسن",
+            "en": "character / conduct"
+          }
+        }
+      ],
+      "blockVersion": 1
+    }
+  ],
+  "createdAt": "2025-01-01T00:00:00.000Z",
+  "updatedAt": "2026-07-16T22:02:23.800Z",
+  "digitizationStatus": "complete"
+}

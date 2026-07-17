@@ -1,0 +1,20 @@
+[
+  {
+    "id": "r-hadith1-hijra",
+    "from": "hadith-1",
+    "to": "event-hijra",
+    "type": "REFERENCES",
+    "metadata": {
+      "note_en": "The hijrah — the example used in the hadith.",
+      "note_ar": "الهجرة — المثال الذي يستخدمه الحديث."
+    },
+    "generated": false
+  },
+  {
+    "id": "r-page12-event",
+    "from": "page-bidayah-hijra",
+    "to": "event-hijra",
+    "type": "contextual",
+    "generated": false
+  }
+]

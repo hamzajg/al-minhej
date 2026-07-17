@@ -1,0 +1,25 @@
+{
+  "id": "narrator-umar",
+  "type": "NARRATOR",
+  "slug": "umar-ibn-al-khattab",
+  "status": "published",
+  "title": {
+    "ar": "عمر بن الخطاب",
+    "en": "'Umar ibn al-Khattab"
+  },
+  "attributes": {
+    "kind": "narrator",
+    "grade": {
+      "ar": "صحابي",
+      "en": "Companion (Sahabi)"
+    },
+    "isnadDepth": 1,
+    "dateBirth": "584-01-01",
+    "dateDeath": "644-01-01"
+  },
+  "content": [],
+  "schemaVersion": 2,
+  "createdAt": "2025-01-01T00:00:00.000Z",
+  "updatedAt": "2026-07-16T22:02:23.800Z",
+  "digitizationStatus": "stub"
+}

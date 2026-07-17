@@ -1,0 +1,23 @@
+{
+  "id": "page-bukhari-2",
+  "type": "PAGE",
+  "slug": "bukhari-page-2",
+  "status": "published",
+  "title": {
+    "ar": "صفحة ٢ — صحيح البخاري",
+    "en": "Page 2 — Sahih al-Bukhari"
+  },
+  "attributes": {
+    "kind": "page",
+    "bookId": "book-bukhari",
+    "pageNum": 2,
+    "hadithIds": [
+      "hadith-bukhari-1"
+    ]
+  },
+  "content": [],
+  "schemaVersion": 2,
+  "createdAt": "2025-01-01T00:00:00.000Z",
+  "updatedAt": "2026-07-16T22:02:23.800Z",
+  "digitizationStatus": "stub"
+}

@@ -1,0 +1,16 @@
+[
+  {
+    "id": "r-page5-book",
+    "from": "page-muslim-2",
+    "to": "book-muslim",
+    "type": "contained_in",
+    "generated": true
+  },
+  {
+    "id": "r-page5-hadith7",
+    "from": "page-muslim-2",
+    "to": "hadith-7",
+    "type": "contextual",
+    "generated": false
+  }
+]

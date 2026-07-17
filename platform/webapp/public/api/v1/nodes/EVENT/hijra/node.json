@@ -1,0 +1,19 @@
+{
+  "id": "event-hijra",
+  "type": "EVENT",
+  "slug": "hijra",
+  "status": "published",
+  "title": {
+    "ar": "الهجرة",
+    "en": "The Hijrah"
+  },
+  "attributes": {
+    "kind": "event",
+    "dateStart": "622 CE"
+  },
+  "content": [],
+  "schemaVersion": 2,
+  "createdAt": "2025-01-01T00:00:00.000Z",
+  "updatedAt": "2026-07-16T22:02:23.800Z",
+  "digitizationStatus": "complete"
+}

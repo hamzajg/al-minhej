@@ -1,0 +1,9 @@
+[
+  {
+    "id": "r-humaydi-thawri",
+    "from": "narrator-humaydi",
+    "to": "narrator-thawri",
+    "type": "NARRATED_BY",
+    "generated": true
+  }
+]

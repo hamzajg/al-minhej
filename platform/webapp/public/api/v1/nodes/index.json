@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 2,
+  "builtAt": "2026-07-17T04:07:30.454Z",
+  "source": "src/infrastructure/memory/data/nodes.json",
+  "layout": "public/api/v1/nodes/<TYPE>/<slug>/node.json",
+  "counts": {
+    "HADITH": 20,
+    "VERSE": 2,
+    "CONCEPT": 6,
+    "EVENT": 1,
+    "NARRATOR": 22,
+    "BOOK": 7,
+    "PAGE": 12
+  },
+  "total": 70
+}

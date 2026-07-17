@@ -1,0 +1,16 @@
+[
+  {
+    "id": "r-hisham-umar",
+    "from": "narrator-hisham",
+    "to": "narrator-umar",
+    "type": "NARRATED_BY",
+    "generated": true
+  },
+  {
+    "id": "r-waki-hisham-collected",
+    "from": "narrator-waki",
+    "to": "narrator-hisham",
+    "type": "collected_in",
+    "generated": true
+  }
+]

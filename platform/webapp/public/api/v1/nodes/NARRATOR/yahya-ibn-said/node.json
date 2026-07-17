@@ -1,0 +1,24 @@
+{
+  "id": "narrator-yahya",
+  "type": "NARRATOR",
+  "slug": "yahya-ibn-said",
+  "status": "published",
+  "title": {
+    "ar": "يحيى بن سعيد الأنصاري",
+    "en": "Yahya ibn Sa'id al-Ansari"
+  },
+  "attributes": {
+    "kind": "narrator",
+    "grade": {
+      "ar": "ثقة ثبت حجة",
+      "en": "Thiqah thabt hujjah (authoritative)"
+    },
+    "isnadDepth": 4,
+    "dateDeath": "143-01-01"
+  },
+  "content": [],
+  "schemaVersion": 2,
+  "createdAt": "2025-01-01T00:00:00.000Z",
+  "updatedAt": "2026-07-16T22:02:23.800Z",
+  "digitizationStatus": "stub"
+}

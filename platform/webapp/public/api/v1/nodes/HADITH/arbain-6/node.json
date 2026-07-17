@@ -1,0 +1,23 @@
+{
+  "id": "hadith-4",
+  "type": "HADITH",
+  "slug": "arbain-6",
+  "status": "published",
+  "title": {
+    "ar": "إن الحلال بيّن وإن الحرام بيّن",
+    "en": "The lawful is clear and the unlawful is clear"
+  },
+  "attributes": {
+    "kind": "hadith",
+    "grade": {
+      "ar": "صحيح، متفق عليه",
+      "en": "Sahih, agreed upon"
+    },
+    "isnadType": "short"
+  },
+  "schemaVersion": 2,
+  "content": [],
+  "createdAt": "2025-01-01T00:00:00.000Z",
+  "updatedAt": "2026-07-16T22:02:23.800Z",
+  "digitizationStatus": "complete"
+}
