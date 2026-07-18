@@ -61,15 +61,31 @@
           }
         }
       ],
-      "taqribGrade": {
-        "ar": "ثقة حافظ فقيه إمام حجة",
-        "en": "Thiqah, hafiz, jurist, authoritative imam"
-      },
-      "taqribRef": "ابن حجر، تقريب التهذيب، ت ٢٤٥١",
       "summary": {
         "ar": "أحد أئمة الحديث الكبار بمكة، له نحو سبعين سنة في طلب العلم وروايته.",
         "en": "One of the great hadith imams of Makkah, with roughly seventy years spent seeking and transmitting knowledge."
-      }
+      },
+      "biographicalReferences": [
+        {
+          "workTitle": {
+            "ar": "تقريب التهذيب",
+            "en": "تقريب التهذيب"
+          },
+          "author": {
+            "ar": "ابن حجر",
+            "en": "ابن حجر"
+          },
+          "locatorType": "yearEntry",
+          "locator": "٢٤٥١",
+          "gradeOrNote": {
+            "ar": "Thiqah, hafiz, jurist, authoritative imam",
+            "en": "Thiqah, hafiz, jurist, authoritative imam"
+          },
+          "provenance": "primary"
+        }
+      ],
+      "summaryProvenance": "ai_generated",
+      "biographyVersion": 1
     },
     {
       "type": "lineage",

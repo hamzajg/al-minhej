@@ -61,15 +61,31 @@
           }
         }
       ],
-      "taqribGrade": {
-        "ar": "ثقة، فقيه، ثبت، إلا أن بعض أهل المدينة أنكروا عليه ما حدّث به بالعراق",
-        "en": "Thiqah, jurist, precise — though some Madinans questioned what he narrated after moving to Iraq"
-      },
-      "taqribRef": "ابن حجر، تقريب التهذيب، ٢/٣١٩",
       "summary": {
         "ar": "فقيه محدث، روى عن أبيه عروة أكثر علمه، وروى عنه كبار الأئمة كمالك والثوري وابن عيينة والليث.",
         "en": "A jurist-traditionist who took most of his learning from his father 'Urwah; transmitted from by great imams such as Malik, al-Thawri, Ibn 'Uyaynah, and al-Layth."
-      }
+      },
+      "biographicalReferences": [
+        {
+          "workTitle": {
+            "ar": "تقريب التهذيب",
+            "en": "تقريب التهذيب"
+          },
+          "author": {
+            "ar": "ابن حجر",
+            "en": "ابن حجر"
+          },
+          "locatorType": "volumePage",
+          "locator": "ابن حجر، تقريب التهذيب، ٢/٣١٩",
+          "gradeOrNote": {
+            "ar": "Thiqah, jurist, precise — though some Madinans questioned what he narrated after moving to Iraq",
+            "en": "Thiqah, jurist, precise — though some Madinans questioned what he narrated after moving to Iraq"
+          },
+          "provenance": "primary"
+        }
+      ],
+      "summaryProvenance": "ai_generated",
+      "biographyVersion": 1
     },
     {
       "type": "lineage",

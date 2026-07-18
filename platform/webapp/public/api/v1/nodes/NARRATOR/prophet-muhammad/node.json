@@ -241,15 +241,48 @@
           }
         }
       ],
-      "taqribGrade": {
-        "ar": "—",
-        "en": "—"
-      },
-      "taqribRef": "",
       "summary": {
         "ar": "خاتم الأنبياء والمرسلين، بُعث بمكة وهاجر إلى المدينة، وهو مصدر الوحي الذي نقله عنه الصحابة رضي الله عنهم بالتواتر والآحاد.",
         "en": "The final Prophet and Messenger, sent in Makkah and emigrated to Madinah; the source of the revelation transmitted from him by the Companions through both mass-transmitted and single-chain reports."
-      }
+      },
+      "biographicalReferences": [
+        {
+          "workTitle": {
+            "ar": "البداية والنهاية",
+            "en": "Al-Bidayah wa'l-Nihayah"
+          },
+          "author": {
+            "ar": "ابن كثير",
+            "en": "Ibn Kathir"
+          },
+          "locatorType": "yearEntry",
+          "locator": "sub anno 10 AH",
+          "gradeOrNote": {
+            "ar": "خاتم الأنبياء، بعث في عام الفيل، هاجر في سنة ١ هـ، توفي سنة ١١ هـ",
+            "en": "Seal of the Prophets; sent in Year of Elephant; emigrated 1 AH; died 11 AH"
+          },
+          "provenance": "primary"
+        },
+        {
+          "workTitle": {
+            "ar": "سير أعلام النبلاء",
+            "en": "Siyar A'lam al-Nubala'"
+          },
+          "author": {
+            "ar": "الذهبي",
+            "en": "al-Dhahabi"
+          },
+          "locatorType": "tarjamaNumber",
+          "locator": "ت ١",
+          "gradeOrNote": {
+            "ar": "سيد ولد آدم، خاتم النبيين، إمام المرسلين",
+            "en": "Master of the children of Adam; Seal of the Prophets; Leader of the Messengers"
+          },
+          "provenance": "primary"
+        }
+      ],
+      "summaryProvenance": "ai_generated",
+      "biographyVersion": 1
     }
   ],
   "schemaVersion": 2,

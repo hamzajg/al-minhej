@@ -49,15 +49,31 @@
         }
       ],
       "students": [],
-      "taqribGrade": {
-        "ar": "ثقة متقن، من أثبت الناس في الموطأ",
-        "en": "Thiqah, precise; among the most exacting transmitters of the Muwatta'"
-      },
-      "taqribRef": "ابن حجر، تقريب التهذيب؛ السلاسل المختارة من صحيح البخاري",
       "summary": {
         "ar": "شيخ البخاري الأول في صحيحه؛ فتح به كتابه بأصح الطرق عن مالك.",
         "en": "al-Bukhari's very first teacher cited in the Sahih; he opens the book through him with one of the soundest routes from Malik."
-      }
+      },
+      "biographicalReferences": [
+        {
+          "workTitle": {
+            "ar": "تقريب التهذيب؛ السلاسل المختارة من صحيح البخاري",
+            "en": "تقريب التهذيب؛ السلاسل المختارة من صحيح البخاري"
+          },
+          "author": {
+            "ar": "ابن حجر",
+            "en": "ابن حجر"
+          },
+          "locatorType": "page",
+          "locator": "",
+          "gradeOrNote": {
+            "ar": "Thiqah, precise; among the most exacting transmitters of the Muwatta'",
+            "en": "Thiqah, precise; among the most exacting transmitters of the Muwatta'"
+          },
+          "provenance": "primary"
+        }
+      ],
+      "summaryProvenance": "ai_generated",
+      "biographyVersion": 1
     },
     {
       "type": "lineage",

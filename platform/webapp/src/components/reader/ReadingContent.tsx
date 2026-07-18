@@ -376,6 +376,7 @@ export function HadithReaderContent({ slug }: HadithReaderContentProps) {
               activeGraphNode={activeGraphNode}
               setActiveGraphNode={setActiveGraphNode}
               onOpenSource={setActiveSource}
+              activeNarratorId={activeNarrator}
             />
           </BottomSheet>
         ) : (
@@ -389,6 +390,7 @@ export function HadithReaderContent({ slug }: HadithReaderContentProps) {
               activeGraphNode={activeGraphNode}
               setActiveGraphNode={setActiveGraphNode}
               onOpenSource={setActiveSource}
+              activeNarratorId={activeNarrator}
             />
           </aside>
         )}

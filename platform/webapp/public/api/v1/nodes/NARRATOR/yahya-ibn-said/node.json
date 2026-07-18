@@ -61,15 +61,31 @@
           }
         }
       ],
-      "taqribGrade": {
-        "ar": "ثقة ثبت",
-        "en": "Thiqah, precise (thabt)"
-      },
-      "taqribRef": "ابن حجر، تقريب التهذيب، ت ٧٥٥٣",
       "summary": {
         "ar": "فقيه المدينة وقاضيها، من أوثق التابعين في الحديث.",
         "en": "Jurist and judge of Madinah, among the most reliable of the Successors in hadith."
-      }
+      },
+      "biographicalReferences": [
+        {
+          "workTitle": {
+            "ar": "تقريب التهذيب",
+            "en": "تقريب التهذيب"
+          },
+          "author": {
+            "ar": "ابن حجر",
+            "en": "ابن حجر"
+          },
+          "locatorType": "yearEntry",
+          "locator": "٧٥٥٣",
+          "gradeOrNote": {
+            "ar": "Thiqah, precise (thabt)",
+            "en": "Thiqah, precise (thabt)"
+          },
+          "provenance": "primary"
+        }
+      ],
+      "summaryProvenance": "ai_generated",
+      "biographyVersion": 1
     },
     {
       "type": "lineage",

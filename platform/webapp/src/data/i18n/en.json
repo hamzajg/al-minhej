@@ -17,6 +17,7 @@
     "tabConnect": "Connect",
     "tabPractice": "Practice",
     "tabLibrary": "Library",
+    "tabBiography": "Biography",
     "narratedBy": "Narrated by 'Umar ibn al-Khattab",
     "audio": "Audio",
     "copy": "Copy",
@@ -41,6 +42,11 @@
     "actionPh": "e.g. renew my intention before I pray",
     "companionTitle": "Companion",
     "companionNote": "AI explanations stay clearly separate from the religious text and scholarly commentary.",
+    "companionPromptLabels": {
+      "0": "Explain like I'm 12",
+      "1": "Give a practical example",
+      "2": "Why does the chain matter?"
+    },
     "quizCorrect": "That matches the hadith's point.",
     "quizWrong": "Worth another look — check the highlighted answer.",
     "welcomeGreet": "Welcome",

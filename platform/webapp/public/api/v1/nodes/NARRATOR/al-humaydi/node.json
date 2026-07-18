@@ -52,15 +52,31 @@
         }
       ],
       "students": [],
-      "taqribGrade": {
-        "ar": "ثقة فقيه، من أثبت أصحاب ابن عيينة",
-        "en": "Thiqah, jurist; among the most precise transmitters from Ibn 'Uyaynah"
-      },
-      "taqribRef": "ابن حجر، تقريب التهذيب، ت ٣٣٣٠",
       "summary": {
         "ar": "أول شيخ في أول إسناد في صحيح البخاري؛ إمام حافظ صنّف مسندًا معروفًا باسمه.",
         "en": "The first teacher in the first isnad of Sahih al-Bukhari; a hafiz who authored a well-known Musnad bearing his name."
-      }
+      },
+      "biographicalReferences": [
+        {
+          "workTitle": {
+            "ar": "تقريب التهذيب",
+            "en": "تقريب التهذيب"
+          },
+          "author": {
+            "ar": "ابن حجر",
+            "en": "ابن حجر"
+          },
+          "locatorType": "yearEntry",
+          "locator": "٣٣٣٠",
+          "gradeOrNote": {
+            "ar": "Thiqah, jurist; among the most precise transmitters from Ibn 'Uyaynah",
+            "en": "Thiqah, jurist; among the most precise transmitters from Ibn 'Uyaynah"
+          },
+          "provenance": "primary"
+        }
+      ],
+      "summaryProvenance": "ai_generated",
+      "biographyVersion": 1
     },
     {
       "type": "lineage",

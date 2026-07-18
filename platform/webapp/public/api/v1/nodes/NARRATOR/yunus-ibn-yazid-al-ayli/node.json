@@ -57,15 +57,31 @@
           }
         }
       ],
-      "taqribGrade": {
-        "ar": "ثقة، إلا في روايته عن الزهري ما فيه مقال يسير عند بعض النقاد",
-        "en": "Thiqah — though some critics note minor reservations specifically about his transmission from al-Zuhri"
-      },
-      "taqribRef": "ابن حجر، تقريب التهذيب، ت ٧٩١٠",
       "summary": {
         "ar": "من كبار أصحاب الزهري بمصر، روى هذا الحديث عنه من طريق آخر غير طريق عقيل، وهو طريق مشهور أورده البخاري نفسه في مواضع أخرى من صحيحه.",
         "en": "One of al-Zuhri's leading Egyptian students; transmits this same hadith via a route distinct from 'Uqayl's — a well-known alternate path that al-Bukhari himself cites elsewhere in the Sahih."
-      }
+      },
+      "biographicalReferences": [
+        {
+          "workTitle": {
+            "ar": "تقريب التهذيب",
+            "en": "تقريب التهذيب"
+          },
+          "author": {
+            "ar": "ابن حجر",
+            "en": "ابن حجر"
+          },
+          "locatorType": "yearEntry",
+          "locator": "٧٩١٠",
+          "gradeOrNote": {
+            "ar": "Thiqah — though some critics note minor reservations specifically about his transmission from al-Zuhri",
+            "en": "Thiqah — though some critics note minor reservations specifically about his transmission from al-Zuhri"
+          },
+          "provenance": "primary"
+        }
+      ],
+      "summaryProvenance": "ai_generated",
+      "biographyVersion": 1
     },
     {
       "type": "lineage",

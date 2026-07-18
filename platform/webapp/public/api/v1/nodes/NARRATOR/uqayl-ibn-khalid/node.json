@@ -57,15 +57,31 @@
           }
         }
       ],
-      "taqribGrade": {
-        "ar": "ثقة ثبت",
-        "en": "Thiqah, precise (thabt)"
-      },
-      "taqribRef": "ابن حجر، تقريب التهذيب، ت ٤٦٨٦",
       "summary": {
         "ar": "من أوثق أصحاب الزهري، استوطن أيلة ونقل عنه علمًا كثيرًا.",
         "en": "Among the most reliable companions of al-Zuhri; settled in Aylah and transmitted a great deal of his learning."
-      }
+      },
+      "biographicalReferences": [
+        {
+          "workTitle": {
+            "ar": "تقريب التهذيب",
+            "en": "تقريب التهذيب"
+          },
+          "author": {
+            "ar": "ابن حجر",
+            "en": "ابن حجر"
+          },
+          "locatorType": "yearEntry",
+          "locator": "٤٦٨٦",
+          "gradeOrNote": {
+            "ar": "Thiqah, precise (thabt)",
+            "en": "Thiqah, precise (thabt)"
+          },
+          "provenance": "primary"
+        }
+      ],
+      "summaryProvenance": "ai_generated",
+      "biographyVersion": 1
     },
     {
       "type": "lineage",

@@ -53,15 +53,31 @@
         }
       ],
       "students": [],
-      "taqribGrade": {
-        "ar": "صدوق، من أثبت الناس في الليث، وهو أحد شيوخ البخاري المباشرين",
-        "en": "Saduq (truthful); among the most reliable transmitters of al-Layth, and one of al-Bukhari's direct teachers"
-      },
-      "taqribRef": "ابن حجر، تقريب التهذيب، ت ٧٥٦٤",
       "summary": {
         "ar": "من كبار شيوخ البخاري، اعتمد عليه في نقل حديث الليث بن سعد خاصة.",
         "en": "One of al-Bukhari's principal teachers, relied upon especially for transmitting the hadith of al-Layth ibn Sa'd."
-      }
+      },
+      "biographicalReferences": [
+        {
+          "workTitle": {
+            "ar": "تقريب التهذيب",
+            "en": "تقريب التهذيب"
+          },
+          "author": {
+            "ar": "ابن حجر",
+            "en": "ابن حجر"
+          },
+          "locatorType": "yearEntry",
+          "locator": "٧٥٦٤",
+          "gradeOrNote": {
+            "ar": "Saduq (truthful); among the most reliable transmitters of al-Layth, and one of al-Bukhari's direct teachers",
+            "en": "Saduq (truthful); among the most reliable transmitters of al-Layth, and one of al-Bukhari's direct teachers"
+          },
+          "provenance": "primary"
+        }
+      ],
+      "summaryProvenance": "ai_generated",
+      "biographyVersion": 1
     },
     {
       "type": "lineage",

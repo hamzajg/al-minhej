@@ -61,15 +61,31 @@
           }
         }
       ],
-      "taqribGrade": {
-        "ar": "إمام دار الهجرة، رأس المتقنين وكبير المتثبتين؛ قال البخاري: أصح الأسانيد كلها مالك عن نافع عن ابن عمر",
-        "en": "Imam of the Abode of Emigration, foremost of the precise; al-Bukhari said: 'the soundest chain of all is Malik, from Nafi', from Ibn 'Umar.'"
-      },
-      "taqribRef": "ابن حجر، تقريب التهذيب؛ ينظر أيضًا شمائل الأسانيد المختارة",
       "summary": {
         "ar": "إمام أهل المدينة وصاحب الموطأ، أُجمع على تقديم روايته وضبطه.",
         "en": "Imam of the people of Madinah and author of al-Muwatta'; his transmission and precision were universally esteemed."
-      }
+      },
+      "biographicalReferences": [
+        {
+          "workTitle": {
+            "ar": "تقريب التهذيب؛ ينظر أيضًا شمائل الأسانيد المختارة",
+            "en": "تقريب التهذيب؛ ينظر أيضًا شمائل الأسانيد المختارة"
+          },
+          "author": {
+            "ar": "ابن حجر",
+            "en": "ابن حجر"
+          },
+          "locatorType": "page",
+          "locator": "",
+          "gradeOrNote": {
+            "ar": "Imam of the Abode of Emigration, foremost of the precise; al-Bukhari said: 'the soundest chain of all is Malik, from Nafi', from Ibn 'Umar.'",
+            "en": "Imam of the Abode of Emigration, foremost of the precise; al-Bukhari said: 'the soundest chain of all is Malik, from Nafi', from Ibn 'Umar.'"
+          },
+          "provenance": "primary"
+        }
+      ],
+      "summaryProvenance": "ai_generated",
+      "biographyVersion": 1
     },
     {
       "type": "lineage",

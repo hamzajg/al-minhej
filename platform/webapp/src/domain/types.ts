@@ -4,6 +4,10 @@ export type Localized<T = string> = Partial<Record<Locale, T>> & Pick<Record<Loc
 
 export type NodeStatus = "draft" | "in_review" | "approved" | "published" | "archived";
 
+export type Provenance = "primary" | "ai_generated";
+
+export type Tier = "primary" | "ai_generated" | "low";
+
 export type NodeType = "HADITH" | "VERSE" | "CONCEPT" | "EVENT" | "NARRATOR" | "BOOK" | "PAGE";
 
 export type NodeId = string;
@@ -111,6 +115,31 @@ export interface PageAnnotationEntry {
   relatedNodeIds?: NodeId[];
 }
 
+export interface BiographicalReference {
+  workTitle: Localized<string>;
+  author: Localized<string>;
+  locatorType: "tarjamaNumber" | "volumePage" | "yearEntry" | "page";
+  locator: string;
+  gradeOrNote?: Localized<string>;
+  provenance: Provenance;
+}
+
+export interface BiographyBlock extends ContentBlockBase {
+  type: "biography";
+  kunya: Localized<string>;
+  nasab: Localized<string>;
+  tabaqah?: number;
+  tabaqahLabel?: Localized<string>;
+  birthPlace: Localized<string>;
+  deathInfo: Localized<string>;
+  teachers: { narratorId: NodeId; note: Localized<string> }[];
+  students: { narratorId: NodeId; note: Localized<string> }[];
+  biographicalReferences: BiographicalReference[];
+  summary: Localized<string>;
+  summaryProvenance: Provenance;
+  biographyVersion?: number;
+}
+
 export type ContentBlock =
   | (ContentBlockBase & { type: "clauses"; intro: Localized<string>; items: ClauseItem[] })
   | (ContentBlockBase & { type: "vocabulary"; entries: VocabEntry[] })
@@ -119,7 +148,9 @@ export type ContentBlock =
   | (ContentBlockBase & { type: "source_page"; title: Localized<string>; text: Localized<string>; sourceRef: Localized<string>; sourceUrl?: string })
   | (ContentBlockBase & { type: "page_annotations"; entries: PageAnnotationEntry[] })
   | (ContentBlockBase & { type: "ai_context"; items: AiPrompt[] })
-  | (ContentBlockBase & { type: "quiz"; questions: QuizQuestion[] });
+  | (ContentBlockBase & { type: "quiz"; questions: QuizQuestion[] })
+  | BiographyBlock
+  | (ContentBlockBase & { type: "lineage"; personNodeId: NodeId; chain: { name: Localized<string>; note?: Localized<string> }[]; convergesWithProphetAt?: { name: Localized<string>; note?: Localized<string> }; agreementNote?: Localized<string>; disputedBeyond?: { afterName: Localized<string>; note: Localized<string> }; taqribSourceNote?: Localized<string> });
 
 /* ── Node ── */
 

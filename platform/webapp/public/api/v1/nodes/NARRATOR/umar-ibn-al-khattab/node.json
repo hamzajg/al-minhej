@@ -61,15 +61,31 @@
           }
         }
       ],
-      "taqribGrade": {
-        "ar": "صحابي، ثاني الخلفاء الراشدين",
-        "en": "Companion; second of the Rightly-Guided Caliphs"
-      },
-      "taqribRef": "ابن حجر، الإصابة في تمييز الصحابة",
       "summary": {
         "ar": "أمير المؤمنين الثاني، من أفقه الصحابة وأشدهم في الحق، رواية هذا الحديث عنه على المنبر مشهورة متواترة عنه.",
         "en": "Second Rightly-Guided Caliph, among the most learned and resolute Companions; his narration of this hadith from the pulpit is famous and widely transmitted from him."
-      }
+      },
+      "biographicalReferences": [
+        {
+          "workTitle": {
+            "ar": "الإصابة في تمييز الصحابة",
+            "en": "الإصابة في تمييز الصحابة"
+          },
+          "author": {
+            "ar": "ابن حجر",
+            "en": "ابن حجر"
+          },
+          "locatorType": "page",
+          "locator": "",
+          "gradeOrNote": {
+            "ar": "Companion; second of the Rightly-Guided Caliphs",
+            "en": "Companion; second of the Rightly-Guided Caliphs"
+          },
+          "provenance": "primary"
+        }
+      ],
+      "summaryProvenance": "ai_generated",
+      "biographyVersion": 1
     },
     {
       "type": "lineage",

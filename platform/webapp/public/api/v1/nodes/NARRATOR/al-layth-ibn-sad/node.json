@@ -61,15 +61,31 @@
           }
         }
       ],
-      "taqribGrade": {
-        "ar": "ثقة ثبت فقيه إمام مشهور، قال الشافعي: الليث أفقه من مالك إلا أن أصحابه لم يقوموا به",
-        "en": "Thiqah, precise, jurist, renowned imam — al-Shafi'i said: 'al-Layth was a greater jurist than Malik, but his students did not do him justice.'"
-      },
-      "taqribRef": "ابن حجر، تقريب التهذيب، ت ٥٧٩٤",
       "summary": {
         "ar": "إمام أهل مصر في الفقه والحديث في عصره، عُرف بسعة علمه وجوده.",
         "en": "The leading imam of Egypt in jurisprudence and hadith of his era, known for the breadth of his learning and generosity."
-      }
+      },
+      "biographicalReferences": [
+        {
+          "workTitle": {
+            "ar": "تقريب التهذيب",
+            "en": "تقريب التهذيب"
+          },
+          "author": {
+            "ar": "ابن حجر",
+            "en": "ابن حجر"
+          },
+          "locatorType": "yearEntry",
+          "locator": "٥٧٩٤",
+          "gradeOrNote": {
+            "ar": "Thiqah, precise, jurist, renowned imam — al-Shafi'i said: 'al-Layth was a greater jurist than Malik, but his students did not do him justice.'",
+            "en": "Thiqah, precise, jurist, renowned imam — al-Shafi'i said: 'al-Layth was a greater jurist than Malik, but his students did not do him justice.'"
+          },
+          "provenance": "primary"
+        }
+      ],
+      "summaryProvenance": "ai_generated",
+      "biographyVersion": 1
     },
     {
       "type": "lineage",

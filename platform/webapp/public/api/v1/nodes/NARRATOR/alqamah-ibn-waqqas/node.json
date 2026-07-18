@@ -60,15 +60,31 @@
           }
         }
       ],
-      "taqribGrade": {
-        "ar": "ثقة",
-        "en": "Thiqah (trustworthy)"
-      },
-      "taqribRef": "ابن حجر، تقريب التهذيب، ت ٤٦٨٠",
       "summary": {
         "ar": "من ثقات التابعين بالمدينة، معدود في الطبقة الثانية.",
         "en": "A reliable Madinan Successor, counted among the second generation."
-      }
+      },
+      "biographicalReferences": [
+        {
+          "workTitle": {
+            "ar": "تقريب التهذيب",
+            "en": "تقريب التهذيب"
+          },
+          "author": {
+            "ar": "ابن حجر",
+            "en": "ابن حجر"
+          },
+          "locatorType": "yearEntry",
+          "locator": "٤٦٨٠",
+          "gradeOrNote": {
+            "ar": "Thiqah (trustworthy)",
+            "en": "Thiqah (trustworthy)"
+          },
+          "provenance": "primary"
+        }
+      ],
+      "summaryProvenance": "ai_generated",
+      "biographyVersion": 1
     },
     {
       "type": "lineage",

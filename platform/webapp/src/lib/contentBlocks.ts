@@ -27,3 +27,11 @@ export function getSourcePage(node: KnowledgeNode) {
 export function getPageAnnotations(node: KnowledgeNode) {
   return node.content.find((b): b is Extract<ContentBlock, { type: "page_annotations" }> => b.type === "page_annotations");
 }
+
+export function getBiography(node: KnowledgeNode) {
+  return node.content.find((b): b is Extract<ContentBlock, { type: "biography" }> => b.type === "biography");
+}
+
+export function getLineage(node: KnowledgeNode) {
+  return node.content.find((b): b is Extract<ContentBlock, { type: "lineage" }> => b.type === "lineage");
+}

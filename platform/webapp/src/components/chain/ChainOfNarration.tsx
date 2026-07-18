@@ -1,12 +1,13 @@
-import { GitBranch, ShieldCheck } from "lucide-react";
+import { GitBranch, ShieldCheck, BookOpen, TreePine } from "lucide-react";
 import { useSettings } from "@/context/SettingsContext";
 import { useNodeProgress } from "@/hooks/useNodeProgress";
 import { useReferencedBooks } from "@/hooks/useReferencedBooks";
 import { SourceChip } from "@/components/sources/SourceChip";
 import { SourceProgressBar } from "@/components/sources/SourceProgressBar";
 import { formatPct } from "@/lib/format";
+import { getBiography, getLineage } from "@/lib/contentBlocks";
 import type { IsnadDTO } from "@/domain/dto";
-import type { KnowledgeNode } from "@/domain/types";
+import type { KnowledgeNode, BiographyBlock } from "@/domain/types";
 
 interface Props {
   isnad: IsnadDTO;
@@ -146,6 +147,85 @@ export function ChainOfNarration({ isnad, activeId, onSelect, onOpenSource }: Pr
               </div>
             </>
           )}
+
+          {/* Lineage */}
+          {activeNode.attributes.kind === "narrator" && (() => {
+            const lineage = getLineage(activeNode);
+            if (!lineage?.chain?.length) return null;
+            
+            const binConnector = uiLang === "ar" ? " بن " : " bin ";
+            
+            return (
+              <div className="mt-3">
+                <div className="flex items-center gap-1.5 text-xs font-semibold text-[var(--color-gold)] mb-1.5">
+                  <TreePine size={11} />
+                  <span>{uiLang === "ar" ? "النسب" : "Lineage"}</span>
+                </div>
+                <div className="text-[12px] text-[var(--color-sub)] leading-relaxed">
+                  {lineage.chain.map((item, idx) => (
+                    <span key={idx} className="whitespace-normal">
+                      {idx > 0 && <span className="font-medium">{binConnector}</span>}
+                      <span className="font-medium text-[var(--color-ink)]">{item.name[uiLang] || item.name.ar}</span>
+                      {item.note && (
+                        <span className="text-[10px] italic text-[var(--color-sub)] ml-1">
+                          ({item.note[uiLang] || item.note.ar})
+                        </span>
+                      )}
+                    </span>
+                  ))}
+                </div>
+                {lineage.convergesWithProphetAt && (
+                  <div className="mt-1.5 p-2 bg-[var(--color-emerald)]/10 border border-[var(--color-emerald)]/30 rounded">
+                    <div className="text-[9px] font-semibold text-[var(--color-emerald)]">
+                      {uiLang === "ar" ? "يلتقي بالنسب النبوي عند:" : "Converges with Prophetic lineage at:"}
+                    </div>
+                    <div className="text-[9px] text-[var(--color-ink)]">
+                      {lineage.convergesWithProphetAt.name[uiLang] || lineage.convergesWithProphetAt.name.ar}
+                    </div>
+                  </div>
+                )}
+              </div>
+            );
+          })()}
+
+          {/* Biographical References (Taqrib al-Tahdhib, etc.) */}
+          {activeNode.attributes.kind === "narrator" && (() => {
+            const bio = getBiography(activeNode) as BiographyBlock | undefined;
+            if (!bio?.biographicalReferences?.length) return null;
+            
+            return (
+              <div className="mt-3 space-y-2">
+                <div className="flex items-center gap-1.5 text-xs font-semibold text-[var(--color-emerald)]">
+                  <BookOpen size={11} />
+                  <span>{uiLang === "ar" ? "المراجع السيرية" : "Biographical References"}</span>
+                </div>
+                <div className="space-y-1.5">
+                  {bio.biographicalReferences.map((ref, idx) => (
+                    <div key={idx} className="text-[10px] bg-[var(--color-panel-2)] border border-[var(--color-line)] rounded p-2">
+                      <div className="font-medium text-[var(--color-ink)]">
+                        {ref.workTitle[uiLang] || ref.workTitle.ar}
+                      </div>
+                      <div className="text-[9px] text-[var(--color-sub)]">
+                        {ref.author[uiLang] || ref.author.ar}
+                        {ref.locator && ` — ${ref.locatorType === "tarjamaNumber" ? "ت" : ref.locatorType === "volumePage" ? "ج/ص" : ref.locatorType === "yearEntry" ? "سنة" : "ص"} ${ref.locator}`}
+                      </div>
+                      {ref.gradeOrNote && (
+                        <div className="text-[9px] mt-0.5 italic text-[var(--color-sub)]">
+                          {ref.gradeOrNote[uiLang] || ref.gradeOrNote.ar}
+                        </div>
+                      )}
+                      <div className="flex items-center gap-1 mt-1">
+                        <span className={`w-1.5 h-1.5 rounded-full ${ref.provenance === "primary" ? "bg-emerald-500" : "bg-amber-500"}`} />
+                        <span className="text-[9px] text-[var(--color-sub)]">
+                          {ref.provenance === "primary" ? (uiLang === "ar" ? "مصدر أصلي" : "Primary") : (uiLang === "ar" ? "مُولَّد" : "AI")}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          })()}
 
           {activeNode.attributes.kind === "book" && (
             <div className="text-[10.5px] text-[var(--color-sub)] mb-2">

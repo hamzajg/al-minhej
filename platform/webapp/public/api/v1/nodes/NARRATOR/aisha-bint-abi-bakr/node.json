@@ -60,15 +60,31 @@
           }
         }
       ],
-      "taqribGrade": {
-        "ar": "صحابية، أفقه نساء الأمة",
-        "en": "Companion; the most learned woman of the ummah in jurisprudence"
-      },
-      "taqribRef": "ابن حجر، الإصابة في تمييز الصحابة",
       "summary": {
         "ar": "من أكثر الصحابة رواية للحديث مطلقًا، ومرجع كبير في الفقه والتفسير وسيرة النبي ﷺ في بيته.",
         "en": "Among the most prolific narrators of hadith of any Companion, and a major authority on jurisprudence, exegesis, and the Prophet's ﷺ life at home."
-      }
+      },
+      "biographicalReferences": [
+        {
+          "workTitle": {
+            "ar": "الإصابة في تمييز الصحابة",
+            "en": "الإصابة في تمييز الصحابة"
+          },
+          "author": {
+            "ar": "ابن حجر",
+            "en": "ابن حجر"
+          },
+          "locatorType": "page",
+          "locator": "",
+          "gradeOrNote": {
+            "ar": "Companion; the most learned woman of the ummah in jurisprudence",
+            "en": "Companion; the most learned woman of the ummah in jurisprudence"
+          },
+          "provenance": "primary"
+        }
+      ],
+      "summaryProvenance": "ai_generated",
+      "biographyVersion": 1
     },
     {
       "type": "lineage",

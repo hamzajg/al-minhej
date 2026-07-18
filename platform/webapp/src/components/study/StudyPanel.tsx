@@ -5,6 +5,7 @@ import { VocabularyTab } from "./VocabularyTab";
 import { ConnectTab } from "./ConnectTab";
 import { PracticeTab } from "./PracticeTab";
 import { LibraryTab } from "./LibraryTab";
+import { BiographyTab } from "./BiographyTab";
 import type { ReadingExperienceDTO } from "@/domain/dto";
 import type { RightTab } from "@/types";
 
@@ -17,6 +18,7 @@ interface Props {
   activeGraphNode: string;
   setActiveGraphNode: (id: string) => void;
   onOpenSource: (id: string) => void;
+  activeNarratorId: string;
 }
 
 export function StudyPanel({
@@ -28,6 +30,7 @@ export function StudyPanel({
   activeGraphNode,
   setActiveGraphNode,
   onOpenSource,
+  activeNarratorId,
 }: Props) {
   const { t } = useSettings();
 
@@ -37,6 +40,7 @@ export function StudyPanel({
     ["connect", t.tabConnect],
     ["practice", t.tabPractice],
     ["library", t.tabLibrary],
+    ["biography", "السيرة / Biography"],
   ];
 
   return (
@@ -58,6 +62,7 @@ export function StudyPanel({
       )}
       {tab === "practice" && <PracticeTab node={dto.node} />}
       {tab === "library" && <LibraryTab onOpenSource={onOpenSource} />}
+      {tab === "biography" && <BiographyTab activeNarratorId={activeNarratorId} />}
     </div>
   );
 }

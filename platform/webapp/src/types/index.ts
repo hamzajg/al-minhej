@@ -8,6 +8,6 @@
 export type UiLang = "ar" | "en";
 export type SubtitleLang = "en" | "fr" | "es";
 export type ReadingMode = "immersive" | "guided";
-export type RightTab = "understand" | "vocab" | "connect" | "practice" | "library";
+export type RightTab = "understand" | "vocab" | "connect" | "practice" | "library" | "biography";
 export type SheetId = "chain" | "study" | null;
 export type Difficulty = "easy" | "medium" | "hard";

@@ -45,15 +45,31 @@
       },
       "teachers": [],
       "students": [],
-      "taqribGrade": {
-        "ar": "إمام حافظ فقيه شافعي",
-        "en": "Imam, hafiz, Shafi'i jurist"
-      },
-      "taqribRef": "السخاوي، المنهل العذب الروي في ترجمة النووي",
       "summary": {
         "ar": "مصنّف الأربعين النووية، جمعها من الصحيحين وغيرهما مقتصرًا غالبًا على إسناد مختصر لأنها مشهورة.",
         "en": "Compiler of al-Arba'in al-Nawawiyyah, gathered from the two Sahihs and elsewhere, usually citing a shortened chain since the reports were already well known."
-      }
+      },
+      "biographicalReferences": [
+        {
+          "workTitle": {
+            "ar": "المنهل العذب الروي في ترجمة النووي",
+            "en": "المنهل العذب الروي في ترجمة النووي"
+          },
+          "author": {
+            "ar": "السخاوي",
+            "en": "السخاوي"
+          },
+          "locatorType": "page",
+          "locator": "",
+          "gradeOrNote": {
+            "ar": "Imam, hafiz, Shafi'i jurist",
+            "en": "Imam, hafiz, Shafi'i jurist"
+          },
+          "provenance": "primary"
+        }
+      ],
+      "summaryProvenance": "ai_generated",
+      "biographyVersion": 1
     },
     {
       "type": "lineage",

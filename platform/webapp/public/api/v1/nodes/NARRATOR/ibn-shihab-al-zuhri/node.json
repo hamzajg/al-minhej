@@ -61,15 +61,31 @@
           }
         }
       ],
-      "taqribGrade": {
-        "ar": "ثقة حافظ فقيه متفق على جلالته وإتقانه، أول من دوّن الحديث بأمر عمر بن عبد العزيز",
-        "en": "Thiqah, hafiz, jurist — his eminence and precision are unanimously agreed upon; the first to formally codify hadith, by order of 'Umar ibn 'Abd al-'Aziz"
-      },
-      "taqribRef": "ابن حجر، تقريب التهذيب، ت ٦٢٩٦",
       "summary": {
         "ar": "أحد أعلام التابعين في الحديث والفقه، له فضل السبق في تدوين الحديث النبوي.",
         "en": "One of the towering scholars of the Successors in hadith and fiqh, credited with pioneering the formal recording of hadith."
-      }
+      },
+      "biographicalReferences": [
+        {
+          "workTitle": {
+            "ar": "تقريب التهذيب",
+            "en": "تقريب التهذيب"
+          },
+          "author": {
+            "ar": "ابن حجر",
+            "en": "ابن حجر"
+          },
+          "locatorType": "yearEntry",
+          "locator": "٦٢٩٦",
+          "gradeOrNote": {
+            "ar": "Thiqah, hafiz, jurist — his eminence and precision are unanimously agreed upon; the first to formally codify hadith, by order of 'Umar ibn 'Abd al-'Aziz",
+            "en": "Thiqah, hafiz, jurist — his eminence and precision are unanimously agreed upon; the first to formally codify hadith, by order of 'Umar ibn 'Abd al-'Aziz"
+          },
+          "provenance": "primary"
+        }
+      ],
+      "summaryProvenance": "ai_generated",
+      "biographyVersion": 1
     },
     {
       "type": "lineage",
