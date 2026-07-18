@@ -84,9 +84,18 @@ export interface UiStrings {
   nextPageLocked: string;
   volume: string;
   page: string;
+  chapter: string;
+  hadith: string;
+  navByHadith: string;
+  navByPage: string;
   backToLibrary: string;
   openSource: string;
   inProgress: string;
+  sourcePageTitle: string;
+  hadithsOnPage: string;
+  pageKnowledgeTitle: string;
+  mentionedEntitiesTitle: string;
+  openHadithReader: string;
   whyHijrahTitle: string;
   homeGraphEyebrow: string;
   homeGraphTitle: string;

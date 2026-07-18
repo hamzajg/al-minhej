@@ -9,6 +9,11 @@
     "kind": "page",
     "bookId": "book-arbain",
     "pageNum": 1,
+    "chapterId": "hadith-1",
+    "chapterTitle": {
+      "ar": "الحديث الأول: إنما الأعمال بالنيات",
+      "en": "Hadith 1: Actions are by intentions"
+    },
     "hadithIds": ["hadith-arbain-1"]
   },
   "content": [],

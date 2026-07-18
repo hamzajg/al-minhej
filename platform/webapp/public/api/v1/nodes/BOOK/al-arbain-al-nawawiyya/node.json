@@ -25,7 +25,19 @@
         "ar": "حديث",
         "en": "hadith"
       }
-    }
+    },
+    "index": [
+      {
+        "id": "hadith-1",
+        "title": {
+          "ar": "الحديث الأول: إنما الأعمال بالنيات",
+          "en": "Hadith 1: Actions are by intentions"
+        },
+        "pageStart": 1,
+        "pageEnd": 1,
+        "pagesDigitized": 1
+      }
+    ]
   },
   "content": [],
   "schemaVersion": 2,

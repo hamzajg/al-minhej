@@ -19,3 +19,7 @@ export function getAiContext(node: KnowledgeNode) {
 export function getContext(node: KnowledgeNode) {
   return node.content.find((b): b is Extract<ContentBlock, { type: "context" }> => b.type === "context");
 }
+
+export function getSourcePage(node: KnowledgeNode) {
+  return node.content.find((b): b is Extract<ContentBlock, { type: "source_page" }> => b.type === "source_page");
+}

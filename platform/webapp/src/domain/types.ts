@@ -11,6 +11,15 @@ export type Slug = string;
 
 export type DigitizationStatus = "stub" | "partial" | "complete";
 
+export interface BookIndexEntry {
+  id: string;
+  title: Localized<string>;
+  pageStart: number;
+  pageEnd?: number;
+  pagesDigitized: number;
+  sourcePath?: string;
+}
+
 export type NodeAttributes =
   | { kind: "hadith"; grade: Localized<string>; isnadType: "short" | "full" | "mursal" }
   | { kind: "verse"; ref: { surah: number; ayahStart: number; ayahEnd: number }; refLocalized: Localized<string> }
@@ -32,8 +41,25 @@ export type NodeAttributes =
         authoredUnits: number;
         unit: Localized<string>;
       };
+      index?: BookIndexEntry[];
+      sourceLibrary?: {
+        name: "shamela.ws";
+        bookUrl: string;
+      };
     }
-  | { kind: "page"; bookId: NodeId; pageNum: number; hadithIds: NodeId[] };
+  | {
+      kind: "page";
+      bookId: NodeId;
+      pageNum: number;
+      volumeNum?: number;
+      chapterId?: string;
+      chapterTitle?: Localized<string>;
+      hadithIds: NodeId[];
+      sourcePage?: {
+        path: string;
+        label: Localized<string>;
+      };
+    };
 
 /* ── Content block registry ── */
 
@@ -78,6 +104,7 @@ export type ContentBlock =
   | (ContentBlockBase & { type: "vocabulary"; entries: VocabEntry[] })
   | (ContentBlockBase & { type: "commentary"; scholar: Localized<string>; workNodeId: NodeId; note: Localized<string> })
   | (ContentBlockBase & { type: "context"; title: Localized<string>; body: Localized<string> })
+  | (ContentBlockBase & { type: "source_page"; title: Localized<string>; text: Localized<string>; sourceRef: Localized<string>; sourceUrl?: string })
   | (ContentBlockBase & { type: "ai_context"; items: AiPrompt[] })
   | (ContentBlockBase & { type: "quiz"; questions: QuizQuestion[] });
 

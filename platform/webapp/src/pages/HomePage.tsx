@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { ArrowRight, BookOpen, Library, Network } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSettings } from "@/context/SettingsContext";
+import { hadithReaderPath } from "@/lib/routes";
 import { Header } from "@/components/layout/Header";
 import { useReadingIndex } from "@/hooks/useReadingIndex";
 import { knowledgeRepository } from "@/application/container";
@@ -90,7 +91,7 @@ export default function HomePage() {
 
             {node && (
               <Link
-                to={`/reading/${node.slug}`}
+                to={hadithReaderPath(node.slug)}
                 className="inline-flex items-center gap-2 bg-[var(--color-emerald)] text-[#F4EFE2] px-6 py-3 rounded-xl text-sm font-semibold shadow-lg hover:opacity-90 transition-opacity"
               >
                 {t.homeCta} <ArrowRight size={15} />
@@ -195,7 +196,7 @@ export default function HomePage() {
 
             {node && (
               <Link
-                to={`/reading/${node.slug}`}
+                to={hadithReaderPath(node.slug)}
                 className="block text-start bg-[var(--color-panel)] border border-[var(--color-line)] rounded-2xl p-6 hover:-translate-y-0.5 transition-transform"
               >
                 <div className="w-10 h-10 rounded-xl bg-[var(--color-gold)]/10 border border-[var(--color-gold)]/25 grid place-items-center mb-4">

@@ -12,11 +12,42 @@
     "kind": "page",
     "bookId": "book-bukhari",
     "pageNum": 3,
+    "volumeNum": 1,
+    "chapterId": "bad-al-wahy",
+    "chapterTitle": {
+      "ar": "كتاب بدء الوحي",
+      "en": "Book of the Beginning of Revelation"
+    },
     "hadithIds": [
       "hadith-bukhari-3"
-    ]
+    ],
+    "sourcePage": {
+      "path": "shamela.ws/book/1284/155-156",
+      "label": {
+        "ar": "شاملة: صحيح البخاري، ص ١٥٥-١٥٦",
+        "en": "Shamela: Sahih al-Bukhari, pp. 155-156"
+      }
+    }
   },
-  "content": [],
+  "content": [
+    {
+      "type": "source_page",
+      "blockVersion": 1,
+      "title": {
+        "ar": "أول ما بدئ به الوحي وعودة النبي ﷺ إلى خديجة",
+        "en": "The first revelation and the Prophet's return to Khadijah"
+      },
+      "text": {
+        "ar": "• [٣] حدثنا يحيى بن بكير، قال: حدثنا الليث، عن عقيل، عن ابن شهاب، عن عروة بن الزبير، عن عائشة أم المؤمنين، أنها قالت: أول ما بدئ به رسول الله ﷺ من الوحي الرؤيا الصالحة في النوم ... حتى جاءه الحق وهو في غار حراء، فجاءه الملك فقال: اقرأ ... فقال: ﴿اقرأ باسم ربك الذي خلق * خلق الإنسان من علق * اقرأ وربك الأكرم﴾.\n\nفرجع بها رسول الله ﷺ يرجف فؤاده، فدخل على خديجة بنت خويلد رضي الله عنها فقال: \"زملوني زملوني\". فزملوه حتى ذهب عنه الروع، فقال لخديجة وأخبرها الخبر: \"لقد خشيت على نفسي\". فقالت خديجة: كلا والله ما يخزيك الله أبدًا؛ إنك لتصل الرحم، وتحمل الكل، وتكسب المعدوم، وتقري الضيف، وتعين على نوائب الحق.",
+        "en": "Hadith 3: Yahya ibn Bukayr narrated to us ... from 'A'ishah, who said: 'The first stage of revelation to the Messenger of God ﷺ was the true dream in sleep ... until the truth came to him in the cave of Hira'. The angel came and said: Read ... and then recited: Read in the name of your Lord who created ...'\n\nThe Messenger of God ﷺ returned with his heart trembling and entered upon Khadijah bint Khuwaylid, saying: 'Cover me, cover me.' They covered him until the fear passed. He told Khadijah what had happened and said: 'I feared for myself.' Khadijah answered: 'Never. By God, God will never disgrace you. You maintain family ties, carry the burdens of the weak, provide for the destitute, honor the guest, and help in every cause of truth.'"
+      },
+      "sourceRef": {
+        "ar": "كتاب بدء الوحي، شاملة: 1284/155-156",
+        "en": "Book of Revelation, Shamela: 1284/155-156"
+      },
+      "sourceUrl": "https://shamela.ws/book/1284/155"
+    }
+  ],
   "schemaVersion": 2,
   "createdAt": "2026-07-17T00:00:00.000Z",
   "updatedAt": "2026-07-17T00:00:00.000Z"

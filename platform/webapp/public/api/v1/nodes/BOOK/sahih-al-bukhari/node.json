@@ -25,6 +25,53 @@
         "ar": "حديث",
         "en": "hadith"
       }
+    },
+    "index": [
+      {
+        "id": "bad-al-wahy",
+        "title": {
+          "ar": "كتاب بدء الوحي",
+          "en": "Book of the Beginning of Revelation"
+        },
+        "pageStart": 1,
+        "pageEnd": 3,
+        "pagesDigitized": 3,
+        "sourcePath": "shamela.ws/book/1284/153"
+      },
+      {
+        "id": "kitab-al-iman",
+        "title": {
+          "ar": "كتاب الإيمان",
+          "en": "Book of Faith"
+        },
+        "pageStart": 4,
+        "pagesDigitized": 0,
+        "sourcePath": "shamela.ws/book/1284/167"
+      },
+      {
+        "id": "kitab-al-ilm",
+        "title": {
+          "ar": "كتاب العلم",
+          "en": "Book of Knowledge"
+        },
+        "pageStart": 5,
+        "pagesDigitized": 0,
+        "sourcePath": "shamela.ws/book/1284/206"
+      },
+      {
+        "id": "kitab-al-wudu",
+        "title": {
+          "ar": "كتاب الوضوء",
+          "en": "Book of Wudu'"
+        },
+        "pageStart": 6,
+        "pagesDigitized": 0,
+        "sourcePath": "shamela.ws/book/1284/267"
+      }
+    ],
+    "sourceLibrary": {
+      "name": "shamela.ws",
+      "bookUrl": "https://shamela.ws/book/1284"
     }
   },
   "content": [],
