@@ -92,6 +92,11 @@ export interface UiStrings {
   openSource: string;
   inProgress: string;
   sourcePageTitle: string;
+  pageAnnotationsTitle: string;
+  pageAnnotationSideNote: string;
+  pageAnnotationMarginalCommentary: string;
+  pageAnnotationScholarlyAnnotation: string;
+  pageAnnotationCitation: string;
   hadithsOnPage: string;
   pageKnowledgeTitle: string;
   mentionedEntitiesTitle: string;

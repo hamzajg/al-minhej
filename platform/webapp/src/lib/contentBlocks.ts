@@ -23,3 +23,7 @@ export function getContext(node: KnowledgeNode) {
 export function getSourcePage(node: KnowledgeNode) {
   return node.content.find((b): b is Extract<ContentBlock, { type: "source_page" }> => b.type === "source_page");
 }
+
+export function getPageAnnotations(node: KnowledgeNode) {
+  return node.content.find((b): b is Extract<ContentBlock, { type: "page_annotations" }> => b.type === "page_annotations");
+}

@@ -38,13 +38,91 @@
         "en": "The first revelation and the Prophet's return to Khadijah"
       },
       "text": {
-        "ar": "• [٣] حدثنا يحيى بن بكير، قال: حدثنا الليث، عن عقيل، عن ابن شهاب، عن عروة بن الزبير، عن عائشة أم المؤمنين، أنها قالت: أول ما بدئ به رسول الله ﷺ من الوحي الرؤيا الصالحة في النوم ... حتى جاءه الحق وهو في غار حراء، فجاءه الملك فقال: اقرأ ... فقال: ﴿اقرأ باسم ربك الذي خلق * خلق الإنسان من علق * اقرأ وربك الأكرم﴾.\n\nفرجع بها رسول الله ﷺ يرجف فؤاده، فدخل على خديجة بنت خويلد رضي الله عنها فقال: \"زملوني زملوني\". فزملوه حتى ذهب عنه الروع، فقال لخديجة وأخبرها الخبر: \"لقد خشيت على نفسي\". فقالت خديجة: كلا والله ما يخزيك الله أبدًا؛ إنك لتصل الرحم، وتحمل الكل، وتكسب المعدوم، وتقري الضيف، وتعين على نوائب الحق.",
-        "en": "Hadith 3: Yahya ibn Bukayr narrated to us ... from 'A'ishah, who said: 'The first stage of revelation to the Messenger of God ﷺ was the true dream in sleep ... until the truth came to him in the cave of Hira'. The angel came and said: Read ... and then recited: Read in the name of your Lord who created ...'\n\nThe Messenger of God ﷺ returned with his heart trembling and entered upon Khadijah bint Khuwaylid, saying: 'Cover me, cover me.' They covered him until the fear passed. He told Khadijah what had happened and said: 'I feared for myself.' Khadijah answered: 'Never. By God, God will never disgrace you. You maintain family ties, carry the burdens of the weak, provide for the destitute, honor the guest, and help in every cause of truth.'"
+        "ar": "تجمع هذه الصفحة انتقال السرد من الرؤيا الصالحة إلى لقاء حراء، ثم مشهد رجوع النبي ﷺ إلى خديجة رضي الله عنها بعد أول الفزع من الوحي.",
+        "en": "This page gathers the movement from truthful dreams to the encounter at Hira', then the scene of the Prophet ﷺ returning to Khadijah after the first awe of revelation."
       },
       "sourceRef": {
         "ar": "كتاب بدء الوحي، ص ١٥٥-١٥٦",
         "en": "Book of Revelation, pp. 155-156"
       }
+    },
+    {
+      "type": "page_annotations",
+      "blockVersion": 1,
+      "entries": [
+        {
+          "id": "page-3-source-scene-transition",
+          "kind": "side_note",
+          "title": {
+            "ar": "تعاقب المشاهد على الصفحة",
+            "en": "Scene transitions on the page"
+          },
+          "note": {
+            "ar": "لا تُقرأ هذه الصفحة بوصفها نصًا منفصلًا واحدًا، بل بوصفها انتقالًا متصلًا من الرؤيا والخلاء في حراء إلى لحظة اللقاء بالملك ثم الرجوع إلى البيت، وهذا يمنحها وحدة سردية مستقلة في الفهرسة.",
+            "en": "This page is not read as one isolated text, but as a connected transition from truthful dreams and retreat in Hira' to the encounter with the angel and then the return home. That gives it an independent narrative unity in the index."
+          },
+          "citation": {
+            "title": {
+              "ar": "صحيح البخاري",
+              "en": "Sahih al-Bukhari"
+            },
+            "locator": {
+              "ar": "كتاب بدء الوحي، ص ١٥٥-١٥٦",
+              "en": "Book of Revelation, pp. 155-156"
+            },
+            "url": "https://sunna.alifta.gov.sa/BookToc/ViewMatnPage?MainID=10764"
+          },
+          "relatedNodeIds": ["concept-wahy", "narrator-prophet"]
+        },
+        {
+          "id": "page-3-source-khadijah-support",
+          "kind": "marginal_commentary",
+          "title": {
+            "ar": "دور خديجة في استقبال الحدث",
+            "en": "Khadijah's role in receiving the event"
+          },
+          "note": {
+            "ar": "يحفظ هذا الموضع على الصفحة مشهد التثبيت الأول؛ فاستقبال خديجة رضي الله عنها للخبر ليس تابعًا لشرح الحديث فقط، بل هو عنصر مستقل في بنية الصفحة يربط الوحي بسياق السكن والتزميل والتثبيت.",
+            "en": "This passage preserves the first scene of reassurance. Khadijah's reception of the news is not only part of hadith explanation, but an independent structural element of the page linking revelation to shelter, covering, and reassurance."
+          },
+          "citation": {
+            "title": {
+              "ar": "صحيح البخاري",
+              "en": "Sahih al-Bukhari"
+            },
+            "locator": {
+              "ar": "كتاب بدء الوحي، ص ١٥٥-١٥٦",
+              "en": "Book of Revelation, pp. 155-156"
+            },
+            "url": "https://sunna.alifta.gov.sa/BookToc/ViewMatnPage?MainID=10764"
+          },
+          "relatedNodeIds": ["narrator-aisha", "narrator-prophet"]
+        },
+        {
+          "id": "page-3-source-quran-threshold",
+          "kind": "scholarly_annotation",
+          "title": {
+            "ar": "عتبة الآيات الأولى",
+            "en": "Threshold of the first verses"
+          },
+          "note": {
+            "ar": "وجود مقطع ﴿اقرأ باسم ربك﴾ في هذا الموضع يجعل الصفحة عقدة وصل بين خبر بدء الوحي وبين عتبة التنزيل القرآني، ولذلك تُبنى لها علاقات معرفة تتجاوز حدود بطاقة الحديث المنفردة.",
+            "en": "The presence of the 'Read in the name of your Lord' passage at this spot makes the page a junction between the report of the beginning of revelation and the threshold of Qur'anic descent, so it warrants knowledge relations beyond the bounds of an individual hadith card."
+          },
+          "citation": {
+            "title": {
+              "ar": "صحيح البخاري",
+              "en": "Sahih al-Bukhari"
+            },
+            "locator": {
+              "ar": "كتاب بدء الوحي، ص ١٥٥-١٥٦",
+              "en": "Book of Revelation, pp. 155-156"
+            },
+            "url": "https://sunna.alifta.gov.sa/BookToc/ViewMatnPage?MainID=10764"
+          },
+          "relatedNodeIds": ["concept-wahy"]
+        }
+      ]
     }
   ],
   "schemaVersion": 2,

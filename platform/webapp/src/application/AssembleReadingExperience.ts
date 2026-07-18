@@ -14,12 +14,13 @@ import type {
   IsnadDTO,
   IsnadPersonDTO,
   MentionDTO,
+  PageAnnotationDTO,
   PageExperienceDTO,
   ReadingExperienceDTO,
   ReferenceDTO,
   TOCEntry,
 } from "@/domain/dto";
-import { getSourcePage } from "@/lib/contentBlocks";
+import { getPageAnnotations, getSourcePage } from "@/lib/contentBlocks";
 import { DigitizationProgressService } from "./DigitizationProgressService";
 
 const ROLE_BY_DEPTH: Localized<string>[] = [
@@ -310,6 +311,7 @@ export class AssembleReadingExperience {
         originalText: null,
         readingNode: null,
         hadiths: [],
+        annotations: [],
         fragments: [],
         mentions: [],
       };
@@ -321,7 +323,8 @@ export class AssembleReadingExperience {
       .filter((node): node is KnowledgeNode => Boolean(node));
 
     const source = getSourcePage(page);
-    const { fragments, mentions } = await this.buildPageConnections(hadiths);
+    const annotations = await this.buildPageAnnotations(page);
+    const { fragments, mentions } = await this.buildPageConnections(hadiths, annotations);
 
     return {
       page,
@@ -336,17 +339,59 @@ export class AssembleReadingExperience {
         : null,
       readingNode: hadiths[0] ?? null,
       hadiths,
+      annotations,
       fragments,
       mentions,
     };
   }
 
-  private async buildPageConnections(hadiths: KnowledgeNode[]): Promise<{
+  private async buildPageAnnotations(page: KnowledgeNode): Promise<PageAnnotationDTO[]> {
+    const block = getPageAnnotations(page);
+    if (!block) return [];
+
+    const relatedIds = [...new Set(block.entries.flatMap((entry) => entry.relatedNodeIds ?? []))];
+    const relatedNodes = relatedIds.length > 0 ? await this.nodes.findManyByIds(relatedIds) : [];
+
+    return block.entries.map((entry) => ({
+      id: entry.id,
+      kind: entry.kind,
+      title: entry.title,
+      scholar: entry.scholar,
+      work: entry.work,
+      note: entry.note,
+      citation: entry.citation,
+      relatedNodes: (entry.relatedNodeIds ?? [])
+        .map((id) => relatedNodes.find((node) => node.id === id))
+        .filter((node): node is KnowledgeNode => Boolean(node)),
+    }));
+  }
+
+  private async buildPageConnections(hadiths: KnowledgeNode[], annotations: PageAnnotationDTO[]): Promise<{
     fragments: FragmentRelationDTO[];
     mentions: MentionDTO[];
   }> {
     const fragmentMap = new Map<string, FragmentRelationDTO>();
     const mentionMap = new Map<string, MentionDTO>();
+
+    for (const annotation of annotations) {
+      for (const node of annotation.relatedNodes) {
+        if (node.type === "CONCEPT" || node.type === "EVENT" || node.type === "VERSE") {
+          fragmentMap.set(`${node.id}:contextual`, {
+            node,
+            type: "contextual",
+            detail: annotation.note,
+          });
+          continue;
+        }
+
+        if (node.type === "NARRATOR" || node.type === "BOOK" || node.type === "HADITH") {
+          mentionMap.set(node.id, {
+            node,
+            context: annotation.note,
+          });
+        }
+      }
+    }
 
     for (const hadith of hadiths) {
       const edges = await this.relationships.neighborsOf(hadith.id);
@@ -361,19 +406,24 @@ export class AssembleReadingExperience {
         const detail = this.toLocalizedDetail(edge);
 
         if (node.type === "CONCEPT" || node.type === "EVENT" || node.type === "VERSE") {
-          fragmentMap.set(`${node.id}:${edge.type}`, {
-            node,
-            type: edge.type,
-            detail,
-          });
+          const key = `${node.id}:${edge.type}`;
+          if (!fragmentMap.has(key)) {
+            fragmentMap.set(key, {
+              node,
+              type: edge.type,
+              detail,
+            });
+          }
           continue;
         }
 
         if (node.type === "NARRATOR" || node.type === "BOOK" || node.type === "HADITH") {
-          mentionMap.set(node.id, {
-            node,
-            context: detail,
-          });
+          if (!mentionMap.has(node.id)) {
+            mentionMap.set(node.id, {
+              node,
+              context: detail,
+            });
+          }
         }
       }
     }

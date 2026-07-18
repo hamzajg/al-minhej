@@ -33,13 +33,115 @@
         "en": "The opening of the book and the hadith of intention"
       },
       "text": {
-        "ar": "١ - (١) كيف كان بدء الوحي إلى رسول الله ﷺ؟ وقول الله جل ذكره: ﴿إنا أوحينا إليك كما أوحينا إلى نوح والنبيين من بعده﴾.\n\n• [١] حدثنا الحميدي عبد الله بن الزبير، قال: حدثنا سفيان، قال: حدثنا يحيى بن سعيد الأنصاري، قال: أخبرني محمد بن إبراهيم التيمي، أنه سمع علقمة بن وقاص الليثي يقول: سمعت عمر بن الخطاب رضي الله عنه على المنبر قال: سمعت رسول الله ﷺ يقول: \"إنما الأعمال بالنيات، وإنما لكل امرئ ما نوى، فمن كانت هجرته إلى دنيا يصيبها، أو إلى امرأة ينكحها، فهجرته إلى ما هاجر إليه\".",
-        "en": "1. How did revelation begin to come to the Messenger of God ﷺ? And His saying, Exalted is His mention: 'We have revealed to you as We revealed to Noah and the prophets after him.'\n\nHadith 1: Al-Humaydi narrated to us ... from 'Umar ibn al-Khattab, who heard the Messenger of God ﷺ say: 'Actions are only by intentions, and every person shall have only what they intended. Whoever's migration was for some worldly gain or for a woman he wished to marry, then his migration is only for what he migrated for.'"
+        "ar": "١ - (١) كيف كان بدء الوحي إلى رسول الله ﷺ؟ وقول الله جل ذكره: ﴿إنا أوحينا إليك كما أوحينا إلى نوح والنبيين من بعده﴾.",
+        "en": "1. How did revelation begin to come to the Messenger of God ﷺ? And His saying, Exalted is His mention: 'We have revealed to you as We revealed to Noah and the prophets after him.'"
       },
       "sourceRef": {
         "ar": "كتاب بدء الوحي، ص ١٥٣",
         "en": "Book of Revelation, p. 153"
       }
+    },
+    {
+      "type": "page_annotations",
+      "blockVersion": 1,
+      "entries": [
+        {
+          "id": "page-1-ibn-hajar-opening",
+          "kind": "scholarly_annotation",
+          "title": {
+            "ar": "افتتاح الباب بالرواية عن الحميدي",
+            "en": "Opening the chapter with al-Humaydi"
+          },
+          "scholar": {
+            "ar": "ابن حجر العسقلاني",
+            "en": "Ibn Hajar al-Asqalani"
+          },
+          "work": {
+            "ar": "فتح الباري",
+            "en": "Fath al-Bari"
+          },
+          "note": {
+            "ar": "ينبّه ابن حجر إلى أن افتتاح البخاري صحيحه بالرواية عن الحميدي له مناسبة علمية ومكانية: فهو أفقه قرشي أخذ عنه، وهو مكي، فناسب وضعه في أول ترجمة بدء الوحي لأن ابتداء الوحي كان بمكة.",
+            "en": "Ibn Hajar notes that al-Bukhari's opening with al-Humaydi carries both scholarly and geographical significance: he was the most learned Qurashi from whom he narrated, and he was Makkan, fitting the opening of the chapter on the beginning of revelation because revelation itself began in Makkah."
+          },
+          "citation": {
+            "title": {
+              "ar": "فتح الباري",
+              "en": "Fath al-Bari"
+            },
+            "locator": {
+              "ar": "بدء الوحي، الحديث الأول",
+              "en": "Beginning of Revelation, first hadith"
+            },
+            "url": "https://ar.wikisource.org/wiki/%D9%81%D8%AA%D8%AD_%D8%A7%D9%84%D8%A8%D8%A7%D8%B1%D9%8A/%D8%A8%D8%AF%D8%A1_%D8%A7%D9%84%D9%88%D8%AD%D9%8A/%D8%A7%D9%84%D8%AD%D8%AF%D9%8A%D8%AB_%D8%A7%D9%84%D8%A3%D9%88%D9%84"
+          },
+          "relatedNodeIds": ["book-bukhari", "concept-wahy"]
+        },
+        {
+          "id": "page-1-ibn-rajab-khutbah",
+          "kind": "marginal_commentary",
+          "title": {
+            "ar": "الحديث في موضع خطبة الكتاب",
+            "en": "The hadith in the place of the book's opening sermon"
+          },
+          "scholar": {
+            "ar": "ابن رجب",
+            "en": "Ibn Rajab"
+          },
+          "work": {
+            "ar": "جامع العلوم والحكم",
+            "en": "Jami' al-'Ulum wa al-Hikam"
+          },
+          "note": {
+            "ar": "يشرح ابن رجب أن البخاري صدّر صحيحه بحديث النية وأقامه مقام الخطبة، إشارة إلى أن العمل لا ثمرة له إذا خلا من إرادة وجه الله؛ لذلك تُفهرس الصفحة هنا بوصفها عتبة مقصودية للكتاب، لا مجرد موضع حديث أول.",
+            "en": "Ibn Rajab explains that al-Bukhari placed the hadith of intention at the head of his Sahih and treated it as the book's opening sermon, signaling that no deed bears fruit if it is empty of seeking God's face. This makes the page an intentional threshold for the whole work, not merely the location of the first hadith."
+          },
+          "citation": {
+            "title": {
+              "ar": "جامع العلوم والحكم",
+              "en": "Jami' al-'Ulum wa al-Hikam"
+            },
+            "locator": {
+              "ar": "شرح حديث إنما الأعمال بالنيات",
+              "en": "Commentary on the hadith of intentions"
+            },
+            "url": "https://fatawapedia.com/hadith/1591"
+          },
+          "relatedNodeIds": ["book-bukhari", "narrator-umar"]
+        },
+        {
+          "id": "page-1-kirmani-third-of-knowledge",
+          "kind": "scholarly_annotation",
+          "title": {
+            "ar": "مركز الحديث في بنية العلم",
+            "en": "The hadith's place in the structure of knowledge"
+          },
+          "scholar": {
+            "ar": "الكرماني",
+            "en": "al-Kirmani"
+          },
+          "work": {
+            "ar": "الكواكب الدراري",
+            "en": "al-Kawakib al-Darari"
+          },
+          "note": {
+            "ar": "ينقل الكرماني عن الشافعي وأحمد أن هذا الحديث يدخل في ثلث العلم، مع تعليل البيهقي بأن كسب العبد يقع بقلبه ولسانه وجوارحه، والنية أرجح هذه الأقسام. وهذا يجعل الصفحة نقطة فهرسة لقاعدة معرفية كبرى، لا لمتن منفرد فقط.",
+            "en": "Al-Kirmani reports from al-Shafi'i and Ahmad that this hadith enters into one third of knowledge, with al-Bayhaqi's explanation that human acquisition occurs through heart, tongue, and limbs, and intention is the weightiest of these divisions. That makes the page an index point for a major knowledge principle, not only for a single text."
+          },
+          "citation": {
+            "title": {
+              "ar": "الكواكب الدراري",
+              "en": "al-Kawakib al-Darari"
+            },
+            "locator": {
+              "ar": "1/22",
+              "en": "1/22"
+            },
+            "url": "https://fatawapedia.com/hadith/1591"
+          },
+          "relatedNodeIds": ["book-bukhari", "narrator-umar"]
+        }
+      ]
     }
   ],
   "schemaVersion": 2,

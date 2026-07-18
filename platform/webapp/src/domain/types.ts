@@ -94,12 +94,30 @@ export interface QuizQuestion {
   correctOptionId: string;
 }
 
+export interface PageAnnotationCitation {
+  title: Localized<string>;
+  locator?: Localized<string>;
+  url?: string;
+}
+
+export interface PageAnnotationEntry {
+  id: string;
+  kind: "side_note" | "marginal_commentary" | "scholarly_annotation";
+  title?: Localized<string>;
+  scholar?: Localized<string>;
+  work?: Localized<string>;
+  note: Localized<string>;
+  citation?: PageAnnotationCitation;
+  relatedNodeIds?: NodeId[];
+}
+
 export type ContentBlock =
   | (ContentBlockBase & { type: "clauses"; intro: Localized<string>; items: ClauseItem[] })
   | (ContentBlockBase & { type: "vocabulary"; entries: VocabEntry[] })
   | (ContentBlockBase & { type: "commentary"; scholar: Localized<string>; workNodeId: NodeId; note: Localized<string> })
   | (ContentBlockBase & { type: "context"; title: Localized<string>; body: Localized<string> })
   | (ContentBlockBase & { type: "source_page"; title: Localized<string>; text: Localized<string>; sourceRef: Localized<string>; sourceUrl?: string })
+  | (ContentBlockBase & { type: "page_annotations"; entries: PageAnnotationEntry[] })
   | (ContentBlockBase & { type: "ai_context"; items: AiPrompt[] })
   | (ContentBlockBase & { type: "quiz"; questions: QuizQuestion[] });
 

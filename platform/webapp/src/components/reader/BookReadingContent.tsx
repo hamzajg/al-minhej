@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { BookOpenText, ChevronLeft, ChevronRight, ExternalLink, FileText, List, Network, ScrollText, X } from "lucide-react";
+import { BookOpenText, ChevronLeft, ChevronRight, ExternalLink, FileText, List, MessageSquareQuote, Network, ScrollText, X } from "lucide-react";
 import { Header } from "@/components/layout/Header";
 import { useSettings } from "@/context/SettingsContext";
 import type { BookExperienceDTO } from "@/domain/dto";
@@ -38,6 +38,11 @@ export function BookReadingContent({ dto }: Props) {
     uiLang === "ar"
       ? pageAttrs.chapterTitle?.ar ?? currentPage.page.title.ar ?? dto.book.title.ar
       : pageAttrs.chapterTitle?.en ?? currentPage.page.title.en ?? dto.book.title.en;
+  const annotationKindLabel = (kind: "side_note" | "marginal_commentary" | "scholarly_annotation") => {
+    if (kind === "side_note") return t.pageAnnotationSideNote;
+    if (kind === "marginal_commentary") return t.pageAnnotationMarginalCommentary;
+    return t.pageAnnotationScholarlyAnnotation;
+  };
 
   return (
     <div className="h-screen w-full flex flex-col overflow-hidden bg-[var(--color-bg)] text-[var(--color-ink)]">
@@ -204,6 +209,87 @@ export function BookReadingContent({ dto }: Props) {
                 </div>
               )}
             </section>
+
+            {currentPage.annotations.length > 0 && (
+              <section className="rounded-[22px] border border-[var(--color-line)] bg-[var(--color-panel)] p-5 md:p-6">
+                <div className="flex items-center gap-2 mb-4">
+                  <MessageSquareQuote size={16} className="text-[var(--color-gold)]" />
+                  <h2 className="m-0 text-[16px] font-semibold">{t.pageAnnotationsTitle}</h2>
+                </div>
+                <div className="grid gap-4">
+                  {currentPage.annotations.map((annotation) => (
+                    <article key={annotation.id} className="rounded-[18px] border border-[var(--color-line)] bg-[var(--color-bg)] p-4 md:p-5">
+                      <div className="flex flex-wrap items-center gap-2 mb-2">
+                        <span
+                          className="inline-flex items-center rounded-full px-2.5 py-1 text-[10px] font-semibold border"
+                          style={{ borderColor: "color-mix(in srgb, var(--color-emerald) 30%, transparent)", color: "var(--color-emerald)" }}
+                        >
+                          {annotationKindLabel(annotation.kind)}
+                        </span>
+                        {annotation.scholar && (
+                          <span className="text-[11px]" style={{ color: "var(--color-sub)" }}>
+                            {uiLang === "ar" ? annotation.scholar.ar : annotation.scholar.en}
+                          </span>
+                        )}
+                        {annotation.work && (
+                          <span className="text-[11px]" style={{ color: "var(--color-sub)" }}>
+                            {uiLang === "ar" ? annotation.work.ar : annotation.work.en}
+                          </span>
+                        )}
+                      </div>
+                      {annotation.title && (
+                        <h3 className="m-0 text-[15px] font-semibold">
+                          {uiLang === "ar" ? annotation.title.ar : annotation.title.en}
+                        </h3>
+                      )}
+                      <div className="text-[13px] leading-7 mt-2" style={{ color: "var(--color-sub)" }}>
+                        {uiLang === "ar" ? annotation.note.ar : annotation.note.en}
+                      </div>
+                      {annotation.citation && (
+                        <div className="mt-3 text-[11px] leading-6" style={{ color: "var(--color-sub)" }}>
+                          <span className="font-semibold" style={{ color: "var(--color-ink)" }}>
+                            {t.pageAnnotationCitation}:
+                          </span>
+                          {" "}
+                          {uiLang === "ar" ? annotation.citation.title.ar : annotation.citation.title.en}
+                          {annotation.citation.locator && (
+                            <>
+                              {" · "}
+                              {uiLang === "ar" ? annotation.citation.locator.ar : annotation.citation.locator.en}
+                            </>
+                          )}
+                          {annotation.citation.url && (
+                            <a
+                              href={annotation.citation.url}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="inline-flex items-center gap-1 ms-2"
+                              style={{ color: "var(--color-emerald)" }}
+                            >
+                              <ExternalLink size={11} />
+                              <span>{t.openSource}</span>
+                            </a>
+                          )}
+                        </div>
+                      )}
+                      {annotation.relatedNodes.length > 0 && (
+                        <div className="mt-3 flex flex-wrap gap-2">
+                          {annotation.relatedNodes.map((node) => (
+                            <span
+                              key={`${annotation.id}:${node.id}`}
+                              className="inline-flex items-center rounded-full px-2.5 py-1 text-[10px] border"
+                              style={{ background: "var(--color-panel)", borderColor: "var(--color-line)", color: "var(--color-sub)" }}
+                            >
+                              {uiLang === "ar" ? node.title.ar : node.title.en}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </article>
+                  ))}
+                </div>
+              </section>
+            )}
 
             <section className="rounded-[22px] border border-[var(--color-line)] bg-[var(--color-panel)] p-5 md:p-6">
               <div className="flex items-center gap-2 mb-4">

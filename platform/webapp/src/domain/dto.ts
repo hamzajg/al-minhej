@@ -1,4 +1,4 @@
-import type { KnowledgeNode, IsnadChain, Localized, RelationshipType } from "./types";
+import type { KnowledgeNode, IsnadChain, Localized, PageAnnotationEntry, RelationshipType } from "./types";
 
 export interface IsnadPersonDTO {
   node: KnowledgeNode;
@@ -95,11 +95,16 @@ export interface MentionDTO {
   context: Localized<string>;
 }
 
+export interface PageAnnotationDTO extends Omit<PageAnnotationEntry, "relatedNodeIds"> {
+  relatedNodes: KnowledgeNode[];
+}
+
 export interface PageExperienceDTO {
   page: KnowledgeNode;
   originalText: { title: Localized<string>; textAr: string; textEn: string; sourceRef: Localized<string>; sourceUrl?: string } | null;
   readingNode: KnowledgeNode | null;
   hadiths: KnowledgeNode[];
+  annotations: PageAnnotationDTO[];
   fragments: FragmentRelationDTO[];
   mentions: MentionDTO[];
 }
