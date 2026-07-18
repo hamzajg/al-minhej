@@ -22,10 +22,10 @@
       "hadith-bukhari-3"
     ],
     "sourcePage": {
-      "path": "shamela.ws/book/1284/155-156",
+      "path": "book-bukhari/page-155-156",
       "label": {
-        "ar": "شاملة: صحيح البخاري، ص ١٥٥-١٥٦",
-        "en": "Shamela: Sahih al-Bukhari, pp. 155-156"
+        "ar": "صحيح البخاري، ص ١٥٥-١٥٦",
+        "en": "Sahih al-Bukhari, pp. 155-156"
       }
     }
   },
@@ -42,10 +42,9 @@
         "en": "Hadith 3: Yahya ibn Bukayr narrated to us ... from 'A'ishah, who said: 'The first stage of revelation to the Messenger of God ﷺ was the true dream in sleep ... until the truth came to him in the cave of Hira'. The angel came and said: Read ... and then recited: Read in the name of your Lord who created ...'\n\nThe Messenger of God ﷺ returned with his heart trembling and entered upon Khadijah bint Khuwaylid, saying: 'Cover me, cover me.' They covered him until the fear passed. He told Khadijah what had happened and said: 'I feared for myself.' Khadijah answered: 'Never. By God, God will never disgrace you. You maintain family ties, carry the burdens of the weak, provide for the destitute, honor the guest, and help in every cause of truth.'"
       },
       "sourceRef": {
-        "ar": "كتاب بدء الوحي، شاملة: 1284/155-156",
-        "en": "Book of Revelation, Shamela: 1284/155-156"
-      },
-      "sourceUrl": "https://shamela.ws/book/1284/155"
+        "ar": "كتاب بدء الوحي، ص ١٥٥-١٥٦",
+        "en": "Book of Revelation, pp. 155-156"
+      }
     }
   ],
   "schemaVersion": 2,

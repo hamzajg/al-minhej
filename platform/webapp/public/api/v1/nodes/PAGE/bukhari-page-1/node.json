@@ -17,10 +17,10 @@
     },
     "hadithIds": ["hadith-bukhari-1"],
     "sourcePage": {
-      "path": "shamela.ws/book/1284/153",
+      "path": "book-bukhari/page-153",
       "label": {
-        "ar": "شاملة: صحيح البخاري، ص ١٥٣",
-        "en": "Shamela: Sahih al-Bukhari, p. 153"
+        "ar": "صحيح البخاري، ص ١٥٣",
+        "en": "Sahih al-Bukhari, p. 153"
       }
     }
   },
@@ -37,10 +37,9 @@
         "en": "1. How did revelation begin to come to the Messenger of God ﷺ? And His saying, Exalted is His mention: 'We have revealed to you as We revealed to Noah and the prophets after him.'\n\nHadith 1: Al-Humaydi narrated to us ... from 'Umar ibn al-Khattab, who heard the Messenger of God ﷺ say: 'Actions are only by intentions, and every person shall have only what they intended. Whoever's migration was for some worldly gain or for a woman he wished to marry, then his migration is only for what he migrated for.'"
       },
       "sourceRef": {
-        "ar": "كتاب بدء الوحي، شاملة: 1284/153",
-        "en": "Book of Revelation, Shamela: 1284/153"
-      },
-      "sourceUrl": "https://shamela.ws/book/1284/153"
+        "ar": "كتاب بدء الوحي، ص ١٥٣",
+        "en": "Book of Revelation, p. 153"
+      }
     }
   ],
   "schemaVersion": 2,

@@ -150,11 +150,6 @@ export function BookReadingContent({ dto }: Props) {
                         {available ? `${entry.pages} ${t.tocDigitizedPages}` : t.notDigitizedYet}
                       </div>
                     </div>
-                    {entry.sourcePath && (
-                      <div className="text-[10px]" style={{ color: "var(--color-sub)" }}>
-                        {entry.sourcePath}
-                      </div>
-                    )}
                   </button>
                 );
               })}

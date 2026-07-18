@@ -110,7 +110,6 @@ export default function LibraryPage() {
               const initial = (book.title.ar ?? title).slice(0, 1);
               const index = attrs?.index ?? [];
               const firstOpenPage = index.find((entry) => entry.pagesDigitized > 0)?.pageStart ?? 1;
-              const previewChapters = index.slice(0, 3);
               return (
                 <button key={book.id} onClick={() => openBook(book.slug, firstOpenPage)} className="book-card"
                   style={{ textAlign: "start", cursor: "pointer", border: "1px solid var(--color-line)", borderRadius: 14, background: "var(--color-panel)", padding: 0, overflow: "hidden", opacity: 1 }}>
@@ -124,19 +123,6 @@ export default function LibraryPage() {
                     <div className="text-[9.5px] mt-1" style={{ color: "var(--color-sub)" }}>
                       {pct.toFixed(pct < 1 ? 1 : 0)}% {t.unitsDigitized}
                     </div>
-                    {previewChapters.length > 0 && (
-                      <div className="mt-3 grid gap-1">
-                        {previewChapters.map((chapter) => (
-                          <div key={chapter.id} className="text-[9.5px] rounded-lg px-2 py-1 border" style={{ borderColor: "var(--color-line)", background: "var(--color-panel-2)", color: "var(--color-sub)" }}>
-                            <span style={{ color: "var(--color-ink)" }}>
-                              {uiLang === "ar" ? chapter.title.ar : chapter.title.en}
-                            </span>
-                            {" · "}
-                            {chapter.pagesDigitized > 0 ? `${chapter.pagesDigitized} ${t.tocDigitizedPages}` : t.notDigitizedYet}
-                          </div>
-                        ))}
-                      </div>
-                    )}
                   </div>
                 </button>
               );

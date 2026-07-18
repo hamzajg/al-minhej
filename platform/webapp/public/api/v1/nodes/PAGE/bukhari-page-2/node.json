@@ -22,10 +22,10 @@
       "hadith-bukhari-2"
     ],
     "sourcePage": {
-      "path": "shamela.ws/book/1284/154",
+      "path": "book-bukhari/page-154",
       "label": {
-        "ar": "شاملة: صحيح البخاري، ص ١٥٤",
-        "en": "Shamela: Sahih al-Bukhari, p. 154"
+        "ar": "صحيح البخاري، ص ١٥٤",
+        "en": "Sahih al-Bukhari, p. 154"
       }
     }
   },
@@ -42,10 +42,9 @@
         "en": "Hadith 2: 'Abdullah ibn Yusuf narrated to us ... from 'A'ishah, who said that al-Harith ibn Hisham asked the Messenger of God ﷺ: 'How does revelation come to you?' He replied: 'Sometimes it comes to me like the ringing of a bell, and that is the hardest on me. Then it leaves me and I have grasped what was said. At other times the angel appears to me as a man and speaks to me, and I retain what he says.' 'A'ishah added: 'I saw revelation descend upon him on a bitterly cold day, and it would leave him while sweat was streaming from his forehead.'"
       },
       "sourceRef": {
-        "ar": "كتاب بدء الوحي، شاملة: 1284/154",
-        "en": "Book of Revelation, Shamela: 1284/154"
-      },
-      "sourceUrl": "https://shamela.ws/book/1284/154"
+        "ar": "كتاب بدء الوحي، ص ١٥٤",
+        "en": "Book of Revelation, p. 154"
+      }
     }
   ],
   "schemaVersion": 2,

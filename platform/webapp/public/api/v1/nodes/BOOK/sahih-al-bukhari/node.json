@@ -35,8 +35,7 @@
         },
         "pageStart": 1,
         "pageEnd": 3,
-        "pagesDigitized": 3,
-        "sourcePath": "shamela.ws/book/1284/153"
+        "pagesDigitized": 3
       },
       {
         "id": "kitab-al-iman",
@@ -45,8 +44,7 @@
           "en": "Book of Faith"
         },
         "pageStart": 4,
-        "pagesDigitized": 0,
-        "sourcePath": "shamela.ws/book/1284/167"
+        "pagesDigitized": 0
       },
       {
         "id": "kitab-al-ilm",
@@ -55,8 +53,7 @@
           "en": "Book of Knowledge"
         },
         "pageStart": 5,
-        "pagesDigitized": 0,
-        "sourcePath": "shamela.ws/book/1284/206"
+        "pagesDigitized": 0
       },
       {
         "id": "kitab-al-wudu",
@@ -65,14 +62,9 @@
           "en": "Book of Wudu'"
         },
         "pageStart": 6,
-        "pagesDigitized": 0,
-        "sourcePath": "shamela.ws/book/1284/267"
+        "pagesDigitized": 0
       }
-    ],
-    "sourceLibrary": {
-      "name": "shamela.ws",
-      "bookUrl": "https://shamela.ws/book/1284"
-    }
+    ]
   },
   "content": [],
   "schemaVersion": 2,

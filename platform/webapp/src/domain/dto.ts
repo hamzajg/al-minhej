@@ -64,7 +64,6 @@ export interface TOCEntry {
   pages: number;
   pageStart: number;
   pageEnd?: number;
-  sourcePath?: string;
 }
 
 export interface HadithRefDTO {

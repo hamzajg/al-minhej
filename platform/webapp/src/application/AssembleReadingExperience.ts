@@ -409,7 +409,6 @@ export class AssembleReadingExperience {
         pages: entry.pagesDigitized,
         pageStart: entry.pageStart,
         pageEnd: entry.pageEnd,
-        sourcePath: entry.sourcePath,
       }));
     }
 

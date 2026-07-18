@@ -17,7 +17,6 @@ export interface BookIndexEntry {
   pageStart: number;
   pageEnd?: number;
   pagesDigitized: number;
-  sourcePath?: string;
 }
 
 export type NodeAttributes =
@@ -42,10 +41,6 @@ export type NodeAttributes =
         unit: Localized<string>;
       };
       index?: BookIndexEntry[];
-      sourceLibrary?: {
-        name: "shamela.ws";
-        bookUrl: string;
-      };
     }
   | {
       kind: "page";
