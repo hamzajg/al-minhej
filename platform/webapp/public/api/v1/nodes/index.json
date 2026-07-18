@@ -8,11 +8,11 @@
     "CONCEPT": 2,
     "EVENT": 1,
     "HADITH": 4,
-    "NARRATOR": 17,
+    "NARRATOR": 19,
     "PAGE": 4,
     "VERSE": 1
   },
-  "total": 31,
+  "total": 33,
   "nodes": [
     {
       "type": "BOOK",
@@ -143,6 +143,16 @@
       "type": "NARRATOR",
       "id": "narrator-yahya-ansari",
       "slug": "yahya-ibn-said"
+    },
+    {
+      "type": "NARRATOR",
+      "id": "narrator-yahya-yahya-tamimi",
+      "slug": "yahya-ibn-yahya-al-tamimi"
+    },
+    {
+      "type": "NARRATOR",
+      "id": "narrator-yunus-yazid",
+      "slug": "yunus-ibn-yazid-al-ayli"
     },
     {
       "type": "PAGE",

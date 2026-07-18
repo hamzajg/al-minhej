@@ -58,6 +58,33 @@
         "ar": "شيخ البخاري الأول في صحيحه؛ فتح به كتابه بأصح الطرق عن مالك.",
         "en": "al-Bukhari's very first teacher cited in the Sahih; he opens the book through him with one of the soundest routes from Malik."
       }
+    },
+    {
+      "type": "lineage",
+      "blockVersion": 1,
+      "personNodeId": "narrator-abdullah-yusuf",
+      "chain": [
+        {
+          "name": {
+            "ar": "عبد الله",
+            "en": "'Abdullah"
+          }
+        },
+        {
+          "name": {
+            "ar": "يوسف",
+            "en": "Yusuf"
+          },
+          "note": {
+            "ar": "الكلاعي التنيسي، أصله من دمشق — لا صلة نسب موثقة بقريش",
+            "en": "al-Kala'i al-Tinnisi, originally from Damascus — no documented Qurashi tie"
+          }
+        }
+      ],
+      "taqribSourceNote": {
+        "ar": "تقريب التهذيب لابن حجر يقتصر عادة على ذكر الأب والجد ونسبة القبيلة لتمييز الراوي، لا على سلسلة كاملة إلى عدنان. الحلقات الإضافية هنا — عند إيرادها — مأخوذة من مصادر الأنساب الكلاسيكية (كالطبقات الكبرى لابن سعد وجمهرة أنساب العرب) وليست من نص التقريب نفسه.",
+        "en": "Ibn Hajar's Taqrib al-Tahdhib typically records only the father, grandfather, and tribal nisbah needed to identify a narrator — not a full chain to 'Adnan. Any further generations given here are drawn from classical genealogical works (e.g. Ibn Sa'd's al-Tabaqat al-Kubra, Jamharat Ansab al-'Arab), not from the Taqrib text itself."
+      }
     }
   ],
   "schemaVersion": 2,

@@ -5,8 +5,16 @@
     "role": "primary",
     "links": [
       {
-        "narratorId": "narrator-aisha",
+        "narratorId": "narrator-prophet",
         "position": 0,
+        "transmissionNote": {
+          "ar": "أصل الحديث ومصدره",
+          "en": "the origin and source of the report"
+        }
+      },
+      {
+        "narratorId": "narrator-aisha",
+        "position": 1,
         "transmissionNote": {
           "ar": "أَنَّهَا قَالَتْ",
           "en": "who said"
@@ -14,7 +22,7 @@
       },
       {
         "narratorId": "narrator-urwah",
-        "position": 1,
+        "position": 2,
         "transmissionNote": {
           "ar": "عَنْ عُرْوَةَ بْنِ الزُّبَيْرِ",
           "en": "from 'Urwah ibn al-Zubayr"
@@ -22,7 +30,7 @@
       },
       {
         "narratorId": "narrator-zuhri",
-        "position": 2,
+        "position": 3,
         "transmissionNote": {
           "ar": "عَنِ ابْنِ شِهَابٍ",
           "en": "from Ibn Shihab"
@@ -30,7 +38,7 @@
       },
       {
         "narratorId": "narrator-uqayl",
-        "position": 3,
+        "position": 4,
         "transmissionNote": {
           "ar": "عَنْ عُقَيْلٍ",
           "en": "from 'Uqayl"
@@ -38,7 +46,7 @@
       },
       {
         "narratorId": "narrator-layth",
-        "position": 4,
+        "position": 5,
         "transmissionNote": {
           "ar": "حَدَّثَنَا",
           "en": "narrated to us"
@@ -46,7 +54,7 @@
       },
       {
         "narratorId": "narrator-yahya-bukayr",
-        "position": 5,
+        "position": 6,
         "transmissionNote": {
           "ar": "حَدَّثَنَا",
           "en": "narrated to us"
@@ -57,5 +65,37 @@
       "kind": "narrator-prophet"
     }
   },
-  "branches": []
+  "branches": [
+    {
+      "id": "isnad-bukhari-hadith-3-branch-1",
+      "hadithId": "hadith-bukhari-3",
+      "role": "branch",
+      "branchesFrom": {
+        "chainId": "isnad-bukhari-hadith-3-primary",
+        "narratorId": "narrator-zuhri",
+        "position": 3
+      },
+      "links": [
+        {
+          "narratorId": "narrator-yunus-yazid",
+          "position": 4,
+          "transmissionNote": {
+            "ar": "عَنِ الزُّهْرِيِّ",
+            "en": "from al-Zuhri"
+          }
+        }
+      ],
+      "terminatesAt": {
+        "kind": "narrator-prophet"
+      },
+      "citedIn": {
+        "ar": "صحيح البخاري، كتاب التعبير وكتاب بدء الوحي (مواضع أخرى)",
+        "en": "Sahih al-Bukhari, Kitab al-Ta'bir and elsewhere in Kitab Bad' al-Wahy"
+      },
+      "note": {
+        "ar": "طريق آخر معروف عن الزهري بنفس المتن، يورده البخاري نفسه في مواضع أخرى من صحيحه.",
+        "en": "Another well-known route from al-Zuhri carrying the same text, which al-Bukhari himself cites elsewhere in the Sahih."
+      }
+    }
+  ]
 }

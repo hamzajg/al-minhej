@@ -5,8 +5,16 @@
     "role": "primary",
     "links": [
       {
-        "narratorId": "narrator-umar",
+        "narratorId": "narrator-prophet",
         "position": 0,
+        "transmissionNote": {
+          "ar": "أصل الحديث ومصدره",
+          "en": "the origin and source of the report"
+        }
+      },
+      {
+        "narratorId": "narrator-umar",
+        "position": 1,
         "transmissionNote": {
           "ar": "عَنْ ... قَالَ: سَمِعْتُ",
           "en": "On the authority of ... who said: I heard"
@@ -14,16 +22,25 @@
       },
       {
         "narratorId": "narrator-nawawi",
-        "position": 1,
+        "position": 2,
         "transmissionNote": {
-          "ar": "رَوَاهُ",
-          "en": "Compiled (with a shortened isnad, citing Bukhari & Muslim) by"
+          "ar": "رَوَاهُ (بإسناد مختصر)",
+          "en": "Compiled (with a shortened isnad)"
         }
       }
     ],
     "terminatesAt": {
       "kind": "narrator-prophet"
-    }
+    },
+    "crossReference": [
+      {
+        "chainId": "isnad-bukhari-hadith-1-primary",
+        "note": {
+          "ar": "النووي اختصر الإسناد مكتفيًا بذكر عمر ثم عزو الحديث لتخريج البخاري ومسلم، لأنه حديث مشهور. الإسناد الكامل موثق في صحيح البخاري.",
+          "en": "An-Nawawi shortens the isnad — naming only 'Umar and then attributing the report to Bukhari and Muslim — since the hadith is already famous. The complete chain is documented in Sahih al-Bukhari."
+        }
+      }
+    ]
   },
   "branches": []
 }

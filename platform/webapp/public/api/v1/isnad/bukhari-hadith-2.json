@@ -5,8 +5,16 @@
     "role": "primary",
     "links": [
       {
-        "narratorId": "narrator-aisha",
+        "narratorId": "narrator-prophet",
         "position": 0,
+        "transmissionNote": {
+          "ar": "أصل الحديث ومصدره",
+          "en": "the origin and source of the report"
+        }
+      },
+      {
+        "narratorId": "narrator-aisha",
+        "position": 1,
         "transmissionNote": {
           "ar": "عَنْ",
           "en": "on the authority of"
@@ -14,7 +22,7 @@
       },
       {
         "narratorId": "narrator-urwah",
-        "position": 1,
+        "position": 2,
         "transmissionNote": {
           "ar": "عَنْ أَبِيهِ",
           "en": "from his father"
@@ -22,7 +30,7 @@
       },
       {
         "narratorId": "narrator-hisham-urwah",
-        "position": 2,
+        "position": 3,
         "transmissionNote": {
           "ar": "عَنْ هِشَامِ بْنِ عُرْوَةَ",
           "en": "from Hisham ibn 'Urwah"
@@ -30,7 +38,7 @@
       },
       {
         "narratorId": "narrator-malik",
-        "position": 3,
+        "position": 4,
         "transmissionNote": {
           "ar": "أَخْبَرَنَا",
           "en": "informed us"
@@ -38,7 +46,7 @@
       },
       {
         "narratorId": "narrator-abdullah-yusuf",
-        "position": 4,
+        "position": 5,
         "transmissionNote": {
           "ar": "حَدَّثَنَا",
           "en": "narrated to us"
@@ -49,5 +57,37 @@
       "kind": "narrator-prophet"
     }
   },
-  "branches": []
+  "branches": [
+    {
+      "id": "isnad-bukhari-hadith-2-branch-1",
+      "hadithId": "hadith-bukhari-2",
+      "role": "branch",
+      "branchesFrom": {
+        "chainId": "isnad-bukhari-hadith-2-primary",
+        "narratorId": "narrator-malik",
+        "position": 4
+      },
+      "links": [
+        {
+          "narratorId": "narrator-yahya-yahya-tamimi",
+          "position": 5,
+          "transmissionNote": {
+            "ar": "حَدَّثَنَا",
+            "en": "narrated to us"
+          }
+        }
+      ],
+      "terminatesAt": {
+        "kind": "narrator-prophet"
+      },
+      "citedIn": {
+        "ar": "صحيح مسلم، كتاب الفضائل",
+        "en": "Sahih Muslim, Kitab al-Fada'il"
+      },
+      "note": {
+        "ar": "نفس رواية مالك، لكن من طريق يحيى بن يحيى التميمي الذي أخرج بها مسلم الحديث في صحيحه.",
+        "en": "The same narration from Malik, but via Yahya ibn Yahya al-Tamimi's route, by which Muslim narrates the hadith in his Sahih."
+      }
+    }
+  ]
 }

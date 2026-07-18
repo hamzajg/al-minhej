@@ -70,6 +70,39 @@
         "ar": "إمام أهل مصر في الفقه والحديث في عصره، عُرف بسعة علمه وجوده.",
         "en": "The leading imam of Egypt in jurisprudence and hadith of his era, known for the breadth of his learning and generosity."
       }
+    },
+    {
+      "type": "lineage",
+      "blockVersion": 1,
+      "personNodeId": "narrator-layth",
+      "chain": [
+        {
+          "name": {
+            "ar": "الليث",
+            "en": "al-Layth"
+          }
+        },
+        {
+          "name": {
+            "ar": "سعد",
+            "en": "Sa'd"
+          }
+        },
+        {
+          "name": {
+            "ar": "عبد الرحمن",
+            "en": "'Abd al-Rahman"
+          },
+          "note": {
+            "ar": "الفهمي — من قيس عيلان، لا من قريش",
+            "en": "al-Fahmi, of Qays 'Aylan — not of Quraysh"
+          }
+        }
+      ],
+      "taqribSourceNote": {
+        "ar": "تقريب التهذيب لابن حجر يقتصر عادة على ذكر الأب والجد ونسبة القبيلة لتمييز الراوي، لا على سلسلة كاملة إلى عدنان. الحلقات الإضافية هنا — عند إيرادها — مأخوذة من مصادر الأنساب الكلاسيكية (كالطبقات الكبرى لابن سعد وجمهرة أنساب العرب) وليست من نص التقريب نفسه.",
+        "en": "Ibn Hajar's Taqrib al-Tahdhib typically records only the father, grandfather, and tribal nisbah needed to identify a narrator — not a full chain to 'Adnan. Any further generations given here are drawn from classical genealogical works (e.g. Ibn Sa'd's al-Tabaqat al-Kubra, Jamharat Ansab al-'Arab), not from the Taqrib text itself."
+      }
     }
   ],
   "schemaVersion": 2,

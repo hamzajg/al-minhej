@@ -62,6 +62,39 @@
         "ar": "من كبار شيوخ البخاري، اعتمد عليه في نقل حديث الليث بن سعد خاصة.",
         "en": "One of al-Bukhari's principal teachers, relied upon especially for transmitting the hadith of al-Layth ibn Sa'd."
       }
+    },
+    {
+      "type": "lineage",
+      "blockVersion": 1,
+      "personNodeId": "narrator-yahya-bukayr",
+      "chain": [
+        {
+          "name": {
+            "ar": "يحيى",
+            "en": "Yahya"
+          }
+        },
+        {
+          "name": {
+            "ar": "عبد الله",
+            "en": "'Abdullah"
+          }
+        },
+        {
+          "name": {
+            "ar": "بكير",
+            "en": "Bukayr"
+          },
+          "note": {
+            "ar": "المخزومي مولاهم — بالولاء لا بالنسب",
+            "en": "client of Banu Makhzum — by clientage, not blood"
+          }
+        }
+      ],
+      "taqribSourceNote": {
+        "ar": "تقريب التهذيب لابن حجر يقتصر عادة على ذكر الأب والجد ونسبة القبيلة لتمييز الراوي، لا على سلسلة كاملة إلى عدنان. الحلقات الإضافية هنا — عند إيرادها — مأخوذة من مصادر الأنساب الكلاسيكية (كالطبقات الكبرى لابن سعد وجمهرة أنساب العرب) وليست من نص التقريب نفسه.",
+        "en": "Ibn Hajar's Taqrib al-Tahdhib typically records only the father, grandfather, and tribal nisbah needed to identify a narrator — not a full chain to 'Adnan. Any further generations given here are drawn from classical genealogical works (e.g. Ibn Sa'd's al-Tabaqat al-Kubra, Jamharat Ansab al-'Arab), not from the Taqrib text itself."
+      }
     }
   ],
   "schemaVersion": 2,

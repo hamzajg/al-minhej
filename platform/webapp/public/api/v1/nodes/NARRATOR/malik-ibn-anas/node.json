@@ -70,6 +70,81 @@
         "ar": "إمام أهل المدينة وصاحب الموطأ، أُجمع على تقديم روايته وضبطه.",
         "en": "Imam of the people of Madinah and author of al-Muwatta'; his transmission and precision were universally esteemed."
       }
+    },
+    {
+      "type": "lineage",
+      "blockVersion": 1,
+      "personNodeId": "narrator-malik",
+      "chain": [
+        {
+          "name": {
+            "ar": "مالك",
+            "en": "Malik"
+          }
+        },
+        {
+          "name": {
+            "ar": "أنس",
+            "en": "Anas"
+          }
+        },
+        {
+          "name": {
+            "ar": "مالك",
+            "en": "Malik"
+          }
+        },
+        {
+          "name": {
+            "ar": "أبي عامر",
+            "en": "Abi 'Amir"
+          }
+        },
+        {
+          "name": {
+            "ar": "عمرو",
+            "en": "'Amr"
+          }
+        },
+        {
+          "name": {
+            "ar": "الحارث",
+            "en": "al-Harith"
+          }
+        },
+        {
+          "name": {
+            "ar": "غيمان",
+            "en": "Ghayman"
+          }
+        },
+        {
+          "name": {
+            "ar": "خثيل",
+            "en": "Khuthayl"
+          }
+        },
+        {
+          "name": {
+            "ar": "عمرو",
+            "en": "'Amr"
+          }
+        },
+        {
+          "name": {
+            "ar": "الحارث",
+            "en": "al-Harith"
+          },
+          "note": {
+            "ar": "ذو أصبح، من حِمْيَر باليمن — لا صلة نسب بقريش",
+            "en": "Dhu Asbah, of Himyar in Yemen — no blood tie to Quraysh"
+          }
+        }
+      ],
+      "taqribSourceNote": {
+        "ar": "مالك رحمه الله حِمْيَري الأصل من اليمن (ذو أصبح)، ولا يلتقي نسبًا بقريش أو بالنبي ﷺ؛ ولاؤه لبني تيم كان بالحلف لا بالنسب. تقريب التهذيب لابن حجر يقتصر عادة على ذكر الأب والجد ونسبة القبيلة لتمييز الراوي، لا على سلسلة كاملة إلى عدنان. الحلقات الإضافية هنا — عند إيرادها — مأخوذة من مصادر الأنساب الكلاسيكية (كالطبقات الكبرى لابن سعد وجمهرة أنساب العرب) وليست من نص التقريب نفسه.",
+        "en": "Malik was of Himyari (Yemeni) descent — Dhu Asbah — and has no blood tie to Quraysh or the Prophet ﷺ; his association with Banu Taym was by alliance, not lineage. Ibn Hajar's Taqrib al-Tahdhib typically records only the father, grandfather, and tribal nisbah needed to identify a narrator — not a full chain to 'Adnan. Any further generations given here are drawn from classical genealogical works (e.g. Ibn Sa'd's al-Tabaqat al-Kubra, Jamharat Ansab al-'Arab), not from the Taqrib text itself."
+      }
     }
   ],
   "schemaVersion": 2,

@@ -70,6 +70,73 @@
         "ar": "ابن أخت عائشة عبر أمه أسماء، ومن أعلم الناس بحديثها وسيرة النبي ﷺ، وابنه هشام أخص من روى عنه.",
         "en": "Nephew of 'A'ishah through his mother Asma', and among those most learned in her hadith and the Prophet's biography; his son Hisham was his closest transmitter."
       }
+    },
+    {
+      "type": "lineage",
+      "blockVersion": 1,
+      "personNodeId": "narrator-urwah",
+      "chain": [
+        {
+          "name": {
+            "ar": "عروة",
+            "en": "'Urwah"
+          }
+        },
+        {
+          "name": {
+            "ar": "الزبير",
+            "en": "al-Zubayr"
+          }
+        },
+        {
+          "name": {
+            "ar": "العوام",
+            "en": "al-'Awwam"
+          }
+        },
+        {
+          "name": {
+            "ar": "خويلد",
+            "en": "Khuwaylid"
+          }
+        },
+        {
+          "name": {
+            "ar": "أسد",
+            "en": "Asad"
+          }
+        },
+        {
+          "name": {
+            "ar": "عبد العزى",
+            "en": "'Abd al-'Uzza"
+          }
+        },
+        {
+          "name": {
+            "ar": "قصي",
+            "en": "Qusayy"
+          },
+          "note": {
+            "ar": "يلتقي هنا بنسب النبي ﷺ",
+            "en": "meets the Prophet's ﷺ lineage here"
+          }
+        }
+      ],
+      "convergesWithProphetAt": {
+        "name": {
+          "ar": "قصي بن كلاب",
+          "en": "Qusayy ibn Kilab"
+        },
+        "note": {
+          "ar": "بنو أسد (قبيلة الزبير بن العوام) وبنو هاشم يلتقيان في قصي، جامع قريش.",
+          "en": "Banu Asad (al-Zubayr ibn al-'Awwam's clan) and Banu Hashim converge at Qusayy, who first united Quraysh."
+        }
+      },
+      "taqribSourceNote": {
+        "ar": "تقريب التهذيب لابن حجر يقتصر عادة على ذكر الأب والجد ونسبة القبيلة لتمييز الراوي، لا على سلسلة كاملة إلى عدنان. الحلقات الإضافية هنا — عند إيرادها — مأخوذة من مصادر الأنساب الكلاسيكية (كالطبقات الكبرى لابن سعد وجمهرة أنساب العرب) وليست من نص التقريب نفسه.",
+        "en": "Ibn Hajar's Taqrib al-Tahdhib typically records only the father, grandfather, and tribal nisbah needed to identify a narrator — not a full chain to 'Adnan. Any further generations given here are drawn from classical genealogical works (e.g. Ibn Sa'd's al-Tabaqat al-Kubra, Jamharat Ansab al-'Arab), not from the Taqrib text itself."
+      }
     }
   ],
   "schemaVersion": 2,

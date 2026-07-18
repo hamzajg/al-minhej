@@ -1,0 +1,9 @@
+[
+  {
+    "id": "r-v1-gen-40",
+    "from": "narrator-yunus-yazid",
+    "to": "narrator-zuhri",
+    "type": "NARRATED_BY",
+    "generated": true
+  }
+]

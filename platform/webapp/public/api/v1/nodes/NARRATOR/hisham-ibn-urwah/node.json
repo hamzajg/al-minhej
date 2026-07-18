@@ -70,6 +70,79 @@
         "ar": "فقيه محدث، روى عن أبيه عروة أكثر علمه، وروى عنه كبار الأئمة كمالك والثوري وابن عيينة والليث.",
         "en": "A jurist-traditionist who took most of his learning from his father 'Urwah; transmitted from by great imams such as Malik, al-Thawri, Ibn 'Uyaynah, and al-Layth."
       }
+    },
+    {
+      "type": "lineage",
+      "blockVersion": 1,
+      "personNodeId": "narrator-hisham-urwah",
+      "chain": [
+        {
+          "name": {
+            "ar": "هشام",
+            "en": "Hisham"
+          }
+        },
+        {
+          "name": {
+            "ar": "عروة",
+            "en": "'Urwah"
+          }
+        },
+        {
+          "name": {
+            "ar": "الزبير",
+            "en": "al-Zubayr"
+          }
+        },
+        {
+          "name": {
+            "ar": "العوام",
+            "en": "al-'Awwam"
+          }
+        },
+        {
+          "name": {
+            "ar": "خويلد",
+            "en": "Khuwaylid"
+          }
+        },
+        {
+          "name": {
+            "ar": "أسد",
+            "en": "Asad"
+          }
+        },
+        {
+          "name": {
+            "ar": "عبد العزى",
+            "en": "'Abd al-'Uzza"
+          }
+        },
+        {
+          "name": {
+            "ar": "قصي",
+            "en": "Qusayy"
+          },
+          "note": {
+            "ar": "يلتقي هنا بنسب النبي ﷺ",
+            "en": "meets the Prophet's ﷺ lineage here"
+          }
+        }
+      ],
+      "convergesWithProphetAt": {
+        "name": {
+          "ar": "قصي بن كلاب",
+          "en": "Qusayy ibn Kilab"
+        },
+        "note": {
+          "ar": "عبر أبيه عروة بن الزبير، يلتقي هشام بنسب النبي ﷺ في قصي.",
+          "en": "Through his father 'Urwah ibn al-Zubayr, Hisham's lineage meets the Prophet's ﷺ at Qusayy."
+        }
+      },
+      "taqribSourceNote": {
+        "ar": "تقريب التهذيب لابن حجر يقتصر عادة على ذكر الأب والجد ونسبة القبيلة لتمييز الراوي، لا على سلسلة كاملة إلى عدنان. الحلقات الإضافية هنا — عند إيرادها — مأخوذة من مصادر الأنساب الكلاسيكية (كالطبقات الكبرى لابن سعد وجمهرة أنساب العرب) وليست من نص التقريب نفسه.",
+        "en": "Ibn Hajar's Taqrib al-Tahdhib typically records only the father, grandfather, and tribal nisbah needed to identify a narrator — not a full chain to 'Adnan. Any further generations given here are drawn from classical genealogical works (e.g. Ibn Sa'd's al-Tabaqat al-Kubra, Jamharat Ansab al-'Arab), not from the Taqrib text itself."
+      }
     }
   ],
   "schemaVersion": 2,

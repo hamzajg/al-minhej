@@ -69,6 +69,91 @@
         "ar": "من أكثر الصحابة رواية للحديث مطلقًا، ومرجع كبير في الفقه والتفسير وسيرة النبي ﷺ في بيته.",
         "en": "Among the most prolific narrators of hadith of any Companion, and a major authority on jurisprudence, exegesis, and the Prophet's ﷺ life at home."
       }
+    },
+    {
+      "type": "lineage",
+      "blockVersion": 1,
+      "personNodeId": "narrator-aisha",
+      "chain": [
+        {
+          "name": {
+            "ar": "عائشة",
+            "en": "'A'ishah"
+          }
+        },
+        {
+          "name": {
+            "ar": "أبو بكر (عبد الله)",
+            "en": "Abu Bakr ('Abdullah)"
+          }
+        },
+        {
+          "name": {
+            "ar": "عثمان",
+            "en": "'Uthman"
+          }
+        },
+        {
+          "name": {
+            "ar": "عامر",
+            "en": "'Amir"
+          }
+        },
+        {
+          "name": {
+            "ar": "عمرو",
+            "en": "'Amr"
+          }
+        },
+        {
+          "name": {
+            "ar": "كعب",
+            "en": "Ka'b"
+          }
+        },
+        {
+          "name": {
+            "ar": "سعد",
+            "en": "Sa'd"
+          }
+        },
+        {
+          "name": {
+            "ar": "تيم",
+            "en": "Taym"
+          }
+        },
+        {
+          "name": {
+            "ar": "مرة",
+            "en": "Murrah"
+          },
+          "note": {
+            "ar": "يلتقي هنا بنسب النبي ﷺ",
+            "en": "meets the Prophet's ﷺ lineage here"
+          }
+        },
+        {
+          "name": {
+            "ar": "كعب بن لؤي",
+            "en": "Ka'b ibn Lu'ayy"
+          }
+        }
+      ],
+      "convergesWithProphetAt": {
+        "name": {
+          "ar": "مرة بن كعب",
+          "en": "Murrah ibn Ka'b"
+        },
+        "note": {
+          "ar": "بنو تيم (قبيلة أبي بكر وعائشة) وبنو هاشم يلتقيان في مرة بن كعب.",
+          "en": "Banu Taym ('A'ishah and Abu Bakr's clan) and Banu Hashim converge at Murrah ibn Ka'b."
+        }
+      },
+      "taqribSourceNote": {
+        "ar": "تقريب التهذيب لابن حجر يقتصر عادة على ذكر الأب والجد ونسبة القبيلة لتمييز الراوي، لا على سلسلة كاملة إلى عدنان. الحلقات الإضافية هنا — عند إيرادها — مأخوذة من مصادر الأنساب الكلاسيكية (كالطبقات الكبرى لابن سعد وجمهرة أنساب العرب) وليست من نص التقريب نفسه.",
+        "en": "Ibn Hajar's Taqrib al-Tahdhib typically records only the father, grandfather, and tribal nisbah needed to identify a narrator — not a full chain to 'Adnan. Any further generations given here are drawn from classical genealogical works (e.g. Ibn Sa'd's al-Tabaqat al-Kubra, Jamharat Ansab al-'Arab), not from the Taqrib text itself."
+      }
     }
   ],
   "schemaVersion": 2,

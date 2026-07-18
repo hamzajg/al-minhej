@@ -103,6 +103,14 @@
     "id": "narrator-yahya-ansari",
     "type": "NARRATOR"
   },
+  "yahya-ibn-yahya-al-tamimi": {
+    "id": "narrator-yahya-yahya-tamimi",
+    "type": "NARRATOR"
+  },
+  "yunus-ibn-yazid-al-ayli": {
+    "id": "narrator-yunus-yazid",
+    "type": "NARRATOR"
+  },
   "arbain-page-1": {
     "id": "page-arbain-1",
     "type": "PAGE"

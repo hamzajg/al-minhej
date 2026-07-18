@@ -54,6 +54,69 @@
         "ar": "مصنّف الأربعين النووية، جمعها من الصحيحين وغيرهما مقتصرًا غالبًا على إسناد مختصر لأنها مشهورة.",
         "en": "Compiler of al-Arba'in al-Nawawiyyah, gathered from the two Sahihs and elsewhere, usually citing a shortened chain since the reports were already well known."
       }
+    },
+    {
+      "type": "lineage",
+      "blockVersion": 1,
+      "personNodeId": "narrator-nawawi",
+      "chain": [
+        {
+          "name": {
+            "ar": "يحيى",
+            "en": "Yahya"
+          }
+        },
+        {
+          "name": {
+            "ar": "شرف",
+            "en": "Sharaf"
+          }
+        },
+        {
+          "name": {
+            "ar": "مري",
+            "en": "Murri"
+          }
+        },
+        {
+          "name": {
+            "ar": "حسن",
+            "en": "Hasan"
+          }
+        },
+        {
+          "name": {
+            "ar": "حسين",
+            "en": "Husayn"
+          }
+        },
+        {
+          "name": {
+            "ar": "محمد",
+            "en": "Muhammad"
+          }
+        },
+        {
+          "name": {
+            "ar": "جمعة",
+            "en": "Jum'ah"
+          }
+        },
+        {
+          "name": {
+            "ar": "حزام",
+            "en": "Hizam"
+          },
+          "note": {
+            "ar": "الحوراني الدمشقي — عالم متأخر، لا صلة نسب قديمة بقريش",
+            "en": "al-Hawrani al-Dimashqi — a later scholar, with no ancient Qurashi bloodline"
+          }
+        }
+      ],
+      "taqribSourceNote": {
+        "ar": "تقريب التهذيب لابن حجر يقتصر عادة على ذكر الأب والجد ونسبة القبيلة لتمييز الراوي، لا على سلسلة كاملة إلى عدنان. الحلقات الإضافية هنا — عند إيرادها — مأخوذة من مصادر الأنساب الكلاسيكية (كالطبقات الكبرى لابن سعد وجمهرة أنساب العرب) وليست من نص التقريب نفسه.",
+        "en": "Ibn Hajar's Taqrib al-Tahdhib typically records only the father, grandfather, and tribal nisbah needed to identify a narrator — not a full chain to 'Adnan. Any further generations given here are drawn from classical genealogical works (e.g. Ibn Sa'd's al-Tabaqat al-Kubra, Jamharat Ansab al-'Arab), not from the Taqrib text itself."
+      }
     }
   ],
   "schemaVersion": 2,

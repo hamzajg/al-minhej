@@ -61,6 +61,35 @@
         "ar": "أول شيخ في أول إسناد في صحيح البخاري؛ إمام حافظ صنّف مسندًا معروفًا باسمه.",
         "en": "The first teacher in the first isnad of Sahih al-Bukhari; a hafiz who authored a well-known Musnad bearing his name."
       }
+    },
+    {
+      "type": "lineage",
+      "blockVersion": 1,
+      "personNodeId": "narrator-humaydi",
+      "chain": [
+        {
+          "name": {
+            "ar": "عبد الله",
+            "en": "'Abdullah"
+          }
+        },
+        {
+          "name": {
+            "ar": "الزبير",
+            "en": "al-Zubayr"
+          }
+        },
+        {
+          "name": {
+            "ar": "عيسى",
+            "en": "'Isa"
+          }
+        }
+      ],
+      "taqribSourceNote": {
+        "ar": "لم يثبت لي توسيع موثّق لهذا النسب فيما وراء هذه الحلقات؛ يُكتفى هنا بما أورده التقريب دون إضافة غير موثقة. تقريب التهذيب لابن حجر يقتصر عادة على ذكر الأب والجد ونسبة القبيلة لتمييز الراوي، لا على سلسلة كاملة إلى عدنان. الحلقات الإضافية هنا — عند إيرادها — مأخوذة من مصادر الأنساب الكلاسيكية (كالطبقات الكبرى لابن سعد وجمهرة أنساب العرب) وليست من نص التقريب نفسه.",
+        "en": "No reliably documented extension of this lineage beyond these links was found; only what Taqrib itself records is given, without unverified additions. Ibn Hajar's Taqrib al-Tahdhib typically records only the father, grandfather, and tribal nisbah needed to identify a narrator — not a full chain to 'Adnan. Any further generations given here are drawn from classical genealogical works (e.g. Ibn Sa'd's al-Tabaqat al-Kubra, Jamharat Ansab al-'Arab), not from the Taqrib text itself."
+      }
     }
   ],
   "schemaVersion": 2,

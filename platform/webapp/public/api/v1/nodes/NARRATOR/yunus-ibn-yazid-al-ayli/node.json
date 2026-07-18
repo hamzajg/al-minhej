@@ -1,0 +1,107 @@
+{
+  "id": "narrator-yunus-yazid",
+  "type": "NARRATOR",
+  "slug": "yunus-ibn-yazid-al-ayli",
+  "status": "published",
+  "digitizationStatus": "complete",
+  "title": {
+    "ar": "يونس بن يزيد الأيلي",
+    "en": "Yunus ibn Yazid al-Ayli"
+  },
+  "attributes": {
+    "kind": "narrator",
+    "dateDeath": "١٥٩ هـ / ٧٧٦ م",
+    "grade": {
+      "ar": "ثقة، من أثبت أصحاب الزهري",
+      "en": "Thiqah; among al-Zuhri's most reliable transmitters"
+    },
+    "isnadDepth": 4
+  },
+  "content": [
+    {
+      "type": "biography",
+      "blockVersion": 1,
+      "kunya": {
+        "ar": "أبو يزيد",
+        "en": "Abu Yazid"
+      },
+      "nasab": {
+        "ar": "يونس بن يزيد بن أبي النجاد الأيلي، مولى معاوية بن أبي سفيان",
+        "en": "Yunus ibn Yazid ibn Abi al-Najad al-Ayli, client of Mu'awiyah ibn Abi Sufyan"
+      },
+      "tabaqah": 7,
+      "tabaqahLabel": {
+        "ar": "الطبقة السابعة: كبار أتباع التابعين",
+        "en": "Tabaqah 7: senior successors of the Successors"
+      },
+      "birthPlace": null,
+      "deathInfo": {
+        "ar": "توفي بمصر سنة ١٥٩ هـ / ٧٧٦ م",
+        "en": "Died in Egypt, 159 AH / 776 CE"
+      },
+      "teachers": [
+        {
+          "narratorId": "narrator-zuhri",
+          "note": {
+            "ar": "من أكثر الناس وأثبتهم رواية عنه",
+            "en": "among those who transmitted from him most, and most reliably"
+          }
+        }
+      ],
+      "students": [
+        {
+          "narratorId": "narrator-yahya-bukayr",
+          "note": {
+            "ar": "نقل عنه أيضًا بواسطة ابن المبارك في أسانيد أخرى",
+            "en": "also transmitted from him via Ibn al-Mubarak in other chains"
+          }
+        }
+      ],
+      "taqribGrade": {
+        "ar": "ثقة، إلا في روايته عن الزهري ما فيه مقال يسير عند بعض النقاد",
+        "en": "Thiqah — though some critics note minor reservations specifically about his transmission from al-Zuhri"
+      },
+      "taqribRef": "ابن حجر، تقريب التهذيب، ت ٧٩١٠",
+      "summary": {
+        "ar": "من كبار أصحاب الزهري بمصر، روى هذا الحديث عنه من طريق آخر غير طريق عقيل، وهو طريق مشهور أورده البخاري نفسه في مواضع أخرى من صحيحه.",
+        "en": "One of al-Zuhri's leading Egyptian students; transmits this same hadith via a route distinct from 'Uqayl's — a well-known alternate path that al-Bukhari himself cites elsewhere in the Sahih."
+      }
+    },
+    {
+      "type": "lineage",
+      "blockVersion": 1,
+      "personNodeId": "narrator-yunus-yazid",
+      "chain": [
+        {
+          "name": {
+            "ar": "يونس",
+            "en": "Yunus"
+          }
+        },
+        {
+          "name": {
+            "ar": "يزيد",
+            "en": "Yazid"
+          }
+        },
+        {
+          "name": {
+            "ar": "أبي النجاد",
+            "en": "Abi al-Najad"
+          },
+          "note": {
+            "ar": "الأيلي، مولى معاوية بن أبي سفيان — بالولاء لا بالنسب",
+            "en": "al-Ayli, client of Mu'awiyah — by clientage, not blood"
+          }
+        }
+      ],
+      "taqribSourceNote": {
+        "ar": "تقريب التهذيب يقتصر عادة على الأب والجد ونسبة القبيلة، لا سلسلة كاملة إلى عدنان.",
+        "en": "Taqrib al-Tahdhib typically records only the father, grandfather, and tribal nisbah — not a full chain to 'Adnan."
+      }
+    }
+  ],
+  "schemaVersion": 2,
+  "createdAt": "2026-07-17T00:00:00.000Z",
+  "updatedAt": "2026-07-17T00:00:00.000Z"
+}

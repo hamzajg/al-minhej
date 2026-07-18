@@ -69,6 +69,65 @@
         "ar": "من ثقات التابعين بالمدينة، معدود في الطبقة الثانية.",
         "en": "A reliable Madinan Successor, counted among the second generation."
       }
+    },
+    {
+      "type": "lineage",
+      "blockVersion": 1,
+      "personNodeId": "narrator-alqamah",
+      "chain": [
+        {
+          "name": {
+            "ar": "علقمة",
+            "en": "'Alqamah"
+          }
+        },
+        {
+          "name": {
+            "ar": "وقاص",
+            "en": "Waqqas"
+          }
+        },
+        {
+          "name": {
+            "ar": "محصن",
+            "en": "Muhsin"
+          }
+        },
+        {
+          "name": {
+            "ar": "الليث",
+            "en": "al-Layth"
+          },
+          "note": {
+            "ar": "جد بني ليث، بطن من كنانة",
+            "en": "eponym of Banu Layth, a clan of Kinanah"
+          }
+        },
+        {
+          "name": {
+            "ar": "كنانة",
+            "en": "Kinanah"
+          },
+          "note": {
+            "ar": "يلتقي هنا بنسب النبي ﷺ",
+            "en": "meets the Prophet's ﷺ lineage here"
+          }
+        }
+      ],
+      "convergesWithProphetAt": {
+        "name": {
+          "ar": "كنانة بن خزيمة",
+          "en": "Kinanah ibn Khuzaymah"
+        },
+        "note": {
+          "ar": "بنو ليث (قبيلة علقمة) هي بطن من كنانة، وكنانة جد مشترك مع نسب النبي ﷺ.",
+          "en": "Banu Layth ('Alqamah's clan) is a branch of Kinanah, a shared ancestor with the Prophet's ﷺ lineage."
+        }
+      },
+      "taqribSourceNote": {
+        "ar": "تقريب التهذيب لابن حجر يقتصر عادة على ذكر الأب والجد ونسبة القبيلة لتمييز الراوي، لا على سلسلة كاملة إلى عدنان. الحلقات الإضافية هنا — عند إيرادها — مأخوذة من مصادر الأنساب الكلاسيكية (كالطبقات الكبرى لابن سعد وجمهرة أنساب العرب) وليست من نص التقريب نفسه.",
+        "en": "Ibn Hajar's Taqrib al-Tahdhib typically records only the father, grandfather, and tribal nisbah needed to identify a narrator — not a full chain to 'Adnan. Any further generations given here are drawn from classical genealogical works (e.g. Ibn Sa'd's al-Tabaqat al-Kubra, Jamharat Ansab al-'Arab), not from the Taqrib text itself."
+      }
     }
   ],
   "schemaVersion": 2,

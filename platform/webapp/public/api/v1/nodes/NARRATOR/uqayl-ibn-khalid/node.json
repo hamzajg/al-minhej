@@ -66,6 +66,39 @@
         "ar": "من أوثق أصحاب الزهري، استوطن أيلة ونقل عنه علمًا كثيرًا.",
         "en": "Among the most reliable companions of al-Zuhri; settled in Aylah and transmitted a great deal of his learning."
       }
+    },
+    {
+      "type": "lineage",
+      "blockVersion": 1,
+      "personNodeId": "narrator-uqayl",
+      "chain": [
+        {
+          "name": {
+            "ar": "عقيل",
+            "en": "'Uqayl"
+          }
+        },
+        {
+          "name": {
+            "ar": "خالد",
+            "en": "Khalid"
+          }
+        },
+        {
+          "name": {
+            "ar": "عقيل",
+            "en": "'Uqayl"
+          },
+          "note": {
+            "ar": "مولى عثمان بن عفان — بالولاء لا بالنسب",
+            "en": "client of 'Uthman ibn 'Affan — by clientage, not blood"
+          }
+        }
+      ],
+      "taqribSourceNote": {
+        "ar": "تقريب التهذيب لابن حجر يقتصر عادة على ذكر الأب والجد ونسبة القبيلة لتمييز الراوي، لا على سلسلة كاملة إلى عدنان. الحلقات الإضافية هنا — عند إيرادها — مأخوذة من مصادر الأنساب الكلاسيكية (كالطبقات الكبرى لابن سعد وجمهرة أنساب العرب) وليست من نص التقريب نفسه.",
+        "en": "Ibn Hajar's Taqrib al-Tahdhib typically records only the father, grandfather, and tribal nisbah needed to identify a narrator — not a full chain to 'Adnan. Any further generations given here are drawn from classical genealogical works (e.g. Ibn Sa'd's al-Tabaqat al-Kubra, Jamharat Ansab al-'Arab), not from the Taqrib text itself."
+      }
     }
   ],
   "schemaVersion": 2,

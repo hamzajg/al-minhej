@@ -1,0 +1,105 @@
+{
+  "id": "narrator-yahya-yahya-tamimi",
+  "type": "NARRATOR",
+  "slug": "yahya-ibn-yahya-al-tamimi",
+  "status": "published",
+  "digitizationStatus": "complete",
+  "title": {
+    "ar": "يحيى بن يحيى التميمي",
+    "en": "Yahya ibn Yahya al-Tamimi"
+  },
+  "attributes": {
+    "kind": "narrator",
+    "dateDeath": "٢٢٦ هـ / ٨٤١ م",
+    "grade": {
+      "ar": "ثقة ثبت إمام، أحد أوعية العلم",
+      "en": "Thiqah, precise (thabt), imam; a vessel of knowledge"
+    },
+    "isnadDepth": 5
+  },
+  "content": [
+    {
+      "type": "biography",
+      "blockVersion": 1,
+      "kunya": {
+        "ar": "أبو زكريا",
+        "en": "Abu Zakariyya"
+      },
+      "nasab": {
+        "ar": "يحيى بن يحيى بن بكر بن عبد الرحمن التميمي الحنظلي النيسابوري",
+        "en": "Yahya ibn Yahya ibn Bakr ibn 'Abd al-Rahman al-Tamimi al-Hanzali, of Naysabur"
+      },
+      "tabaqah": 10,
+      "tabaqahLabel": {
+        "ar": "الطبقة العاشرة: كبار الآخذين عن تبع الأتباع",
+        "en": "Tabaqah 10: senior students of the successors' successors"
+      },
+      "birthPlace": null,
+      "deathInfo": {
+        "ar": "توفي بنيسابور سنة ٢٢٦ هـ / ٨٤١ م",
+        "en": "Died in Naysabur, 226 AH / 841 CE"
+      },
+      "teachers": [
+        {
+          "narratorId": "narrator-malik",
+          "note": {
+            "ar": "أثبت الناس في الموطأ عند مسلم",
+            "en": "Muslim's most trusted transmitter of the Muwatta'"
+          }
+        }
+      ],
+      "students": [],
+      "taqribGrade": {
+        "ar": "ثقة ثبت إمام، قال أحمد بن حنبل: ما رأيت مثله",
+        "en": "Thiqah, precise, imam — Ahmad ibn Hanbal said: 'I have not seen his equal.'"
+      },
+      "taqribRef": "ابن حجر، تقريب التهذيب، ت ٧٥٥٢",
+      "summary": {
+        "ar": "محدث نيسابور الكبير، وأخص من روى الموطأ عن مالك عند الإمام مسلم، وهذا هو الطريق الذي أخرج به مسلم هذا الحديث في صحيحه.",
+        "en": "The great traditionist of Naysabur, and Imam Muslim's closest transmitter of the Muwatta' from Malik — this is the route by which Muslim narrates this hadith in his Sahih."
+      }
+    },
+    {
+      "type": "lineage",
+      "blockVersion": 1,
+      "personNodeId": "narrator-yahya-yahya-tamimi",
+      "chain": [
+        {
+          "name": {
+            "ar": "يحيى",
+            "en": "Yahya"
+          }
+        },
+        {
+          "name": {
+            "ar": "يحيى",
+            "en": "Yahya"
+          }
+        },
+        {
+          "name": {
+            "ar": "بكر",
+            "en": "Bakr"
+          }
+        },
+        {
+          "name": {
+            "ar": "عبد الرحمن",
+            "en": "'Abd al-Rahman"
+          },
+          "note": {
+            "ar": "التميمي الحنظلي — من تميم، لا من قريش",
+            "en": "al-Tamimi al-Hanzali, of Tamim — not of Quraysh"
+          }
+        }
+      ],
+      "taqribSourceNote": {
+        "ar": "تقريب التهذيب يقتصر عادة على الأب والجد ونسبة القبيلة، لا سلسلة كاملة إلى عدنان.",
+        "en": "Taqrib al-Tahdhib typically records only the father, grandfather, and tribal nisbah — not a full chain to 'Adnan."
+      }
+    }
+  ],
+  "schemaVersion": 2,
+  "createdAt": "2026-07-17T00:00:00.000Z",
+  "updatedAt": "2026-07-17T00:00:00.000Z"
+}

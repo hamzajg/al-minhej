@@ -5,8 +5,16 @@
     "role": "primary",
     "links": [
       {
-        "narratorId": "narrator-umar",
+        "narratorId": "narrator-prophet",
         "position": 0,
+        "transmissionNote": {
+          "ar": "أصل الحديث ومصدره",
+          "en": "the origin and source of the report"
+        }
+      },
+      {
+        "narratorId": "narrator-umar",
+        "position": 1,
         "transmissionNote": {
           "ar": "عَلَى الْمِنْبَرِ قَالَ: سَمِعْتُ",
           "en": "Upon the pulpit, said: I heard"
@@ -14,7 +22,7 @@
       },
       {
         "narratorId": "narrator-alqamah",
-        "position": 1,
+        "position": 2,
         "transmissionNote": {
           "ar": "يَقُولُ: سَمِعْتُ",
           "en": "He said: I heard"
@@ -22,7 +30,7 @@
       },
       {
         "narratorId": "narrator-muhammad-ibrahim",
-        "position": 2,
+        "position": 3,
         "transmissionNote": {
           "ar": "أَخْبَرَنِي",
           "en": "He informed me"
@@ -30,14 +38,6 @@
       },
       {
         "narratorId": "narrator-yahya-ansari",
-        "position": 3,
-        "transmissionNote": {
-          "ar": "حَدَّثَنَا",
-          "en": "He narrated to us"
-        }
-      },
-      {
-        "narratorId": "narrator-sufyan-uyaynah",
         "position": 4,
         "transmissionNote": {
           "ar": "حَدَّثَنَا",
@@ -45,8 +45,16 @@
         }
       },
       {
-        "narratorId": "narrator-humaydi",
+        "narratorId": "narrator-sufyan-uyaynah",
         "position": 5,
+        "transmissionNote": {
+          "ar": "حَدَّثَنَا",
+          "en": "He narrated to us"
+        }
+      },
+      {
+        "narratorId": "narrator-humaydi",
+        "position": 6,
         "transmissionNote": {
           "ar": "حَدَّثَنَا",
           "en": "He narrated to us"
@@ -55,7 +63,51 @@
     ],
     "terminatesAt": {
       "kind": "narrator-prophet"
+    },
+    "note": {
+      "ar": "يُعرف هذا الحديث بأنه 'فرد' — لا يُعرف له طريق صحيح عن عمر إلا من هذا الوجه عبر علقمة، ثم يتفرع بعد يحيى بن سعيد الأنصاري إلى عشرات الطرق (يُذكر هنا أشهرها).",
+      "en": "This hadith is famously 'gharib' (singular) — no other sound route from 'Umar is known except through this exact line via 'Alqamah; after Yahya ibn Sa'id al-Ansari it branches into dozens of onward routes (the best-known is given here)."
     }
   },
-  "branches": []
+  "branches": [
+    {
+      "id": "isnad-bukhari-hadith-1-branch-1",
+      "hadithId": "hadith-bukhari-1",
+      "role": "branch",
+      "branchesFrom": {
+        "chainId": "isnad-bukhari-hadith-1-primary",
+        "narratorId": "narrator-yahya-ansari",
+        "position": 4
+      },
+      "links": [
+        {
+          "narratorId": "narrator-malik",
+          "position": 5,
+          "transmissionNote": {
+            "ar": "عَنْ",
+            "en": "from"
+          }
+        },
+        {
+          "narratorId": "narrator-yahya-yahya-tamimi",
+          "position": 6,
+          "transmissionNote": {
+            "ar": "حَدَّثَنَا",
+            "en": "narrated to us"
+          }
+        }
+      ],
+      "terminatesAt": {
+        "kind": "narrator-prophet"
+      },
+      "citedIn": {
+        "ar": "صحيح مسلم، كتاب الإمارة",
+        "en": "Sahih Muslim, Kitab al-Imarah"
+      },
+      "note": {
+        "ar": "هذا هو الطريق الذي أخرج به الإمام مسلم نفس الحديث في صحيحه، عن مالك بدل سفيان بن عيينة.",
+        "en": "This is the route by which Imam Muslim narrates this same hadith in his Sahih — through Malik rather than Sufyan ibn 'Uyaynah."
+      }
+    }
+  ]
 }

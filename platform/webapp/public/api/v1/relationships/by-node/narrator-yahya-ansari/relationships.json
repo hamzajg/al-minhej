@@ -1,15 +1,22 @@
 [
   {
-    "id": "r-v1-gen-17",
+    "id": "r-v1-gen-18",
     "from": "narrator-sufyan-uyaynah",
     "to": "narrator-yahya-ansari",
     "type": "NARRATED_BY",
     "generated": true
   },
   {
-    "id": "r-v1-gen-18",
+    "id": "r-v1-gen-19",
     "from": "narrator-yahya-ansari",
     "to": "narrator-muhammad-ibrahim",
+    "type": "NARRATED_BY",
+    "generated": true
+  },
+  {
+    "id": "r-v1-gen-25",
+    "from": "narrator-malik",
+    "to": "narrator-yahya-ansari",
     "type": "NARRATED_BY",
     "generated": true
   }

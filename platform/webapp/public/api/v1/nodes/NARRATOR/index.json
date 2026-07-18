@@ -66,5 +66,13 @@
   {
     "id": "narrator-yahya-ansari",
     "slug": "yahya-ibn-said"
+  },
+  {
+    "id": "narrator-yahya-yahya-tamimi",
+    "slug": "yahya-ibn-yahya-al-tamimi"
+  },
+  {
+    "id": "narrator-yunus-yazid",
+    "slug": "yunus-ibn-yazid-al-ayli"
   }
 ]

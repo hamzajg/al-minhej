@@ -70,6 +70,97 @@
         "ar": "أمير المؤمنين الثاني، من أفقه الصحابة وأشدهم في الحق، رواية هذا الحديث عنه على المنبر مشهورة متواترة عنه.",
         "en": "Second Rightly-Guided Caliph, among the most learned and resolute Companions; his narration of this hadith from the pulpit is famous and widely transmitted from him."
       }
+    },
+    {
+      "type": "lineage",
+      "blockVersion": 1,
+      "personNodeId": "narrator-umar",
+      "chain": [
+        {
+          "name": {
+            "ar": "عمر",
+            "en": "'Umar"
+          }
+        },
+        {
+          "name": {
+            "ar": "الخطاب",
+            "en": "al-Khattab"
+          }
+        },
+        {
+          "name": {
+            "ar": "نفيل",
+            "en": "Nufayl"
+          }
+        },
+        {
+          "name": {
+            "ar": "عبد العزى",
+            "en": "'Abd al-'Uzza"
+          }
+        },
+        {
+          "name": {
+            "ar": "رياح",
+            "en": "Riyah"
+          }
+        },
+        {
+          "name": {
+            "ar": "عبد الله",
+            "en": "'Abdullah"
+          }
+        },
+        {
+          "name": {
+            "ar": "قرط",
+            "en": "Qurt"
+          }
+        },
+        {
+          "name": {
+            "ar": "رزاح",
+            "en": "Razah"
+          }
+        },
+        {
+          "name": {
+            "ar": "عدي",
+            "en": "'Adiy"
+          }
+        },
+        {
+          "name": {
+            "ar": "كعب",
+            "en": "Ka'b"
+          },
+          "note": {
+            "ar": "يلتقي هنا بنسب النبي ﷺ",
+            "en": "meets the Prophet's ﷺ lineage here"
+          }
+        },
+        {
+          "name": {
+            "ar": "لؤي",
+            "en": "Lu'ayy"
+          }
+        }
+      ],
+      "convergesWithProphetAt": {
+        "name": {
+          "ar": "كعب بن لؤي",
+          "en": "Ka'b ibn Lu'ayy"
+        },
+        "note": {
+          "ar": "عمر بن الخطاب وبنو هاشم يلتقيان في كعب بن لؤي، الجد المشترك في قريش.",
+          "en": "'Umar and Banu Hashim converge at Ka'b ibn Lu'ayy, their shared Qurashi ancestor."
+        }
+      },
+      "taqribSourceNote": {
+        "ar": "تقريب التهذيب لابن حجر يقتصر عادة على ذكر الأب والجد ونسبة القبيلة لتمييز الراوي، لا على سلسلة كاملة إلى عدنان. الحلقات الإضافية هنا — عند إيرادها — مأخوذة من مصادر الأنساب الكلاسيكية (كالطبقات الكبرى لابن سعد وجمهرة أنساب العرب) وليست من نص التقريب نفسه.",
+        "en": "Ibn Hajar's Taqrib al-Tahdhib typically records only the father, grandfather, and tribal nisbah needed to identify a narrator — not a full chain to 'Adnan. Any further generations given here are drawn from classical genealogical works (e.g. Ibn Sa'd's al-Tabaqat al-Kubra, Jamharat Ansab al-'Arab), not from the Taqrib text itself."
+      }
     }
   ],
   "schemaVersion": 2,

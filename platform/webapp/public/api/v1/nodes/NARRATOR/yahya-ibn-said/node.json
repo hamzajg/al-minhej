@@ -70,6 +70,57 @@
         "ar": "فقيه المدينة وقاضيها، من أوثق التابعين في الحديث.",
         "en": "Jurist and judge of Madinah, among the most reliable of the Successors in hadith."
       }
+    },
+    {
+      "type": "lineage",
+      "blockVersion": 1,
+      "personNodeId": "narrator-yahya-ansari",
+      "chain": [
+        {
+          "name": {
+            "ar": "يحيى",
+            "en": "Yahya"
+          }
+        },
+        {
+          "name": {
+            "ar": "سعيد",
+            "en": "Sa'id"
+          }
+        },
+        {
+          "name": {
+            "ar": "قيس",
+            "en": "Qays"
+          }
+        },
+        {
+          "name": {
+            "ar": "عمرو",
+            "en": "'Amr"
+          }
+        },
+        {
+          "name": {
+            "ar": "سهل",
+            "en": "Sahl"
+          }
+        },
+        {
+          "name": {
+            "ar": "ثعلبة",
+            "en": "Tha'labah"
+          },
+          "note": {
+            "ar": "الأنصاري — من الخزرج، لا من قريش",
+            "en": "al-Ansari, of Khazraj — not of Quraysh"
+          }
+        }
+      ],
+      "taqribSourceNote": {
+        "ar": "من الأنصار (الخزرج)، لا يلتقي نسبًا بقريش من جهة الأب، وإن كانت جدة النبي ﷺ سلمى بنت عمرو من بني النجار الأنصار من جهة الأم. تقريب التهذيب لابن حجر يقتصر عادة على ذكر الأب والجد ونسبة القبيلة لتمييز الراوي، لا على سلسلة كاملة إلى عدنان. الحلقات الإضافية هنا — عند إيرادها — مأخوذة من مصادر الأنساب الكلاسيكية (كالطبقات الكبرى لابن سعد وجمهرة أنساب العرب) وليست من نص التقريب نفسه.",
+        "en": "Of the Ansar (Khazraj); does not share a paternal Qurashi lineage, though the Prophet's ﷺ grandmother Salma bint 'Amr was herself of Banu al-Najjar among the Ansar, on the maternal side. Ibn Hajar's Taqrib al-Tahdhib typically records only the father, grandfather, and tribal nisbah needed to identify a narrator — not a full chain to 'Adnan. Any further generations given here are drawn from classical genealogical works (e.g. Ibn Sa'd's al-Tabaqat al-Kubra, Jamharat Ansab al-'Arab), not from the Taqrib text itself."
+      }
     }
   ],
   "schemaVersion": 2,

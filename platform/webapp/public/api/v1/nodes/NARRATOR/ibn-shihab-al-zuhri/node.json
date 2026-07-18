@@ -70,6 +70,85 @@
         "ar": "أحد أعلام التابعين في الحديث والفقه، له فضل السبق في تدوين الحديث النبوي.",
         "en": "One of the towering scholars of the Successors in hadith and fiqh, credited with pioneering the formal recording of hadith."
       }
+    },
+    {
+      "type": "lineage",
+      "blockVersion": 1,
+      "personNodeId": "narrator-zuhri",
+      "chain": [
+        {
+          "name": {
+            "ar": "محمد",
+            "en": "Muhammad"
+          }
+        },
+        {
+          "name": {
+            "ar": "مسلم",
+            "en": "Muslim"
+          }
+        },
+        {
+          "name": {
+            "ar": "عبيد الله",
+            "en": "'Ubaydullah"
+          }
+        },
+        {
+          "name": {
+            "ar": "عبد الله",
+            "en": "'Abdullah"
+          }
+        },
+        {
+          "name": {
+            "ar": "شهاب",
+            "en": "Shihab"
+          }
+        },
+        {
+          "name": {
+            "ar": "عبد الله",
+            "en": "'Abdullah"
+          }
+        },
+        {
+          "name": {
+            "ar": "الحارث",
+            "en": "al-Harith"
+          }
+        },
+        {
+          "name": {
+            "ar": "زهرة",
+            "en": "Zuhrah"
+          }
+        },
+        {
+          "name": {
+            "ar": "كلاب",
+            "en": "Kilab"
+          },
+          "note": {
+            "ar": "يلتقي هنا بنسب النبي ﷺ",
+            "en": "meets the Prophet's ﷺ lineage here"
+          }
+        }
+      ],
+      "convergesWithProphetAt": {
+        "name": {
+          "ar": "كلاب بن مرة",
+          "en": "Kilab ibn Murrah"
+        },
+        "note": {
+          "ar": "بنو زهرة (قبيلة الزهري، وقبيلة آمنة بنت وهب أم النبي ﷺ) وبنو هاشم يلتقيان في كلاب بن مرة.",
+          "en": "Banu Zuhrah (al-Zuhri's clan — also the clan of Aminah bint Wahb, the Prophet's ﷺ mother) and Banu Hashim converge at Kilab ibn Murrah."
+        }
+      },
+      "taqribSourceNote": {
+        "ar": "تقريب التهذيب لابن حجر يقتصر عادة على ذكر الأب والجد ونسبة القبيلة لتمييز الراوي، لا على سلسلة كاملة إلى عدنان. الحلقات الإضافية هنا — عند إيرادها — مأخوذة من مصادر الأنساب الكلاسيكية (كالطبقات الكبرى لابن سعد وجمهرة أنساب العرب) وليست من نص التقريب نفسه.",
+        "en": "Ibn Hajar's Taqrib al-Tahdhib typically records only the father, grandfather, and tribal nisbah needed to identify a narrator — not a full chain to 'Adnan. Any further generations given here are drawn from classical genealogical works (e.g. Ibn Sa'd's al-Tabaqat al-Kubra, Jamharat Ansab al-'Arab), not from the Taqrib text itself."
+      }
     }
   ],
   "schemaVersion": 2,

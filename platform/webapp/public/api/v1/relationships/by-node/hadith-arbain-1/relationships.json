@@ -28,6 +28,18 @@
     }
   },
   {
+    "id": "r-v1-gen-16",
+    "from": "hadith-arbain-1",
+    "to": "hadith-bukhari-1",
+    "type": "full_chain_source",
+    "generated": true,
+    "metadata": {
+      "locator_en": "isnad-bukhari-hadith-1-primary",
+      "note_en": "An-Nawawi shortens the isnad — naming only 'Umar and then attributing the report to Bukhari and Muslim — since the hadith is already famous. The complete chain is documented in Sahih al-Bukhari.",
+      "note_ar": "النووي اختصر الإسناد مكتفيًا بذكر عمر ثم عزو الحديث لتخريج البخاري ومسلم، لأنه حديث مشهور. الإسناد الكامل موثق في صحيح البخاري."
+    }
+  },
+  {
     "id": "r-v1-core-16",
     "from": "hadith-arbain-1",
     "to": "concept-ikhlas",

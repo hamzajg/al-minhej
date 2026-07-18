@@ -6,17 +6,17 @@
     "CONCEPT": 2,
     "EVENT": 1,
     "HADITH": 4,
-    "NARRATOR": 17,
+    "NARRATOR": 19,
     "PAGE": 4,
     "VERSE": 1
   },
   "localeCoverage": {
     "ar": {
-      "nodes": 31,
+      "nodes": 33,
       "percentOfTotal": 100.0
     },
     "en": {
-      "nodes": 31,
+      "nodes": 33,
       "percentOfTotal": 100.0
     },
     "fr": {
@@ -31,11 +31,11 @@
   "digitizationStatusCounts": {
     "stub": 0,
     "partial": 3,
-    "complete": 28
+    "complete": 30
   },
   "relationshipCounts": {
-    "generated": 32,
+    "generated": 36,
     "handAuthored": 9,
-    "total": 41
+    "total": 45
   }
 }
