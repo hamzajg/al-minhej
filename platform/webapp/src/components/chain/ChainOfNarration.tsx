@@ -1,11 +1,10 @@
-import { GitBranch, ShieldCheck, BookOpen, TreePine } from "lucide-react";
+import { GitBranch, ShieldCheck, BookOpen, ExternalLink } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { useSettings } from "@/context/SettingsContext";
 import { useNodeProgress } from "@/hooks/useNodeProgress";
-import { useReferencedBooks } from "@/hooks/useReferencedBooks";
-import { SourceChip } from "@/components/sources/SourceChip";
 import { SourceProgressBar } from "@/components/sources/SourceProgressBar";
 import { formatPct } from "@/lib/format";
-import { getBiography, getLineage } from "@/lib/contentBlocks";
+import { getBiography, getLineageString } from "@/lib/contentBlocks";
 import type { IsnadDTO } from "@/domain/dto";
 import type { KnowledgeNode, BiographyBlock } from "@/domain/types";
 
@@ -18,6 +17,7 @@ interface Props {
 
 export function ChainOfNarration({ isnad, activeId, onSelect, onOpenSource }: Props) {
   const { t, uiLang, dir } = useSettings();
+  const navigate = useNavigate();
 
   const activeNode: KnowledgeNode | undefined =
     isnad.primary.find((p) => p.node.id === activeId)?.node ??
@@ -25,7 +25,6 @@ export function ChainOfNarration({ isnad, activeId, onSelect, onOpenSource }: Pr
     isnad.books.find((b) => b.node.id === activeId)?.node;
 
   const isBookEntity = activeNode?.type === "BOOK";
-  const referencedBooks = useReferencedBooks(activeNode?.type === "NARRATOR" ? activeId : undefined);
   const bookProgress = useNodeProgress(isBookEntity ? activeNode : undefined);
 
   return (
@@ -43,6 +42,7 @@ export function ChainOfNarration({ isnad, activeId, onSelect, onOpenSource }: Pr
         <p className="text-[11.5px] leading-relaxed text-[var(--color-ink)]">{t.authenticity}</p>
       </div>
 
+      {/* Primary chain with inline lineage */}
       <div className="relative ps-4.5">
         <div className="absolute top-1.5 bottom-1.5 start-[5px] w-0.5 bg-[var(--color-line)]" />
         {isnad.primary.map((person) => {
@@ -73,6 +73,15 @@ export function ChainOfNarration({ isnad, activeId, onSelect, onOpenSource }: Pr
                   {uiLang === "ar" ? person.node.title.ar : person.node.title.en}
                 </div>
                 <div className="text-[10.5px] text-[var(--color-sub)]">{person.role[uiLang]}</div>
+                {person.node.attributes.kind === "narrator" && (() => {
+                  const lineageStr = getLineageString(person.node, uiLang);
+                  if (!lineageStr) return null;
+                  return (
+                    <div className="text-[9px] text-[var(--color-sub)] mt-0.5 leading-relaxed">
+                      {lineageStr}
+                    </div>
+                  );
+                })()}
               </div>
             </button>
           );
@@ -81,6 +90,7 @@ export function ChainOfNarration({ isnad, activeId, onSelect, onOpenSource }: Pr
 
       <div className="text-[10.5px] text-[var(--color-sub)] my-2.5 ps-4.5">{t.transmittedBy}</div>
 
+      {/* Unified branch narrators + other path books */}
       <div className="flex flex-wrap gap-1.5 ps-4.5 mb-3.5">
         {isnad.branches.map((branch) => {
           const anchor = branch.anchors;
@@ -106,9 +116,6 @@ export function ChainOfNarration({ isnad, activeId, onSelect, onOpenSource }: Pr
             );
           });
         })}
-      </div>
-
-      <div className="flex gap-2 ps-4.5 mb-4">
         {isnad.books.map(({ node, locator }) => {
           const active = activeId === node.id;
           return (
@@ -116,19 +123,20 @@ export function ChainOfNarration({ isnad, activeId, onSelect, onOpenSource }: Pr
               key={node.id}
               onClick={() => onSelect(node.id)}
               className={[
-                "flex-1 text-start p-2.5 rounded-lg border",
+                "text-[11px] px-2.5 py-1.5 rounded-full border",
                 active
                   ? "bg-[var(--color-emerald)] text-[#F4EFE2] border-[var(--color-emerald)]"
                   : "bg-[var(--color-panel-2)] text-[var(--color-ink)] border-[var(--color-line)]",
               ].join(" ")}
             >
-              <div className="text-[11.5px] font-bold">{uiLang === "ar" ? node.title.ar : node.title.en}</div>
-              <div className="text-[10px] opacity-75 mt-0.5">{locator[uiLang]}</div>
+              {uiLang === "ar" ? node.title.ar : node.title.en}{" "}
+              <span className="opacity-60">{locator[uiLang]}</span>
             </button>
           );
         })}
       </div>
 
+      {/* Simplified active node detail panel */}
       {activeNode && (
         <div className="rounded-2xl border border-[var(--color-line)] bg-[var(--color-panel)] p-3.5">
           <div className="font-display font-semibold text-[15px] mb-0.5 text-[var(--color-ink)]">
@@ -148,47 +156,7 @@ export function ChainOfNarration({ isnad, activeId, onSelect, onOpenSource }: Pr
             </>
           )}
 
-          {/* Lineage */}
-          {activeNode.attributes.kind === "narrator" && (() => {
-            const lineage = getLineage(activeNode);
-            if (!lineage?.chain?.length) return null;
-            
-            const binConnector = uiLang === "ar" ? " بن " : " bin ";
-            
-            return (
-              <div className="mt-3">
-                <div className="flex items-center gap-1.5 text-xs font-semibold text-[var(--color-gold)] mb-1.5">
-                  <TreePine size={11} />
-                  <span>{uiLang === "ar" ? "النسب" : "Lineage"}</span>
-                </div>
-                <div className="text-[12px] text-[var(--color-sub)] leading-relaxed">
-                  {lineage.chain.map((item, idx) => (
-                    <span key={idx} className="whitespace-normal">
-                      {idx > 0 && <span className="font-medium">{binConnector}</span>}
-                      <span className="font-medium text-[var(--color-ink)]">{item.name[uiLang] || item.name.ar}</span>
-                      {item.note && (
-                        <span className="text-[10px] italic text-[var(--color-sub)] ml-1">
-                          ({item.note[uiLang] || item.note.ar})
-                        </span>
-                      )}
-                    </span>
-                  ))}
-                </div>
-                {lineage.convergesWithProphetAt && (
-                  <div className="mt-1.5 p-2 bg-[var(--color-emerald)]/10 border border-[var(--color-emerald)]/30 rounded">
-                    <div className="text-[9px] font-semibold text-[var(--color-emerald)]">
-                      {uiLang === "ar" ? "يلتقي بالنسب النبوي عند:" : "Converges with Prophetic lineage at:"}
-                    </div>
-                    <div className="text-[9px] text-[var(--color-ink)]">
-                      {lineage.convergesWithProphetAt.name[uiLang] || lineage.convergesWithProphetAt.name.ar}
-                    </div>
-                  </div>
-                )}
-              </div>
-            );
-          })()}
-
-          {/* Biographical References (Taqrib al-Tahdhib, etc.) */}
+          {/* Biographical References */}
           {activeNode.attributes.kind === "narrator" && (() => {
             const bio = getBiography(activeNode) as BiographyBlock | undefined;
             if (!bio?.biographicalReferences?.length) return null;
@@ -217,7 +185,7 @@ export function ChainOfNarration({ isnad, activeId, onSelect, onOpenSource }: Pr
                       <div className="flex items-center gap-1 mt-1">
                         <span className={`w-1.5 h-1.5 rounded-full ${ref.provenance === "primary" ? "bg-emerald-500" : "bg-amber-500"}`} />
                         <span className="text-[9px] text-[var(--color-sub)]">
-                          {ref.provenance === "primary" ? (uiLang === "ar" ? "مصدر أصلي" : "Primary") : (uiLang === "ar" ? "مُولَّد" : "AI")}
+                          {ref.provenance === "primary" ? (uiLang === "ar" ? "مصدر أصلي" : "Primary") : (uiLang === "ar" ? "مُولَّد" : "AI")}
                         </span>
                       </div>
                     </div>
@@ -248,14 +216,16 @@ export function ChainOfNarration({ isnad, activeId, onSelect, onOpenSource }: Pr
             </button>
           )}
 
-          {referencedBooks.length > 0 && (
-            <div>
-              <div className="text-[10px] text-[var(--color-sub)] mb-1.5 mt-1">{t.referencedIn}</div>
-              <div className="flex flex-wrap gap-1.5">
-                {referencedBooks.map((book) => (
-                  <SourceChip key={book.id} node={book} onOpen={onOpenSource} />
-                ))}
-              </div>
+          {/* View full biography link */}
+          {activeNode.attributes.kind === "narrator" && getBiography(activeNode) && (
+            <div className="mt-3 pt-2 border-t border-[var(--color-line)]">
+              <button
+                onClick={() => navigate(`/library?search=${encodeURIComponent(uiLang === "ar" ? activeNode.title.ar : activeNode.title.en)}`)}
+                className="text-[11px] text-[var(--color-emerald)] hover:underline flex items-center gap-1"
+              >
+                <ExternalLink size={10} />
+                {t.viewFullBiography}
+              </button>
             </div>
           )}
         </div>

@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { Library, Search, Moon, Sun } from "lucide-react";
 import { useSettings } from "@/context/SettingsContext";
 import { useLibrary } from "@/hooks/useLibrary";
@@ -8,8 +8,9 @@ import { bookReaderPath } from "@/lib/routes";
 export default function LibraryPage() {
   const { t, uiLang, dir, dark, setUiLang, toggleDark } = useSettings();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const { entries, loading } = useLibrary();
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState(searchParams.get("search") || "");
 
   const books = useMemo(() => {
     const term = query.trim().toLowerCase();

@@ -112,7 +112,10 @@
     "homeGraphTitle": "Explore the Connections",
     "homeGraphDesc": "Every text links to its sources, chains, and commentaries — revealed as you go deeper.",
     "homeLibraryEyebrow": "A complete digital index",
-    "homeLibraryTitle": "The Library"
+    "homeLibraryTitle": "The Library",
+    "viewFullBiography": "View full biography in Library",
+    "otherPaths": "Other Paths",
+    "branchNarrator": "Branch"
   },
   "companionPrompts": ["Explain like I'm 12", "Give a practical example", "Why does the chain matter?"],
   "companionAnswers": {

@@ -35,3 +35,16 @@ export function getBiography(node: KnowledgeNode) {
 export function getLineage(node: KnowledgeNode) {
   return node.content.find((b): b is Extract<ContentBlock, { type: "lineage" }> => b.type === "lineage");
 }
+
+export function getLineageString(node: KnowledgeNode, uiLang: "ar" | "en"): string {
+  const lineage = getLineage(node);
+  if (!lineage?.chain?.length) return "";
+  
+  const binConnector = uiLang === "ar" ? " بن " : " bin ";
+  return lineage.chain.map((item, idx) => {
+    const name = item.name[uiLang] || item.name.ar;
+    const prefix = idx > 0 ? binConnector : "";
+    const note = item.note ? ` (${item.note[uiLang] || item.note.ar})` : "";
+    return `${prefix}${name}${note}`;
+  }).join("");
+}

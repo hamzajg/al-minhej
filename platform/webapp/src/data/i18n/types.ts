@@ -107,4 +107,8 @@ export interface UiStrings {
   homeGraphDesc: string;
   homeLibraryEyebrow: string;
   homeLibraryTitle: string;
+  tabBiography: string;
+  viewFullBiography: string;
+  otherPaths: string;
+  branchNarrator: string;
 }

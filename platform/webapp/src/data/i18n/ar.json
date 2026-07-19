@@ -112,7 +112,10 @@
     "homeGraphTitle": "استكشاف الروابط",
     "homeGraphDesc": "كل نص متصل بمصادره، أسانيده، وشروحه — تكشف عنها كلما تعمّقت.",
     "homeLibraryEyebrow": "فهرس رقمي متكامل",
-    "homeLibraryTitle": "المكتبة"
+    "homeLibraryTitle": "المكتبة",
+    "viewFullBiography": "عرض السيرة الكاملة في المكتبة",
+    "otherPaths": "طرق أخرى",
+    "branchNarrator": "فرع"
   },
   "companionPrompts": ["اشرح لي وكأن عمري ١٢ عامًا", "أعطني مثالًا عمليًا", "لماذا يهم السند؟"],
   "companionAnswers": {
