@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import {
-  Play, Copy, Bookmark, Share2, Type, Sparkles, BookOpen, Users, MapPin,
+  Play, Copy, Bookmark, Share2, Type, Sparkles, BookOpen, MapPin,
   Quote, Sun, Moon, NotebookPen, CircleCheck, Network, Info, Eye, EyeOff,
   ShieldCheck, GitBranch, X, Languages, Sparkle, Brain, RotateCcw, Flame,
   List, ChevronRight, ChevronLeft, Search, Library, Lock,
@@ -1219,7 +1219,7 @@ function SourceProgressBar({ c, pct, height = 5 }) {
   );
 }
 
-function SourceChip({ c, uiLang, t, sourceId, onOpen }) {
+function SourceChip({ c, uiLang, sourceId, onOpen }) {
   const s = SOURCES[sourceId];
   if (!s) return null;
   const pct = sourcePct(s);
@@ -1438,7 +1438,7 @@ function LabeledCard({ c, kind, title, icon, children, uiLang }) {
   );
 }
 
-function InfoTile({ c, icon, title, children, uiLang }) {
+function InfoTile({ c, icon, title, children }) {
   return (
     <div style={{ background: c.panel, border: `1px solid ${c.line}`, borderRadius: 12, padding: 14 }}>
       <div style={{ display: "flex", alignItems: "center", gap: 7, marginBottom: 6, color: c.gold }}>{icon}<span style={{ fontWeight: 600, fontSize: 12.5, color: c.ink }}>{title}</span></div>
