@@ -1,0 +1,26 @@
+id: dorar
+
+name: الدرر السنية
+
+category: institutional
+
+trustLevel: 2
+
+website: https://dorar.net
+
+primaryUse:
+
+  - Hadith Search
+  - Takhrij
+  - Grading
+  - Scholar References
+
+supports:
+
+  - Hadith Metadata
+  - Authentication Information
+  - References
+
+preferred:
+
+  true

@@ -1,0 +1,40 @@
+id: tanzil
+
+name: Tanzil Project
+
+category: community_verified
+
+trustLevel: 3
+
+website: https://tanzil.net
+
+primaryUse:
+
+  - Quran Arabic Text
+
+supports:
+
+  - Uthmani Script
+  - Simple Script
+  - Verse Retrieval
+  - Surah Retrieval
+
+language:
+
+  - Arabic
+
+verification:
+
+  community reviewed
+
+license:
+
+  Check current Tanzil license before distribution.
+
+preferred:
+
+  true
+
+notes:
+
+  Widely adopted by Islamic applications and open-source Quran software.

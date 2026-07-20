@@ -1,0 +1,25 @@
+id: quranenc
+
+name: Quran Encyclopedia
+
+organization: King Fahd Global Center
+
+category: institutional
+
+trustLevel: 2
+
+website: https://quranenc.com
+
+primaryUse:
+
+  - Published Quran Meaning Translations
+
+supports:
+
+  - Multiple Languages
+  - Translator Metadata
+  - Arabic Text
+
+preferred:
+
+  true

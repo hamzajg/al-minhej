@@ -1,0 +1,25 @@
+id: sunnah-com
+
+name: Sunnah.com
+
+category: distribution
+
+trustLevel: 4
+
+website: https://sunnah.com
+
+primaryUse:
+
+  - English Hadith Retrieval
+  - Arabic Text
+  - Translation
+
+preferred:
+
+  false
+
+notes:
+
+  Useful distribution platform.
+
+  Published edition metadata should always be preserved.

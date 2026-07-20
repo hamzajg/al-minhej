@@ -1,0 +1,30 @@
+id: shamela
+
+name: المكتبة الشاملة
+
+category: community_verified
+
+trustLevel: 3
+
+website: https://shamela.ws
+
+primaryUse:
+
+  - Islamic Books
+  - Hadith Collections
+  - Tafsir
+  - Fiqh
+  - Aqidah
+  - Arabic Language
+
+supports:
+
+  - Thousands of Classical Works
+
+preferred:
+
+  true
+
+notes:
+
+  One of the largest community-maintained Islamic digital libraries.

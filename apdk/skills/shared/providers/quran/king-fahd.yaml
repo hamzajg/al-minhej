@@ -1,0 +1,21 @@
+id: king-fahd
+
+name: King Fahd Complex
+
+organization: King Fahd Complex for the Printing of the Holy Quran
+
+category: institutional
+
+trustLevel: 2
+
+website: https://qurancomplex.gov.sa
+
+primaryUse:
+
+  - Official Mushaf Editions
+  - Official Publications
+  - Metadata
+
+preferred:
+
+  true

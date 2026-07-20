@@ -1,0 +1,22 @@
+id: waqfeya
+
+name: مكتبة الوقفية
+
+category: community_verified
+
+trustLevel: 3
+
+website: https://waqfeya.net
+
+primaryUse:
+
+  - Classical PDF Books
+
+supports:
+
+  - Scanned Books
+  - Publisher Editions
+
+preferred:
+
+  true
