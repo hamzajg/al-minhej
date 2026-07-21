@@ -15,7 +15,7 @@
       "ar": "كتاب بدء الوحي",
       "en": "Book of the Beginning of Revelation"
     },
-    "hadithIds": ["hadith-bukhari-1"],
+    "hadithIds": ["hadith-bukhari-1", "hadith-bukhari-2", "hadith-bukhari-3"],
     "sourcePage": {
       "path": "book-bukhari/page-153",
       "label": {

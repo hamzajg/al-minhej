@@ -15,7 +15,7 @@
       "ar": "كتاب بدء الوحي",
       "en": "Book of the Beginning of Revelation"
     },
-    "hadithIds": ["hadith-bukhari-5"],
+    "hadithIds": [],
     "sourcePage": {
       "path": "book-bukhari/page-157",
       "label": {
@@ -29,13 +29,10 @@
       "type": "source_page",
       "blockVersion": 1,
       "title": {
-        "ar": "معالجة التنزيل",
-        "en": "The hardship of revelation"
+        "ar": "تفسير سورة القيامة وحفظ الوحي",
+        "en": "Interpretation of Surah Al-Qiyamah and the preservation of revelation"
       },
-      "text": {
-        "ar": "تسجل هذه الصفحة وصف ابن عباس لشدة معالجة النبي ﷺ للتنزيل ومبادارته لتحريك شفتيه حفظاً، وما نزل في ذلك من النهي الإلهي والتطمين في سورة القيامة.",
-        "en": "This page records Ibn 'Abbas's description of the Prophet's ﷺ hardship in bearing revelation and his rushing to move his lips to memorize it, and the divine prohibition and reassurance that came down regarding this in Surat al-Qiyamah."
-      },
+      "text": null,
       "sourceRef": {
         "ar": "كتاب بدء الوحي، ص ١٥٧",
         "en": "Book of Revelation, p. 157"

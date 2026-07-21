@@ -19,7 +19,8 @@
       "en": "Book of the Beginning of Revelation"
     },
     "hadithIds": [
-      "hadith-bukhari-2"
+      "hadith-bukhari-4",
+      "hadith-bukhari-5"
     ],
     "sourcePage": {
       "path": "book-bukhari/page-154",
@@ -37,10 +38,7 @@
         "ar": "صفة مجيء الوحي",
         "en": "The mode by which revelation arrives"
       },
-      "text": {
-        "ar": "تنتقل هذه الصفحة إلى وصف هيئة نزول الوحي، وتجمع بين سؤال الحارث بن هشام وملاحظة عائشة رضي الله عنها على حال النبي ﷺ عند نزوله.",
-        "en": "This page moves to the manner in which revelation descends, bringing together al-Harith ibn Hisham's question and 'A'ishah's observation of the Prophet ﷺ while revelation came down upon him."
-      },
+      "text": null,
       "sourceRef": {
         "ar": "كتاب بدء الوحي، ص ١٥٤",
         "en": "Book of Revelation, p. 154"

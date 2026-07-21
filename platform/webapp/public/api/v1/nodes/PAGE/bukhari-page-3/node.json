@@ -18,14 +18,12 @@
       "ar": "كتاب بدء الوحي",
       "en": "Book of the Beginning of Revelation"
     },
-    "hadithIds": [
-      "hadith-bukhari-3"
-    ],
+    "hadithIds": [],
     "sourcePage": {
-      "path": "book-bukhari/page-155-156",
+      "path": "book-bukhari/page-155",
       "label": {
-        "ar": "صحيح البخاري، ص ١٥٥-١٥٦",
-        "en": "Sahih al-Bukhari, pp. 155-156"
+        "ar": "صحيح البخاري، ص ١٥٥",
+        "en": "Sahih al-Bukhari, p. 155"
       }
     }
   },
@@ -34,16 +32,13 @@
       "type": "source_page",
       "blockVersion": 1,
       "title": {
-        "ar": "أول ما بدئ به الوحي وعودة النبي ﷺ إلى خديجة",
-        "en": "The first revelation and the Prophet's return to Khadijah"
+        "ar": "استمرار الشرح والتعليق",
+        "en": "Continuation of explanation and commentary"
       },
-      "text": {
-        "ar": "تجمع هذه الصفحة انتقال السرد من الرؤيا الصالحة إلى لقاء حراء، ثم مشهد رجوع النبي ﷺ إلى خديجة رضي الله عنها بعد أول الفزع من الوحي.",
-        "en": "This page gathers the movement from truthful dreams to the encounter at Hira', then the scene of the Prophet ﷺ returning to Khadijah after the first awe of revelation."
-      },
+      "text": null,
       "sourceRef": {
-        "ar": "كتاب بدء الوحي، ص ١٥٥-١٥٦",
-        "en": "Book of Revelation, pp. 155-156"
+        "ar": "كتاب بدء الوحي، ص ١٥٥",
+        "en": "Book of Revelation, p. 155"
       }
     },
     {

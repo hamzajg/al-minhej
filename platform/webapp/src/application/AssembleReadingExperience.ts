@@ -328,7 +328,7 @@ export class AssembleReadingExperience {
 
     return {
       page,
-      originalText: source
+      originalText: source && source.text
         ? {
             title: source.title,
             textAr: source.text.ar,
