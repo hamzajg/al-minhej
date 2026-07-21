@@ -1,0 +1,28 @@
+{
+  "id": "narrator-jabir-ansari",
+  "type": "NARRATOR",
+  "slug": "jabir-ibn-abdallah-al-ansari",
+  "status": "published",
+  "title": {
+    "ar": "جابر بن عبد الله الأنصاري",
+    "en": "Jabir ibn 'Abdallah al-Ansari"
+  },
+  "attributes": {
+    "kind": "narrator",
+    "fullName": {
+      "ar": "جابر بن عبد الله بن عمرو بن حرام الأنصاري الخزرجي",
+      "en": "Jabir ibn 'Abdallah ibn 'Amr ibn Haram al-Ansari al-Khazraji"
+    },
+    "died": { "hijri": 78, "gregorian": 697 },
+    "isnadDepth": 1,
+    "regions": ["Madinah"],
+    "bio": {
+      "ar": "صحابي جليل، شهد العقبة الثانية مع أبيه، وشهد غزوة بدر والمشاهد كلها إلا تبوك. روى عن النبي ﷺ أحاديث كثيرة وعُدَّ من المُكثرين في الرواية. توفي بالمدينة المنورة.",
+      "en": "A great Companion who attended the Second Pledge of 'Aqabah with his father and witnessed the Battle of Badr and all subsequent campaigns except Tabuk. He narrated many hadiths from the Prophet ﷺ and is counted among the prolific narrators. He died in Madinah."
+    }
+  },
+  "content": [],
+  "schemaVersion": 2,
+  "createdAt": "2026-07-17T00:00:00.000Z",
+  "updatedAt": "2026-07-17T00:00:00.000Z"
+}

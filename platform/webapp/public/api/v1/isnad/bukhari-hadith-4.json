@@ -1,0 +1,49 @@
+{
+  "primary": {
+    "id": "isnad-bukhari-hadith-4-primary",
+    "hadithId": "hadith-bukhari-4",
+    "role": "primary",
+    "links": [
+      {
+        "narratorId": "narrator-prophet",
+        "position": 0,
+        "transmissionNote": {
+          "ar": "أصل الحديث ومصدره",
+          "en": "the origin and source of the report"
+        }
+      },
+      {
+        "narratorId": "narrator-jabir-ansari",
+        "position": 1,
+        "transmissionNote": {
+          "ar": "قَالَ: قَالَ رَسُولُ اللَّهِ ﷺ",
+          "en": "Said: The Messenger of Allah ﷺ said"
+        }
+      },
+      {
+        "narratorId": "narrator-zuhri",
+        "position": 2,
+        "transmissionNote": {
+          "ar": "عَنْ",
+          "en": "from"
+        }
+      },
+      {
+        "narratorId": "narrator-yahya-bukayr",
+        "position": 3,
+        "transmissionNote": {
+          "ar": "حَدَّثَنَا",
+          "en": "narrated to us"
+        }
+      }
+    ],
+    "terminatesAt": {
+      "kind": "narrator-prophet"
+    },
+    "note": {
+      "ar": "يصف جابر رضي الله عنه في هذا الحديث مشهد عودة الوحي بعد فترة انقطاعه، ويحكي ما رآه النبي ﷺ من الملك جبريل عليه السلام جالساً على كرسيٍّ بين السماء والأرض.",
+      "en": "Jabir describes the scene of revelation's return after its pause, and narrates what the Prophet ﷺ saw: the Angel Jibril sitting on a chair between the sky and the earth."
+    }
+  },
+  "branches": []
+}

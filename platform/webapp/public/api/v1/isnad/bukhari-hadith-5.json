@@ -1,0 +1,49 @@
+{
+  "primary": {
+    "id": "isnad-bukhari-hadith-5-primary",
+    "hadithId": "hadith-bukhari-5",
+    "role": "primary",
+    "links": [
+      {
+        "narratorId": "narrator-prophet",
+        "position": 0,
+        "transmissionNote": {
+          "ar": "أصل الحديث ومصدره",
+          "en": "the origin and source of the report"
+        }
+      },
+      {
+        "narratorId": "narrator-ibn-abbas",
+        "position": 1,
+        "transmissionNote": {
+          "ar": "عَنِ ابْنِ عَبَّاسٍ رضي الله عنهما",
+          "en": "from Ibn 'Abbas, may Allah be pleased with them both"
+        }
+      },
+      {
+        "narratorId": "narrator-zuhri",
+        "position": 2,
+        "transmissionNote": {
+          "ar": "عَنْ",
+          "en": "from"
+        }
+      },
+      {
+        "narratorId": "narrator-yahya-bukayr",
+        "position": 3,
+        "transmissionNote": {
+          "ar": "حَدَّثَنَا",
+          "en": "narrated to us"
+        }
+      }
+    ],
+    "terminatesAt": {
+      "kind": "narrator-prophet"
+    },
+    "note": {
+      "ar": "يروي ابن عباس رضي الله عنهما أن النبي ﷺ كان يعالج شدةً عند تلقي الوحي ويسارع بتحريك شفتيه، فأنزل الله فيه قوله تعالى: ﴿لَا تُحَرِّكْ بِهِ لِسَانَكَ لِتَعْجَلَ بِهِ﴾.",
+      "en": "Ibn 'Abbas narrates that the Prophet ﷺ would experience hardship when receiving revelation and would hasten to move his lips, so Allah revealed: 'Move not your tongue with it to hasten it.' (75:16)"
+    }
+  },
+  "branches": []
+}

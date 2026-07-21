@@ -1,0 +1,28 @@
+{
+  "id": "narrator-ibn-abbas",
+  "type": "NARRATOR",
+  "slug": "ibn-abbas",
+  "status": "published",
+  "title": {
+    "ar": "ابن عباس",
+    "en": "Ibn 'Abbas"
+  },
+  "attributes": {
+    "kind": "narrator",
+    "fullName": {
+      "ar": "عبد الله بن عباس بن عبد المطلب الهاشمي القرشي",
+      "en": "'Abdallah ibn 'Abbas ibn 'Abd al-Muttalib al-Hashimi al-Qurashi"
+    },
+    "died": { "hijri": 68, "gregorian": 687 },
+    "isnadDepth": 1,
+    "regions": ["Makkah", "Taif"],
+    "bio": {
+      "ar": "ابن عم النبي ﷺ، وترجمان القرآن، دعا له النبي ﷺ بالفهم والتأويل. وُلد قبل الهجرة بثلاث سنوات. كان إماماً في التفسير والفقه والحديث، وكان يُقال له البحر لسعة علمه. توفي بالطائف.",
+      "en": "The cousin of the Prophet ﷺ and the interpreter of the Quran, for whom the Prophet ﷺ supplicated for understanding and interpretation. Born three years before the Hijrah. He was an imam in Quranic exegesis, jurisprudence, and hadith, and was called 'The Sea' for the breadth of his knowledge. He died in Ta'if."
+    }
+  },
+  "content": [],
+  "schemaVersion": 2,
+  "createdAt": "2026-07-17T00:00:00.000Z",
+  "updatedAt": "2026-07-17T00:00:00.000Z"
+}
