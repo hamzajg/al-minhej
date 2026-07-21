@@ -1,0 +1,81 @@
+{
+  "id": "page-bukhari-4",
+  "type": "PAGE",
+  "slug": "bukhari-page-4",
+  "status": "published",
+  "digitizationStatus": "complete",
+  "title": { "ar": "صفحة ٤ — صحيح البخاري", "en": "Page 4 — Sahih al-Bukhari" },
+  "attributes": {
+    "kind": "page",
+    "bookId": "book-bukhari",
+    "pageNum": 4,
+    "volumeNum": 1,
+    "chapterId": "bad-al-wahy",
+    "chapterTitle": {
+      "ar": "كتاب بدء الوحي",
+      "en": "Book of the Beginning of Revelation"
+    },
+    "hadithIds": ["hadith-bukhari-4"],
+    "sourcePage": {
+      "path": "book-bukhari/page-156",
+      "label": {
+        "ar": "صحيح البخاري، ص ١٥٦",
+        "en": "Sahih al-Bukhari, p. 156"
+      }
+    }
+  },
+  "content": [
+    {
+      "type": "source_page",
+      "blockVersion": 1,
+      "title": {
+        "ar": "فترة الوحي وعودته",
+        "en": "The pause of revelation and its return"
+      },
+      "text": {
+        "ar": "تصف هذه الصفحة رواية جابر بن عبد الله رضي الله عنهما عن انقطاع الوحي فترة ثم عودته بنداء من السماء، مما أدى إلى نزول سورة المدثر.",
+        "en": "This page describes the narration of Jabir ibn 'Abdullah about the pause in revelation for a period, then its return with a call from the sky, leading to the revelation of Surat al-Muddaththir."
+      },
+      "sourceRef": {
+        "ar": "كتاب بدء الوحي، ص ١٥٦",
+        "en": "Book of Revelation, p. 156"
+      }
+    },
+    {
+      "type": "page_annotations",
+      "blockVersion": 1,
+      "entries": [
+        {
+          "id": "page-4-source-fatrah",
+          "kind": "scholarly_annotation",
+          "title": {
+            "ar": "فترة الوحي",
+            "en": "The pause in revelation (Fatrah)"
+          },
+          "scholar": {
+            "ar": "ابن حجر العسقلاني",
+            "en": "Ibn Hajar al-Asqalani"
+          },
+          "work": {
+            "ar": "فتح الباري",
+            "en": "Fath al-Bari"
+          },
+          "note": {
+            "ar": "يوضح ابن حجر أن فترة الوحي كانت لحكمة ترويض النبي ﷺ وتهيئته نفسياً لحمل الرسالة بعد المفاجأة الأولى.",
+            "en": "Ibn Hajar explains that the pause in revelation served the wisdom of acclimatizing the Prophet ﷺ and preparing him psychologically to bear the message after the initial surprise."
+          },
+          "citation": {
+            "title": {
+              "ar": "فتح الباري",
+              "en": "Fath al-Bari"
+            }
+          },
+          "relatedNodeIds": ["book-bukhari", "concept-wahy"]
+        }
+      ]
+    }
+  ],
+  "schemaVersion": 2,
+  "createdAt": "2026-07-17T00:00:00.000Z",
+  "updatedAt": "2026-07-17T00:00:00.000Z"
+}

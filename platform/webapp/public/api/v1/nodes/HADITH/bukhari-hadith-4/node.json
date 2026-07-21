@@ -1,0 +1,63 @@
+{
+  "id": "hadith-bukhari-4",
+  "type": "HADITH",
+  "slug": "bukhari-hadith-4",
+  "status": "published",
+  "title": {
+    "ar": "حديث فترة الوحي",
+    "en": "Hadith on the Pause of Revelation"
+  },
+  "attributes": {
+    "kind": "hadith",
+    "partOf": "book-bukhari"
+  },
+  "content": [
+    {
+      "type": "hadith_text",
+      "blockVersion": 1,
+      "text": {
+        "en": "Jabir bin 'Abdullah Al-Ansari while talking about the period of pause in revelation reporting the speech of the Prophet \"While I was walking, all of a sudden I heard a voice from the sky. I looked up and saw the same angel who had visited me at the cave of Hira' sitting on a chair between the sky and the earth. I got terrified of him and came back home and said, 'Wrap me (in blankets).' And then Allah revealed the following Holy Verses (of Quran): 'O you (i.e. Muhammad)! wrapped up in garments!' Arise and warn (the people against Allah's Punishment),... up to 'and desert the idols.' (74.1-5) After this the revelation started coming strongly, frequently and regularly.\"",
+        "ar": "قَالَ جَابِرُ بْنُ عَبْدِ اللَّهِ الأَنْصَارِيُّ قَالَ رَسُولُ اللَّهِ ﷺ وَهُوَ يُحَدِّثُ عَنْ فَتْرَةِ الْوَحْيِ: «بَيْنَا أَنَا أَمْشِي سَمِعْتُ صَوْتًا مِنَ السَّمَاءِ فَرَفَعْتُ بَصَرِي فَإِذَا الْمَلَكُ الَّذِي جَاءَنِي بِحِرَاءٍ جَالِسٌ عَلَى كُرْسِيٍّ بَيْنَ السَّمَاءِ وَالأَرْضِ فَرُعِبْتُ مِنْهُ فَرَجَعْتُ فَقُلْتُ: زَمِّلُونِي، فَأَنْزَلَ اللَّهُ تَعَالَى: ﴿يَا أَيُّهَا الْمُدَّثِّرُ﴾ إِلَى ﴿وَالرُّجْزَ فَاهْجُرْ﴾» فَحَمِيَ الْوَحْيُ وَتَتَابَعَ."
+      },
+      "clauses": {
+        "intro": {
+          "en": "Jabir bin 'Abdullah Al-Ansari while talking about the period of pause in revelation reporting the speech of the Prophet:",
+          "ar": "قَالَ جَابِرُ بْنُ عَبْدِ اللَّهِ الأَنْصَارِيُّ قَالَ رَسُولُ اللَّهِ ﷺ وَهُوَ يُحَدِّثُ عَنْ فَتْرَةِ الْوَحْيِ:"
+        },
+        "items": [
+          {
+            "id": "clause-1",
+            "text": {
+              "en": "\"While I was walking, all of a sudden I heard a voice from the sky. I looked up and saw the same angel who had visited me at the cave of Hira' sitting on a chair between the sky and the earth.",
+              "ar": "«بَيْنَا أَنَا أَمْشِي سَمِعْتُ صَوْتًا مِنَ السَّمَاءِ فَرَفَعْتُ بَصَرِي فَإِذَا الْمَلَكُ الَّذِي جَاءَنِي بِحِرَاءٍ جَالِسٌ عَلَى كُرْسِيٍّ بَيْنَ السَّمَاءِ وَالأَرْضِ"
+            }
+          },
+          {
+            "id": "clause-2",
+            "text": {
+              "en": "I got terrified of him and came back home and said, 'Wrap me (in blankets).'",
+              "ar": "فَرُعِبْتُ مِنْهُ فَرَجَعْتُ فَقُلْتُ: زَمِّلُونِي،"
+            }
+          },
+          {
+            "id": "clause-3",
+            "text": {
+              "en": "And then Allah revealed the following Holy Verses (of Quran): 'O you (i.e. Muhammad)! wrapped up in garments!' Arise and warn (the people against Allah's Punishment),... up to 'and desert the idols.' (74.1-5)",
+              "ar": "فَأَنْزَلَ اللَّهُ تَعَالَى: ﴿يَا أَيُّهَا الْمُدَّثِّرُ﴾ إِلَى ﴿وَالرُّجْزَ فَاهْجُرْ﴾»"
+            }
+          },
+          {
+            "id": "clause-4",
+            "text": {
+              "en": "After this the revelation started coming strongly, frequently and regularly.\"",
+              "ar": "فَحَمِيَ الْوَحْيُ وَتَتَابَعَ."
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "schemaVersion": 2,
+  "createdAt": "2026-07-17T00:00:00.000Z",
+  "updatedAt": "2026-07-17T00:00:00.000Z"
+}

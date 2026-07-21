@@ -7,12 +7,12 @@
     "BOOK": 2,
     "CONCEPT": 2,
     "EVENT": 1,
-    "HADITH": 4,
+    "HADITH": 6,
     "NARRATOR": 19,
-    "PAGE": 4,
+    "PAGE": 6,
     "VERSE": 1
   },
-  "total": 33,
+  "total": 37,
   "nodes": [
     {
       "type": "BOOK",
@@ -58,6 +58,16 @@
       "type": "HADITH",
       "id": "hadith-bukhari-3",
       "slug": "bukhari-hadith-3"
+    },
+    {
+      "type": "HADITH",
+      "id": "hadith-bukhari-4",
+      "slug": "bukhari-hadith-4"
+    },
+    {
+      "type": "HADITH",
+      "id": "hadith-bukhari-5",
+      "slug": "bukhari-hadith-5"
     },
     {
       "type": "NARRATOR",
@@ -173,6 +183,16 @@
       "type": "PAGE",
       "id": "page-bukhari-3",
       "slug": "bukhari-page-3"
+    },
+    {
+      "type": "PAGE",
+      "id": "page-bukhari-4",
+      "slug": "bukhari-page-4"
+    },
+    {
+      "type": "PAGE",
+      "id": "page-bukhari-5",
+      "slug": "bukhari-page-5"
     },
     {
       "type": "VERSE",

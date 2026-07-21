@@ -1,0 +1,81 @@
+{
+  "id": "page-bukhari-5",
+  "type": "PAGE",
+  "slug": "bukhari-page-5",
+  "status": "published",
+  "digitizationStatus": "complete",
+  "title": { "ar": "صفحة ٥ — صحيح البخاري", "en": "Page 5 — Sahih al-Bukhari" },
+  "attributes": {
+    "kind": "page",
+    "bookId": "book-bukhari",
+    "pageNum": 5,
+    "volumeNum": 1,
+    "chapterId": "bad-al-wahy",
+    "chapterTitle": {
+      "ar": "كتاب بدء الوحي",
+      "en": "Book of the Beginning of Revelation"
+    },
+    "hadithIds": ["hadith-bukhari-5"],
+    "sourcePage": {
+      "path": "book-bukhari/page-157",
+      "label": {
+        "ar": "صحيح البخاري، ص ١٥٧",
+        "en": "Sahih al-Bukhari, p. 157"
+      }
+    }
+  },
+  "content": [
+    {
+      "type": "source_page",
+      "blockVersion": 1,
+      "title": {
+        "ar": "معالجة التنزيل",
+        "en": "The hardship of revelation"
+      },
+      "text": {
+        "ar": "تسجل هذه الصفحة وصف ابن عباس لشدة معالجة النبي ﷺ للتنزيل ومبادارته لتحريك شفتيه حفظاً، وما نزل في ذلك من النهي الإلهي والتطمين في سورة القيامة.",
+        "en": "This page records Ibn 'Abbas's description of the Prophet's ﷺ hardship in bearing revelation and his rushing to move his lips to memorize it, and the divine prohibition and reassurance that came down regarding this in Surat al-Qiyamah."
+      },
+      "sourceRef": {
+        "ar": "كتاب بدء الوحي، ص ١٥٧",
+        "en": "Book of Revelation, p. 157"
+      }
+    },
+    {
+      "type": "page_annotations",
+      "blockVersion": 1,
+      "entries": [
+        {
+          "id": "page-5-source-quran-preservation",
+          "kind": "scholarly_annotation",
+          "title": {
+            "ar": "ضمان حفظ القرآن",
+            "en": "Guarantee of the Quran's preservation"
+          },
+          "scholar": {
+            "ar": "النووي",
+            "en": "al-Nawawi"
+          },
+          "work": {
+            "ar": "شرح مسلم",
+            "en": "Sharh Muslim"
+          },
+          "note": {
+            "ar": "يبرز هذا الحديث تكفل الله بجمع القرآن في صدر النبي ﷺ وحفظه من النسيان، وهو من أعظم أدلة العصمة في التبليغ.",
+            "en": "This hadith highlights God's guarantee to gather the Quran in the Prophet's ﷺ chest and protect it from being forgotten, which is among the greatest proofs of infallibility in transmission."
+          },
+          "citation": {
+            "title": {
+              "ar": "شرح مسلم",
+              "en": "Sharh Muslim"
+            }
+          },
+          "relatedNodeIds": ["book-bukhari", "concept-wahy"]
+        }
+      ]
+    }
+  ],
+  "schemaVersion": 2,
+  "createdAt": "2026-07-17T00:00:00.000Z",
+  "updatedAt": "2026-07-17T00:00:00.000Z"
+}

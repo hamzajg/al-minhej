@@ -1,0 +1,84 @@
+{
+  "id": "hadith-bukhari-5",
+  "type": "HADITH",
+  "slug": "bukhari-hadith-5",
+  "status": "published",
+  "title": {
+    "ar": "حديث شدة الوحي وتحريك الشفتين",
+    "en": "Hadith on the Hardship of Revelation and Moving the Lips"
+  },
+  "attributes": {
+    "kind": "hadith",
+    "partOf": "book-bukhari"
+  },
+  "content": [
+    {
+      "type": "hadith_text",
+      "blockVersion": 1,
+      "text": {
+        "en": "Narrated Ibn 'Abbas: Allah's Messenger ﷺ used to bear the revelation with great hardship and used to move his lips (quickly) with the Inspiration. Ibn 'Abbas moved his lips saying, \"I am moving my lips in front of you as Allah's Messenger used to move his.\" Said moved his lips saying: \"I am moving my lips, as I saw Ibn 'Abbas moving his.\" Ibn 'Abbas added, \"So Allah revealed 'Move not your tongue concerning (the Quran) to make haste therewith. It is for us to collect it and to give you (O Muhammad) the ability to recite it (the Quran).' (75.16-17) which means that Allah will make him (the Prophet) remember the portion of the Qur'an which was revealed at that time by heart and recite it. The Statement of Allah: And 'When we have recited it to you (O Muhammad through Gabriel) then you follow its (Quran) recital' (75.18) means 'listen to it and be silent.' Then it is for Us (Allah) to make It clear to you' (75.19) means 'Then it is (for Allah) to make you recite it (and its meaning will be clear by itself through your tongue). Afterwards, Allah's Messenger used to listen to Gabriel whenever he came and after his departure he used to recite it as Gabriel had recited it.\"",
+        "ar": "عَنِ ابْنِ عَبَّاسٍ رضي الله عنهما فِي قَوْلِهِ تَعَالَى: ﴿لاَ تُحَرِّكْ بِهِ لِسَانَكَ لِتَعْجَلَ بِهِ﴾ قَالَ: كَانَ رَسُولُ اللَّهِ ﷺ يُعَالِجُ مِنَ التَّنْزِيلِ شِدَّةً، وَكَانَ مِمَّا يُحَرِّكُ شَفَتَيْهِ - فَقَالَ ابْنُ عَبَّاسٍ: فَأَنَا أُحَرِّكُهُمَا لَكُمْ كَمَا كَانَ رَسُولُ اللَّهِ ﷺ يُحَرِّكُهُمَا، وَقَالَ سَعِيدٌ: أَنَا أُحَرِّكُهُمَا كَمَا رَأَيْتُ ابْنَ عَبَّاسٍ يُحَرِّكُهُمَا - فَحَرَّكَ شَفَتَيْهِ، فَأَنْزَلَ اللَّهُ تَعَالَى: ﴿لاَ تُحَرِّكْ بِهِ لِسَانَكَ لِتَعْجَلَ بِهِ * إِنَّ عَلَيْنَا جَمْعَهُ وَقُرْآنَهُ﴾ قَالَ: جَمْعُهُ لَكَ فِي صَدْرِكَ وَتَقْرَأَهُ: ﴿فَإِذَا قَرَأْنَاهُ فَاتَّبِعْ قُرْآنَهُ﴾ قَالَ: فَاسْتَمِعْ لَهُ وَأَنْصِتْ: ﴿ثُمَّ إِنَّ عَلَيْنَا بَيَانَهُ﴾ ثُمَّ إِنَّ عَلَيْنَا أَنْ تَقْرَأَهُ، فَكَانَ رَسُولُ اللَّهِ ﷺ بَعْدَ ذَلِكَ إِذَا أَتَاهُ جِبْرِيلُ اسْتَمَعَ، فَإِذَا انْطَلَقَ جِبْرِيلُ قَرَأَهُ النَّبِيُّ ﷺ كَمَا قَرَأَهُ."
+      },
+      "clauses": {
+        "intro": {
+          "en": "Narrated Ibn 'Abbas:",
+          "ar": "عَنِ ابْنِ عَبَّاسٍ رضي الله عنهما فِي قَوْلِهِ تَعَالَى: ﴿لاَ تُحَرِّكْ بِهِ لِسَانَكَ لِتَعْجَلَ بِهِ﴾ قَالَ:"
+        },
+        "items": [
+          {
+            "id": "clause-1",
+            "text": {
+              "en": "Allah's Messenger ﷺ used to bear the revelation with great hardship and used to move his lips (quickly) with the Inspiration.",
+              "ar": "كَانَ رَسُولُ اللَّهِ ﷺ يُعَالِجُ مِنَ التَّنْزِيلِ شِدَّةً، وَكَانَ مِمَّا يُحَرِّكُ شَفَتَيْهِ"
+            }
+          },
+          {
+            "id": "clause-2",
+            "text": {
+              "en": "Ibn 'Abbas moved his lips saying, \"I am moving my lips in front of you as Allah's Messenger used to move his.\"",
+              "ar": "- فَقَالَ ابْنُ عَبَّاسٍ: فَأَنَا أُحَرِّكُهُمَا لَكُمْ كَمَا كَانَ رَسُولُ اللَّهِ ﷺ يُحَرِّكُهُمَا،"
+            }
+          },
+          {
+            "id": "clause-3",
+            "text": {
+              "en": "Said moved his lips saying: \"I am moving my lips, as I saw Ibn 'Abbas moving his.\" Ibn 'Abbas added, \"So Allah revealed 'Move not your tongue concerning (the Quran) to make haste therewith. It is for us to collect it and to give you (O Muhammad) the ability to recite it (the Quran).' (75.16-17)",
+              "ar": "وَقَالَ سَعِيدٌ: أَنَا أُحَرِّكُهُمَا كَمَا رَأَيْتُ ابْنَ عَبَّاسٍ يُحَرِّكُهُمَا - فَحَرَّكَ شَفَتَيْهِ، فَأَنْزَلَ اللَّهُ تَعَالَى: ﴿لاَ تُحَرِّكْ بِهِ لِسَانَكَ لِتَعْجَلَ بِهِ * إِنَّ عَلَيْنَا جَمْعَهُ وَقُرْآنَهُ﴾"
+            }
+          },
+          {
+            "id": "clause-4",
+            "text": {
+              "en": "which means that Allah will make him (the Prophet) remember the portion of the Qur'an which was revealed at that time by heart and recite it.",
+              "ar": "قَالَ: جَمْعُهُ لَكَ فِي صَدْرِكَ وَتَقْرَأَهُ:"
+            }
+          },
+          {
+            "id": "clause-5",
+            "text": {
+              "en": "The Statement of Allah: And 'When we have recited it to you (O Muhammad through Gabriel) then you follow its (Quran) recital' (75.18) means 'listen to it and be silent.'",
+              "ar": "﴿فَإِذَا قَرَأْنَاهُ فَاتَّبِعْ قُرْآنَهُ﴾ قَالَ: فَاسْتَمِعْ لَهُ وَأَنْصِتْ:"
+            }
+          },
+          {
+            "id": "clause-6",
+            "text": {
+              "en": "Then it is for Us (Allah) to make It clear to you' (75.19) means 'Then it is (for Allah) to make you recite it (and its meaning will be clear by itself through your tongue).",
+              "ar": "﴿ثُمَّ إِنَّ عَلَيْنَا بَيَانَهُ﴾ ثُمَّ إِنَّ عَلَيْنَا أَنْ تَقْرَأَهُ،"
+            }
+          },
+          {
+            "id": "clause-7",
+            "text": {
+              "en": "Afterwards, Allah's Messenger used to listen to Gabriel whenever he came and after his departure he used to recite it as Gabriel had recited it.\"",
+              "ar": "فَكَانَ رَسُولُ اللَّهِ ﷺ بَعْدَ ذَلِكَ إِذَا أَتَاهُ جِبْرِيلُ اسْتَمَعَ، فَإِذَا انْطَلَقَ جِبْرِيلُ قَرَأَهُ النَّبِيُّ ﷺ كَمَا قَرَأَهُ."
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "schemaVersion": 2,
+  "createdAt": "2026-07-17T00:00:00.000Z",
+  "updatedAt": "2026-07-17T00:00:00.000Z"
+}
