@@ -1,203 +1,70 @@
 {
   "schemaVersion": 2,
-  "builtAt": "2026-07-17T00:00:00.000Z",
+  "builtAt": "2026-07-28T00:00:00.000Z",
   "source": "public/api/v1/nodes",
   "layout": "public/api/v1/nodes/<TYPE>/<slug>/node.json",
   "counts": {
-    "BOOK": 2,
+    "BOOK": 3,
     "CONCEPT": 2,
     "EVENT": 1,
     "HADITH": 6,
     "NARRATOR": 19,
     "PAGE": 6,
+    "READER": 10,
+    "SURAH": 2,
     "VERSE": 1
   },
-  "total": 37,
+  "total": 50,
   "nodes": [
-    {
-      "type": "BOOK",
-      "id": "book-arbain",
-      "slug": "al-arbain-al-nawawiyya"
-    },
-    {
-      "type": "BOOK",
-      "id": "book-bukhari",
-      "slug": "sahih-al-bukhari"
-    },
-    {
-      "type": "CONCEPT",
-      "id": "concept-ikhlas",
-      "slug": "ikhlas"
-    },
-    {
-      "type": "CONCEPT",
-      "id": "concept-wahy",
-      "slug": "wahy"
-    },
-    {
-      "type": "EVENT",
-      "id": "event-hijra",
-      "slug": "hijra"
-    },
-    {
-      "type": "HADITH",
-      "id": "hadith-arbain-1",
-      "slug": "arbain-1"
-    },
-    {
-      "type": "HADITH",
-      "id": "hadith-bukhari-1",
-      "slug": "bukhari-hadith-1"
-    },
-    {
-      "type": "HADITH",
-      "id": "hadith-bukhari-2",
-      "slug": "bukhari-hadith-2"
-    },
-    {
-      "type": "HADITH",
-      "id": "hadith-bukhari-3",
-      "slug": "bukhari-hadith-3"
-    },
-    {
-      "type": "HADITH",
-      "id": "hadith-bukhari-4",
-      "slug": "bukhari-hadith-4"
-    },
-    {
-      "type": "HADITH",
-      "id": "hadith-bukhari-5",
-      "slug": "bukhari-hadith-5"
-    },
-    {
-      "type": "NARRATOR",
-      "id": "narrator-abdullah-yusuf",
-      "slug": "abdullah-ibn-yusuf-al-tinnisi"
-    },
-    {
-      "type": "NARRATOR",
-      "id": "narrator-aisha",
-      "slug": "aisha-bint-abi-bakr"
-    },
-    {
-      "type": "NARRATOR",
-      "id": "narrator-humaydi",
-      "slug": "al-humaydi"
-    },
-    {
-      "type": "NARRATOR",
-      "id": "narrator-layth",
-      "slug": "al-layth-ibn-sad"
-    },
-    {
-      "type": "NARRATOR",
-      "id": "narrator-alqamah",
-      "slug": "alqamah-ibn-waqqas"
-    },
-    {
-      "type": "NARRATOR",
-      "id": "narrator-nawawi",
-      "slug": "an-nawawi"
-    },
-    {
-      "type": "NARRATOR",
-      "id": "narrator-hisham-urwah",
-      "slug": "hisham-ibn-urwah"
-    },
-    {
-      "type": "NARRATOR",
-      "id": "narrator-zuhri",
-      "slug": "ibn-shihab-al-zuhri"
-    },
-    {
-      "type": "NARRATOR",
-      "id": "narrator-malik",
-      "slug": "malik-ibn-anas"
-    },
-    {
-      "type": "NARRATOR",
-      "id": "narrator-muhammad-ibrahim",
-      "slug": "muhammad-ibn-ibrahim"
-    },
-    {
-      "type": "NARRATOR",
-      "id": "narrator-prophet",
-      "slug": "prophet-muhammad"
-    },
-    {
-      "type": "NARRATOR",
-      "id": "narrator-sufyan-uyaynah",
-      "slug": "sufyan-ibn-uyaynah"
-    },
-    {
-      "type": "NARRATOR",
-      "id": "narrator-umar",
-      "slug": "umar-ibn-al-khattab"
-    },
-    {
-      "type": "NARRATOR",
-      "id": "narrator-uqayl",
-      "slug": "uqayl-ibn-khalid"
-    },
-    {
-      "type": "NARRATOR",
-      "id": "narrator-urwah",
-      "slug": "urwah-ibn-al-zubayr"
-    },
-    {
-      "type": "NARRATOR",
-      "id": "narrator-yahya-bukayr",
-      "slug": "yahya-ibn-bukayr"
-    },
-    {
-      "type": "NARRATOR",
-      "id": "narrator-yahya-ansari",
-      "slug": "yahya-ibn-said"
-    },
-    {
-      "type": "NARRATOR",
-      "id": "narrator-yahya-yahya-tamimi",
-      "slug": "yahya-ibn-yahya-al-tamimi"
-    },
-    {
-      "type": "NARRATOR",
-      "id": "narrator-yunus-yazid",
-      "slug": "yunus-ibn-yazid-al-ayli"
-    },
-    {
-      "type": "PAGE",
-      "id": "page-arbain-1",
-      "slug": "arbain-page-1"
-    },
-    {
-      "type": "PAGE",
-      "id": "page-bukhari-1",
-      "slug": "bukhari-page-1"
-    },
-    {
-      "type": "PAGE",
-      "id": "page-bukhari-2",
-      "slug": "bukhari-page-2"
-    },
-    {
-      "type": "PAGE",
-      "id": "page-bukhari-3",
-      "slug": "bukhari-page-3"
-    },
-    {
-      "type": "PAGE",
-      "id": "page-bukhari-4",
-      "slug": "bukhari-page-4"
-    },
-    {
-      "type": "PAGE",
-      "id": "page-bukhari-5",
-      "slug": "bukhari-page-5"
-    },
-    {
-      "type": "VERSE",
-      "id": "verse-bayyinah",
-      "slug": "bayyinah-98-5"
-    }
+    { "type": "BOOK", "id": "book-quran", "slug": "quran" },
+    { "type": "BOOK", "id": "book-arbain", "slug": "al-arbain-al-nawawiyya" },
+    { "type": "BOOK", "id": "book-bukhari", "slug": "sahih-al-bukhari" },
+    { "type": "CONCEPT", "id": "concept-ikhlas", "slug": "ikhlas" },
+    { "type": "CONCEPT", "id": "concept-wahy", "slug": "wahy" },
+    { "type": "EVENT", "id": "event-hijra", "slug": "hijra" },
+    { "type": "HADITH", "id": "hadith-arbain-1", "slug": "arbain-1" },
+    { "type": "HADITH", "id": "hadith-bukhari-1", "slug": "bukhari-hadith-1" },
+    { "type": "HADITH", "id": "hadith-bukhari-2", "slug": "bukhari-hadith-2" },
+    { "type": "HADITH", "id": "hadith-bukhari-3", "slug": "bukhari-hadith-3" },
+    { "type": "HADITH", "id": "hadith-bukhari-4", "slug": "bukhari-hadith-4" },
+    { "type": "HADITH", "id": "hadith-bukhari-5", "slug": "bukhari-hadith-5" },
+    { "type": "NARRATOR", "id": "narrator-abdullah-yusuf", "slug": "abdullah-ibn-yusuf-al-tinnisi" },
+    { "type": "NARRATOR", "id": "narrator-aisha", "slug": "aisha-bint-abi-bakr" },
+    { "type": "NARRATOR", "id": "narrator-humaydi", "slug": "al-humaydi" },
+    { "type": "NARRATOR", "id": "narrator-layth", "slug": "al-layth-ibn-sad" },
+    { "type": "NARRATOR", "id": "narrator-alqamah", "slug": "alqamah-ibn-waqqas" },
+    { "type": "NARRATOR", "id": "narrator-nawawi", "slug": "an-nawawi" },
+    { "type": "NARRATOR", "id": "narrator-hisham-urwah", "slug": "hisham-ibn-urwah" },
+    { "type": "NARRATOR", "id": "narrator-zuhri", "slug": "ibn-shihab-al-zuhri" },
+    { "type": "NARRATOR", "id": "narrator-malik", "slug": "malik-ibn-anas" },
+    { "type": "NARRATOR", "id": "narrator-muhammad-ibrahim", "slug": "muhammad-ibn-ibrahim" },
+    { "type": "NARRATOR", "id": "narrator-prophet", "slug": "prophet-muhammad" },
+    { "type": "NARRATOR", "id": "narrator-sufyan-uyaynah", "slug": "sufyan-ibn-uyaynah" },
+    { "type": "NARRATOR", "id": "narrator-umar", "slug": "umar-ibn-al-khattab" },
+    { "type": "NARRATOR", "id": "narrator-uqayl", "slug": "uqayl-ibn-khalid" },
+    { "type": "NARRATOR", "id": "narrator-urwah", "slug": "urwah-ibn-al-zubayr" },
+    { "type": "NARRATOR", "id": "narrator-yahya-bukayr", "slug": "yahya-ibn-bukayr" },
+    { "type": "NARRATOR", "id": "narrator-yahya-ansari", "slug": "yahya-ibn-said" },
+    { "type": "NARRATOR", "id": "narrator-yahya-yahya-tamimi", "slug": "yahya-ibn-yahya-al-tamimi" },
+    { "type": "NARRATOR", "id": "narrator-yunus-yazid", "slug": "yunus-ibn-yazid-al-ayli" },
+    { "type": "PAGE", "id": "page-arbain-1", "slug": "arbain-page-1" },
+    { "type": "PAGE", "id": "page-bukhari-1", "slug": "bukhari-page-1" },
+    { "type": "PAGE", "id": "page-bukhari-2", "slug": "bukhari-page-2" },
+    { "type": "PAGE", "id": "page-bukhari-3", "slug": "bukhari-page-3" },
+    { "type": "PAGE", "id": "page-bukhari-4", "slug": "bukhari-page-4" },
+    { "type": "PAGE", "id": "page-bukhari-5", "slug": "bukhari-page-5" },
+    { "type": "READER", "id": "reader-nafi", "slug": "nafi" },
+    { "type": "READER", "id": "reader-ibnkathir", "slug": "ibnkathir" },
+    { "type": "READER", "id": "reader-abuamr", "slug": "abuamr" },
+    { "type": "READER", "id": "reader-ibnamir", "slug": "ibnamir" },
+    { "type": "READER", "id": "reader-asim", "slug": "asim" },
+    { "type": "READER", "id": "reader-hamzah", "slug": "hamzah" },
+    { "type": "READER", "id": "reader-kisai", "slug": "kisai" },
+    { "type": "READER", "id": "reader-abujafar", "slug": "abujafar" },
+    { "type": "READER", "id": "reader-yaqub", "slug": "yaqub" },
+    { "type": "READER", "id": "reader-khalaf_ashir", "slug": "khalaf_ashir" },
+    { "type": "SURAH", "id": "surah-fatiha", "slug": "fatiha" },
+    { "type": "SURAH", "id": "surah-ikhlas", "slug": "ikhlas" },
+    { "type": "VERSE", "id": "verse-bayyinah", "slug": "bayyinah-98-5" }
   ]
 }

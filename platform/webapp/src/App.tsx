@@ -2,10 +2,12 @@ import { Route, Routes } from "react-router-dom";
 import HomePage from "@/pages/HomePage";
 import BookReaderPage from "@/pages/BookReaderPage";
 import HadithReaderPage from "@/pages/HadithReaderPage";
+import QuranReaderPage from "@/pages/QuranReaderPage";
 import LegacyReadingRedirectPage from "@/pages/LegacyReadingRedirectPage";
 import LibraryPage from "@/pages/LibraryPage";
 import LibraryWorkspacePreview from "@/pages/LibraryWorkspacePreview";
 import SourcesPreview from "@/pages/SourcesPreview";
+import QuranPreview from "@/pages/QuranPreview";
 
 export default function App() {
   return (
@@ -14,9 +16,13 @@ export default function App() {
       <Route path="/library" element={<LibraryPage />} />
       <Route path="/prototype/library-workspace" element={<LibraryWorkspacePreview />} />
       <Route path="/prototype/sources" element={<SourcesPreview />} />
+      <Route path="/prototype/quran" element={<QuranPreview />} />
       <Route path="/reading/book/:bookSlug/page/:pageNum" element={<BookReaderPage />} />
       <Route path="/reading/hadith/:slug" element={<HadithReaderPage />} />
+      <Route path="/reading/quran/:slug" element={<QuranReaderPage />} />
+      <Route path="/reading/quran" element={<QuranReaderPage />} />
       <Route path="/reading/:slug" element={<LegacyReadingRedirectPage />} />
     </Routes>
   );
 }
+

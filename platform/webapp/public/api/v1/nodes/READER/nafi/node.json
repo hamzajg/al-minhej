@@ -1,0 +1,24 @@
+{
+  "id": "reader-nafi",
+  "type": "READER",
+  "slug": "nafi",
+  "status": "published",
+  "digitizationStatus": "partial",
+  "title": { "ar": "نافع", "en": "Nafi'" },
+  "attributes": {
+    "kind": "reader",
+    "order": 1,
+    "collection": "shatibiyyah",
+    "countsBasmala": false,
+    "cityAr": "المدني",
+    "cityEn": "Madani",
+    "riwayat": [
+      { "id": "qalun", "ar": "قالون", "en": "Qalun", "variant": "verified", "variantAr": "مَلِكِ", "variantEn": "Maliki — without the long ā", "note": "شائعة تاريخيًا في ليبيا وتونس وأجزاء من شمال إفريقيا", "noteEn": "Historically common in Libya, Tunisia, and parts of North Africa" },
+      { "id": "warsh", "ar": "ورش", "en": "Warsh", "variant": "verified", "variantAr": "مَلِكِ", "variantEn": "Maliki — without the long ā", "note": "الأكثر انتشارًا في شمال وغرب إفريقيا", "noteEn": "Most widespread across North and West Africa" }
+    ]
+  },
+  "content": [],
+  "schemaVersion": 2,
+  "createdAt": "2026-07-28T00:00:00.000Z",
+  "updatedAt": "2026-07-28T00:00:00.000Z"
+}

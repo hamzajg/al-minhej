@@ -1,0 +1,24 @@
+{
+  "id": "reader-abuamr",
+  "type": "READER",
+  "slug": "abuamr",
+  "status": "published",
+  "digitizationStatus": "partial",
+  "title": { "ar": "أبو عمرو", "en": "Abu 'Amr" },
+  "attributes": {
+    "kind": "reader",
+    "order": 3,
+    "collection": "shatibiyyah",
+    "countsBasmala": false,
+    "cityAr": "البصري",
+    "cityEn": "Basri",
+    "riwayat": [
+      { "id": "duri_abuamr", "ar": "الدوري", "en": "Ad-Duri", "variant": "pending" },
+      { "id": "susi", "ar": "السوسي", "en": "As-Susi", "variant": "pending" }
+    ]
+  },
+  "content": [],
+  "schemaVersion": 2,
+  "createdAt": "2026-07-28T00:00:00.000Z",
+  "updatedAt": "2026-07-28T00:00:00.000Z"
+}

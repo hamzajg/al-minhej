@@ -1,0 +1,87 @@
+{
+  "id": "surah-ikhlas",
+  "type": "SURAH",
+  "slug": "ikhlas",
+  "status": "published",
+  "digitizationStatus": "complete",
+  "title": {
+    "ar": "سُورَةُ الإِخْلَاصِ",
+    "en": "Surah Al-Ikhlas"
+  },
+  "attributes": {
+    "kind": "surah",
+    "surahNumber": 112,
+    "typeAr": "مكية",
+    "typeEn": "Makkan",
+    "ayahCount": 4,
+    "juz": 30,
+    "hizb": 60,
+    "pageNo": 604
+  },
+  "content": [
+    {
+      "type": "qiraat_segments",
+      "blockVersion": 1,
+      "segments": {
+        "basmala": { "ar": "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ", "en": "In the name of God, the Most Compassionate, the Most Merciful." },
+        "qul": { "ar": "قُلْ هُوَ اللَّهُ أَحَدٌ", "en": "Say, 'He is Allah, [who is] One," },
+        "samad": { "ar": "اللَّهُ الصَّمَدُ", "en": "Allah, the Eternal Refuge." },
+        "lam_yalid": { "ar": "لَمْ يَلِدْ وَلَمْ يُولَدْ", "en": "He neither begets nor is born," },
+        "kufuwan": { "ar": "وَلَمْ يَكُن لَّهُ كُفُوًا أَحَدٌ", "en": "Nor is there to Him any equivalent.'" }
+      }
+    },
+    {
+      "type": "vocabulary",
+      "blockVersion": 1,
+      "entries": [
+        { "id": "ahad", "word": "أَحَدٌ", "root": "أ-ح-د", "pron": "aḥad", "occurrences": [1], "gloss": { "ar": "واحد لا شريك له", "en": "One, Unique" } },
+        { "id": "samad", "word": "الصَّمَدُ", "root": "ص-م-د", "pron": "aṣ-ṣamad", "occurrences": [1], "gloss": { "ar": "الذي تُصمَد إليه الحوائج، المستغني عن غيره", "en": "The Eternal Refuge" } },
+        { "id": "kufuwan", "word": "كُفُوًا", "root": "ك-ف-أ", "pron": "kufuwan", "occurrences": [1], "gloss": { "ar": "المماثل والمكافئ", "en": "Equal, Equivalent" } }
+      ]
+    },
+    {
+      "type": "commentary",
+      "blockVersion": 1,
+      "scholar": { "ar": "ابن كثير", "en": "Ibn Kathir" },
+      "workNodeId": "book-quran",
+      "note": {
+        "ar": "تعدل ثلث القرآن لاشتمالها على التوحيد وتنزيه الله عن النقص والولد والصاحبة.",
+        "en": "Equates to one-third of the Quran because it consolidates pure monotheism and denies any partners or offspring."
+      }
+    },
+    {
+      "type": "quiz",
+      "blockVersion": 1,
+      "questions": [
+        {
+          "question": { "ar": "ما معنى «الصمد»؟", "en": "What is the meaning of 'Al-Samad'?" },
+          "options": [
+            { "id": "o1", "text": { "ar": "الذي يُصمد إليه في الحوائج", "en": "The One sought in all needs" } },
+            { "id": "o2", "text": { "ar": "الخالق", "en": "The Creator" } },
+            { "id": "o3", "text": { "ar": "الرحيم", "en": "The Merciful" } }
+          ],
+          "correctOptionId": "o1"
+        }
+      ]
+    },
+    {
+      "type": "ai_context",
+      "blockVersion": 1,
+      "items": [
+        {
+          "key": "companion_ikhlas_name",
+          "question": { "ar": "ما سبب تسميتها بسورة الإخلاص؟", "en": "Why is it named Surah Al-Ikhlas?" },
+          "answer": { "ar": "سُمّيت بالإخلاص لأنها أخلصت التوحيد لله تعالى ولم تذكر أي أحكام عملية، بل شملت التوحيد الاعتقادي خالصًا.", "en": "It is called Al-Ikhlas (Sincerity) because it is dedicated purely to Tawhid without mixing other legal rulings." }
+        },
+        {
+          "key": "companion_ikhlas_third",
+          "question": { "ar": "لماذا تعدل ثلث القرآن؟", "en": "Why does it equal one third of the Quran?" },
+          "answer": { "ar": "تعدل ثلث القرآن لأن علوم القرآن ثلاثة: توحيد وأحكام وقصص، وهذه السورة تمحضت بالتوحيد كله.", "en": "It equals one third of the Quran because Quranic themes are three: Tawhid, laws, and stories — and this surah covers Tawhid entirely." }
+        }
+      ]
+    }
+  ],
+  "schemaVersion": 2,
+  "createdAt": "2026-07-28T00:00:00.000Z",
+  "updatedAt": "2026-07-28T00:00:00.000Z"
+}

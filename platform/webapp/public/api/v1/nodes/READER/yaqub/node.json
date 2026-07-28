@@ -1,0 +1,24 @@
+{
+  "id": "reader-yaqub",
+  "type": "READER",
+  "slug": "yaqub",
+  "status": "published",
+  "digitizationStatus": "partial",
+  "title": { "ar": "يعقوب", "en": "Ya'qub" },
+  "attributes": {
+    "kind": "reader",
+    "order": 9,
+    "collection": "durrah",
+    "countsBasmala": "pending",
+    "cityAr": "البصري",
+    "cityEn": "Basri",
+    "riwayat": [
+      { "id": "ruways", "ar": "رويس", "en": "Ruways", "variant": "pending" },
+      { "id": "rawh", "ar": "روح", "en": "Rawh", "variant": "pending" }
+    ]
+  },
+  "content": [],
+  "schemaVersion": 2,
+  "createdAt": "2026-07-28T00:00:00.000Z",
+  "updatedAt": "2026-07-28T00:00:00.000Z"
+}

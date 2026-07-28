@@ -384,5 +384,33 @@
       "note_en": "Both narrated by 'A'ishah on the topic of revelation.",
       "note_ar": "كلاهما من رواية عائشة في موضوع الوحي."
     }
+  },
+  {
+    "id": "r-quran-1",
+    "from": "surah-fatiha",
+    "to": "book-quran",
+    "type": "PART_OF",
+    "generated": true,
+    "metadata": { "locator_en": "Page 1", "locator_ar": "الصفحة 1" }
+  },
+  {
+    "id": "r-quran-2",
+    "from": "surah-ikhlas",
+    "to": "book-quran",
+    "type": "PART_OF",
+    "generated": true,
+    "metadata": { "locator_en": "Page 604", "locator_ar": "الصفحة ٦٠٤" }
+  },
+  {
+    "id": "r-quran-3",
+    "from": "hadith-arbain-1",
+    "to": "surah-fatiha",
+    "type": "REFERENCES",
+    "generated": false,
+    "metadata": {
+      "note_en": "References the opening of Al-Fatiha in the context of intention.",
+      "note_ar": "يشير إلى افتتاحية الفاتحة في سياق النية.",
+      "verse_ar": "إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ"
+    }
   }
 ]

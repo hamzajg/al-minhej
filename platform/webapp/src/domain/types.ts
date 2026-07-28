@@ -8,7 +8,7 @@ export type Provenance = "primary" | "ai_generated";
 
 export type Tier = "primary" | "ai_generated" | "low";
 
-export type NodeType = "HADITH" | "VERSE" | "CONCEPT" | "EVENT" | "NARRATOR" | "BOOK" | "PAGE";
+export type NodeType = "HADITH" | "VERSE" | "CONCEPT" | "EVENT" | "NARRATOR" | "BOOK" | "PAGE" | "SURAH" | "READER";
 
 export type NodeId = string;
 export type Slug = string;
@@ -58,6 +58,34 @@ export type NodeAttributes =
         path: string;
         label: Localized<string>;
       };
+    }
+  | {
+      kind: "surah";
+      surahNumber: number;
+      typeAr: string;
+      typeEn: string;
+      ayahCount: number;
+      juz: number;
+      hizb: number;
+      pageNo: number;
+    }
+  | {
+      kind: "reader";
+      order: number;
+      collection: "shatibiyyah" | "durrah";
+      countsBasmala: boolean | "pending";
+      cityAr: string;
+      cityEn: string;
+      riwayat: {
+        id: string;
+        ar: string;
+        en: string;
+        variant: "verified" | "pending";
+        variantAr?: string;
+        variantEn?: string;
+        note?: string;
+        noteEn?: string;
+      }[];
     };
 
 /* ── Content block registry ── */
@@ -150,7 +178,16 @@ export type ContentBlock =
   | (ContentBlockBase & { type: "ai_context"; items: AiPrompt[] })
   | (ContentBlockBase & { type: "quiz"; questions: QuizQuestion[] })
   | BiographyBlock
-  | (ContentBlockBase & { type: "lineage"; personNodeId: NodeId; chain: { name: Localized<string>; note?: Localized<string> }[]; convergesWithProphetAt?: { name: Localized<string>; note?: Localized<string> }; agreementNote?: Localized<string>; disputedBeyond?: { afterName: Localized<string>; note: Localized<string> }; taqribSourceNote?: Localized<string> });
+  | (ContentBlockBase & { type: "lineage"; personNodeId: NodeId; chain: { name: Localized<string>; note?: Localized<string> }[]; convergesWithProphetAt?: { name: Localized<string>; note?: Localized<string> }; agreementNote?: Localized<string>; disputedBeyond?: { afterName: Localized<string>; note: Localized<string> }; taqribSourceNote?: Localized<string> })
+  | (ContentBlockBase & {
+      type: "qiraat_segments";
+      segments: Record<string, { ar: string; arVariant?: string; en: string; variant?: boolean }>;
+    })
+  | (ContentBlockBase & {
+      type: "qiraat_metadata";
+      collections: Record<string, { ar: string; en: string; countAr: string; countEn: string }>;
+      qiraatPaths: Record<string, { ar: string; en: string; subtitleAr: string; subtitleEn: string; descAr: string; descEn: string }>;
+    });
 
 /* ── Node ── */
 

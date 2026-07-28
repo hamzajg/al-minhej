@@ -1,0 +1,24 @@
+{
+  "id": "reader-khalaf_ashir",
+  "type": "READER",
+  "slug": "khalaf_ashir",
+  "status": "published",
+  "digitizationStatus": "partial",
+  "title": { "ar": "خلف العاشر", "en": "Khalaf al-'Ashir" },
+  "attributes": {
+    "kind": "reader",
+    "order": 10,
+    "collection": "durrah",
+    "countsBasmala": "pending",
+    "cityAr": "الكوفي",
+    "cityEn": "Kufi",
+    "riwayat": [
+      { "id": "ishaq", "ar": "إسحاق", "en": "Ishaq", "variant": "pending" },
+      { "id": "idris", "ar": "إدريس", "en": "Idris", "variant": "pending" }
+    ]
+  },
+  "content": [],
+  "schemaVersion": 2,
+  "createdAt": "2026-07-28T00:00:00.000Z",
+  "updatedAt": "2026-07-28T00:00:00.000Z"
+}

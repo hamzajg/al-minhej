@@ -1,0 +1,24 @@
+{
+  "id": "reader-abujafar",
+  "type": "READER",
+  "slug": "abujafar",
+  "status": "published",
+  "digitizationStatus": "partial",
+  "title": { "ar": "أبو جعفر", "en": "Abu Ja'far" },
+  "attributes": {
+    "kind": "reader",
+    "order": 8,
+    "collection": "durrah",
+    "countsBasmala": "pending",
+    "cityAr": "المدني",
+    "cityEn": "Madani",
+    "riwayat": [
+      { "id": "ibnwardan", "ar": "ابن وردان", "en": "Ibn Wardan", "variant": "pending" },
+      { "id": "ibnjammaz", "ar": "ابن جمّاز", "en": "Ibn Jammaz", "variant": "pending" }
+    ]
+  },
+  "content": [],
+  "schemaVersion": 2,
+  "createdAt": "2026-07-28T00:00:00.000Z",
+  "updatedAt": "2026-07-28T00:00:00.000Z"
+}

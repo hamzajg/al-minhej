@@ -10,6 +10,8 @@ const NODE_COLORS: Record<NodeType, string> = {
   VERSE: "#7B8F5D",
   CONCEPT: "#B4763B",
   EVENT: "#6A5A8C",
+  SURAH: "#1A5C47",
+  READER: "#8B6914",
 };
 
 function polar(cx: number, cy: number, r: number, deg: number): [number, number] {

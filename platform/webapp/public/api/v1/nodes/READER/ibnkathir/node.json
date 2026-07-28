@@ -1,0 +1,24 @@
+{
+  "id": "reader-ibnkathir",
+  "type": "READER",
+  "slug": "ibnkathir",
+  "status": "published",
+  "digitizationStatus": "partial",
+  "title": { "ar": "ابن كثير", "en": "Ibn Kathir" },
+  "attributes": {
+    "kind": "reader",
+    "order": 2,
+    "collection": "shatibiyyah",
+    "countsBasmala": true,
+    "cityAr": "المكي",
+    "cityEn": "Makki",
+    "riwayat": [
+      { "id": "bazzi", "ar": "البزّي", "en": "Al-Bazzi", "variant": "pending" },
+      { "id": "qunbul", "ar": "قنبل", "en": "Qunbul", "variant": "pending" }
+    ]
+  },
+  "content": [],
+  "schemaVersion": 2,
+  "createdAt": "2026-07-28T00:00:00.000Z",
+  "updatedAt": "2026-07-28T00:00:00.000Z"
+}

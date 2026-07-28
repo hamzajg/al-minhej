@@ -1,0 +1,24 @@
+{
+  "id": "reader-asim",
+  "type": "READER",
+  "slug": "asim",
+  "status": "published",
+  "digitizationStatus": "partial",
+  "title": { "ar": "عاصم", "en": "'Asim" },
+  "attributes": {
+    "kind": "reader",
+    "order": 5,
+    "collection": "shatibiyyah",
+    "countsBasmala": true,
+    "cityAr": "الكوفي",
+    "cityEn": "Kufi",
+    "riwayat": [
+      { "id": "shubah", "ar": "شعبة", "en": "Shu'bah", "variant": "pending" },
+      { "id": "hafs", "ar": "حفص", "en": "Hafs", "variant": "verified", "variantAr": "مَالِكِ", "variantEn": "Māliki — with the long ā", "note": "الأكثر انتشارًا؛ المعتمدة في الحرمين وأغلب المصاحف المطبوعة", "noteEn": "Most widespread; used in the Haramayn and most printed Mushafs" }
+    ]
+  },
+  "content": [],
+  "schemaVersion": 2,
+  "createdAt": "2026-07-28T00:00:00.000Z",
+  "updatedAt": "2026-07-28T00:00:00.000Z"
+}

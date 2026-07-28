@@ -1,0 +1,15 @@
+{
+  "type": "READER",
+  "nodes": [
+    { "id": "reader-nafi", "slug": "nafi" },
+    { "id": "reader-ibnkathir", "slug": "ibnkathir" },
+    { "id": "reader-abuamr", "slug": "abuamr" },
+    { "id": "reader-ibnamir", "slug": "ibnamir" },
+    { "id": "reader-asim", "slug": "asim" },
+    { "id": "reader-hamzah", "slug": "hamzah" },
+    { "id": "reader-kisai", "slug": "kisai" },
+    { "id": "reader-abujafar", "slug": "abujafar" },
+    { "id": "reader-yaqub", "slug": "yaqub" },
+    { "id": "reader-khalaf_ashir", "slug": "khalaf_ashir" }
+  ]
+}

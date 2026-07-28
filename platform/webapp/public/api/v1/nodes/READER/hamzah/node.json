@@ -1,0 +1,24 @@
+{
+  "id": "reader-hamzah",
+  "type": "READER",
+  "slug": "hamzah",
+  "status": "published",
+  "digitizationStatus": "partial",
+  "title": { "ar": "حمزة", "en": "Hamzah" },
+  "attributes": {
+    "kind": "reader",
+    "order": 6,
+    "collection": "shatibiyyah",
+    "countsBasmala": true,
+    "cityAr": "الكوفي",
+    "cityEn": "Kufi",
+    "riwayat": [
+      { "id": "khalaf_hamzah", "ar": "خلف", "en": "Khalaf", "variant": "pending" },
+      { "id": "khallad", "ar": "خلاد", "en": "Khallad", "variant": "pending" }
+    ]
+  },
+  "content": [],
+  "schemaVersion": 2,
+  "createdAt": "2026-07-28T00:00:00.000Z",
+  "updatedAt": "2026-07-28T00:00:00.000Z"
+}

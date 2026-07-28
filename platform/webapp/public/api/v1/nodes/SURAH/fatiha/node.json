@@ -1,0 +1,118 @@
+{
+  "id": "surah-fatiha",
+  "type": "SURAH",
+  "slug": "fatiha",
+  "status": "published",
+  "digitizationStatus": "complete",
+  "title": {
+    "ar": "سُورَةُ الْفَاتِحَةِ",
+    "en": "Surah Al-Fatiha"
+  },
+  "attributes": {
+    "kind": "surah",
+    "surahNumber": 1,
+    "typeAr": "مكية",
+    "typeEn": "Makkan",
+    "ayahCount": 7,
+    "juz": 1,
+    "hizb": 1,
+    "pageNo": 1
+  },
+  "content": [
+    {
+      "type": "qiraat_segments",
+      "blockVersion": 1,
+      "segments": {
+        "basmala": { "ar": "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ", "en": "In the name of God, the Most Compassionate, the Most Merciful." },
+        "hamd": { "ar": "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ", "en": "All praise belongs to God, Lord of all the worlds." },
+        "rahman": { "ar": "الرَّحْمَٰنِ الرَّحِيمِ", "en": "The Most Compassionate, the Most Merciful." },
+        "malik": { "ar": "مَلِكِ يَوْمِ الدِّينِ", "arVariant": "مَالِكِ يَوْمِ الدِّينِ", "en": "Master of the Day of Judgment.", "variant": true },
+        "iyyaka": { "ar": "إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ", "en": "You alone we worship, and You alone we ask for help." },
+        "ihdina": { "ar": "اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ", "en": "Guide us to the straight path." },
+        "siratal1": { "ar": "صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ", "en": "The path of those You have blessed," },
+        "siratal2": { "ar": "غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ", "en": "not of those who have earned anger, nor of those who have gone astray." }
+      }
+    },
+    {
+      "type": "vocabulary",
+      "blockVersion": 1,
+      "entries": [
+        { "id": "hamd", "word": "الْحَمْدُ", "root": "ح-م-د", "pron": "al-hamdu", "occurrences": [1], "gloss": { "ar": "الثناء والشكر", "en": "praise, gratitude" } },
+        { "id": "rabb", "word": "رَبِّ", "root": "ر-ب-ب", "pron": "rabbi", "occurrences": [1], "gloss": { "ar": "المالك والمربّي والمدبّر", "en": "Lord, Sustainer" } },
+        { "id": "rahman", "word": "الرَّحْمَٰنِ", "root": "ر-ح-م", "pron": "ar-raḥmān", "occurrences": [1], "gloss": { "ar": "واسع الرحمة بجميع الخلق", "en": "The Most Compassionate" } },
+        { "id": "malik", "word": "مَلِكِ", "root": "م-ل-ك", "pron": "maliki", "occurrences": [1], "gloss": { "ar": "المتصرّف المالك للأمر كله", "en": "Master, Sovereign" } },
+        { "id": "nastain", "word": "نَسْتَعِينُ", "root": "ع-و-ن", "pron": "nasta'īn", "occurrences": [1], "gloss": { "ar": "نطلب العون والمعونة", "en": "we seek help" } },
+        { "id": "sirat", "word": "الصِّرَاطَ", "root": "ص-ر-ط", "pron": "aṣ-ṣirāṭ", "occurrences": [2], "gloss": { "ar": "الطريق الواضح", "en": "the path" } },
+        { "id": "dallin", "word": "الضَّالِّينَ", "root": "ض-ل-ل", "pron": "aḍ-ḍāllīn", "occurrences": [1], "gloss": { "ar": "من ضلّ عن الطريق الصحيح", "en": "those who are astray" } }
+      ]
+    },
+    {
+      "type": "commentary",
+      "blockVersion": 1,
+      "scholar": { "ar": "ابن كثير", "en": "Ibn Kathir" },
+      "workNodeId": "book-quran",
+      "note": {
+        "ar": "يبيّن أن الفاتحة جمعت أنواع التوحيد الثلاثة، وسُمّيت أمّ الكتاب لاشتمالها على مقاصد القرآن كله.",
+        "en": "Explains that Al-Fatiha gathers the core themes of the whole Qur'an in miniature — praise, sovereignty, worship, and the request for guidance — which is why it's called 'the Mother of the Book.'"
+      }
+    },
+    {
+      "type": "commentary",
+      "blockVersion": 1,
+      "scholar": { "ar": "الطبري", "en": "At-Tabari" },
+      "workNodeId": "book-quran",
+      "note": {
+        "ar": "يذكر عدة أقوال في معنى «مالك يوم الدين»، ويرجّح أن الملك والمالك كلاهما صحيح المعنى، إذ لا مالك يوم القيامة إلا الله.",
+        "en": "Records several early interpretive traditions on 'Master of the Day of Judgment,' concluding that on that day, sovereignty and possession belong to God alone — which is why both canonical readings converge on the same meaning."
+      }
+    },
+    {
+      "type": "quiz",
+      "blockVersion": 1,
+      "questions": [
+        {
+          "question": { "ar": "كم عدد آيات سورة الفاتحة؟", "en": "How many ayahs does Surah Al-Fatiha have?" },
+          "options": [
+            { "id": "o1", "text": { "ar": "٦", "en": "6" } },
+            { "id": "o2", "text": { "ar": "٧", "en": "7" } },
+            { "id": "o3", "text": { "ar": "٨", "en": "8" } }
+          ],
+          "correctOptionId": "o2"
+        },
+        {
+          "question": { "ar": "ماذا نطلب في «اهدنا الصراط المستقيم»؟", "en": "What does 'Guide us to the straight path' ask for?" },
+          "options": [
+            { "id": "o1", "text": { "ar": "المغفرة", "en": "Forgiveness" } },
+            { "id": "o2", "text": { "ar": "الرزق", "en": "Provision" } },
+            { "id": "o3", "text": { "ar": "الهداية", "en": "Guidance" } }
+          ],
+          "correctOptionId": "o3"
+        }
+      ]
+    },
+    {
+      "type": "ai_context",
+      "blockVersion": 1,
+      "items": [
+        {
+          "key": "companion_fatiha",
+          "question": { "ar": "اشرح لي هذه السورة ببساطة", "en": "Explain this surah simply" },
+          "answer": { "ar": "الفاتحة سبع آيات تفتتح كل صلاة: تبدأ بالثناء على الله، ثم تُقرّ أنه وحده المستحق للعبادة والاستعانة، ثم تطلب الهداية إلى الطريق الصحيح — وهذا هو محور القرآن كله في سبع آيات.", "en": "Al-Fatiha is seven ayahs that open every prayer: it begins with praise of God, affirms that He alone deserves worship and is sought for help, then asks for guidance to the right path — the whole Qur'an's core message, in seven lines." }
+        },
+        {
+          "key": "companion_prayer",
+          "question": { "ar": "لماذا نقرأها في كل صلاة؟", "en": "Why do we recite it in every prayer?" },
+          "answer": { "ar": "لأن النبي ﷺ قال إنه لا صلاة صحيحة بلا قراءتها — فهي ركن من أركان الصلاة، تُقرأ في كل ركعة تقريبًا، فيكررها المسلم أكثر من أي نص آخر في حياته.", "en": "Because the Prophet ﷺ said there is no valid prayer without reciting it — it's a pillar of the prayer itself, repeated in nearly every rak'ah, making it the most-recited passage in a Muslim's life." }
+        },
+        {
+          "key": "companion_riwayat",
+          "question": { "ar": "ما الفرق بين الروايات هنا؟", "en": "What's the difference between the riwayat here?" },
+          "answer": { "ar": "الاختلاف الأشهر هنا في كلمة واحدة: «مالك» بالألف عند حفص، و«ملك» بدونها عند ورش وقالون. كلا اللفظين صحيحان متواتران، والمعنى يتقارب: من يملك يوم الدين ويتصرف فيه هو الله وحده. وهناك اختلاف آخر في عدّ البسملة آية، تجده في تبويب الروايات.", "en": "The most famous difference here is a single word: 'Māliki' (with a long ā) in Hafs's reading, 'Maliki' (without it) in Warsh's and Qalun's — both authentically transmitted, meaning converging either way. There's also a difference in whether the Basmalah is counted as an ayah — see the Riwayat panel for that one." }
+        }
+      ]
+    }
+  ],
+  "schemaVersion": 2,
+  "createdAt": "2026-07-28T00:00:00.000Z",
+  "updatedAt": "2026-07-28T00:00:00.000Z"
+}

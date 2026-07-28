@@ -1,5 +1,9 @@
 [
   {
+    "id": "book-quran",
+    "slug": "quran"
+  },
+  {
     "id": "book-arbain",
     "slug": "al-arbain-al-nawawiyya"
   },

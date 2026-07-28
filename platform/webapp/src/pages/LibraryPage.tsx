@@ -3,7 +3,7 @@ import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { Library, Search, Moon, Sun } from "lucide-react";
 import { useSettings } from "@/context/SettingsContext";
 import { useLibrary } from "@/hooks/useLibrary";
-import { bookReaderPath } from "@/lib/routes";
+import { bookReaderPath, quranReaderPath } from "@/lib/routes";
 
 export default function LibraryPage() {
   const { t, uiLang, dir, dark, setUiLang, toggleDark } = useSettings();
@@ -29,6 +29,10 @@ export default function LibraryPage() {
   }, [entries, query]);
 
   const openBook = (bookSlug: string, pageStart: number) => {
+    if (bookSlug === "quran" || bookSlug.includes("quran")) {
+      navigate(quranReaderPath("fatiha"));
+      return;
+    }
     navigate(bookReaderPath(bookSlug, pageStart));
   };
 

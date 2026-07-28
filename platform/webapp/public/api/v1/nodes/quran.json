@@ -1,0 +1,33 @@
+{
+  "basmalaNote": {
+    "ar": "كل القراء متفقون أن الفاتحة سبع آيات، لكنهم يختلفون في عدّها: عند الكوفيين (عاصم وحمزة والكسائي) والمكي (ابن كثير) تُعدّ البسملة الآية الأولى، وتنتهي السورة بآية سابعة واحدة. أما عند المدني (نافع: قالون وورش) فلا تُعدّ البسملة آية، فتبدأ الآية الأولى بـ«الحمد لله ربّ العالمين»، ويُعوَّض عن ذلك بتقسيم الآية الأخيرة إلى آيتين عند أول «عليهم».",
+    "en": "All readers agree Al-Fatiha has seven ayahs, but count them differently: for the Kufan riwayat ('Asim, Hamzah, Al-Kisa'i) and the Makkan riwayah (Ibn Kathir), the Basmalah is ayah one, ending with a single seventh ayah. For the Madani riwayat (Nafi': Qalun and Warsh), the Basmalah is not counted — ayah one begins with \"All praise belongs to God\" — and to still reach seven, the final ayah splits in two at the first \"'alayhim.\"",
+    "pendingReaders": "الحكم في هذه المسألة لأبي عمرو وابن عامر وأبي جعفر ويعقوب وخلف العاشر بانتظار المراجعة العلمية في هذا العرض التجريبي.",
+    "pendingReadersEn": "The convention for Abu 'Amr, Ibn 'Amir, Abu Ja'far, Ya'qub, and Khalaf al-'Ashir is pending scholarly review in this prototype — not assumed."
+  },
+  "collections": {
+    "shatibiyyah": { "ar": "الشاطبية · السبع", "en": "Ash-Shatibiyyah · The Seven", "countAr": "٧ قراءات، ١٤ رواية", "countEn": "7 qira'at, 14 riwayat" },
+    "durrah": { "ar": "الدرة · تكملة العشر", "en": "Ad-Durrah · Completing the Ten", "countAr": "٣ قراءات، ٦ روايات", "countEn": "3 qira'at, 6 riwayat" }
+  },
+  "qiraatPaths": {
+    "sughra": {
+      "ar": "العشر الصغرى", "en": "The Lesser Ten",
+      "subtitleAr": "الشاطبية (السبع) + الدرة (تكملة العشر)", "subtitleEn": "Ash-Shatibiyyah (the Seven) + Ad-Durrah (completing the Ten)",
+      "descAr": "طريق واحد مختار لكل رواية — ٢٠ طريقًا إجمالًا.", "descEn": "One selected route per riwayah — 20 turuq in total."
+    },
+    "kubra": {
+      "ar": "العشر الكبرى", "en": "The Greater Ten",
+      "subtitleAr": "طيبة النشر — ابن الجزري", "subtitleEn": "At-Tayyibah (Tayyibat an-Nashr) — Ibn al-Jazari",
+      "descAr": "نفس القراء العشرة، لكن بعدد أكبر بكثير من الطرق لكل رواية.", "descEn": "The same ten readers, but with far more turuq per riwayah than the Lesser Ten selects."
+    }
+  },
+  "toc": [
+    { "id": "surah-1", "number": 1, "slug": "fatiha", "nameAr": "الفاتحة", "nameEn": "Al-Fatiha", "typeAr": "مكية", "typeEn": "Makkan", "ayahs": 7, "pageStart": 1, "pagesDigitized": 1 },
+    { "id": "surah-2", "number": 2, "slug": "baqarah", "nameAr": "البقرة", "nameEn": "Al-Baqarah", "typeAr": "مدنية", "typeEn": "Madani", "ayahs": 286, "pageStart": 2, "pagesDigitized": 1 },
+    { "id": "surah-3", "number": 3, "slug": "ali-imran", "nameAr": "آل عمران", "nameEn": "Ali 'Imran", "typeAr": "مدنية", "typeEn": "Madani", "ayahs": 200, "pageStart": 50, "pagesDigitized": 0 },
+    { "id": "surah-4", "number": 4, "slug": "nisa", "nameAr": "النساء", "nameEn": "An-Nisa'", "typeAr": "مدنية", "typeEn": "Madani", "ayahs": 176, "pageStart": 77, "pagesDigitized": 0 },
+    { "id": "surah-112", "number": 112, "slug": "ikhlas", "nameAr": "الإخلاص", "nameEn": "Al-Ikhlas", "typeAr": "مكية", "typeEn": "Makkan", "ayahs": 4, "pageStart": 604, "pagesDigitized": 1 },
+    { "id": "surah-113", "number": 113, "slug": "falaq", "nameAr": "الفلق", "nameEn": "Al-Falaq", "typeAr": "مكية", "typeEn": "Makkan", "ayahs": 5, "pageStart": 604, "pagesDigitized": 1 },
+    { "id": "surah-114", "number": 114, "slug": "nas", "nameAr": "الناس", "nameEn": "An-Nas", "typeAr": "مكية", "typeEn": "Makkan", "ayahs": 6, "pageStart": 604, "pagesDigitized": 1 }
+  ]
+}

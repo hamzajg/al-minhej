@@ -1,0 +1,24 @@
+{
+  "id": "reader-ibnamir",
+  "type": "READER",
+  "slug": "ibnamir",
+  "status": "published",
+  "digitizationStatus": "partial",
+  "title": { "ar": "ابن عامر", "en": "Ibn 'Amir" },
+  "attributes": {
+    "kind": "reader",
+    "order": 4,
+    "collection": "shatibiyyah",
+    "countsBasmala": false,
+    "cityAr": "الشامي",
+    "cityEn": "Shami",
+    "riwayat": [
+      { "id": "hisham", "ar": "هشام", "en": "Hisham", "variant": "pending" },
+      { "id": "ibndhakwan", "ar": "ابن ذكوان", "en": "Ibn Dhakwan", "variant": "pending" }
+    ]
+  },
+  "content": [],
+  "schemaVersion": 2,
+  "createdAt": "2026-07-28T00:00:00.000Z",
+  "updatedAt": "2026-07-28T00:00:00.000Z"
+}

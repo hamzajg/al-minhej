@@ -1,0 +1,86 @@
+{
+  "id": "book-quran",
+  "type": "BOOK",
+  "slug": "quran",
+  "status": "published",
+  "digitizationStatus": "partial",
+  "title": {
+    "ar": "المصحف الشريف",
+    "en": "The Noble Mushaf (Qur'an)"
+  },
+  "attributes": {
+    "kind": "book",
+    "author": {
+      "ar": "كلام الله تعالى",
+      "en": "Word of Allah"
+    },
+    "eraLabel": {
+      "ar": "الوحي الشريف",
+      "en": "Noble Revelation"
+    },
+    "digitization": {
+      "totalUnits": 114,
+      "authoredUnits": 5,
+      "unit": {
+        "ar": "سورة",
+        "en": "surahs"
+      }
+    },
+    "index": [
+      {
+        "id": "surah-1",
+        "title": {
+          "ar": "١. سُورَةُ الْفَاتِحَةِ",
+          "en": "1. Surah Al-Fatiha"
+        },
+        "pageStart": 1,
+        "pageEnd": 1,
+        "pagesDigitized": 1
+      },
+      {
+        "id": "surah-2",
+        "title": {
+          "ar": "٢. سُورَةُ الْبَقَرَةِ",
+          "en": "2. Surah Al-Baqarah"
+        },
+        "pageStart": 2,
+        "pageEnd": 49,
+        "pagesDigitized": 1
+      },
+      {
+        "id": "surah-112",
+        "title": {
+          "ar": "١١٢. سُورَةُ الإِخْلَاصِ",
+          "en": "112. Surah Al-Ikhlas"
+        },
+        "pageStart": 604,
+        "pageEnd": 604,
+        "pagesDigitized": 1
+      },
+      {
+        "id": "surah-113",
+        "title": {
+          "ar": "١١٣. سُورَةُ الْفَلَقِ",
+          "en": "113. Surah Al-Falaq"
+        },
+        "pageStart": 604,
+        "pageEnd": 604,
+        "pagesDigitized": 1
+      },
+      {
+        "id": "surah-114",
+        "title": {
+          "ar": "١١٤. سُورَةُ النَّاسِ",
+          "en": "114. Surah An-Nas"
+        },
+        "pageStart": 604,
+        "pageEnd": 604,
+        "pagesDigitized": 1
+      }
+    ]
+  },
+  "content": [],
+  "schemaVersion": 2,
+  "createdAt": "2026-07-28T00:00:00.000Z",
+  "updatedAt": "2026-07-28T00:00:00.000Z"
+}

@@ -117,3 +117,107 @@ export interface BookExperienceDTO {
   hadiths: HadithRefDTO[];
   currentHadithIndex: number;
 }
+
+/* ── Quran ── */
+
+export interface QuranTOCEntry {
+  id: string;
+  number: number;
+  slug: string;
+  nameAr: string;
+  nameEn: string;
+  typeAr: string;
+  typeEn: string;
+  ayahs: number;
+  pageStart: number;
+  pagesDigitized: number;
+}
+
+export interface QuranReaderDTO {
+  node: KnowledgeNode;
+  order: number;
+  collection: string;
+  countsBasmala: boolean | "pending";
+  ar: string;
+  en: string;
+  cityAr: string;
+  cityEn: string;
+  riwayat: {
+    id: string;
+    ar: string;
+    en: string;
+    variant: "verified" | "pending";
+    variantAr?: string;
+    variantEn?: string;
+    note?: string;
+    noteEn?: string;
+  }[];
+}
+
+export interface QuranExperienceDTO {
+  surah: KnowledgeNode;
+  toc: QuranTOCEntry[];
+  readers: QuranReaderDTO[];
+  allRiwayat: {
+    id: string;
+    ar: string;
+    en: string;
+    readerId: string;
+    readerAr: string;
+    readerEn: string;
+    collection: string;
+    countsBasmala: boolean | "pending";
+    variant?: "verified" | "pending";
+    variantAr?: string;
+    variantEn?: string;
+    note?: string;
+    noteEn?: string;
+  }[];
+  segments: Record<string, { ar: string; arVariant?: string; en: string; variant?: boolean }>;
+  vocab: {
+    id: string;
+    word: string;
+    root: string;
+    pron: string;
+    occ: number;
+    en: string;
+    ar: string;
+  }[];
+  tafsir: {
+    id: string;
+    scholar: string;
+    scholarEn: string;
+    work: string;
+    workEn: string;
+    note: { ar: string; en: string };
+  }[];
+  related: {
+    id: string;
+    type: string;
+    ar: string;
+    en: string;
+    src?: { ar: string; en: string };
+    note?: { ar: string; en: string };
+  }[];
+  sources: Record<string, {
+    id: string;
+    ar: string;
+    en: string;
+    authorAr: string;
+    authorEn: string;
+    era: string;
+    total: number;
+    indexed: number;
+    unit: { ar: string; en: string };
+  }>;
+  quiz: {
+    q: { ar: string; en: string };
+    options: { ar: string; en: string }[];
+    correct: number;
+  }[];
+  companionPrompts: { ar: string[]; en: string[] };
+  companionAnswers: { ar: string[]; en: string[] };
+  basmalaNote: { ar: string; en: string; pendingReaders: string; pendingReadersEn: string };
+  collections: Record<string, { ar: string; en: string; countAr: string; countEn: string }>;
+  qiraatPaths: Record<string, { ar: string; en: string; subtitleAr: string; subtitleEn: string; descAr: string; descEn: string }>;
+}

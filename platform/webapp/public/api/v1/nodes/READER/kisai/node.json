@@ -1,0 +1,24 @@
+{
+  "id": "reader-kisai",
+  "type": "READER",
+  "slug": "kisai",
+  "status": "published",
+  "digitizationStatus": "partial",
+  "title": { "ar": "الكسائي", "en": "Al-Kisa'i" },
+  "attributes": {
+    "kind": "reader",
+    "order": 7,
+    "collection": "shatibiyyah",
+    "countsBasmala": true,
+    "cityAr": "الكوفي",
+    "cityEn": "Kufi",
+    "riwayat": [
+      { "id": "abualharith", "ar": "أبو الحارث", "en": "Abu al-Harith", "variant": "pending" },
+      { "id": "duri_kisai", "ar": "الدوري", "en": "Ad-Duri", "variant": "pending", "note": "راوٍ آخر باسم «الدوري»، غير الدوري عن أبي عمرو أعلاه", "noteEn": "A different narrator also called \"al-Duri\" — not the same person as Abu 'Amr's al-Duri above." }
+    ]
+  },
+  "content": [],
+  "schemaVersion": 2,
+  "createdAt": "2026-07-28T00:00:00.000Z",
+  "updatedAt": "2026-07-28T00:00:00.000Z"
+}

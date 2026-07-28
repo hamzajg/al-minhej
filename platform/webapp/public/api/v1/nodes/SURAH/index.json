@@ -1,0 +1,7 @@
+{
+  "type": "SURAH",
+  "nodes": [
+    { "id": "surah-fatiha", "slug": "fatiha" },
+    { "id": "surah-ikhlas", "slug": "ikhlas" }
+  ]
+}

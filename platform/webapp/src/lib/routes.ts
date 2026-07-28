@@ -11,3 +11,8 @@ export function hadithReaderPath(
 export function bookReaderPath(bookSlug: string, pageNum: number) {
   return `/reading/book/${bookSlug}/page/${pageNum}`;
 }
+
+export function quranReaderPath(slug: string) {
+  return `/reading/quran/${slug}`;
+}
+
