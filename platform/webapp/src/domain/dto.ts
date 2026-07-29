@@ -142,6 +142,8 @@ export interface QuranReaderDTO {
   en: string;
   cityAr: string;
   cityEn: string;
+  rumuz?: string;
+  qiraatNote?: { ar: string; en: string };
   riwayat: {
     id: string;
     ar: string;
@@ -151,6 +153,8 @@ export interface QuranReaderDTO {
     variantEn?: string;
     note?: string;
     noteEn?: string;
+    rumuz?: string;
+    segmentReadings?: Record<string, { ar: string; note?: string; noteEn?: string }>;
   }[];
 }
 
@@ -172,6 +176,9 @@ export interface QuranExperienceDTO {
     variantEn?: string;
     note?: string;
     noteEn?: string;
+    rumuz?: string;
+    readerRumuz?: string;
+    segmentReadings?: Record<string, { ar: string; note?: string; noteEn?: string }>;
   }[];
   segments: Record<string, { ar: string; arVariant?: string; en: string; variant?: boolean }>;
   vocab: {
@@ -220,4 +227,59 @@ export interface QuranExperienceDTO {
   basmalaNote: { ar: string; en: string; pendingReaders: string; pendingReadersEn: string };
   collections: Record<string, { ar: string; en: string; countAr: string; countEn: string }>;
   qiraatPaths: Record<string, { ar: string; en: string; subtitleAr: string; subtitleEn: string; descAr: string; descEn: string }>;
+  rumuz?: { ar: string; en: string; descAr: string; descEn: string; letters: Record<string, { reader: string; readerAr: string; readerEn: string; type: string }> };
+  shatibiyyahCouplets?: {
+    ar: string;
+    en: string;
+    author: { ar: string; en: string; died: string };
+    totalCouplets: number;
+    meter: { ar: string; en: string };
+    source: { ar: string; en: string };
+    basedOn?: { ar: string; en: string };
+    fatihaCouplets: Record<string, {
+      ar: string;
+      en: string;
+      sectionAr?: string;
+      sectionEn?: string;
+      versesRange?: string;
+      rumuzLetters?: string[];
+      rumuzNotes?: { ar: string; en: string };
+    }>;
+  };
+  durrahCouplets?: {
+    ar: string;
+    en: string;
+    author: { ar: string; en: string; died: string };
+    totalCouplets: number;
+    meter: { ar: string; en: string };
+    source: { ar: string; en: string };
+    purpose?: { ar: string; en: string };
+    fatihaCouplets: Record<string, {
+      ar: string;
+      en: string;
+      sectionAr?: string;
+      sectionEn?: string;
+      versesRange?: string;
+      rumuzLetters?: string[];
+      rumuzNotes?: { ar: string; en: string };
+    }>;
+  };
+  tayyibahCouplets?: {
+    ar: string;
+    en: string;
+    author: { ar: string; en: string; died: string };
+    totalCouplets: number;
+    meter: { ar: string; en: string };
+    source: { ar: string; en: string };
+    purpose?: { ar: string; en: string };
+    fatihaCouplets: Record<string, {
+      ar: string;
+      en: string;
+      sectionAr?: string;
+      sectionEn?: string;
+      versesRange?: string;
+      rumuzLetters?: string[];
+      rumuzNotes?: { ar: string; en: string };
+    }>;
+  };
 }

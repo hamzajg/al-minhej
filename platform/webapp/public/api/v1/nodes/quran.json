@@ -1,9 +1,155 @@
 {
   "basmalaNote": {
-    "ar": "كل القراء متفقون أن الفاتحة سبع آيات، لكنهم يختلفون في عدّها: عند الكوفيين (عاصم وحمزة والكسائي) والمكي (ابن كثير) تُعدّ البسملة الآية الأولى، وتنتهي السورة بآية سابعة واحدة. أما عند المدني (نافع: قالون وورش) فلا تُعدّ البسملة آية، فتبدأ الآية الأولى بـ«الحمد لله ربّ العالمين»، ويُعوَّض عن ذلك بتقسيم الآية الأخيرة إلى آيتين عند أول «عليهم».",
-    "en": "All readers agree Al-Fatiha has seven ayahs, but count them differently: for the Kufan riwayat ('Asim, Hamzah, Al-Kisa'i) and the Makkan riwayah (Ibn Kathir), the Basmalah is ayah one, ending with a single seventh ayah. For the Madani riwayat (Nafi': Qalun and Warsh), the Basmalah is not counted — ayah one begins with \"All praise belongs to God\" — and to still reach seven, the final ayah splits in two at the first \"'alayhim.\"",
-    "pendingReaders": "الحكم في هذه المسألة لأبي عمرو وابن عامر وأبي جعفر ويعقوب وخلف العاشر بانتظار المراجعة العلمية في هذا العرض التجريبي.",
-    "pendingReadersEn": "The convention for Abu 'Amr, Ibn 'Amir, Abu Ja'far, Ya'qub, and Khalaf al-'Ashir is pending scholarly review in this prototype — not assumed."
+    "ar": "كل القراء متفقون أن الفاتحة سبع آيات، لكنهم يختلفون في عدّها: عند ابن كثير وعاصم والكسائي ويعقوب وخلف العاشر تُعدّ البسملة الآية الأولى، وتنتهي السورة بآية سابعة واحدة. أما عند نافع وأبي عمرو وابن عامر وحمزة وأبي جعفر فلا تُعدّ البسملة آية، فتبدأ الآية الأولى بـ«الحمد لله ربّ العالمين»، ويُعوَّض عن ذلك بتقسيم الآية الأخيرة إلى آيتين عند أول «عليهم».",
+    "en": "All readers agree Al-Fatiha has seven ayahs, but count them differently: Ibn Kathir, 'Asim, Al-Kisa'i, Ya'qub, and Khalaf al-'Ashir count the Basmalah as ayah one. Nafi', Abu 'Amr, Ibn 'Amir, Hamzah, and Abu Ja'far do not count it — ayah one begins with 'All praise belongs to God' — and the final ayah splits in two at the first 'alayhim' to still reach seven.",
+    "pendingReaders": "",
+    "pendingReadersEn": ""
+  },
+  "rumuz": {
+    "ar": "حرز الأماني — الرموز",
+    "en": "Hirz Al-Amani — The Code System",
+    "descAr": "نظام الرموز الأبجدية الذي وضعه الإمام الشاطبي لتمثيل كل قارئ وراوٍ بحرف واحد",
+    "descEn": "The alphabetical code system by Imam Ash-Shatibiyyah where each reader and transmitter is represented by a single letter",
+    "letters": {
+      "أ": { "reader": "nafi", "readerAr": "نافع", "readerEn": "Nafi'", "type": "reader" },
+      "ب": { "reader": "qalun", "readerAr": "قالون", "readerEn": "Qalun", "type": "rawi" },
+      "ج": { "reader": "warsh", "readerAr": "ورش", "readerEn": "Warsh", "type": "rawi" },
+      "د": { "reader": "ibnkathir", "readerAr": "ابن كثير", "readerEn": "Ibn Kathir", "type": "reader" },
+      "ه": { "reader": "bazzi", "readerAr": "البزّي", "readerEn": "Al-Bazzi", "type": "rawi" },
+      "ز": { "reader": "qunbul", "readerAr": "قنبل", "readerEn": "Qunbul", "type": "rawi" },
+      "ح": { "reader": "abuamr", "readerAr": "أبو عمرو", "readerEn": "Abu 'Amr", "type": "reader" },
+      "ط": { "reader": "duri_abuamr", "readerAr": "الدوري", "readerEn": "Ad-Duri", "type": "rawi" },
+      "ي": { "reader": "susi", "readerAr": "السوسي", "readerEn": "As-Susi", "type": "rawi" },
+      "ك": { "reader": "ibnamir", "readerAr": "ابن عامر", "readerEn": "Ibn 'Amir", "type": "reader" },
+      "ل": { "reader": "hisham", "readerAr": "هشام", "readerEn": "Hisham", "type": "rawi" },
+      "م": { "reader": "ibndhakwan", "readerAr": "ابن ذكوان", "readerEn": "Ibn Dhakwan", "type": "rawi" },
+      "ن": { "reader": "asim", "readerAr": "عاصم", "readerEn": "'Asim", "type": "reader" },
+      "ص": { "reader": "shubah", "readerAr": "شعبة", "readerEn": "Shu'bah", "type": "rawi" },
+      "ع": { "reader": "hafs", "readerAr": "حفص", "readerEn": "Hafs", "type": "rawi" },
+      "ق": { "reader": "hamzah", "readerAr": "حمزة", "readerEn": "Hamzah", "type": "reader" },
+      "ض": { "reader": "khalaf_hamzah", "readerAr": "خلف", "readerEn": "Khalaf", "type": "rawi" },
+      "ث": { "reader": "khallad", "readerAr": "خلاد", "readerEn": "Khallad", "type": "rawi" },
+      "ر": { "reader": "kisai", "readerAr": "الكسائي", "readerEn": "Al-Kisa'i", "type": "reader" },
+      "غ": { "reader": "abualharith", "readerAr": "أبو الحارث", "readerEn": "Abu al-Harith", "type": "rawi" },
+      "خ": { "reader": "duri_kisai", "readerAr": "الدوري", "readerEn": "Ad-Duri", "type": "rawi" }
+    }
+  },
+  "shatibiyyahCouplets": {
+    "ar": "حرز الأماني — الإمام الشاطبي",
+    "en": "Hirz Al-Amani — Imam Ash-Shatibiyyah",
+    "author": { "ar": "أبو القاسم الشاطبي", "en": "Abu al-Qasim al-Shatibi", "died": "590 AH" },
+    "totalCouplets": 1173,
+    "meter": { "ar": "بحر الطويل", "en": "Bahr al-Tawil" },
+    "source": { "ar": "حرز الأماني ووجه التهاني", "en": "Hirz Al-Amani wa Wajh At-Tahani" },
+    "basedOn": { "ar": "التيسير للإمام أبي عمرو الداني", "en": "At-Tayseer by Imam Abu Amr al-Dani" },
+    "fatihaCouplets": {
+      "basmalah": {
+        "sectionAr": "باب البسملة",
+        "sectionEn": "Chapter of the Basmalah",
+        "versesRange": "100–107",
+        "ar": "وَبَسْمَلَ بَيْنَ السُّورَتَيْنِ بِسُنَّةٍ ... رِجَالٌ نَمَوْها دِرْيَةً وَتَحَمُّلَا\nوَوَصْلُكَ بَيْنَ السُّورَتَيْنِ فَصَاحَةٌ ... وَصِلْ وَاسْكُتْنَ كُلًّا جَلَايَاهُ حَصَّلَا\nوَلَا نَصَّ كُلَّا حُبَّ وَجْهٍ ذَكَرْتُهُ ... وَفِيهَا خِلَافٌ جِيدُهُ وَاضِحُ الطُّلَا\nوَسَكْتُهُمُ الْمُخْتَارُ دُونَ تَنَفُّسٍ ... وَبَعْضُهُمْ فِي الْأَرْبَعِ الزُّهْرِ بَسْمَلَا\nلَهُمْ دُونَ نَصٍّ وَهْوَ فِيهِنَّ سَاكِتٌ ... لِحَمْزَةَ فَافْهَمْهُ وَلَيْسَ مُخَذَّلَا\nوَمَهْمَا تَصِلْهَا أَوْ بَدَأْتَ بَرَاءَةً ... لِتَنْزِيلِهَا بِالسَّيْفِ لَسْتَ مُبَسْمِلَا\nوَلَا بُدَّ مِنْهَا فِي ابْتِدَائِكَ سُورَةً ... سِوَاهَا وَفِي الْأَجْزَاءِ خَيَّرَ مَنْ تَلَا\nوَمَهْمَا تَصِلْهَا مَعْ أَوَاخِرِ سُورَةٍ ... فَلَا تَقِفَنَّ الدَّهْرَ فِيهَا فَتَثْقُلَا",
+        "en": "And say Basmalah between the two Surahs by the Sunnah\nOf men who transmitted it knowledgeable and bore it\nAnd connecting between the two Surahs is eloquence\nConnect and be silent, all its manifest lights are gathered\nAnd there is no explicit text for it, each seeking the Face (of Allah) I mentioned\nAnd in it is scholarly disagreement, its essence is clear and manifest\nAnd their silence (not reciting) is the chosen one without breathing\nAnd some of them in the four illuminated Surahs say Basmalah\nFor them without explicit text and he (Hamzah) is silent in them\nFor Hamzah, understand it and do not be misled\nAnd whenever you connect it or begin with Bara'ah (At-Tawbah)\nBecause of its revelation by the sword, do not say Basmalah\nAnd it is necessary in your beginning for a Surah\nOther than it, and in the juz' the reciter has a choice\nAnd whenever you connect it with the ends of a Surah\nThen do not stop in it forever, it will be heavy",
+        "rumuzLetters": ["ح"],
+        "rumuzNotes": {
+          "ar": "حرف «ح» = أبو عمرو — الحرف الرمزي لأبي عمرو البصري",
+          "en": "Letter Ḥ = Abu 'Amr — the code letter for Abu 'Amr al-Basri"
+        }
+      },
+      "malik": {
+        "sectionAr": "سورة أم القرآن — مَلِك / مَالِك",
+        "sectionEn": "Surah Umm al-Quran — Malik / Maliki",
+        "versesRange": "108–115",
+        "ar": "وَمَالِكِ يَوْمِ الدِّينِ رَاوِيهِ نَاَصِرٌ ... وَعَنْدَ سِرَاطٍ وَالسِّرَاطَ لِ قُنْبُلَا\nبِحَيْثُ أَتَى وَالصَّادُ زَاياً اشِمَّهَا ... لَدَى خَلَفٍ وَاشْمِمْ لِخَلَّادِ الْأَوَّلَا\nعَلَيْهِمْ إِلَيْهِمْ حَمْزَةٌ وَلَدَيْهِمُو ... جَمِيعاً بِضَمِّ الْهَاءِ وَقْفاً وَمَوْصِلَا\nوَصِلْ ضَمَّ مِيمِ الْجَمْعِ قَبْلَ مُحَرَّكٍ ... دِرَاكاً وَقَالُونُ بِتَخْيِيرِهِ جَلَا\nوَمِنْ قَبْلِ هَمْزِ الْقَطْعِ صِلْهَا لِوَرْشِهِمْ ... وَأَسْكَنَهَا الْبَاقُونَ بَعْدُ لِتَكْمُلَا\nوَمِنْ دُونِ وَصْلٍ ضَمُّهَا قَبْلَ سَاكِنٍ ... لِكُلٍّ وَبَعْدَ الْهَاءِ كَسْرُ فَتَى الْعَلَا\nمَعَ الْكَسْرِ قَبْلَ الْهَا أَوِ الْيَاءِ سَاكِناً ... وَفِي الْوَصْلِ كَسْرُ الْهَاءِ بِالضَّمِّ شَمْلَلَا\nكَمَا بِهِمُ الْأَسْبَابُ ثُمَّ عَلَيْهِمُ الْـ ... قِتَالُ وَقِفْ لِلْكُلِّ بِالْكَسْرِ مُكْمِلَا",
+        "en": "And Maliki yawm ad-Din — its transmitter supports it\nAnd at Sirat and as-Sirat — for Qunbul\nWhere it came and the Sad with Z-like quality, smell it\nAt Khalaf and inhale for Khallad the first\nUpon them, toward them — Hamzah and with them all\nAll with Damm on the Ha', stopping and connecting\nConnect Damm of the plural Mim before a voweled letter\nBy direct transmission, and Qalun with his choice clarifies\nAnd from before Hamzat al-Qat', connect it for Warsh\nAnd the rest left it with sukun afterward for completion\nAnd without connecting, its Damm before a Saakin\nFor each, and after the Ha', Kasr for the noble one\nWith Kasr before the Ha' or Ya', being silent\nAnd in connecting, the Kasr of the Ha' with Damm encompasses it\nAs with them are the causes, then upon them\nThe fighting — stop for all with Kasr, completing",
+        "rumuzLetters": ["ر", "ن", "د", "خ", "ث", "ق", "ج", "ب", "ل", "ك", "ش", "ص"],
+        "rumuzNotes": {
+          "ar": "الرمز «ر» = الكسياي · «ن» = عاصم · «د» = ابن كثير · «خ» = الدوري عن الكسياي · «ث» = خلاد · «ق» = حمزة · «ج» = ورش · «ب» = قالون · «ل» = هشام · «ك» = ابن عامر · «ش» = الشبعة · «ص» = البزي",
+          "en": "Code R = Al-Kisa'i · N = 'Asim · D = Ibn Kathir · Kh = Ad-Duri 'an Al-Kisa'i · Th = Khallad · Q = Hamzah · J = Warsh · B = Qalun · L = Hisham · K = Ibn 'Amir · Sh = Shu'bah · S = Al-Bazzi"
+        }
+      },
+      "siratal": {
+        "sectionAr": "سورة أم القرآن — الصراط / السراط",
+        "sectionEn": "Surah Umm al-Quran — as-Sirat / as-Sarat",
+        "versesRange": "108–109",
+        "ar": "وَمَالِكِ يَوْمِ الدِّينِ رَاوِيهِ نَاَصِرٌ ... وَعَنْدَ سِرَاطٍ وَالسِّرَاطَ لِ قُنْبُلَا\nبِحَيْثُ أَتَى وَالصَّادُ زَاياً اشِمَّهَا ... لَدَى خَلَفٍ وَاشْمِمْ لِخَلَّادِ الْأَوَّلَا",
+        "en": "And Maliki yawm ad-Din — its transmitter supports it\nAnd at Sirat and as-Sirat — for Qunbul\nWhere it came and the Sad has Z-like quality, smell it\nAt Khalaf and inhale for Khallad the first",
+        "rumuzLetters": ["د", "ق", "خ", "ث"],
+        "rumuzNotes": {
+          "ar": "الرمز «د» = ابن كثير · «ق» = حمزة · «خ» = الدوري · «ث» = خلاد — ابن كثير (د) يقرأ «السراط» بالالف، وقنبل (ق) يقرأ «الصراط» بالصاد",
+          "en": "Code D = Ibn Kathir · Q = Hamzah · Kh = Ad-Duri · Th = Khallad — Ibn Kathir (D) reads 'as-Sarat' with Alif, Qunbul (Q) reads 'as-Sirat' with Sad"
+        }
+      },
+      "alayhim": {
+        "sectionAr": "سورة أم القرآن — عليهم / إليهم / لديهم",
+        "sectionEn": "Surah Umm al-Quran — alayhim / ilayhim / ladayhim",
+        "versesRange": "110–115",
+        "ar": "عَلَيْهِمْ إِلَيْهِمْ حَمْزَةٌ وَلَدَيْهِمُو ... جَمِيعاً بِضَمِّ الْهَاءِ وَقْفاً وَمَوْصِلَا\nوَصِلْ ضَمَّ مِيمِ الْجَمْعِ قَبْلَ مُحَرَّكٍ ... دِرَاكاً وَقَالُونُ بِتَخْيِيرِهِ جَلَا\nوَمِنْ قَبْلِ هَمْزِ الْقَطْعِ صِلْهَا لِوَرْشِهِمْ ... وَأَسْكَنَهَا الْبَاقُونَ بَعْدُ لِتَكْمُلَا\nوَمِنْ دُونِ وَصْلٍ ضَمُّهَا قَبْلَ سَاكِنٍ ... لِكُلٍّ وَبَعْدَ الْهَاءِ كَسْرُ فَتَى الْعَلَا\nمَعَ الْكَسْرِ قَبْلَ الْهَا أَوِ الْيَاءِ سَاكِناً ... وَفِي الْوَصْلِ كَسْرُ الْهَاءِ بِالضَّمِّ شَمْلَلَا\nكَمَا بِهِمُ الْأَسْبَابُ ثُمَّ عَلَيْهِمُ الْـ ... قِتَالُ وَقِفْ لِلْكُلِّ بِالْكَسْرِ مُكْمِلَا",
+        "en": "Upon them, toward them — Hamzah, and with them all\nAll with Damm on the Ha', stopping and connecting\nConnect Damm of the plural Mim before a voweled letter\nBy direct transmission, and Qalun with his choice clarifies\nAnd from before Hamzat al-Qat', connect it for Warsh\nAnd the rest left it with sukun afterward for completion\nAnd without connecting, its Damm before a Saakin\nFor each, and after the Ha', Kasr for the noble one\nWith Kasr before the Ha' or Ya', being silent\nAnd in connecting, the Kasr of the Ha' with Damm encompasses it\nAs with them are the causes, then upon them\nThe fighting — stop for all with Kasr, completing",
+        "rumuzLetters": ["ق", "ب", "ج", "ل", "ك", "ش", "ص"],
+        "rumuzNotes": {
+          "ar": "الرمز «ق» = حمزة — الضم على الهاء في وصل ووقف · «ب» = قالون — تخيير في الوصل · «ج» = ورش — وصل قبل همز القطع · «ل» = هشام · «ك» = ابن عامر · «ش» = الشبعة · «ص» = البزي",
+          "en": "Code Q = Hamzah — Damm on Ha' in both stopping and connecting · B = Qalun — choice in connecting · J = Warsh — connects before Hamzat al-Qat' · L = Hisham · K = Ibn 'Amir · Sh = Shu'bah · S = Al-Bazzi"
+        }
+      }
+    }
+  },
+  "durrahCouplets": {
+    "ar": "الدرة المضية — الإمام أبو الحسن القطل",
+    "en": "Ad-Durrah Al-Mudhiyyah — Imam Abu al-Hasan al-Qattal",
+    "author": { "ar": "أبو الحسن القطل", "en": "Abu al-Hasan al-Qattal", "died": "270 AH" },
+    "totalCouplets": 216,
+    "meter": { "ar": "بحر الطويل", "en": "Bahr al-Tawil" },
+    "source": { "ar": "الدرة المضية في تكملة العشر", "en": "Ad-Durrah Al-Mudhiyyah fi Takmilat Al-'Ashr" },
+    "purpose": { "ar": "تكملة القراءات الثلاث بعد الشاطبية للوصول إلى العشر", "en": "Completing the three additional readings after Ash-Shatibiyyah to reach the Ten" },
+    "fatihaCouplets": {
+      "basmalah": {
+        "sectionAr": "باب البسملة وأم القرآن",
+        "sectionEn": "Chapter of the Basmalah and Umm al-Quran",
+        "versesRange": "10–13",
+        "ar": "وَبَسْمَلَ بَيْنَ السُّورَتَيْنِ أَئِمَّةٌ ... وَمَالِكِ حُزْ فُزْ وَالصِّرَاطَ فِيهَا اسْجَلَا\nوَبِالسِّينِ طِبْ وَاكْسِرْ عَلَيْهِمْ إِلَيْهِمُ ... لَدَيْهِمْ فَتًى وَالضَّمُّ فِي الْهَاءِ حُلِّلَا\nعَنْ الْيَاءِ إِنْ تَسْكُنْ سِوَى الْفَرْدِ وَاضْمُمِ انْ ... تَزُلْ طَابَ إِلاَّ مَنْ يُوَلِّيهِمْ فَلاَ\nوَصِلْ ضَمَّ مِيمِ الْجَمْعِ أَصْلٌ وَقَبِلَ سَا ... كِنٍ أَتْبِعًا حُزْ غَيِرُهُ أَصْلَهُ تَلاَ",
+        "en": "And the Imams said Basmalah between the two Surahs\nAnd Maliki — take, rejoice, and record the Sirat\nAnd with Sin — be skilled, and Kasr on them, toward them\nFor each of them, and Damm on the Ha' is resolved\nFrom Ya' — if it is sukun other than the singular, then Damm\nIt descends, be pleased — except for him who turns them, then no\nConnect Damm of the plural Mim — the origin — and before a Sukun\nFollow, take — other than it, its origin is recited",
+        "rumuzLetters": ["م", "ح", "ب", "ج"],
+        "rumuzNotes": {
+          "ar": "الرمز «م» = أبو جعفر — «ح» = أبو عمرو — «ب» = قالون — «ج» = ورش — هذه الرموز تختلف عن الشاطبية لأن الدرة تكمل ما بعد السبعة",
+          "en": "Code M = Abu Ja'far — Ḥ = Abu 'Amr — B = Qalun — J = Warsh — These codes differ from Ash-Shatibiyyah as Ad-Durrah completes what comes after the Seven"
+        }
+      }
+    }
+  },
+  "tayyibahCouplets": {
+    "ar": "طيبة النشر — الإمام ابن الجزري",
+    "en": "Tayyibat An-Nashr — Imam Ibn al-Jazari",
+    "author": { "ar": "شمس الدين ابن الجزري", "en": "Shams al-Din Ibn al-Jazari", "died": "833 AH" },
+    "totalCouplets": 1014,
+    "meter": { "ar": "بحر الرجز", "en": "Bahr al-Rajaz" },
+    "source": { "ar": "طيبة النشر في القراءات العشر", "en": "Tayyibat An-Nashr fi Al-Qira'at Al-'Ashr" },
+    "purpose": { "ar": "العشر الكبرى — جمع طرق متعددة لكل رواية", "en": "The Greater Ten — multiple turuq collected for each riwayah" },
+    "fatihaCouplets": {
+      "basmalah": {
+        "sectionAr": "باب البسملة",
+        "sectionEn": "Chapter of the Basmalah",
+        "versesRange": "1–5",
+        "ar": "بَسْمِلْ بَيْنَ السُّورَتَيْنِ بِي نِصْفٍ دَمٍ ... ثَقَ رَجَا وَصَلْ فَشَا وَعَنْ خَلَفٍ فَاسْكُتْ\nفَصِّلْ وَالْخَلَفُ كَمْ حَمًّا جَلَا وَاخْتَيَرْ ... لِلسَّاكِتِ فِي وَيْلٍ وَلاَ بَسْمِلَةِ وَسَكْتِ\nوَفِي ابْتِدَاءِ السُّورَةِ كُلِّ بَسْمِلاَ سَوَى ... بَرَاءَةٍ فَلاَ وَلَوْ وَصَلْتَ وَوَسَطَا خَيْرٌ\nوَإِنْ وَصَلْتَهَا بِآخِرِ السُّورِ فَلاَ تَقِفْ ... وَغَيْرُهُ لاَ يَحْتَجِرُ",
+        "en": "Say Basmalah between the two Surahs — with half blood\nTrust, hope, connect, spread, and from Khalaf, be silent\nClarify, and Khalaf — how many Hamzahs have been made clear\nChoose for the silent one in Wail, and Basmalah, and silence\nAnd in the beginning of every Surah, say Basmalah\nExcept for Bara'ah — no, even if you connect it; and Wasat is better\nAnd if you connect it at the end of the Surah, do not stop\nAnd other than it does not restrict",
+        "rumuzLetters": ["د", "خ", "ح", "ل"],
+        "rumuzNotes": {
+          "ar": "الرمز «د» = ابن كثير — «خ» = خلف — «ح» = أبو عمرو — «ل» = هشام — الطيبة تذكر طرقاً متعددة لكل رواية",
+          "en": "Code D = Ibn Kathir — Kh = Khalaf — Ḥ = Abu 'Amr — L = Hisham — At-Tayyibah mentions multiple paths for each riwayah"
+        }
+      },
+      "malik": {
+        "sectionAr": "سورة أم القرآن",
+        "sectionEn": "Surah Umm al-Quran",
+        "versesRange": "1–4",
+        "ar": "مَالِكَ نَلْ ظَلاً رَوَى السِّرَاطَ مَعَ سَرَاطٍ ... زَنْ خَلَفاً غَلاَ كَيْفَ وَقَعْ\nوَالصَّادُ كَالزَّايِ ضَفَا الأَوَّلُ قُفْ وَفِيهِ ... وَالثَّانِي وَذِي اللَّامِ اخْتَلَفْ\nوَعَلَيْهِمُو إِلَيْهِمُو لَدَيْهِمُو بِضَمٍّ ... كَسْرُ الْهَاءِ ظَبَيْ فَهُمْ وَبَعْدَ يَاءٍ سَكَنَتْ",
+        "en": "Malik — take shade, he narrated as-Sirat along with Sarat\nZan, Khalaf, Ghala — however it occurred\nAnd Sad is like Zay — add the first, stop, and in it\nThe second and the one with Lam — disagree\nAnd upon them, toward them, for them — with Damm\nKasr of the Ha' — be eager, they understood\nAnd after Ya' that became sukun",
+        "rumuzLetters": ["ز", "خ", "غ", "ل", "ص"],
+        "rumuzNotes": {
+          "ar": "الرمز «ز» = قنبل — «خ» = خلف — «غ» = أبو الحارث — «ل» = هشام — «ص» = البزي — الطيبة تذكر طرقاً إضافية للعشر الكبرى",
+          "en": "Code Z = Qunbul — Kh = Khalaf — Gh = Abu al-Harith — L = Hisham — S = Al-Bazzi — At-Tayyibah mentions additional paths for the Greater Ten"
+        }
+      }
+    }
   },
   "collections": {
     "shatibiyyah": { "ar": "الشاطبية · السبع", "en": "Ash-Shatibiyyah · The Seven", "countAr": "٧ قراءات، ١٤ رواية", "countEn": "7 qira'at, 14 riwayat" },

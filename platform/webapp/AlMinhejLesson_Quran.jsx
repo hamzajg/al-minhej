@@ -1,172 +1,9 @@
 import React, { useState, useEffect, useMemo } from "react";
 import {
-  Play, Copy, Bookmark, Share2, Type, Sparkles, BookOpen,
-  Quote, Sun, Moon, NotebookPen, CircleCheck, Eye, EyeOff,
+  Play, Copy, Bookmark, Share2, Type, Sparkles, BookOpen, MapPin,
+  Quote, Sun, Moon, NotebookPen, CircleCheck, Network, Info, Eye, EyeOff,
   ShieldCheck, GitBranch, X, Sparkle, Brain, RotateCcw, Flame, Layers,
 } from "lucide-react";
-
-/* ============================================================
-   Demo Reader Toolbar — standalone version for AlMinhejLesson_Quran.jsx
-   Mirrors the production UnifiedReaderToolbar but uses inline styles
-   for standalone operation outside the Tailwind/CSS-variable system.
-   ============================================================ */
-
-function ToolButton({ icon, label, onClick, active, activeColor }) {
-  return (
-    <button
-      onClick={onClick}
-      style={{
-        display: "flex", alignItems: "center", gap: 6, fontSize: 11.5, padding: "6px 12px",
-        borderRadius: 999, cursor: "pointer", fontFamily: "inherit",
-        background: active ? activeColor : "var(--color-panel-2)", color: active ? "#241c0a" : "var(--color-ink)",
-        border: `1px solid ${active ? activeColor : "var(--color-line)"}`,
-      }}
-    >
-      {icon}{label}
-    </button>
-  );
-}
-
-function FontScaleControl({ onDecrease, onIncrease, inkColor, panelColor, lineColor }) {
-  return (
-    <div style={{ display: "flex", alignItems: "center", gap: 2, background: panelColor, border: `1px solid ${lineColor}`, borderRadius: 999, padding: "4px 8px" }}>
-      <Type size={12} />
-      <button onClick={onDecrease} style={{ background: "none", border: "none", cursor: "pointer", color: inkColor, fontSize: 13, padding: "0 4px" }}>–</button>
-      <button onClick={onIncrease} style={{ background: "none", border: "none", cursor: "pointer", color: inkColor, fontSize: 13, padding: "0 4px" }}>+</button>
-    </div>
-  );
-}
-
-function DemoReaderToolbar({ c, t, setFontScale, copied, setCopied, bookmarked, setBookmarked, showTranslation, setShowTranslation, memorize, setMemorize, enterMemorize, difficulty, setDifficulty, setRevealed, words }) {
-  return (
-    <div style={{ width: "100%" }}>
-      <div style={{ display: "flex", justifyContent: "center", gap: 8, flexWrap: "wrap", marginBottom: 18, width: "100%" }}>
-        <ToolButton icon={<Play size={13} />} label={t.audio} />
-        <ToolButton
-          icon={<Copy size={13} />}
-          label={copied ? t.copied : t.copy}
-          onClick={() => { setCopied(true); setTimeout(() => setCopied(false), 1200); }}
-        />
-        <ToolButton
-          icon={<Bookmark size={13} fill={bookmarked ? c.gold : "none"} />}
-          label={t.bookmark}
-          onClick={() => setBookmarked((b) => !b)}
-        />
-        <ToolButton icon={<Share2 size={13} />} label={t.share} />
-
-        <FontScaleControl
-          onDecrease={() => setFontScale((s) => Math.max(0.8, s - 0.1))}
-          onIncrease={() => setFontScale((s) => Math.min(1.5, s + 0.1))}
-          inkColor={c.ink} panelColor={c.panel2} lineColor={c.line}
-        />
-
-        {!memorize && (
-          <ToolButton
-            icon={showTranslation ? <EyeOff size={13} /> : <Eye size={13} />}
-            label={showTranslation ? t.hideTranslation : t.showTranslation}
-            onClick={() => setShowTranslation((s) => !s)}
-            active={showTranslation} activeColor={c.gold}
-          />
-        )}
-
-        <ToolButton
-          icon={<Brain size={13} />}
-          label={t.memorize}
-          onClick={() => (memorize ? setMemorize(false) : enterMemorize())}
-          active={memorize} activeColor={c.emerald}
-        />
-      </div>
-
-      {memorize && (
-        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 18, flexWrap: "wrap", justifyContent: "center" }}>
-          {[["easy", 0.2], ["medium", 0.4], ["hard", 0.65]].map(([key, val]) => (
-            <button key={key} className={`pill ${Math.abs(difficulty - val) < 0.01 ? "active" : ""}`}
-              onClick={() => { setDifficulty(val); setRevealed(new Set()); }}>{t[key]}</button>
-          ))}
-          <button onClick={() => setRevealed(new Set(words.map((w) => w.key)))} className="pill" style={{ display: "flex", alignItems: "center", gap: 5 }}>
-            <RotateCcw size={11} /> {t.revealAll}
-          </button>
-        </div>
-      )}
-    </div>
-  );
-}
-
-/* ============================================================
-   Mushaf Canvas Components — Traditional Quran Page Design
-   ============================================================ */
-
-function CornerOrnament() {
-  return (
-    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path
-        d="M2 2 L14 2 L14 6 L6 6 L6 14 L2 14 Z"
-        fill="var(--mushaf-border-outer)"
-        opacity="0.9"
-      />
-      <path
-        d="M2 2 L8 2 L8 8 L2 8 Z"
-        fill="var(--mushaf-gold)"
-        opacity="0.65"
-      />
-      <circle cx="14" cy="14" r="2" fill="var(--mushaf-gold)" opacity="0.75" />
-      <path
-        d="M14 6 Q18 6 18 10"
-        stroke="var(--mushaf-border-outer)"
-        strokeWidth="0.8"
-        fill="none"
-        opacity="0.65"
-      />
-      <path
-        d="M6 14 Q6 18 10 18"
-        stroke="var(--mushaf-border-outer)"
-        strokeWidth="0.8"
-        fill="none"
-        opacity="0.65"
-      />
-    </svg>
-  );
-}
-
-function Diamond() {
-  return (
-    <div
-      style={{
-        width: 9,
-        height: 9,
-        border: "1.5px solid var(--mushaf-gold)",
-        transform: "rotate(45deg)",
-        flexShrink: 0,
-      }}
-    />
-  );
-}
-
-function Dot() {
-  return (
-    <div
-      style={{
-        width: 5,
-        height: 5,
-        borderRadius: "50%",
-        background: "var(--mushaf-gold)",
-        flexShrink: 0,
-      }}
-    />
-  );
-}
-
-function SurahRule() {
-  return (
-    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 7 }}>
-      <div style={{ flex: 1, height: 1, background: "linear-gradient(to right, var(--mushaf-gold), transparent)" }} />
-      <Dot />
-      <Diamond />
-      <Dot />
-      <div style={{ flex: 1, height: 1, background: "linear-gradient(to left, var(--mushaf-gold), transparent)" }} />
-    </div>
-  );
-}
 
 /* ============================================================
    AlMinhej — Quran Page Reader
@@ -202,31 +39,7 @@ function SurahRule() {
    Default reading on this page: Qalun 'an Nafi' al-Madani.
    ============================================================ */
 
-const FONT_IMPORT = `@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Amiri+Quran:wght@400;700&family=Amiri:wght@400;700&family=Cairo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');`;
-
-/* ---- Mushaf CSS Variables (light/dark handled via .dark class on root) ---- */
-const MUSHAF_CSS_VARS = `
-:root {
-  --mushaf-page-bg:   #FDF8EE;
-  --mushaf-border-outer: #7A5910;
-  --mushaf-border-mid:   #C8963C;
-  --mushaf-border-inner: #7A5910;
-  --mushaf-gold:         #C8963C;
-  --mushaf-gold-dark:    #8B6914;
-  --mushaf-ink:          #1A1208;
-  --mushaf-title:        #6B4C11;
-}
-.dark {
-  --mushaf-page-bg:   #1E1B12;
-  --mushaf-border-outer: #8B6914;
-  --mushaf-border-mid:   #C8963C;
-  --mushaf-border-inner: #8B6914;
-  --mushaf-gold:         #D4A840;
-  --mushaf-gold-dark:    #C8963C;
-  --mushaf-ink:          #F5EDCC;
-  --mushaf-title:        #D4A840;
-}
-`;
+const FONT_IMPORT = `@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Amiri:wght@400;700&family=Cairo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');`;
 
 const T = {
   ar: {
@@ -363,14 +176,10 @@ const READERS = [
     id: "nafi", order: 1, collection: "shatibiyyah", countsBasmala: false,
     ar: "نافع", en: "Nafi'", cityAr: "المدني", cityEn: "Madani",
     riwayat: [
-      {
-        id: "qalun", ar: "قالون", en: "Qalun", variant: "verified", variantAr: "مَلِكِ", variantEn: "Maliki — without the long ā",
-        note: "شائعة تاريخيًا في ليبيا وتونس وأجزاء من شمال إفريقيا", noteEn: "Historically common in Libya, Tunisia, and parts of North Africa"
-      },
-      {
-        id: "warsh", ar: "ورش", en: "Warsh", variant: "verified", variantAr: "مَلِكِ", variantEn: "Maliki — without the long ā",
-        note: "الأكثر انتشارًا في شمال وغرب إفريقيا", noteEn: "Most widespread across North and West Africa"
-      },
+      { id: "qalun", ar: "قالون", en: "Qalun", variant: "verified", variantAr: "مَلِكِ", variantEn: "Maliki — without the long ā",
+        note: "شائعة تاريخيًا في ليبيا وتونس وأجزاء من شمال إفريقيا", noteEn: "Historically common in Libya, Tunisia, and parts of North Africa" },
+      { id: "warsh", ar: "ورش", en: "Warsh", variant: "verified", variantAr: "مَلِكِ", variantEn: "Maliki — without the long ā",
+        note: "الأكثر انتشارًا في شمال وغرب إفريقيا", noteEn: "Most widespread across North and West Africa" },
     ],
   },
   {
@@ -402,10 +211,8 @@ const READERS = [
     ar: "عاصم", en: "'Asim", cityAr: "الكوفي", cityEn: "Kufi",
     riwayat: [
       { id: "shubah", ar: "شعبة", en: "Shu'bah", variant: "pending" },
-      {
-        id: "hafs", ar: "حفص", en: "Hafs", variant: "verified", variantAr: "مَالِكِ", variantEn: "Māliki — with the long ā",
-        note: "الأكثر انتشارًا؛ المعتمدة في الحرمين وأغلب المصاحف المطبوعة", noteEn: "Most widespread; used in the Haramayn and most printed Mushafs"
-      },
+      { id: "hafs", ar: "حفص", en: "Hafs", variant: "verified", variantAr: "مَالِكِ", variantEn: "Māliki — with the long ā",
+        note: "الأكثر انتشارًا؛ المعتمدة في الحرمين وأغلب المصاحف المطبوعة", noteEn: "Most widespread; used in the Haramayn and most printed Mushafs" },
     ],
   },
   {
@@ -421,10 +228,8 @@ const READERS = [
     ar: "الكسائي", en: "Al-Kisa'i", cityAr: "الكوفي", cityEn: "Kufi",
     riwayat: [
       { id: "abualharith", ar: "أبو الحارث", en: "Abu al-Harith", variant: "pending" },
-      {
-        id: "duri_kisai", ar: "الدوري", en: "Ad-Duri", variant: "pending",
-        note: "راوٍ آخر باسم «الدوري»، غير الدوري عن أبي عمرو أعلاه", noteEn: "A different narrator also called \"al-Duri\" — not the same person as Abu 'Amr's al-Duri above."
-      },
+      { id: "duri_kisai", ar: "الدوري", en: "Ad-Duri", variant: "pending",
+        note: "راوٍ آخر باسم «الدوري»، غير الدوري عن أبي عمرو أعلاه", noteEn: "A different narrator also called \"al-Duri\" — not the same person as Abu 'Amr's al-Duri above." },
     ],
   },
   {
@@ -653,197 +458,20 @@ export default function AlMinhejQuran() {
 
   return (
     <div dir={dir} style={{ height: "100vh", width: "100%", background: c.bg, color: c.ink, fontFamily: uiFont, display: "flex", flexDirection: "column", overflow: "hidden" }}>
-      <style>{FONT_IMPORT}{MUSHAF_CSS_VARS}{`
+      <style>{FONT_IMPORT}{`
         .amiri { font-family: 'Amiri', serif; }
-        .amiri-quran { font-family: 'Amiri Quran', 'Amiri', serif; }
         .fraunces { font-family: 'Fraunces', serif; }
         * { box-sizing: border-box; }
         ::selection { background: ${c.gold}55; }
         .scroller::-webkit-scrollbar { width: 7px; }
         .scroller::-webkit-scrollbar-thumb { background: ${c.line}; border-radius: 8px; }
-        .vocab-word { cursor: pointer; border-bottom: 1.5px dotted var(--mushaf-gold); transition: color .2s; }
-        .vocab-word:hover { color: var(--mushaf-gold); }
+        .vocab-word { cursor: pointer; border-bottom: 1.5px dotted ${c.gold}; transition: color .2s; }
+        .vocab-word:hover { color: ${c.gold}; }
         .pill { font-size:11.5px; padding:6px 11px; border-radius:999px; cursor:pointer; transition:all .15s; border:1px solid ${c.line}; background:transparent; color:${c.sub}; white-space:nowrap; font-family: inherit; }
         .pill.active { background:${c.emerald}; color:#F4EFE2; border-color:${c.emerald}; }
         .occluded-word { filter: blur(5px); opacity: .55; cursor: pointer; transition: filter .25s, opacity .25s; }
         .occluded-word.revealed { filter: blur(0); opacity: 1; }
-
-        /* Mushaf page canvas — traditional design */
-        .mf-page {
-          position: relative;
-          background: var(--mushaf-page-bg);
-          border-radius: 4px;
-          transition: box-shadow 0.35s ease;
-        }
-        .mf-frame-outer {
-          border: 2.5px solid var(--mushaf-border-outer);
-          border-radius: 6px;
-          padding: 5px;
-        }
-        .mf-frame-mid {
-          border: 1px solid var(--mushaf-border-mid);
-          border-radius: 4px;
-          padding: 3px;
-        }
-        .mf-frame-inner {
-          border: 1.5px solid var(--mushaf-border-inner);
-          border-radius: 3px;
-          position: relative;
-        }
-        .mf-memorize .mf-frame-outer { border-color: var(--color-emerald); }
-        .mf-memorize .mf-frame-mid   { border-color: color-mix(in srgb, var(--color-emerald) 55%, transparent); }
-        .mf-memorize .mf-frame-inner { border-color: var(--color-emerald); }
-
-        /* Surah header cartouche */
-        .mf-cartouche {
-          display: inline-block;
-          position: relative;
-          border-top: 2px solid var(--mushaf-gold);
-          border-bottom: 2px solid var(--mushaf-gold);
-        }
-        .mf-cartouche::before,
-        .mf-cartouche::after {
-          content: '';
-          position: absolute;
-          top: 3px;
-          bottom: 3px;
-          width: 1px;
-          background: var(--mushaf-gold);
-        }
-        .mf-cartouche::before { left: 8px; }
-        .mf-cartouche::after  { right: 8px; }
-
-        /* Basmalah — centered, slightly larger */
-        .mf-basmalah {
-          display: block;
-          text-align: center;
-          font-family: 'Amiri Quran', 'Amiri', serif;
-          font-feature-settings: "liga" 1, "dlig" 1;
-          color: var(--mushaf-ink);
-          line-height: 2.6;
-          letter-spacing: 0.02em;
-        }
-
-        /* Verse body — justified RTL Amiri Quran text */
-        .mf-verses {
-          direction: rtl;
-          font-family: 'Amiri Quran', 'Amiri', serif;
-          font-feature-settings: "liga" 1, "dlig" 1;
-          text-align: justify;
-          text-align-last: center;
-          color: var(--mushaf-ink);
-          line-height: 2.6;
-          margin: 0;
-        }
-
-        /* Ornamental ayah rosette — double-ring circle */
-        .mf-rosette {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          width: 28px;
-          height: 28px;
-          margin: 0 3px;
-          vertical-align: middle;
-          position: relative;
-          font-size: 10px;
-          font-family: 'Amiri', serif;
-          color: var(--mushaf-gold-dark);
-          flex-shrink: 0;
-        }
-        .mf-rosette::before {
-          content: '';
-          position: absolute;
-          inset: 0;
-          border: 1.5px solid var(--mushaf-gold);
-          border-radius: 999px;
-          transform: rotate(22.5deg);
-        }
-        .mf-rosette::after {
-          content: '';
-          position: absolute;
-          inset: 3px;
-          border: 0.5px solid var(--mushaf-gold);
-          border-radius: 999px;
-        }
-
-        /* Corner ornaments */
-        .mf-corner {
-          position: absolute;
-          width: 30px;
-          height: 30px;
-          pointer-events: none;
-        }
-        .mf-corner svg { width: 100%; height: 100%; }
-        .mf-corner-tl { top: -2px;  left: -2px; }
-        .mf-corner-tr { top: -2px;  right: -2px;  transform: scaleX(-1); }
-        .mf-corner-bl { bottom: -2px; left: -2px;  transform: scaleY(-1); }
-        .mf-corner-br { bottom: -2px; right: -2px;  transform: scale(-1); }
-
-        /* Margin annotations — Juz'/Hizb labels */
-        .mf-margin {
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
-          display: flex;
-          flex-direction: column;
-          gap: 8px;
-          align-items: center;
-          font-family: 'Amiri', serif;
-          font-size: 8.5px;
-          color: var(--mushaf-gold-dark);
-          line-height: 1.4;
-        }
-        .mf-margin-label {
-          border: 1px solid var(--mushaf-gold);
-          border-radius: 4px;
-          padding: 3px 4px;
-          text-align: center;
-          white-space: nowrap;
-          writing-mode: vertical-rl;
-          text-orientation: mixed;
-        }
-
-        /* Decorative horizontal rule */
-        .mf-rule {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 7px;
-        }
-        .mf-rule-line {
-          flex: 1;
-          height: 1px;
-          background: linear-gradient(to var(--mf-rule-dir, left), var(--mushaf-gold), transparent);
-        }
-
-        /* Translation block inside canvas */
-        .mf-translation {
-          margin-top: 16px;
-          padding-top: 14px;
-          border-top: 1px dashed color-mix(in srgb, var(--mushaf-gold) 40%, transparent);
-        }
-
-        /* Page-number footer line */
-        .mf-footer-line {
-          flex: 1;
-          height: 0.5px;
-          background: color-mix(in srgb, var(--mushaf-gold) 35%, transparent);
-        }
-        .mf-footer-circle {
-          width: 28px;
-          height: 28px;
-          border-radius: 50%;
-          border: 1px solid var(--mushaf-gold);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 11px;
-          font-family: 'Amiri', serif;
-          color: var(--mushaf-gold-dark);
-          flex-shrink: 0;
-        }
-
+        .ayah-marker { display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px; border-radius:999px; border:1.5px solid ${c.gold}; color:${c.gold}; font-size:11px; margin: 0 4px; vertical-align:middle; }
         @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
       `}</style>
 
@@ -865,10 +493,8 @@ export default function AlMinhejQuran() {
           <div style={{ display: "flex", borderRadius: 9, overflow: "hidden", border: `1px solid ${c.line}` }}>
             {["ar", "en"].map((l) => (
               <button key={l} onClick={() => setUiLang(l)}
-                style={{
-                  fontSize: 11, padding: "7px 9px", border: "none", cursor: "pointer", fontFamily: l === "ar" ? "'Cairo',sans-serif" : "'Inter',sans-serif",
-                  background: uiLang === l ? c.emerald : c.panel2, color: uiLang === l ? "#F4EFE2" : c.sub
-                }}>
+                style={{ fontSize: 11, padding: "7px 9px", border: "none", cursor: "pointer", fontFamily: l === "ar" ? "'Cairo',sans-serif" : "'Inter',sans-serif",
+                  background: uiLang === l ? c.emerald : c.panel2, color: uiLang === l ? "#F4EFE2" : c.sub }}>
                 {l === "ar" ? "AR" : "EN"}
               </button>
             ))}
@@ -925,17 +551,47 @@ export default function AlMinhejQuran() {
 
         {/* CENTER — Mushaf page */}
         <main className="scroller" style={{ ...paneStyle, flex: 1, minWidth: 0, padding: `26px 6vw ${isCompact ? 76 : 26}px`, display: "flex", flexDirection: "column", alignItems: "center" }}>
-          <DemoReaderToolbar
-            c={c} t={t}
-            setFontScale={setFontScale}
-            copied={copied} setCopied={setCopied}
-            bookmarked={bookmarked} setBookmarked={setBookmarked}
-            showTranslation={showTranslation} setShowTranslation={setShowTranslation}
-            memorize={memorize} setMemorize={setMemorize} enterMemorize={enterMemorize}
-            difficulty={difficulty} setDifficulty={setDifficulty}
-            revealed={revealed} setRevealed={setRevealed}
-            words={words}
-          />
+          <div style={{ display: "flex", justifyContent: "center", gap: 8, flexWrap: "wrap", marginBottom: 18, width: "100%" }}>
+            {[
+              { icon: <Play size={13} />, label: t.audio },
+              { icon: <Copy size={13} />, label: copied ? t.copied : t.copy, onClick: () => { setCopied(true); setTimeout(() => setCopied(false), 1200); } },
+              { icon: <Bookmark size={13} fill={bookmarked ? c.gold : "none"} />, label: t.bookmark, onClick: () => setBookmarked((b) => !b) },
+              { icon: <Share2 size={13} />, label: t.share },
+            ].map((b) => (
+              <button key={b.label} onClick={b.onClick} style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 11.5, padding: "6px 12px", borderRadius: 999, background: c.panel2, border: `1px solid ${c.line}`, color: c.ink, cursor: "pointer", fontFamily: "inherit" }}>
+                {b.icon}{b.label}
+              </button>
+            ))}
+            <div style={{ display: "flex", alignItems: "center", gap: 2, background: c.panel2, border: `1px solid ${c.line}`, borderRadius: 999, padding: "4px 8px" }}>
+              <Type size={12} />
+              <button onClick={() => setFontScale((s) => Math.max(0.8, s - 0.1))} style={{ background: "none", border: "none", cursor: "pointer", color: c.ink, fontSize: 13, padding: "0 4px" }}>–</button>
+              <button onClick={() => setFontScale((s) => Math.min(1.5, s + 0.1))} style={{ background: "none", border: "none", cursor: "pointer", color: c.ink, fontSize: 13, padding: "0 4px" }}>+</button>
+            </div>
+            {!memorize && (
+              <button onClick={() => setShowTranslation((s) => !s)}
+                style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 11.5, padding: "6px 12px", borderRadius: 999, cursor: "pointer", fontFamily: "inherit",
+                  background: showTranslation ? c.gold : c.panel2, color: showTranslation ? "#241c0a" : c.ink, border: `1px solid ${showTranslation ? c.gold : c.line}` }}>
+                {showTranslation ? <EyeOff size={13} /> : <Eye size={13} />} {showTranslation ? t.hideTranslation : t.showTranslation}
+              </button>
+            )}
+            <button onClick={() => (memorize ? setMemorize(false) : enterMemorize())}
+              style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 11.5, padding: "6px 12px", borderRadius: 999, cursor: "pointer", fontFamily: "inherit",
+                background: memorize ? c.emerald : c.panel2, color: memorize ? "#F4EFE2" : c.ink, border: `1px solid ${memorize ? c.emerald : c.line}` }}>
+              <Brain size={13} /> {t.memorize}
+            </button>
+          </div>
+
+          {memorize && (
+            <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 18, flexWrap: "wrap", justifyContent: "center" }}>
+              {[["easy", 0.2], ["medium", 0.4], ["hard", 0.65]].map(([key, val]) => (
+                <button key={key} className={`pill ${Math.abs(difficulty - val) < 0.01 ? "active" : ""}`}
+                  onClick={() => { setDifficulty(val); setRevealed(new Set()); }}>{t[key]}</button>
+              ))}
+              <button onClick={() => setRevealed(new Set(words.map((w) => w.key)))} className="pill" style={{ display: "flex", alignItems: "center", gap: 5 }}>
+                <RotateCcw size={11} /> {t.revealAll}
+              </button>
+            </div>
+          )}
 
           <div style={{ textAlign: "center", marginBottom: 4 }}>
             <span style={{ fontSize: 10.5, color: c.gold }}>{t.originalLabel}</span>
@@ -944,223 +600,87 @@ export default function AlMinhejQuran() {
             {memorize ? t.memorizeHint : t.tapHint}
           </div>
 
-          {/* the Mushaf page — Traditional Authentic Canvas */}
-          <div
-            className={`mf-page w-full${memorize ? " mf-memorize" : ""}`}
-            style={{
-              maxWidth: 560,
-              boxShadow: memorize
-                ? "0 0 0 3px color-mix(in srgb, var(--color-emerald) 35%, transparent), 0 28px 60px -24px rgba(0,0,0,.55)"
-                : "0 4px 8px -3px rgba(0,0,0,.07), 0 28px 64px -24px rgba(0,0,0,.42)",
-            }}
-          >
-            {/* 3-layer gold border frame */}
-            <div className="mf-frame-outer">
-              <div className="mf-frame-mid">
-                <div className="mf-frame-inner" style={{ padding: isCompact ? "22px 18px 20px" : "30px 36px 26px" }}>
+          {/* the Mushaf page */}
+          <div style={{
+            width: "100%", maxWidth: 640, background: c.page, border: `1px solid ${c.line}`, borderRadius: 8,
+            padding: isCompact ? "26px 20px" : "42px 46px", boxShadow: memorize ? `0 0 0 2px ${c.emerald}33` : "0 20px 50px -30px rgba(0,0,0,.4)",
+            transition: "box-shadow .3s",
+          }}>
+            <div style={{ textAlign: "center", marginBottom: 30 }}>
+              <div style={{ display: "inline-block", border: `1.5px solid ${c.gold}77`, borderRadius: 10, padding: "8px 26px" }}>
+                <div className="amiri" style={{ fontSize: 18, color: c.gold }}>سُورَةُ الْفَاتِحَةِ</div>
+                <div style={{ fontSize: 9, color: c.sub, letterSpacing: 1, marginTop: 2 }}>{uiLang === "ar" ? "مكية · سبع آيات" : "Makkan · 7 verses"}</div>
+              </div>
+            </div>
 
-                  {/* Corner ornaments */}
-                  {["tl", "tr", "bl", "br"].map((pos) => (
-                    <div key={pos} className={`mf-corner mf-corner-${pos}`}>
-                      <CornerOrnament />
-                    </div>
-                  ))}
-
-                  {/* Juz'/Hizb margin annotation (desktop only) */}
-                  {!isCompact && (
-                    <div className="mf-margin" style={{ insetInlineEnd: -36 }}>
-                      <div className="mf-margin-label">
-                        {uiLang === "ar" ? "الجزء" : "Juz'"}<br />١
-                      </div>
-                      <div className="mf-margin-label">
-                        {uiLang === "ar" ? "الحزب" : "Hizb"}<br />١
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Surah Header Cartouche */}
-                  <div className="text-center mb-5" dir="rtl">
-                    <SurahRule />
-
-                    <div
-                      className="mf-cartouche"
-                      style={{ padding: isCompact ? "10px 32px" : "12px 52px", marginTop: 10, marginBottom: 10 }}
-                    >
-                      {/* Surah title */}
-                      <div
-                        className="amiri-quran"
-                        style={{
-                          fontSize: isCompact ? 20 : 24,
-                          color: "var(--mushaf-title)",
-                          letterSpacing: "0.04em",
-                          fontWeight: 400,
-                        }}
-                      >
-                        سُورَةُ الْفَاتِحَةِ
-                      </div>
-
-                      {/* Metadata line */}
-                      <div
-                        style={{
-                          fontSize: 9,
-                          color: "var(--mushaf-gold-dark)",
-                          letterSpacing: 2,
-                          marginTop: 4,
-                          fontFamily: "var(--font-sans)",
-                          textTransform: "uppercase",
-                        }}
-                      >
-                        {uiLang === "ar"
-                          ? "مكية · ٧ آيات · الجزء ١"
-                          : "Makkan · 7 Verses · Juz' 1"}
-                      </div>
-                    </div>
-
-                    <SurahRule />
-                  </div>
-
-                  {/* Verse Text */}
-                  <p className="mf-verses" style={{ fontSize: (isCompact ? 22 : 26) * fontScale }}>
-                    {displayAyat.map((ay) => {
-                      const ayahWords = words.filter((w) => w.ayah === ay.key);
-                      const isBasmalaLine = !!ay.isBasmala;
-
-                      return (
+            <p dir="rtl" className="amiri" style={{ fontSize: (isCompact ? 22 : 26) * fontScale, lineHeight: 2.1, textAlign: "center", margin: 0 }}>
+              {displayAyat.map((ay) => {
+                const ayahWords = words.filter((w) => w.ayah === ay.key);
+                return (
+                  <span key={ay.key}>
+                    {ayahWords.map((w) => {
+                      const v = vocabByWord[w.clean];
+                      const occluded = memorize && isOccluded(w.idx, difficulty);
+                      const isRevealed = revealed.has(w.key);
+                      const content = (
                         <span
-                          key={ay.key}
-                          className={isBasmalaLine ? "mf-basmalah" : ""}
-                          style={isBasmalaLine ? { fontSize: (isCompact ? 23 : 28) * fontScale } : {}}
-                        >
-                          {ayahWords.map((w) => {
-                            const v = vocabByWord[w.clean];
-                            const occluded = memorize && isOccluded(w.idx, difficulty);
-                            const isRevealed = revealed.has(w.key);
-
-                            const content = (
-                              <span
-                                className={[
-                                  occluded ? "occluded-word" : "",
-                                  occluded && isRevealed ? "revealed" : "",
-                                ]
-                                  .filter(Boolean)
-                                  .join(" ")}
-                                onClick={(e) => {
-                                  if (occluded) {
-                                    e.stopPropagation();
-                                    setRevealed((r) => {
-                                      const n = new Set(r);
-                                      n.has(w.key) ? n.delete(w.key) : n.add(w.key);
-                                      return n;
-                                    });
-                                    return;
-                                  }
-                                  if (v) {
-                                    e.stopPropagation();
-                                    setHoverVocab((h) => (h === v.id ? null : v.id));
-                                    onVocabClick(v.id);
-                                  }
-                                }}
-                              >
-                                {w.raw}
-                              </span>
-                            );
-
-                            if (v && !occluded) {
-                              return (
-                                <span key={w.key}>
-                                  <span
-                                    className="vocab-word relative"
-                                    onMouseEnter={() => setHoverVocab(v.id)}
-                                    onMouseLeave={() => setHoverVocab(null)}
-                                  >
-                                    {content}
-                                    {hoverVocab === v.id && <VocabPopover v={v} c={c} uiLang={uiLang} />}
-                                  </span>{" "}
-                                </span>
-                              );
-                            }
-
-                            return <span key={w.key}>{content} </span>;
-                          })}
-
-                          {/* Ornamental ayah rosette */}
-                          {ay.marker && (
-                            <span className="mf-rosette" aria-label={`Ayah ${ay.marker}`}>
-                              {ay.marker}
-                            </span>
-                          )}
-
-                          {/* Basmalah unnumbered hint */}
-                          {ay.isBasmala && !ay.marker && (
-                            <span
-                              className="text-[9px] align-middle"
-                              style={{
-                                color: "var(--mushaf-gold-dark)",
-                                opacity: 0.7,
-                                fontFamily: "var(--font-sans)",
-                              }}
-                            >
-                              {" "}•
-                            </span>
-                          )}
-
-                          {/* Qira'at compare trigger */}
-                          {(ay.key === "basmala" || ay.key === "malik") && (
-                            <button
-                              onClick={() => setQiraatCompareFor(ay.key)}
-                              title={t.compareReadings}
-                              className="inline-flex items-center justify-center rounded-full border cursor-pointer align-middle ms-0.5"
-                              style={{
-                                width: 18,
-                                height: 18,
-                                borderColor: "color-mix(in srgb, var(--mushaf-gold) 60%, transparent)",
-                                background: "color-mix(in srgb, var(--mushaf-gold) 12%, transparent)",
-                                color: "var(--mushaf-gold-dark)",
-                                fontSize: 10,
-                                fontFamily: "inherit",
-                              }}
-                            >
-                              ⇄
-                            </button>
-                          )}{" "}
-                        </span>
-                      );
-                    })}
-                  </p>
-
-                  {/* Translation panel (inside canvas) */}
-                  {!memorize && showTranslation && (
-                    <div className="mf-translation">
-                      {displayAyat.map((ay) => (
-                        <p
-                          key={ay.key}
-                          className="text-[12px] italic leading-[1.75] mb-1"
-                          style={{
-                            color: "var(--mushaf-gold-dark)",
-                            fontFamily: "var(--font-sans)",
-                            opacity: 0.85,
+                          className={occluded ? `occluded-word${isRevealed ? " revealed" : ""}` : ""}
+                          onClick={(e) => {
+                            if (occluded) { e.stopPropagation(); setRevealed((r) => { const n = new Set(r); n.has(w.key) ? n.delete(w.key) : n.add(w.key); return n; }); return; }
+                            if (v) { e.stopPropagation(); setHoverVocab((h) => (h === v.id ? null : v.id)); onVocabClick(v.id); }
                           }}
                         >
-                          <b className="not-italic" style={{ color: "var(--mushaf-gold)" }}>
-                            {ay.marker ?? "—"}.
-                          </b>{" "}
-                          {ay.en}
-                        </p>
-                      ))}
-                    </div>
-                  )}
+                          {w.raw}
+                        </span>
+                      );
+                      if (v && !occluded) {
+                        return (
+                          <span key={w.key}>
+                            <span className="vocab-word" style={{ position: "relative" }} onMouseEnter={() => setHoverVocab(v.id)} onMouseLeave={() => setHoverVocab(null)}>
+                              {content}
+                              {hoverVocab === v.id && <VocabPopover v={v} c={c} uiLang={uiLang} />}
+                            </span>{" "}
+                          </span>
+                        );
+                      }
+                      return <span key={w.key}>{content} </span>;
+                    })}
+                    {ay.marker && <span className="ayah-marker">{ay.marker}</span>}
+                    {ay.isBasmala && !ay.marker && (
+                      <span style={{ fontSize: 9.5, color: c.sub, opacity: 0.75, verticalAlign: "middle" }}>
+                        {uiLang === "ar" ? "(افتتاحية، غير معدودة)" : "(opening, not numbered)"}
+                      </span>
+                    )}
+                    {(ay.key === "basmala" || ay.key === "malik") && (
+                      <button
+                        onClick={() => setQiraatCompareFor(ay.key)}
+                        title={t.compareReadings}
+                        style={{
+                          display: "inline-flex", alignItems: "center", justifyContent: "center", width: 20, height: 20,
+                          borderRadius: 999, border: `1px solid ${c.gold}88`, background: `${c.gold}1a`, color: c.gold,
+                          fontSize: 10, cursor: "pointer", verticalAlign: "middle", marginInlineStart: 2, fontFamily: "inherit",
+                        }}
+                      >
+                        ⇄
+                      </button>
+                    )}{" "}
+                  </span>
+                );
+              })}
+            </p>
 
-                  {/* Page number footer */}
-                  <div className="flex items-center justify-center gap-1.5 mt-5">
-                    <div className="mf-footer-line" />
-                    <div className="mf-footer-circle">١</div>
-                    <div className="mf-footer-line" />
-                  </div>
+            {!memorize && showTranslation && (
+              <div style={{ marginTop: 22, borderTop: `1px dashed ${c.line}`, paddingTop: 16 }}>
+                {displayAyat.map((ay) => (
+                  <p key={ay.key} style={{ fontSize: 12.5, color: c.sub, fontStyle: "italic", lineHeight: 1.7, marginBottom: 6 }}>
+                    <b style={{ color: c.gold, fontStyle: "normal" }}>{ay.marker ?? "—"}.</b> {ay.en}
+                  </p>
+                ))}
+              </div>
+            )}
 
-                </div>{/* mf-frame-inner */}
-              </div>{/* mf-frame-mid */}
-            </div>{/* mf-frame-outer */}
-          </div>{/* mf-page */}
+            <div style={{ textAlign: "center", marginTop: 30, fontSize: 10.5, color: c.sub, borderTop: `1px dashed ${c.line}`, paddingTop: 10 }}>١</div>
+          </div>
 
           {memorize && (
             <button onClick={() => setReciteCount((n) => n + 1)}
@@ -1385,8 +905,8 @@ function RiwayatPanel({ c, t, uiLang, dir, activeRiwayah, setActiveRiwayah, riwa
 function QiraatComparePanel({ c, t, uiLang, dir, isCompact, forSegment, mode, activeRiwayah, compareSelection, qiraatPath, onClose }) {
   const scope =
     mode === "single" ? ALL_RIWAYAT.filter((r) => r.id === activeRiwayah)
-      : mode === "compare" ? ALL_RIWAYAT.filter((r) => compareSelection.has(r.id))
-        : ALL_RIWAYAT;
+    : mode === "compare" ? ALL_RIWAYAT.filter((r) => compareSelection.has(r.id))
+    : ALL_RIWAYAT;
 
   const isBasmala = forSegment === "basmala";
   const title = isBasmala ? t.basmalaTitle : t.malikTitle;
@@ -1565,11 +1085,9 @@ function StudyContent({ c, t, uiLang, dir, rightTab, setRightTab, discovered, on
                       const showCorrect = st !== undefined && oi === q.correct;
                       return (
                         <button key={oi} onClick={() => setQuizState((s) => ({ ...s, [qi]: { picked: oi } }))}
-                          style={{
-                            textAlign: dir === "rtl" ? "right" : "left", padding: "8px 12px", borderRadius: 9, fontSize: 12, cursor: "pointer", color: c.ink, fontFamily: "inherit",
+                          style={{ textAlign: dir === "rtl" ? "right" : "left", padding: "8px 12px", borderRadius: 9, fontSize: 12, cursor: "pointer", color: c.ink, fontFamily: "inherit",
                             background: showCorrect ? `${c.emerald}33` : picked ? `${c.gold}22` : c.panel2,
-                            border: `1px solid ${showCorrect ? c.emerald : picked ? c.gold : c.line}`
-                          }}>
+                            border: `1px solid ${showCorrect ? c.emerald : picked ? c.gold : c.line}` }}>
                           {opt[uiLang]}
                         </button>
                       );

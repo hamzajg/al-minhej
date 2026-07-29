@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ChevronLeft, ChevronRight, Flame, List, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, Flame, List, X, ArrowRight } from "lucide-react";
 import { useSettings } from "@/context/SettingsContext";
 import { useIsMobile } from "@/hooks/useIsMobile";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
@@ -8,10 +8,9 @@ import { useQuranExperience } from "@/hooks/useQuranExperience";
 import { Header } from "@/components/layout/Header";
 import { BottomSheet } from "@/components/layout/BottomSheet";
 import { BottomTabBar } from "@/components/layout/BottomTabBar";
-import { SourceDetailModal } from "@/components/sources/SourceDetailModal";
 import { QuranCompanionWidget } from "@/components/quran/QuranCompanionWidget";
 import { RiwayatPanel } from "@/components/quran/RiwayatPanel";
-import { QuranMushafReader } from "@/components/quran/QuranMushafReader";
+import { QuranMushafReader, buildDisplayAyat } from "@/components/quran/QuranMushafReader";
 import { QiraatComparePanel } from "@/components/quran/QiraatComparePanel";
 import { QuranStudyPanel } from "@/components/quran/QuranStudyPanel";
 import { UnifiedReaderToolbar } from "@/components/reader/UnifiedReaderToolbar";
@@ -70,13 +69,16 @@ export function QuranReaderContent({
   );
 
   const [activeSource, setActiveSource] = useState<string | null>(null);
-  const [votes, setVotes] = useState<Record<string, number>>({});
-  const [voted, setVoted] = useState<Set<string>>(new Set());
 
   const toc = dto?.toc ?? [];
   const allRiwayat = dto?.allRiwayat ?? [];
   const activeR = allRiwayat.find((r) => r.id === activeRiwayah) ??
     allRiwayat.find((r) => r.id === "qalun") ?? null;
+
+  const displayAyat = useMemo(
+    () => buildDisplayAyat(activeR?.countsBasmala ?? false),
+    [activeR?.countsBasmala]
+  );
 
   const surahNumber = dto?.surah.attributes.kind === "surah" ? dto.surah.attributes.surahNumber : undefined;
   const currentTocIndex = toc.findIndex(
@@ -107,13 +109,16 @@ export function QuranReaderContent({
     setRevealed(new Set());
   };
 
-  const castVote = (sourceId: string) => {
-    if (voted.has(sourceId)) return;
-    setVoted((v) => new Set(v).add(sourceId));
-    setVotes((v) => ({ ...v, [sourceId]: (v[sourceId] || 0) + 1 }));
+  const hideAllWords = () => {
+    setRevealed(new Set());
   };
 
+
+
   const selectedSourceObj = activeSource && dto ? dto.sources[activeSource] : null;
+
+  const alayhimCouplet = dto?.shatibiyyahCouplets?.fatihaCouplets?.alayhim;
+  const additionalCoupletsForSiratal = alayhimCouplet ? [alayhimCouplet] : undefined;
 
   if (loading) {
     return (
@@ -141,6 +146,17 @@ export function QuranReaderContent({
   const surah = dto.surah;
   const attrs = surah.attributes.kind === "surah" ? surah.attributes : null;
 
+  /* ── Desktop: determine what goes in the right panel ── */
+  const rightPanelContent = (() => {
+    if (qiraatCompareFor) {
+      return "compare";
+    }
+    if (selectedSourceObj) {
+      return "source";
+    }
+    return "study";
+  })();
+
   return (
     <div className="h-screen w-full flex flex-col overflow-hidden bg-[var(--color-bg)] text-[var(--color-ink)]">
       {/* Top Header */}
@@ -158,7 +174,7 @@ export function QuranReaderContent({
 
       {/* Surah Navigation & TOC Bar */}
       <div
-        className="flex items-center justify-between px-4 py-2 border-b flex-wrap gap-2 shrink-0"
+        className="flex items-center justify-between px-4 py-2 border-b flex-wrap gap-2 shrink-0 relative z-[80]"
         style={{ borderColor: "var(--color-line)", background: "var(--color-panel-2)" }}
       >
         <div className="flex items-center gap-2 min-w-0">
@@ -213,8 +229,8 @@ export function QuranReaderContent({
         </div>
       </div>
 
-      {/* Surah Table of Contents (TOC) Sidebar Drawer */}
-      {showToc && (
+      {/* Surah Table of Contents (TOC) - Mobile: overlay drawer, Desktop: inline expandable */}
+      {showToc && isCompact && (
         <>
           <div
             onClick={() => setShowToc(false)}
@@ -316,6 +332,56 @@ export function QuranReaderContent({
           </BottomSheet>
         ) : (
           <aside className="lesson-scroller h-full overflow-y-auto shrink-0 w-[320px] border-e border-[var(--color-line)] p-[18px]">
+            {/* Desktop: Inline TOC expandable section */}
+            {showToc && (
+              <div className="mb-4 pb-4 border-b border-[var(--color-line)]">
+                <div className="flex justify-between items-center mb-3">
+                  <span className="font-bold text-[13px]" style={{ color: "var(--color-ink)" }}>
+                    {isAr ? "سور القرآن الكريم" : "Surahs of the Holy Qur'an"}
+                  </span>
+                  <button
+                    onClick={() => setShowToc(false)}
+                    className="rounded-full w-6 h-6 cursor-pointer border grid place-items-center"
+                    style={{ background: "var(--color-panel-2)", borderColor: "var(--color-line)", color: "var(--color-sub)" }}
+                  >
+                    <X size={12} />
+                  </button>
+                </div>
+                <div className="text-[10.5px] mb-2.5" style={{ color: "var(--color-sub)" }}>
+                  {isAr ? "اختر سورة لقراءتها" : "Select a surah to read"}
+                </div>
+                <div className="grid gap-1 max-h-[280px] overflow-y-auto">
+                  {toc.map((entry) => {
+                    const active = entry.slug === surah.slug || entry.number === attrs?.surahNumber;
+                    return (
+                      <button
+                        key={entry.id}
+                        onClick={() => {
+                          setShowToc(false);
+                          navigate(quranReaderPath(entry.slug));
+                        }}
+                        className="flex justify-between items-center text-start w-full p-[8px_10px] rounded-lg cursor-pointer font-inherit border"
+                        style={{
+                          background: active
+                            ? "color-mix(in srgb, var(--color-emerald) 14%, transparent)"
+                            : "transparent",
+                          borderColor: active
+                            ? "color-mix(in srgb, var(--color-emerald) 40%, transparent)"
+                            : "transparent",
+                        }}
+                      >
+                        <div className="text-[11px] font-semibold min-w-0 truncate" style={{ color: "var(--color-ink)" }}>
+                          {entry.number}. {isAr ? entry.nameAr : entry.nameEn}
+                        </div>
+                        <span className="text-[9px] text-[var(--color-sub)] font-mono shrink-0 ml-2">
+                          {isAr ? `ص${entry.pageStart}` : `p${entry.pageStart}`}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
             <RiwayatPanel
               readers={dto.readers}
               allRiwayat={dto.allRiwayat}
@@ -333,7 +399,7 @@ export function QuranReaderContent({
           </aside>
         )}
 
-{/* CENTER: Mushaf Reader View */}
+        {/* CENTER: Mushaf Reader View */}
         <main
           className="lesson-scroller h-full overflow-y-auto flex-1 min-w-0 px-[6vw] py-6 flex flex-col items-center"
           style={{ paddingBottom: isCompact ? 76 : 26 }}
@@ -359,16 +425,18 @@ export function QuranReaderContent({
               setRevealed(new Set());
             }}
             onRevealAll={() => {
-              setRevealed(
-                new Set(
-                  Object.keys(dto.segments).flatMap((key, ayIdx) =>
-                    dto.segments[key].ar
-                      .split(" ")
-                      .map((_, wIdx) => `${key}-${ayIdx + wIdx}`)
-                  )
-                )
-              );
+              const allKeys = new Set<string>();
+              let idx = 0;
+              displayAyat.forEach((ay) => {
+                const text = ay.ar;
+                text.split(" ").forEach(() => {
+                  allKeys.add(`${ay.key}-${idx}`);
+                  idx++;
+                });
+              });
+              setRevealed(allKeys);
             }}
+            onHideAll={hideAllWords}
             readerType="quran"
             showTranslation={showTranslation}
             setShowTranslation={setShowTranslation}
@@ -408,44 +476,167 @@ export function QuranReaderContent({
           )}
         </main>
 
-        {/* RIGHT: Study Panel */}
+        {/* RIGHT: Panel (Study / Compare / Source) */}
         {isCompact ? (
-          <BottomSheet
-            open={sheet === "study"}
-            title={isAr ? "الدراسة" : "Study"}
-            onClose={() => setSheet(null)}
-          >
-            <QuranStudyPanel
-              tafsir={dto.tafsir}
-              sources={dto.sources}
-              related={dto.related}
-              vocab={dto.vocab}
-              quiz={dto.quiz}
-              tab={rightTab}
-              setTab={setRightTab}
-              discovered={discoveredSet}
-              onVocabClick={onDiscover}
-              activeGraphNode={activeGraphNode}
-              setActiveGraphNode={setActiveGraphNode}
-              onOpenSource={setActiveSource}
-            />
-          </BottomSheet>
+          <>
+            {/* Mobile: Bottom sheets */}
+            <BottomSheet
+              open={sheet === "study"}
+              title={isAr ? "الدراسة" : "Study"}
+              onClose={() => setSheet(null)}
+            >
+              <QuranStudyPanel
+                tafsir={dto.tafsir}
+                sources={dto.sources}
+                related={dto.related}
+                vocab={dto.vocab}
+                quiz={dto.quiz}
+                tab={rightTab}
+                setTab={setRightTab}
+                discovered={discoveredSet}
+                onVocabClick={onDiscover}
+                activeGraphNode={activeGraphNode}
+                setActiveGraphNode={setActiveGraphNode}
+                onOpenSource={setActiveSource}
+              />
+            </BottomSheet>
+            {qiraatCompareFor && (
+              <BottomSheet
+                open={qiraatCompareFor !== null}
+                title={isAr ? "مقارنة القراءات" : "Compare readings"}
+                onClose={() => setQiraatCompareFor(null)}
+              >
+                <QiraatComparePanel
+                  allRiwayat={dto.allRiwayat}
+                  basmalaNote={dto.basmalaNote}
+                  forSegment={qiraatCompareFor}
+                  mode={riwayatMode}
+                  activeRiwayah={activeRiwayah}
+                  compareSelection={compareSelection}
+                  qiraatPath={qiraatPath}
+                  isCompact={true}
+                  renderInline={true}
+                  couplets={dto.shatibiyyahCouplets?.fatihaCouplets?.[qiraatCompareFor] ?? (qiraatCompareFor === "siratal" || qiraatCompareFor === "siratal1" || qiraatCompareFor === "siratal2" ? dto.shatibiyyahCouplets?.fatihaCouplets?.siratal : undefined)}
+                  additionalCouplets={
+                    (qiraatCompareFor === "siratal" || qiraatCompareFor === "siratal1" || qiraatCompareFor === "siratal2")
+                      ? additionalCoupletsForSiratal
+                      : undefined
+                  }
+                  durrahCouplets={dto.durrahCouplets?.fatihaCouplets?.[qiraatCompareFor]}
+                  tayyibahCouplets={dto.tayyibahCouplets?.fatihaCouplets?.[qiraatCompareFor]}
+                  rumuz={dto.rumuz}
+                />
+              </BottomSheet>
+            )}
+          </>
         ) : (
-          <aside className="lesson-scroller h-full overflow-y-auto shrink-0 w-[340px] border-s border-[var(--color-line)] p-[18px]">
-            <QuranStudyPanel
-              tafsir={dto.tafsir}
-              sources={dto.sources}
-              related={dto.related}
-              vocab={dto.vocab}
-              quiz={dto.quiz}
-              tab={rightTab}
-              setTab={setRightTab}
-              discovered={discoveredSet}
-              onVocabClick={onDiscover}
-              activeGraphNode={activeGraphNode}
-              setActiveGraphNode={setActiveGraphNode}
-              onOpenSource={setActiveSource}
-            />
+          <aside className="lesson-scroller h-full overflow-y-auto shrink-0 w-[380px] border-s border-[var(--color-line)] p-[18px]">
+            {/* Desktop: Inline panels - text canvas always visible */}
+            {rightPanelContent === "compare" && qiraatCompareFor && (
+              <div className="relative">
+                <button
+                  onClick={() => setQiraatCompareFor(null)}
+                  className="flex items-center gap-1.5 mb-3 text-[11px] font-bold text-[var(--color-gold)] cursor-pointer bg-transparent border-none p-0"
+                >
+                  <ArrowRight size={12} className={dir === "rtl" ? "rotate-180" : ""} />
+                  {isAr ? "العودة للدراسة" : "Back to study"}
+                </button>
+                <QiraatComparePanel
+                  allRiwayat={dto.allRiwayat}
+                  basmalaNote={dto.basmalaNote}
+                  forSegment={qiraatCompareFor}
+                  mode={riwayatMode}
+                  activeRiwayah={activeRiwayah}
+                  compareSelection={compareSelection}
+                  qiraatPath={qiraatPath}
+                  isCompact={false}
+                  renderInline={true}
+                  couplets={dto.shatibiyyahCouplets?.fatihaCouplets?.[qiraatCompareFor] ?? (qiraatCompareFor === "siratal" || qiraatCompareFor === "siratal1" || qiraatCompareFor === "siratal2" ? dto.shatibiyyahCouplets?.fatihaCouplets?.siratal : undefined)}
+                  additionalCouplets={
+                    (qiraatCompareFor === "siratal" || qiraatCompareFor === "siratal1" || qiraatCompareFor === "siratal2")
+                      ? additionalCoupletsForSiratal
+                      : undefined
+                  }
+                  durrahCouplets={dto.durrahCouplets?.fatihaCouplets?.[qiraatCompareFor]}
+                  tayyibahCouplets={dto.tayyibahCouplets?.fatihaCouplets?.[qiraatCompareFor]}
+                  rumuz={dto.rumuz}
+                />
+              </div>
+            )}
+            {rightPanelContent === "source" && selectedSourceObj && (
+              <div className="relative">
+                <button
+                  onClick={() => setActiveSource(null)}
+                  className="flex items-center gap-1.5 mb-3 text-[11px] font-bold text-[var(--color-gold)] cursor-pointer bg-transparent border-none p-0"
+                >
+                  <ArrowRight size={12} className={dir === "rtl" ? "rotate-180" : ""} />
+                  {isAr ? "العودة للدراسة" : "Back to study"}
+                </button>
+                <div className="bg-[var(--color-panel)] border border-[var(--color-line)] rounded-[16px] p-5">
+                  <div className="mb-3.5">
+                    <div
+                      className={isAr ? "font-arabic text-[18px]" : "font-display text-[16px]"}
+                      style={{ fontWeight: 600, color: "var(--color-ink)", lineHeight: 1.3 }}
+                    >
+                      {isAr ? selectedSourceObj.ar : selectedSourceObj.en}
+                    </div>
+                    <div className="text-[11px] text-[var(--color-sub)] mt-1">
+                      {t.author}: {isAr ? selectedSourceObj.authorAr : selectedSourceObj.authorEn}
+                    </div>
+                  </div>
+                  <div className="h-1.5 rounded-full bg-[var(--color-panel-2)] overflow-hidden mb-2">
+                    <div
+                      className="h-full rounded-full transition-all duration-300"
+                      style={{
+                        width: `${Math.max(selectedSourceObj.total > 0 ? (selectedSourceObj.indexed / selectedSourceObj.total) * 100 : 0, 2)}%`,
+                        background: selectedSourceObj.indexed > 0 ? "var(--color-emerald)" : "#B0785A",
+                      }}
+                    />
+                  </div>
+                  <div className="text-[11px] text-[var(--color-sub)] mb-4">
+                    {selectedSourceObj.indexed.toLocaleString()} / {selectedSourceObj.total.toLocaleString()}{" "}
+                    {isAr ? selectedSourceObj.unit.ar : selectedSourceObj.unit.en}
+                    {selectedSourceObj.total > 0 && (
+                      <> · {Math.round((selectedSourceObj.indexed / selectedSourceObj.total) * 100)}%</>
+                    )}
+                  </div>
+                  {selectedSourceObj.indexed > 0 ? (
+                    <div className="bg-[var(--color-emerald)]/10 border border-[var(--color-emerald)]/25 rounded-2xl p-4 text-[12px] text-[var(--color-ink)]">
+                      {isAr
+                        ? "النص المرقمن لهذا الموضع معروض بالفعل ضمن دراسة السورة."
+                        : "The digitized passage for this source is shown within the surah study panel above."}
+                    </div>
+                  ) : (
+                    <div className="bg-[#B0785A]/10 border border-[#B0785A]/25 rounded-2xl p-4">
+                      <div className="text-[10px] text-[#B0785A] font-bold mb-1.5">
+                        {isAr ? "لم يُرقم بعد" : "Not yet digitized"}
+                      </div>
+                      <p className="text-[12px] leading-relaxed text-[var(--color-ink)] m-0">
+                        {isAr
+                          ? "هذا المصدر لا يحتوي على نصوص مرقّمة بعد. يمكنك المساعدة في أولويته لترقيمته."
+                          : "This source does not contain digitized texts yet. You can help prioritize it for digitization."}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+            {rightPanelContent === "study" && (
+              <QuranStudyPanel
+                tafsir={dto.tafsir}
+                sources={dto.sources}
+                related={dto.related}
+                vocab={dto.vocab}
+                quiz={dto.quiz}
+                tab={rightTab}
+                setTab={setRightTab}
+                discovered={discoveredSet}
+                onVocabClick={onDiscover}
+                activeGraphNode={activeGraphNode}
+                setActiveGraphNode={setActiveGraphNode}
+                onOpenSource={setActiveSource}
+              />
+            )}
           </aside>
         )}
       </div>
@@ -455,60 +646,6 @@ export function QuranReaderContent({
         <BottomTabBar
           sheet={sheet}
           onToggle={(next) => setSheet((s) => (s === next ? null : next))}
-        />
-      )}
-
-      {/* Qira'at Comparison Modal */}
-      {qiraatCompareFor && (
-        <QiraatComparePanel
-          allRiwayat={dto.allRiwayat}
-          basmalaNote={dto.basmalaNote}
-          forSegment={qiraatCompareFor}
-          mode={riwayatMode}
-          activeRiwayah={activeRiwayah}
-          compareSelection={compareSelection}
-          qiraatPath={qiraatPath}
-          isCompact={isCompact}
-          onClose={() => setQiraatCompareFor(null)}
-        />
-      )}
-
-      {/* Source Detail Modal */}
-      {selectedSourceObj && (
-        <SourceDetailModal
-          node={{
-            id: selectedSourceObj.id,
-            type: "BOOK",
-            slug: selectedSourceObj.id,
-            status: "published",
-            digitizationStatus:
-              selectedSourceObj.indexed > 0 ? "partial" : "stub",
-            title: { ar: selectedSourceObj.ar, en: selectedSourceObj.en },
-            attributes: {
-              kind: "book",
-              author: {
-                ar: selectedSourceObj.authorAr,
-                en: selectedSourceObj.authorEn,
-              },
-              eraLabel: {
-                ar: selectedSourceObj.era,
-                en: selectedSourceObj.era,
-              },
-              digitization: {
-                totalUnits: selectedSourceObj.total,
-                authoredUnits: selectedSourceObj.indexed,
-                unit: selectedSourceObj.unit,
-              },
-            },
-            content: [],
-            schemaVersion: 2,
-            createdAt: new Date().toISOString(),
-            updatedAt: new Date().toISOString(),
-          }}
-          onClose={() => setActiveSource(null)}
-          onVote={castVote}
-          voted={voted.has(selectedSourceObj.id)}
-          voteCount={votes[selectedSourceObj.id] || 0}
         />
       )}
 

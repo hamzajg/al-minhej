@@ -1,6 +1,5 @@
-import { QuranReaderContent } from "@/components/quran/QuranReaderContent";
+import AlMinhejLesson_Quran from "../../AlMinhejLesson_Quran.jsx";
 
 export default function QuranPreview() {
-  return <QuranReaderContent surahSlug="fatiha" />;
+  return <AlMinhejLesson_Quran />;
 }
-

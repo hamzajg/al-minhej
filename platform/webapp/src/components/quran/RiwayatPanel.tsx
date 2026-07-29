@@ -11,6 +11,7 @@ interface RiwayatReader {
   en: string;
   cityAr: string;
   cityEn: string;
+  qiraatNote?: { ar: string; en: string };
   riwayat: {
     id: string;
     ar: string;
@@ -296,6 +297,20 @@ export function RiwayatPanel({
                 : "This riwayah's reading here is pending scholarly review — not assumed or invented."}
             </div>
           )}
+          {(() => {
+            const reader = readers.find((r) => r.node.id.replace("reader-", "") === active.readerId);
+            const note = reader?.qiraatNote;
+            return note ? (
+              <div className="mt-2.5 pt-2.5 border-t border-[var(--color-line)]">
+                <div className="text-[10px] font-bold text-[var(--color-gold)] mb-1">
+                  {isAr ? "ملاحظة القراءة" : "Reading note"}
+                </div>
+                <p className="text-[11px] leading-relaxed text-[var(--color-sub)] m-0">
+                  {isAr ? note.ar : note.en}
+                </p>
+              </div>
+            ) : null;
+          })()}
         </div>
       )}
     </div>

@@ -12,10 +12,55 @@
     "countsBasmala": true,
     "cityAr": "الكوفي",
     "cityEn": "Kufi",
+    "rumuz": "ن",
     "riwayat": [
-      { "id": "shubah", "ar": "شعبة", "en": "Shu'bah", "variant": "pending" },
-      { "id": "hafs", "ar": "حفص", "en": "Hafs", "variant": "verified", "variantAr": "مَالِكِ", "variantEn": "Māliki — with the long ā", "note": "الأكثر انتشارًا؛ المعتمدة في الحرمين وأغلب المصاحف المطبوعة", "noteEn": "Most widespread; used in the Haramayn and most printed Mushafs" }
+      {
+        "id": "shubah",
+        "ar": "شعبة",
+        "en": "Shu'bah",
+        "rumuz": "ص",
+        "variant": "pending",
+        "segmentReadings": {
+          "basmala": { "ar": "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ", "note": "تُعدّ آية رقم ١", "noteEn": "Counted as ayah #1" },
+          "hamd": { "ar": "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ", "note": "آية رقم ٢", "noteEn": "Ayah #2" },
+          "rahman": { "ar": "الرَّحْمَٰنِ الرَّحِيمِ", "note": "آية رقم ٣", "noteEn": "Ayah #3" },
+          "malik": { "ar": "مَالِكِ يَوْمِ الدِّينِ", "note": "آية رقم ٤ — بفتح الميم", "noteEn": "Ayah #4 — with fatḥah on Mīm" },
+          "iyyaka": { "ar": "إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ", "note": "آية رقم ٥", "noteEn": "Ayah #5" },
+          "ihdina": { "ar": "اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ", "note": "آية رقم ٦", "noteEn": "Ayah #6" },
+          "siratal": { "ar": "صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ", "note": "آية رقم ٧", "noteEn": "Ayah #7" }
+        },
+        "fullVerse": {
+          "ar": "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ • الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ • الرَّحْمَٰنِ الرَّحِيمِ • مَالِكِ يَوْمِ الدِّينِ • إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ • اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ • صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ",
+          "source": "Ash-Shatibiyyah"
+        }
+      },
+      {
+        "id": "hafs",
+        "ar": "حفص",
+        "en": "Hafs",
+        "rumuz": "ع",
+        "variant": "verified",
+        "variantAr": "مَالِكِ",
+        "variantEn": "Māliki — with the long ā",
+        "segmentReadings": {
+          "basmala": { "ar": "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ", "note": "تُعدّ آية رقم ١", "noteEn": "Counted as ayah #1" },
+          "hamd": { "ar": "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ", "note": "آية رقم ٢", "noteEn": "Ayah #2" },
+          "rahman": { "ar": "الرَّحْمَٰنِ الرَّحِيمِ", "note": "آية رقم ٣", "noteEn": "Ayah #3" },
+          "malik": { "ar": "مَالِكِ يَوْمِ الدِّينِ", "note": "آية رقم ٤ — بفتح الميم", "noteEn": "Ayah #4 — with fatḥah on Mīm" },
+          "iyyaka": { "ar": "إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ", "note": "آية رقم ٥", "noteEn": "Ayah #5" },
+          "ihdina": { "ar": "اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ", "note": "آية رقم ٦", "noteEn": "Ayah #6" },
+          "siratal": { "ar": "صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ", "note": "آية رقم ٧", "noteEn": "Ayah #7" }
+        },
+        "fullVerse": {
+          "ar": "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ • الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ • الرَّحْمَٰنِ الرَّحِيمِ • مَالِكِ يَوْمِ الدِّينِ • إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ • اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ • صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ",
+          "source": "Ash-Shatibiyyah"
+        }
+      }
     ]
+  },
+  "qiraatNote": {
+    "ar": "يقرأ عاصم بلحن الكوفي، ويعدّ البسملة آية أولى في رواية حفص وشعبة",
+    "en": "'Asim reads in the Kufi style and counts the Basmalah as the first ayah in the Hafs and Shu'bah transmissions"
   },
   "content": [],
   "schemaVersion": 2,

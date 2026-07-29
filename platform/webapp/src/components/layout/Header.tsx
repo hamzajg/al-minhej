@@ -22,7 +22,7 @@ export function Header({
   const { t, uiLang, setUiLang, dark, toggleDark } = useSettings();
 
   return (
-    <header className="h-14 flex items-center justify-between px-4 border-b border-[var(--color-line)] bg-[var(--color-panel)] shrink-0">
+    <header className="h-14 flex items-center justify-between px-4 border-b border-[var(--color-line)] bg-[var(--color-panel)] shrink-0 relative z-[80]">
       <Link to={logoHref} className="flex items-center gap-2.5 min-w-0">
         <div className="w-7 h-7 rounded-lg bg-[var(--color-emerald)] grid place-items-center shrink-0">
           <span className="font-arabic text-[15px] text-[var(--color-gold-light)]">ن</span>

@@ -33,10 +33,12 @@ export function BottomSheet({ open, title, onClose, children }: BottomSheetProps
           maxHeight: "72vh",
           transform: open ? "translateY(0)" : "translateY(110%)",
           transition: "transform .32s cubic-bezier(.32,.72,0,1)",
-          padding: "10px 18px 18px",
         }}
       >
-        <div className="mb-2.5">
+        {/* Sticky header */}
+        <div
+          className="sticky top-0 z-10 bg-[var(--color-bg)] px-[18px] pt-[10px] pb-2 border-b border-[var(--color-line)]"
+        >
           <div
             onTouchStart={(e) => {
               startY.current = e.touches[0].clientY;
@@ -60,7 +62,10 @@ export function BottomSheet({ open, title, onClose, children }: BottomSheetProps
             </button>
           </div>
         </div>
-        {children}
+        {/* Scrollable content */}
+        <div className="p-[18px]">
+          {children}
+        </div>
       </div>
     </>
   );

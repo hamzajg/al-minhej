@@ -11,6 +11,61 @@ type QuranMeta = {
   collections: Record<string, { ar: string; en: string; countAr: string; countEn: string }>;
   qiraatPaths: Record<string, { ar: string; en: string; subtitleAr: string; subtitleEn: string; descAr: string; descEn: string }>;
   toc: QuranTOCEntry[];
+  rumuz?: { ar: string; en: string; descAr: string; descEn: string; letters: Record<string, { reader: string; readerAr: string; readerEn: string; type: string }> };
+  shatibiyyahCouplets?: {
+    ar: string;
+    en: string;
+    author: { ar: string; en: string; died: string };
+    totalCouplets: number;
+    meter: { ar: string; en: string };
+    source: { ar: string; en: string };
+    basedOn?: { ar: string; en: string };
+    fatihaCouplets: Record<string, {
+      ar: string;
+      en: string;
+      sectionAr?: string;
+      sectionEn?: string;
+      versesRange?: string;
+      rumuzLetters?: string[];
+      rumuzNotes?: { ar: string; en: string };
+    }>;
+  };
+  durrahCouplets?: {
+    ar: string;
+    en: string;
+    author: { ar: string; en: string; died: string };
+    totalCouplets: number;
+    meter: { ar: string; en: string };
+    source: { ar: string; en: string };
+    purpose?: { ar: string; en: string };
+    fatihaCouplets: Record<string, {
+      ar: string;
+      en: string;
+      sectionAr?: string;
+      sectionEn?: string;
+      versesRange?: string;
+      rumuzLetters?: string[];
+      rumuzNotes?: { ar: string; en: string };
+    }>;
+  };
+  tayyibahCouplets?: {
+    ar: string;
+    en: string;
+    author: { ar: string; en: string; died: string };
+    totalCouplets: number;
+    meter: { ar: string; en: string };
+    source: { ar: string; en: string };
+    purpose?: { ar: string; en: string };
+    fatihaCouplets: Record<string, {
+      ar: string;
+      en: string;
+      sectionAr?: string;
+      sectionEn?: string;
+      versesRange?: string;
+      rumuzLetters?: string[];
+      rumuzNotes?: { ar: string; en: string };
+    }>;
+  };
 };
 
 const API_BASE = import.meta.env.VITE_API_BASE ?? "/api/v1";
@@ -72,6 +127,10 @@ export class AssembleQuranExperience {
       basmalaNote: meta.basmalaNote,
       collections: meta.collections,
       qiraatPaths: meta.qiraatPaths,
+      rumuz: meta.rumuz,
+      shatibiyyahCouplets: meta.shatibiyyahCouplets,
+      durrahCouplets: meta.durrahCouplets,
+      tayyibahCouplets: meta.tayyibahCouplets,
     };
   }
 
@@ -102,6 +161,7 @@ export class AssembleQuranExperience {
           en: n.title.en,
           cityAr: attrs.cityAr,
           cityEn: attrs.cityEn,
+          qiraatNote: (n as any).qiraatNote,
           riwayat: attrs.riwayat,
         };
       });
@@ -117,6 +177,7 @@ export class AssembleQuranExperience {
         readerEn: rdr.en,
         collection: rdr.collection,
         countsBasmala: rdr.countsBasmala,
+        readerRumuz: rdr.rumuz,
       }))
     );
   }

@@ -76,6 +76,7 @@ export type NodeAttributes =
       countsBasmala: boolean | "pending";
       cityAr: string;
       cityEn: string;
+      rumuz?: string;
       riwayat: {
         id: string;
         ar: string;
@@ -85,6 +86,8 @@ export type NodeAttributes =
         variantEn?: string;
         note?: string;
         noteEn?: string;
+        rumuz?: string;
+        segmentReadings?: Record<string, { ar: string; note?: string; noteEn?: string }>;
       }[];
     };
 

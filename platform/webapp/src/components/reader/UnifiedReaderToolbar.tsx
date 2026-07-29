@@ -1,4 +1,4 @@
-import { Bookmark, Brain, Copy, Eye, EyeOff, Play, RotateCcw, Share2, Type } from "lucide-react";
+import { Bookmark, Brain, Copy, Eye, EyeOff, EyeOffIcon, Play, Share2, Type } from "lucide-react";
 import { useSettings } from "@/context/SettingsContext";
 import { Pill } from "@/components/ui/Pill";
 import { SUBTITLE_LANGS } from "@/data/i18n";
@@ -16,6 +16,7 @@ interface UnifiedReaderToolbarProps {
   difficulty: number;
   onSetDifficulty: (d: Difficulty) => void;
   onRevealAll: () => void;
+  onHideAll?: () => void;
   readerType: "quran" | "hadith" | "book";
   showTranslation?: boolean;
   setShowTranslation?: (fn: (v: boolean) => boolean) => void;
@@ -34,6 +35,7 @@ export function UnifiedReaderToolbar({
   difficulty,
   onSetDifficulty,
   onRevealAll,
+  onHideAll,
   readerType,
   showTranslation = false,
   setShowTranslation,
@@ -151,9 +153,16 @@ export function UnifiedReaderToolbar({
           ))}
           <Pill onClick={onRevealAll}>
             <span className="inline-flex items-center gap-1">
-              <RotateCcw size={11} /> {t.revealAll}
+              <Eye size={11} /> {isAr ? "إظهار الكل" : "Reveal all"}
             </span>
           </Pill>
+          {onHideAll && (
+            <Pill onClick={onHideAll}>
+              <span className="inline-flex items-center gap-1">
+                <EyeOffIcon size={11} /> {isAr ? "إخفاء الكل" : "Hide all"}
+              </span>
+            </Pill>
+          )}
         </div>
       )}
     </div>

@@ -3,7 +3,7 @@ import { useSettings } from "@/context/SettingsContext";
 import { VocabPopover } from "@/components/reader/VocabPopover";
 import type { AyahSegment, Riwayah, VocabWord } from "@/domain/quran";
 
-function buildDisplayAyat(countsBasmala: boolean | "pending"): AyahSegment[] {
+export function buildDisplayAyat(countsBasmala: boolean | "pending"): AyahSegment[] {
   const segments = {
     basmala: { ar: "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ", en: "In the name of God, the Most Compassionate, the Most Merciful." },
     hamd: { ar: "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ", en: "All praise belongs to God, Lord of all the worlds." },
@@ -269,12 +269,23 @@ export function QuranMushafReader({
                   <span key={ay.key} className="inline">
                     {ay.isBasmala && (
                       <span
-                        className="mf-basmalah block text-center mb-2"
+                        className="mf-basmalah text-center mb-2"
                         style={{
                           fontSize: basmalaFontSize * 0.9,
                         }}
                       >
-                        {displayText}
+                        {displayText}{" "}
+                        {ay.marker && (
+                          <span className="mf-rosette">{ay.marker}</span>
+                        )}
+                        {!ay.marker && (
+                          <span
+                            className="text-[9.5px]"
+                            style={{ color: "var(--mushaf-gold-dark)", opacity: 0.75, verticalAlign: "middle" }}
+                          >
+                            {isAr ? "(افتتاحية، غير معدودة)" : "(opening, not numbered)"}
+                          </span>
+                        )}
                       </span>
                     )}
                     {!ay.isBasmala &&
@@ -292,19 +303,19 @@ export function QuranMushafReader({
                           <span
                             key={`${ay.key}-${wIdx}`}
                             className={[
-                              "inline-block mx-[2px] transition-all duration-200",
-                              isHidden ? "text-transparent select-none" : "",
+                              "inline-block mx-[2px]",
+                              isHidden
+                                ? `transition-[filter,opacity] duration-200 cursor-pointer ${isRevealed ? "" : "blur-[5px] opacity-55"}`
+                                : "transition-all duration-200",
                               isVocab && !isHidden
                                 ? "vocab-word cursor-pointer"
                                 : "",
                             ].join(" ")}
                             style={{
-                              fontSize: wIdx === 0 && ay.marker ? baseFontSize : baseFontSize,
-                              color: isHidden
-                                ? "transparent"
-                                : isVocab
-                                  ? "var(--mushaf-highlight)"
-                                  : "var(--mushaf-ink)",
+                              fontSize: baseFontSize,
+                              color: isVocab
+                                ? "var(--mushaf-highlight)"
+                                : "var(--mushaf-ink)",
                               borderBottom: isVocab && !isHidden
                                 ? "1.5px dotted var(--mushaf-gold)"
                                 : "none",
@@ -325,16 +336,27 @@ export function QuranMushafReader({
                         {ay.marker}
                       </span>
                     )}
-                    {!ay.isBasmala && (
+                    {(ay.key === "basmala" || ay.key === "malik" || ay.key === "siratal" || ay.key === "siratal1" || ay.key === "siratal2") && (
                       <button
                         onClick={() => onCompareSegment(ay.key)}
-                        className="inline-block mx-0.5 text-center opacity-0 hover:opacity-100 transition-opacity cursor-pointer bg-transparent border-none"
+                        title={isAr ? "قارن القراءات" : "Compare readings"}
                         style={{
-                          fontSize: baseFontSize * 0.5,
-                          color: "var(--mushaf-gold-dark)",
+                          display: "inline-flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          width: 20,
+                          height: 20,
+                          borderRadius: 999,
+                          border: "1px solid rgba(169, 120, 46, 0.533)",
+                          background: "rgba(169, 120, 46, 0.1)",
+                          color: "rgb(169, 120, 46)",
+                          fontSize: 10,
+                          cursor: "pointer",
                           verticalAlign: "middle",
+                          marginInlineStart: 2,
+                          fontFamily: "inherit",
+                          flexShrink: 0,
                         }}
-                        title={isAr ? "مقارنة القراءات" : "Compare readings"}
                       >
                         ⇄
                       </button>
