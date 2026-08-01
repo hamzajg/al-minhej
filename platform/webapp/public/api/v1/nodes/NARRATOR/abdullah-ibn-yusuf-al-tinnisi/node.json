@@ -49,10 +49,6 @@
         }
       ],
       "students": [],
-      "summary": {
-        "ar": "شيخ البخاري الأول في صحيحه؛ فتح به كتابه بأصح الطرق عن مالك.",
-        "en": "al-Bukhari's very first teacher cited in the Sahih; he opens the book through him with one of the soundest routes from Malik."
-      },
       "biographicalReferences": [
         {
           "workTitle": {
@@ -72,7 +68,6 @@
           "provenance": "primary"
         }
       ],
-      "summaryProvenance": "ai_generated",
       "biographyVersion": 1
     },
     {

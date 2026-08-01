@@ -241,10 +241,6 @@
           }
         }
       ],
-      "summary": {
-        "ar": "خاتم الأنبياء والمرسلين، بُعث بمكة وهاجر إلى المدينة، وهو مصدر الوحي الذي نقله عنه الصحابة رضي الله عنهم بالتواتر والآحاد.",
-        "en": "The final Prophet and Messenger, sent in Makkah and emigrated to Madinah; the source of the revelation transmitted from him by the Companions through both mass-transmitted and single-chain reports."
-      },
       "biographicalReferences": [
         {
           "workTitle": {
@@ -281,7 +277,6 @@
           "provenance": "primary"
         }
       ],
-      "summaryProvenance": "ai_generated",
       "biographyVersion": 1
     }
   ],

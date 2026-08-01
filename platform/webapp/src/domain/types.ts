@@ -166,8 +166,8 @@ export interface BiographyBlock extends ContentBlockBase {
   teachers: { narratorId: NodeId; note: Localized<string> }[];
   students: { narratorId: NodeId; note: Localized<string> }[];
   biographicalReferences: BiographicalReference[];
-  summary: Localized<string>;
-  summaryProvenance: Provenance;
+  summary?: Localized<string>;
+  summaryProvenance?: Provenance;
   biographyVersion?: number;
 }
 

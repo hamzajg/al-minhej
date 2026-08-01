@@ -45,10 +45,6 @@
       },
       "teachers": [],
       "students": [],
-      "summary": {
-        "ar": "مصنّف الأربعين النووية، جمعها من الصحيحين وغيرهما مقتصرًا غالبًا على إسناد مختصر لأنها مشهورة.",
-        "en": "Compiler of al-Arba'in al-Nawawiyyah, gathered from the two Sahihs and elsewhere, usually citing a shortened chain since the reports were already well known."
-      },
       "biographicalReferences": [
         {
           "workTitle": {
@@ -68,7 +64,6 @@
           "provenance": "primary"
         }
       ],
-      "summaryProvenance": "ai_generated",
       "biographyVersion": 1
     },
     {

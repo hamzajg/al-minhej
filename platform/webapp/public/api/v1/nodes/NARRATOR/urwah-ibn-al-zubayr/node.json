@@ -61,10 +61,6 @@
           }
         }
       ],
-      "summary": {
-        "ar": "ابن أخت عائشة عبر أمه أسماء، ومن أعلم الناس بحديثها وسيرة النبي ﷺ، وابنه هشام أخص من روى عنه.",
-        "en": "Nephew of 'A'ishah through his mother Asma', and among those most learned in her hadith and the Prophet's biography; his son Hisham was his closest transmitter."
-      },
       "biographicalReferences": [
         {
           "workTitle": {
@@ -84,7 +80,6 @@
           "provenance": "primary"
         }
       ],
-      "summaryProvenance": "ai_generated",
       "biographyVersion": 1
     },
     {

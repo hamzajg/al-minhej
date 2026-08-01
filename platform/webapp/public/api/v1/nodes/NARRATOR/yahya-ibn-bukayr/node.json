@@ -53,10 +53,6 @@
         }
       ],
       "students": [],
-      "summary": {
-        "ar": "من كبار شيوخ البخاري، اعتمد عليه في نقل حديث الليث بن سعد خاصة.",
-        "en": "One of al-Bukhari's principal teachers, relied upon especially for transmitting the hadith of al-Layth ibn Sa'd."
-      },
       "biographicalReferences": [
         {
           "workTitle": {
@@ -76,7 +72,6 @@
           "provenance": "primary"
         }
       ],
-      "summaryProvenance": "ai_generated",
       "biographyVersion": 1
     },
     {

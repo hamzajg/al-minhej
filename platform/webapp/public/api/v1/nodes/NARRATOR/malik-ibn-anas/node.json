@@ -61,10 +61,6 @@
           }
         }
       ],
-      "summary": {
-        "ar": "إمام أهل المدينة وصاحب الموطأ، أُجمع على تقديم روايته وضبطه.",
-        "en": "Imam of the people of Madinah and author of al-Muwatta'; his transmission and precision were universally esteemed."
-      },
       "biographicalReferences": [
         {
           "workTitle": {
@@ -84,7 +80,6 @@
           "provenance": "primary"
         }
       ],
-      "summaryProvenance": "ai_generated",
       "biographyVersion": 1
     },
     {

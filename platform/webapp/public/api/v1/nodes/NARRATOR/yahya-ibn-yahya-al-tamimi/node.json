@@ -49,10 +49,6 @@
         }
       ],
       "students": [],
-      "summary": {
-        "ar": "محدث نيسابور الكبير، وأخص من روى الموطأ عن مالك عند الإمام مسلم، وهذا هو الطريق الذي أخرج به مسلم هذا الحديث في صحيحه.",
-        "en": "The great traditionist of Naysabur, and Imam Muslim's closest transmitter of the Muwatta' from Malik — this is the route by which Muslim narrates this hadith in his Sahih."
-      },
       "biographicalReferences": [
         {
           "workTitle": {
@@ -72,7 +68,6 @@
           "provenance": "primary"
         }
       ],
-      "summaryProvenance": "ai_generated",
       "biographyVersion": 1
     },
     {

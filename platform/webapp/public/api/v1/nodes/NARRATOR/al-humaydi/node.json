@@ -52,10 +52,6 @@
         }
       ],
       "students": [],
-      "summary": {
-        "ar": "أول شيخ في أول إسناد في صحيح البخاري؛ إمام حافظ صنّف مسندًا معروفًا باسمه.",
-        "en": "The first teacher in the first isnad of Sahih al-Bukhari; a hafiz who authored a well-known Musnad bearing his name."
-      },
       "biographicalReferences": [
         {
           "workTitle": {
@@ -75,7 +71,6 @@
           "provenance": "primary"
         }
       ],
-      "summaryProvenance": "ai_generated",
       "biographyVersion": 1
     },
     {

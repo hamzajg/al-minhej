@@ -60,10 +60,6 @@
           }
         }
       ],
-      "summary": {
-        "ar": "من ثقات التابعين بالمدينة، معدود في الطبقة الثانية.",
-        "en": "A reliable Madinan Successor, counted among the second generation."
-      },
       "biographicalReferences": [
         {
           "workTitle": {
@@ -83,7 +79,6 @@
           "provenance": "primary"
         }
       ],
-      "summaryProvenance": "ai_generated",
       "biographyVersion": 1
     },
     {

@@ -61,10 +61,6 @@
           }
         }
       ],
-      "summary": {
-        "ar": "أحد أئمة الحديث الكبار بمكة، له نحو سبعين سنة في طلب العلم وروايته.",
-        "en": "One of the great hadith imams of Makkah, with roughly seventy years spent seeking and transmitting knowledge."
-      },
       "biographicalReferences": [
         {
           "workTitle": {
@@ -84,7 +80,6 @@
           "provenance": "primary"
         }
       ],
-      "summaryProvenance": "ai_generated",
       "biographyVersion": 1
     },
     {
