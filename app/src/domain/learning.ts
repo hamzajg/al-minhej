@@ -52,6 +52,19 @@ export interface LearningPath {
 }
 
 /**
+ * What a reader's path is before they've done anything. Defined once here so
+ * the memory provider, the hook, and the server's `/v1/me/path` default all
+ * agree on what "no path yet" means.
+ */
+export const EMPTY_LEARNING_PATH: LearningPath = {
+  goalId: null,
+  seedNodeId: null,
+  visited: [],
+  startedAt: null,
+  onboardingSeen: false,
+};
+
+/**
  * The edge type each reason is derived from. Kept as data so a
  * recommendation's `reason` and its `via.type` can be checked against
  * each other, rather than trusted by convention.

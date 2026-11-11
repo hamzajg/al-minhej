@@ -82,17 +82,19 @@ export default function HomePage() {
   const [bookCount, setBookCount] = useState(0);
   const node = nodes[0];
 
-  const { path, goal, currentNodeId, chooseGoal, dismissOnboarding } = useLearningPath();
+  const { path, goal, loaded, currentNodeId, chooseGoal, dismissOnboarding } = useLearningPath();
   const [goalOpen, setGoalOpen] = useState(false);
 
   useEffect(() => {
     knowledgeRepository.listByType("BOOK").then((books) => setBookCount(books.length));
   }, []);
 
-  // Ask "why are you here?" once, as soon as there is something to read.
+  // Ask "why are you here?" once, as soon as there is something to read —
+  // but only after the account's stored path has loaded, or a reader who
+  // already chose a goal would be asked again on every page load.
   useEffect(() => {
-    if (!path.onboardingSeen && nodes.length > 0) setGoalOpen(true);
-  }, [path.onboardingSeen, nodes.length]);
+    if (loaded && !path.onboardingSeen && nodes.length > 0) setGoalOpen(true);
+  }, [loaded, path.onboardingSeen, nodes.length]);
 
   // A goal's seed always resolves to a real node, degrading to the first
   // readable one if a seed slug is ever missing from the graph.

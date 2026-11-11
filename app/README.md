@@ -67,13 +67,16 @@ src/
                      the core model. No Lesson type.
     dto.ts           ReadingExperienceDTO and friends — what a real
                      `GET /v1/reading/{slug}` would return
-    repositories.ts  KnowledgeRepository / RelationshipRepository
-                     interfaces — the storage-agnostic boundary
+    repositories.ts  KnowledgeRepository / RelationshipRepository /
+                     LearningPathRepository interfaces — the storage-agnostic
+                     boundary. The first two read the authored graph; the
+                     last *writes* the reader's own path.
     learning.ts      Recommendation / LearningGoal / LearningPath, plus
                      REASON_SOURCE_EDGE — the vocabulary a path is described
                      in. A path is a *projection over the graph*, never a
                      parallel structure: nothing here stores a hand-ordered
-                     node list.
+                     node list. `EMPTY_LEARNING_PATH` is the canonical blank a
+                     new account starts from, shared by every implementation.
 
   infrastructure/
     memory/
@@ -82,10 +85,14 @@ src/
         relationships.ts  The mock edge "database"
       MemoryKnowledgeRepository.ts
       MemoryRelationshipRepository.ts
-                           Implement the domain interfaces against the
+                           Implement the two graph interfaces against the
                            arrays above. A MongoKnowledgeRepository later
                            satisfies the same interface — nothing above
                            this layer changes.
+      MemoryLearningPathRepository.ts
+                           The path repository against `localStorage`, keyed
+                           per account, so the app is still per-account with
+                           no server running.
     http/
       httpClient.ts     Thin fetch wrapper shared by the two HTTP
                         repositories. A 404 means "absent" (null); anything
@@ -97,6 +104,16 @@ src/
                         The same two interfaces over the §5.A REST API.
                         `container.ts` picks between these and the Memory
                         pair; nothing above this layer knows which won.
+      meClient.ts       The §5.A `/v1/me/*` transport: reads and writes the
+                        account's own state, sending the opaque account token
+                        as `x-alminhej-account`. Kept separate from
+                        `httpClient.ts` because it *writes*, and because it
+                        must not collapse a 404 into `null` — "your path" is
+                        the account's, so a missing one is the server's honest
+                        empty answer and anything else is a real error.
+      HttpLearningPathRepository.ts
+                        The path repository — the first one that writes —
+                        over `GET`/`PUT /v1/me/path`.
       adminClient.ts    §5.B's Content Management client — the one place
                         that knows about roles (`x-alminhej-roles`). It
                         deliberately does *not* collapse a 404 into `null`
@@ -131,12 +148,20 @@ src/
                                     lacks. Rule-based today; an
                                     embedding/ML strategy replaces this
                                     class behind the same interface.
-    container.ts                   The one file that wires Memory
-                                    providers into the application services.
-                                    Swapping to a real backend later means
-                                    changing two lines here.
+    container.ts                   The only file that decides *which*
+                                    storage implementation is active. Set
+                                    `VITE_ALMINHEJ_API_BASE_URL` and the app
+                                    talks to the real backend; leave it unset
+                                    and it runs on the Memory provider — for
+                                    the graph repositories *and* the reader's
+                                    own path alike.
 
   hooks/
+    useAccount.ts              The reader's identity: an opaque token minted
+                               once and kept in `localStorage`, sent to the
+                               server as `x-alminhej-account`. An identity,
+                               not a credential — there is no password and
+                               nothing is verified.
     useReadingExperience.ts   Bridges React to AssembleReadingExperience,
                                modeled as async even though Memory
                                resolves instantly — so swapping to a real
@@ -148,9 +173,12 @@ src/
     useKnowledgeNode.ts        Resolve any node by id (source detail modal)
     useReadingIndex.ts         Published reading experiences (Home page)
     useLearningPath.ts         The current path — goal id + the node ids
-                               actually opened, in `localStorage`. Stores no
-                               to-visit list: what comes next is always
-                               re-derived from the graph.
+                               actually opened — read from and written to the
+                               account's store through
+                               `LearningPathRepository`, so it survives a reload
+                               and follows the account rather than the browser.
+                               Stores no to-visit list: what comes next is
+                               always re-derived from the graph.
     useRecommendation.ts       Runs `recommendationStrategy.recommend` for a
                                node and reports both the suggestion and its
                                "because …" reason
@@ -205,8 +233,10 @@ src/
 server/
   api-server.mjs     §5.A + §5.B + §7 over plain `node:http`, zero
                      dependencies. Serves the same JSON fixtures the
-                     Memory provider ships, and keeps §5.B's writes in
-                     memory for the life of the process. `npm run api`.
+                     Memory provider ships, keeps §5.B's writes in memory
+                     for the life of the process, and stores each account's
+                     learning path (`GET`/`PUT /v1/me/path`, keyed by the
+                     `x-alminhej-account` token) the same way. `npm run api`.
   knowledgeContext.mjs  §7's `KnowledgeContextBuilder`: given a node id,
                      assembles that node's own content plus a *bounded*
                      slice of its immediate graph neighbors (only
@@ -236,6 +266,22 @@ server/
   only the goal id and the node ids actually opened; the "next" card on the
   home page is derived from those, and a recommendation that has no edge to
   stand on says so instead of inventing one.
+- **The reader's path is per account, and that swap happened behind the
+  repository boundary.** `localStorage` was the right place to *prove* the
+  path, but a path that exists in one browser is a session, not a path.
+  `useLearningPath` now reads and writes through `LearningPathRepository` —
+  the first repository in this codebase that *writes* — so the same hook, the
+  same components, and the same page keep working while the store moves from
+  the browser to the server. Identity is deliberately minimal: the client
+  mints one opaque token (`useAccount`) and sends it as `x-alminhej-account`,
+  and the server keys each path by it (the shape of §6's `learning_paths`). It
+  is an identity, not a credential — no password, no JWT — which is the honest
+  floor for "per-account", and the seam real `/v1/auth/*` slots into later.
+  Two details worth keeping: mutations are *load-then-write*, so a visit
+  recorded before the first read lands can't clobber the stored path with an
+  empty one; and when the backend is unreachable the hook no-ops rather than
+  fabricating a path, the same "don't paper over a missing backend" rule the
+  rest of the HTTP layer follows.
 - **The AI layer is grounded by construction, and the key is server-only.**
   §7's rule is that the model never touches storage — it only ever sees a
   `KnowledgeContextBuilder`-assembled slice of the graph.
@@ -315,12 +361,18 @@ reserved for `scholar-reviewer`/`admin`, so an editor alone cannot release
 their own work. **Guided Learning Paths** are now built on top of the same
 graph: a bilingual "why are you here?" goal picker seeds a path, and every
 "next" suggestion is a real edge traversal with a visible "because …" reason
-— never a hand-authored list. **The AI Companion** is now grounded rather
+— never a hand-authored list. That path now lives on the server, one per
+account, behind `LearningPathRepository` — so it survives a reload and follows
+the account rather than the browser, and none of the components that show it
+changed to make that true. **The AI Companion** is now grounded rather
 than canned: the three authored prompts are quick-start buttons beside a
 free-text box, and every answer comes from §7's server route over a bounded,
 builder-assembled slice of the graph — labelled AI-generated, declining
 questions that fall outside its context, and shipping no API key to the
-client. Cross-session Progress Tracking is not yet built — see `PROMPTS.md`.
+client. The reader's learning path is now stored per account, server-side, so
+it is genuinely cross-session; the remaining per-node reader state (bookmarks,
+recite counts) is still browser-local, and moving it behind the same boundary
+is the next step — see `PROMPTS.md`.
 
 ## Scalability notes
 
