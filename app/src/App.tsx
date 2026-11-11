@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import AdminPage from "@/pages/AdminPage";
 import HomePage from "@/pages/HomePage";
 import BookReaderPage from "@/pages/BookReaderPage";
 import LibraryPage from "@/pages/LibraryPage";
@@ -15,6 +16,7 @@ export default function App() {
       <Route path="/prototype/sources" element={<SourcesPreview />} />
       <Route path="/reading/:slug" element={<ReadingPage />} />
       <Route path="/reading/book/:bookSlug/page/:pageNum" element={<BookReaderPage />} />
+      <Route path="/admin" element={<AdminPage />} />
     </Routes>
   );
 }

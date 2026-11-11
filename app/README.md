@@ -37,6 +37,13 @@ npm run dev       # http://localhost:5173
 npm run api       # http://localhost:8787 (the REST surface from §5 of the doc)
 echo 'VITE_ALMINHEJ_API_BASE_URL=http://localhost:8787' > .env.local
 npm run dev       # Vite restarts itself; no rebuild
+
+# 3. …and the editor-facing Content Management API (§5.B) at /admin
+#    Same `npm run api` process, same graph. Create a HADITH node, link it
+#    with PART_OF to a book that already exists, submit it, publish it —
+#    and the book's digitization progress moves on the reading side with
+#    no other step. Try it with only the `editor` role ticked and notice
+#    Publish is refused; add `scholar-reviewer` to allow it.
 ```
 
 ```bash
@@ -79,6 +86,13 @@ src/
                         The same two interfaces over the §5.A REST API.
                         `container.ts` picks between these and the Memory
                         pair; nothing above this layer knows which won.
+      adminClient.ts    §5.B's Content Management client — the one place
+                        that knows about roles (`x-alminhej-roles`). It
+                        deliberately does *not* collapse a 404 into `null`
+                        the way `httpClient.ts` does: "the node you linked
+                        to doesn't exist" is the error an editor needs to
+                        see, and refusing it is what stops a duplicate
+                        "Sahih al-Bukhari" node from being minted by typo.
 
   application/
     AssembleReadingExperience.ts   Walks nodes + relationships into a
@@ -135,6 +149,20 @@ src/
     HomePage.tsx     Lists published reading experiences from the graph
     ReadingPage.tsx  Composes the responsive reading studio around one
                       ReadingExperienceDTO
+    AdminPage.tsx    The §5.B editor workbench (/admin) — create a HADITH
+                      node, attach content blocks, link it to a node that
+                      already exists via autocomplete, and move it through
+                      draft → in_review → published. Plain on purpose: it's
+                      a workbench, not a reading experience. It reads the
+                      target book's progress through the *same*
+                      AssembleReadingExperience the reading app uses, so
+                      what it shows is what a reader will see.
+
+server/
+  api-server.mjs     §5.A + §5.B over plain `node:http`, zero dependencies.
+                     Serves the same JSON fixtures the Memory provider
+                     ships, and keeps §5.B's writes in memory for the life
+                     of the process. `npm run api`.
 ```
 
 ### Why this structure
@@ -145,8 +173,15 @@ src/
   `EXPLAINS` outgoing). Publish a new hadith node with an edge to Bukhari,
   and its progress bar moves on its own — there's no counter to edit and
   therefore no way for two lessons citing the same book to disagree about
-  its progress. This directly closes out what was `PROMPTS.md` Prompt 11
-  in the previous (Lesson-centric) version of this repo.
+  its progress. The *producer* of that signal now exists too: §5.B's
+  `/publish` is the only thing that flips a node to `published`, and
+  because the count is derived there is nothing else to recompute — a
+  reviewer's publish *is* the progress update. (At Bukhari's real
+  7,563-unit scale one hadith is a sub-percent change, so what visibly
+  moves is the digitized count in `SourceDetailModal`; on a 42-unit book
+  like Sharh al-Arba'in the bar fill itself moves.) This directly closes
+  out what was `PROMPTS.md` Prompt 11 in the previous (Lesson-centric)
+  version of this repo.
 - **`PART_OF` vs. `REFERENCES` is a deliberate, load-bearing distinction.**
   A hadith `PART_OF` a book is a digitization signal. A narrator's
   transmission route `REFERENCES` a book (which compilation their chain
@@ -191,9 +226,14 @@ the mini knowledge-graph rendered from real relationships, Vocabulary
 Helper, Source Library, and Memorize mode. Thirteen reading experiences
 are authored, all of them assembled by the same unmodified service. A real
 HTTP backend (`server/`, `npm run api`) now sits behind the same repository
-interfaces, selectable by env var. AI Companion still returns static canned
-answers (no real model call yet). Guided Learning Paths and cross-session
-Progress Tracking are not yet built — see `PROMPTS.md`.
+interfaces, selectable by env var, and on top of it the §5.B Content
+Management API plus the `/admin` workbench: an editor creates a node,
+attaches content blocks, links it to an existing book or narrator by
+autocomplete, and moves it `draft → in_review → published` — with publish
+reserved for `scholar-reviewer`/`admin`, so an editor alone cannot release
+their own work. AI Companion still returns static canned answers (no real
+model call yet). Guided Learning Paths and cross-session Progress Tracking
+are not yet built — see `PROMPTS.md`.
 
 ## Scalability notes
 

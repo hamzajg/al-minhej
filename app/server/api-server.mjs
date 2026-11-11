@@ -1,21 +1,36 @@
 #!/usr/bin/env node
 /**
- * AlMinhej Public Reading API — a minimal, dependency-free stand-in for the
- * REST surface in `AlMinhej_Backend_Architecture.md` §5.A.
+ * AlMinhej API — a minimal, dependency-free stand-in for the REST surface in
+ * `AlMinhej_Backend_Architecture.md` §5.
  *
- * It serves the *same* knowledge graph the in-memory provider ships with
- * (`src/infrastructure/memory/data/*.json`), which is the whole point: the app
- * can be pointed at either implementation and has to produce identical output.
- * Swap this for the real Mongo-backed server later and nothing above
- * `infrastructure/` notices.
+ * §5.A — the public reading API. Read-only, and serves the *same* knowledge
+ * graph the in-memory provider ships with (`src/infrastructure/memory/data/*.json`),
+ * which is the whole point: the app can be pointed at either implementation and
+ * has to produce identical output. Swap this for the real Mongo-backed server
+ * later and nothing above `infrastructure/` notices.
  *
- * Endpoints:
+ * §5.B — the Content Management API. Create/edit nodes, draw relationships, and
+ * move a node through `draft → in_review → published`, role-gated. Mutations live
+ * in memory for the life of the process (the fixtures are read, never written
+ * back), which is enough to run the review workflow end to end — publishing here
+ * is observable on the reading side immediately, because digitization progress is
+ * derived from the graph at read time rather than cached on the book node.
+ *
+ * Endpoints — §5.A (public, no auth):
  *   GET /v1/health
- *   GET /v1/nodes/{id}                      -> KnowledgeNode
- *   GET /v1/nodes?slug={slug}               -> KnowledgeNode
- *   GET /v1/nodes?ids={id,id,...}           -> KnowledgeNode[]
- *   GET /v1/nodes?type={NodeType}           -> KnowledgeNode[] (published only)
- *   GET /v1/relationships?nodeId={id}[&direction=from|to] -> Relationship[]
+ *   GET /v1/nodes/{id}
+ *   GET /v1/nodes?slug={slug}
+ *   GET /v1/nodes?ids={id,id,...}
+ *   GET /v1/nodes?type={NodeType}
+ *   GET /v1/relationships?nodeId={id}[&direction=from|to]
+ *
+ * Endpoints — §5.B (admin, sends `x-alminhej-roles`):
+ *   GET   /v1/admin/nodes?type={NodeType}&status={NodeStatus}
+ *   POST  /v1/admin/nodes
+ *   PATCH /v1/admin/nodes/{id}
+ *   POST  /v1/admin/nodes/{id}/relationships
+ *   POST  /v1/admin/nodes/{id}/submit-for-review
+ *   POST  /v1/admin/nodes/{id}/publish
  *
  * Run: npm run api   (PORT=8787 by default)
  */
@@ -26,10 +41,30 @@ import { dirname, join } from "node:path";
 
 const dataDir = join(dirname(fileURLToPath(import.meta.url)), "..", "src", "infrastructure", "memory", "data");
 
+// Mutable for the life of the process — the §5.B writes append/update these in
+// memory. The JSON on disk is only ever the seed.
 const NODES = JSON.parse(readFileSync(join(dataDir, "nodes.json"), "utf8"));
 const RELATIONSHIPS = JSON.parse(readFileSync(join(dataDir, "relationships.json"), "utf8"));
 
 const PORT = Number(process.env.PORT ?? 8787);
+
+const NODE_TYPES = ["BOOK", "PAGE", "HADITH", "VERSE", "NARRATOR", "EVENT", "CONCEPT"];
+const NODE_STATUSES = ["draft", "in_review", "published"];
+const RELATIONSHIP_TYPES = [
+  "PART_OF", "NARRATED_BY", "EXPLAINS", "REFERENCES", "SIMILAR_TO",
+  "collected_in", "core_concept", "related_hadith", "narrator_in",
+  "full_chain_source", "thematic_link", "involved", "contained_in", "contextual",
+];
+
+/**
+ * Roles are a *set*, not a single value — the whole point of §5.B's
+ * "an editor can't publish their own draft unless they also hold the reviewer
+ * role". A caller sends `x-alminhej-roles: editor,scholar-reviewer` and gets both.
+ */
+const EDITOR_ROLES = new Set(["editor", "scholar-reviewer", "admin"]);
+const REVIEWER_ROLES = new Set(["scholar-reviewer", "admin"]);
+
+class BadRequest extends Error {}
 
 function sendJson(res, status, payload) {
   const body = JSON.stringify(payload);
@@ -45,17 +80,59 @@ function sendError(res, status, code, message) {
   sendJson(res, status, { error: { code, message, details: null } });
 }
 
+function readJson(req) {
+  return new Promise((resolve, reject) => {
+    const chunks = [];
+    req.on("data", (chunk) => chunks.push(chunk));
+    req.on("end", () => {
+      const raw = Buffer.concat(chunks).toString("utf8").trim();
+      if (!raw) return resolve({});
+      try {
+        resolve(JSON.parse(raw));
+      } catch {
+        reject(new BadRequest("Request body is not valid JSON"));
+      }
+    });
+    req.on("error", () => reject(new BadRequest("Could not read request body")));
+  });
+}
+
+function rolesFrom(req) {
+  const raw = req.headers["x-alminhej-roles"];
+  if (!raw) return [];
+  return String(raw).split(",").map((role) => role.trim().toLowerCase()).filter(Boolean);
+}
+
+function hasRole(roles, allowed) {
+  return roles.some((role) => allowed.has(role));
+}
+
+const isNonEmptyString = (value) => typeof value === "string" && value.trim().length > 0;
+const isLocalized = (value) =>
+  !!value && typeof value === "object" && isNonEmptyString(value.ar) && isNonEmptyString(value.en);
+
+/* ------------------------------------------------------------------ *
+ * §5.A — public reading API
+ *
+ * Only *published* nodes are ever visible here. Everything the reading app
+ * reads (by id, by slug, batch, or "all books") has to be a node a reviewer
+ * has actually released — a draft leaking into the public graph would be a
+ * content bug that no test would catch, because the fixtures happen to be
+ * all-published today.
+ * ------------------------------------------------------------------ */
+const publishedOnly = (nodes) => nodes.filter((node) => node.status === "published");
+
 function handleNodes(res, url) {
   const id = url.pathname.slice("/v1/nodes/".length);
   if (id) {
-    const node = NODES.find((n) => n.id === id);
+    const node = NODES.find((n) => n.id === id && n.status === "published");
     if (!node) return sendError(res, 404, "NODE_NOT_FOUND", `No node with id '${id}'`);
     return sendJson(res, 200, node);
   }
 
   const slug = url.searchParams.get("slug");
   if (slug !== null) {
-    const node = NODES.find((n) => n.slug === slug);
+    const node = NODES.find((n) => n.slug === slug && n.status === "published");
     if (!node) return sendError(res, 404, "NODE_NOT_FOUND", `No node with slug '${slug}'`);
     return sendJson(res, 200, node);
   }
@@ -63,7 +140,7 @@ function handleNodes(res, url) {
   const ids = url.searchParams.get("ids");
   if (ids !== null) {
     const wanted = new Set(ids.split(",").filter(Boolean));
-    return sendJson(res, 200, NODES.filter((n) => wanted.has(n.id)));
+    return sendJson(res, 200, publishedOnly(NODES).filter((n) => wanted.has(n.id)));
   }
 
   const type = url.searchParams.get("type");
@@ -72,7 +149,7 @@ function handleNodes(res, url) {
     return sendJson(res, 200, NODES.filter((n) => n.type === type && n.status === "published"));
   }
 
-  return sendJson(res, 200, NODES);
+  return sendJson(res, 200, publishedOnly(NODES));
 }
 
 function handleRelationships(res, url) {
@@ -94,23 +171,236 @@ function handleRelationships(res, url) {
   return sendJson(res, 200, edges);
 }
 
-const server = createServer((req, res) => {
-  if (req.method === "OPTIONS") {
-    res.writeHead(204, {
-      "access-control-allow-origin": "*",
-      "access-control-allow-methods": "GET, OPTIONS",
-      "access-control-allow-headers": "content-type, accept",
-    });
-    return res.end();
+/* ------------------------------------------------------------------ *
+ * §5.B — Content Management API
+ * ------------------------------------------------------------------ */
+
+function uniqueNodeId(base) {
+  if (!NODES.some((n) => n.id === base)) return base;
+  let suffix = 2;
+  while (NODES.some((n) => n.id === `${base}-${suffix}`)) suffix += 1;
+  return `${base}-${suffix}`;
+}
+
+function uniqueRelationshipId(base) {
+  if (!RELATIONSHIPS.some((r) => r.id === base)) return base;
+  let suffix = 2;
+  while (RELATIONSHIPS.some((r) => r.id === `${base}-${suffix}`)) suffix += 1;
+  return `${base}-${suffix}`;
+}
+
+async function createNode(req, res) {
+  const body = await readJson(req);
+
+  if (!NODE_TYPES.includes(body.type)) {
+    return sendError(res, 400, "INVALID_REQUEST", `'type' must be one of ${NODE_TYPES.join(", ")}`);
+  }
+  if (!isNonEmptyString(body.slug)) {
+    return sendError(res, 400, "INVALID_REQUEST", "'slug' is required");
+  }
+  if (NODES.some((n) => n.slug === body.slug)) {
+    return sendError(res, 409, "DUPLICATE_SLUG", `A node with slug '${body.slug}' already exists`);
+  }
+  if (!isLocalized(body.title)) {
+    return sendError(res, 400, "INVALID_REQUEST", "'title' must be a localized { ar, en } object");
+  }
+  if (!body.attributes || !isNonEmptyString(body.attributes.kind)) {
+    return sendError(res, 400, "INVALID_REQUEST", "'attributes' must include a 'kind'");
+  }
+  if (body.content !== undefined && !Array.isArray(body.content)) {
+    return sendError(res, 400, "INVALID_REQUEST", "'content' must be an array of content blocks");
   }
 
-  const url = new URL(req.url ?? "/", `http://${req.headers.host ?? `localhost:${PORT}`}`);
+  const node = {
+    id: uniqueNodeId(isNonEmptyString(body.id) ? body.id : `${String(body.type).toLowerCase()}-${body.slug}`),
+    type: body.type,
+    slug: body.slug,
+    status: "draft", // §5.B: new content always starts as a draft.
+    title: body.title,
+    attributes: body.attributes,
+    content: body.content ?? [],
+    schemaVersion: 1,
+  };
+  NODES.push(node);
+  return sendJson(res, 201, node);
+}
+
+async function patchNode(req, res, node) {
+  const body = await readJson(req);
+
+  if (body.status !== undefined) {
+    return sendError(
+      res,
+      400,
+      "INVALID_REQUEST",
+      "Status is not editable directly — use /submit-for-review or /publish"
+    );
+  }
+  if (body.type !== undefined && !NODE_TYPES.includes(body.type)) {
+    return sendError(res, 400, "INVALID_REQUEST", `'type' must be one of ${NODE_TYPES.join(", ")}`);
+  }
+  if (body.slug !== undefined) {
+    if (!isNonEmptyString(body.slug)) {
+      return sendError(res, 400, "INVALID_REQUEST", "'slug' must be a non-empty string");
+    }
+    if (NODES.some((n) => n.slug === body.slug && n.id !== node.id)) {
+      return sendError(res, 409, "DUPLICATE_SLUG", `A node with slug '${body.slug}' already exists`);
+    }
+  }
+  if (body.title !== undefined && !isLocalized(body.title)) {
+    return sendError(res, 400, "INVALID_REQUEST", "'title' must be a localized { ar, en } object");
+  }
+  if (body.attributes !== undefined && (!body.attributes || !isNonEmptyString(body.attributes.kind))) {
+    return sendError(res, 400, "INVALID_REQUEST", "'attributes' must include a 'kind'");
+  }
+  if (body.content !== undefined && !Array.isArray(body.content)) {
+    return sendError(res, 400, "INVALID_REQUEST", "'content' must be an array of content blocks");
+  }
+
+  if (body.type !== undefined) node.type = body.type;
+  if (body.slug !== undefined) node.slug = body.slug;
+  if (body.title !== undefined) node.title = body.title;
+  if (body.attributes !== undefined) node.attributes = body.attributes;
+  if (body.content !== undefined) node.content = body.content;
+
+  return sendJson(res, 200, node);
+}
+
+async function addRelationship(req, res, source) {
+  const body = await readJson(req);
+
+  if (!isNonEmptyString(body.to)) {
+    return sendError(res, 400, "INVALID_REQUEST", "'to' is required");
+  }
+  if (!RELATIONSHIP_TYPES.includes(body.type)) {
+    return sendError(res, 400, "INVALID_REQUEST", `'type' must be one of ${RELATIONSHIP_TYPES.join(", ")}`);
+  }
+  // This 404 is the guard §5.B calls out: refuse a dangling edge rather than
+  // letting an editor mint a second "Sahih al-Bukhari" node by typo.
+  if (!NODES.some((n) => n.id === body.to)) {
+    return sendError(
+      res,
+      404,
+      "NODE_NOT_FOUND",
+      `No node with id '${body.to}' — link to the node that already exists instead of creating a duplicate`
+    );
+  }
+  if (RELATIONSHIPS.some((r) => r.from === source.id && r.to === body.to && r.type === body.type)) {
+    return sendError(
+      res,
+      409,
+      "DUPLICATE_RELATIONSHIP",
+      `'${source.id}' already has a ${body.type} edge to '${body.to}'`
+    );
+  }
+
+  const edge = {
+    id: uniqueRelationshipId(`r-${source.id}-${body.to}-${String(body.type).toLowerCase()}`),
+    from: source.id,
+    to: body.to,
+    type: body.type,
+  };
+  if (body.metadata && typeof body.metadata === "object") edge.metadata = body.metadata;
+  RELATIONSHIPS.push(edge);
+  return sendJson(res, 201, edge);
+}
+
+function transition(req, res, node, target, allowedRoles, forbiddenMessage) {
+  if (!hasRole(rolesFrom(req), allowedRoles)) {
+    return sendError(res, 403, "FORBIDDEN", forbiddenMessage);
+  }
+  if (node.status === target) return sendJson(res, 200, node);
+  if (node.status === "published") {
+    return sendError(res, 409, "INVALID_STATE", `Node '${node.id}' is already published`);
+  }
+
+  node.status = target;
+  // §5.B: publishing a node is what emits `NodePublished` and recomputes the
+  // parent book's `digitization.indexedUnits` in a Mongo-backed server. Here
+  // progress is derived from the graph on read (DigitizationProgressService), so
+  // there is no cached counter to recompute — the status flip above is the whole
+  // update, and the book's bar moves on the next read with no extra step.
+  return sendJson(res, 200, node);
+}
+
+async function handleAdminNodes(req, res, url) {
+  if (!hasRole(rolesFrom(req), EDITOR_ROLES)) {
+    return sendError(
+      res,
+      403,
+      "FORBIDDEN",
+      "The Content Management API requires an editor, scholar-reviewer, or admin role"
+    );
+  }
+
+  if (url.pathname === "/v1/admin/nodes") {
+    if (req.method === "GET") {
+      const type = url.searchParams.get("type");
+      const status = url.searchParams.get("status");
+      if (status !== null && !NODE_STATUSES.includes(status)) {
+        return sendError(res, 400, "INVALID_REQUEST", `'status' must be one of ${NODE_STATUSES.join(", ")}`);
+      }
+      let result = NODES;
+      if (type !== null) result = result.filter((n) => n.type === type);
+      if (status !== null) result = result.filter((n) => n.status === status);
+      return sendJson(res, 200, result);
+    }
+    if (req.method === "POST") return createNode(req, res);
+    return sendError(res, 405, "METHOD_NOT_ALLOWED", `${req.method} is not supported on /v1/admin/nodes`);
+  }
+
+  const suffix = decodeURIComponent(url.pathname.slice("/v1/admin/nodes/".length));
+  const slash = suffix.indexOf("/");
+  const id = slash === -1 ? suffix : suffix.slice(0, slash);
+  const action = slash === -1 ? "" : suffix.slice(slash + 1);
+
+  const node = NODES.find((n) => n.id === id);
+  if (!node) return sendError(res, 404, "NODE_NOT_FOUND", `No node with id '${id}'`);
+
+  if (action === "") {
+    if (req.method === "GET") return sendJson(res, 200, node);
+    if (req.method === "PATCH") return patchNode(req, res, node);
+    return sendError(res, 405, "METHOD_NOT_ALLOWED", `${req.method} is not supported on /v1/admin/nodes/{id}`);
+  }
+
+  if (req.method !== "POST") {
+    return sendError(res, 405, "METHOD_NOT_ALLOWED", `${req.method} is not supported on /v1/admin/nodes/{id}/${action}`);
+  }
+
+  switch (action) {
+    case "relationships":
+      return addRelationship(req, res, node);
+    case "submit-for-review":
+      return transition(
+        req, res, node, "in_review", EDITOR_ROLES,
+        "Submitting for review requires an editor, scholar-reviewer, or admin role"
+      );
+    case "publish":
+      return transition(
+        req, res, node, "published", REVIEWER_ROLES,
+        "Publishing requires a scholar-reviewer or admin role"
+      );
+    default:
+      return sendError(res, 404, "NOT_FOUND", `No admin action '${action}'`);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+
+async function dispatch(req, res, url) {
+  if (url.pathname === "/v1/admin/nodes" || url.pathname.startsWith("/v1/admin/nodes/")) {
+    return handleAdminNodes(req, res, url);
+  }
 
   if (req.method !== "GET") {
     return sendError(res, 405, "METHOD_NOT_ALLOWED", `${req.method} is not supported`);
   }
   if (url.pathname === "/v1/health") {
-    return sendJson(res, 200, { status: "ok", nodes: NODES.length, relationships: RELATIONSHIPS.length });
+    return sendJson(res, 200, {
+      status: "ok",
+      nodes: NODES.length,
+      relationships: RELATIONSHIPS.length,
+    });
   }
   if (url.pathname === "/v1/nodes" || url.pathname.startsWith("/v1/nodes/")) {
     return handleNodes(res, url);
@@ -120,6 +410,29 @@ const server = createServer((req, res) => {
   }
 
   return sendError(res, 404, "NOT_FOUND", `No route for ${url.pathname}`);
+}
+
+const server = createServer(async (req, res) => {
+  if (req.method === "OPTIONS") {
+    res.writeHead(204, {
+      "access-control-allow-origin": "*",
+      "access-control-allow-methods": "GET, POST, PATCH, OPTIONS",
+      "access-control-allow-headers": "content-type, accept, x-alminhej-roles",
+    });
+    return res.end();
+  }
+
+  const url = new URL(req.url ?? "/", `http://${req.headers.host ?? `localhost:${PORT}`}`);
+
+  try {
+    await dispatch(req, res, url);
+  } catch (cause) {
+    if (cause instanceof BadRequest) {
+      return sendError(res, 400, "INVALID_REQUEST", cause.message);
+    }
+    console.error(cause);
+    return sendError(res, 500, "INTERNAL_ERROR", "Unexpected error");
+  }
 });
 
 server.listen(PORT, () => {
