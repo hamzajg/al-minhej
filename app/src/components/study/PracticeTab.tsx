@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { CircleCheck, NotebookPen } from "lucide-react";
 import { useSettings } from "@/context/SettingsContext";
-import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { getQuiz } from "@/lib/contentBlocks";
 import type { KnowledgeNode } from "@/domain/types";
 
@@ -9,10 +8,21 @@ interface QuizAnswer {
   picked: number;
 }
 
-export function PracticeTab({ node }: { node: KnowledgeNode }) {
+interface Props {
+  node: KnowledgeNode;
+  takeaway: string;
+  actionItem: string;
+  setTakeaway: (value: string) => void;
+  setActionItem: (value: string) => void;
+}
+
+/**
+ * The reader's own notes are per account, server-side (`PROMPTS.md` Prompt 7),
+ * so this tab takes them as props rather than reaching for `localStorage`
+ * itself — the reading experience owns the read/write via `useReaderState`.
+ */
+export function PracticeTab({ node, takeaway, actionItem, setTakeaway, setActionItem }: Props) {
   const { t, uiLang, dir } = useSettings();
-  const [takeaway, setTakeaway] = useLocalStorage(`alminhej:${node.slug}:takeaway`, "");
-  const [actionItem, setActionItem] = useLocalStorage(`alminhej:${node.slug}:action`, "");
   const [quizState, setQuizState] = useState<Record<number, QuizAnswer>>({});
   const quiz = getQuiz(node)?.questions ?? [];
 

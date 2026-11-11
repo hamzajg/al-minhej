@@ -1,5 +1,6 @@
 import type { KnowledgeNode, NodeType, Relationship } from "./types";
 import type { LearningPath } from "./learning";
+import type { ReaderState } from "./readerState";
 
 /**
  * Storage-agnostic contracts. Application services depend on these
@@ -35,4 +36,16 @@ export interface RelationshipRepository {
 export interface LearningPathRepository {
   get(accountId: string): Promise<LearningPath>;
   save(accountId: string, path: LearningPath): Promise<LearningPath>;
+}
+
+/**
+ * The reader's own state *for a single node* — bookmark, discovered
+ * vocabulary, recite count, and the Practice-tab notes. Like
+ * `LearningPathRepository` this one *writes*, but the scope is one node, so
+ * it is keyed by `(accountId, nodeId)` rather than by account alone. `nodeId`
+ * is the node's stable id (the same id `KnowledgeRepository.findById` uses).
+ */
+export interface ReaderStateRepository {
+  get(accountId: string, nodeId: string): Promise<ReaderState>;
+  save(accountId: string, nodeId: string, state: ReaderState): Promise<ReaderState>;
 }

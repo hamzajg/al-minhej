@@ -1,4 +1,5 @@
 import type { LearningPath } from "@/domain/learning";
+import type { ReaderState } from "@/domain/readerState";
 import { BackendError } from "./httpClient";
 
 /**
@@ -66,4 +67,37 @@ export function saveMyPath(
   path: LearningPath
 ): Promise<LearningPath> {
   return meSend<LearningPath>(baseUrl, accountId, "PUT", "/v1/me/path", path);
+}
+
+/**
+ * The reader's per-node state, one document per `(account, node)` — the same
+ * transport, a narrower scope than the path. The node id is URL-encoded
+ * because ids are opaque strings, not slugs.
+ */
+export function getMyNodeState(
+  baseUrl: string,
+  accountId: string,
+  nodeId: string
+): Promise<ReaderState> {
+  return meSend<ReaderState>(
+    baseUrl,
+    accountId,
+    "GET",
+    `/v1/me/nodes/${encodeURIComponent(nodeId)}/state`
+  );
+}
+
+export function saveMyNodeState(
+  baseUrl: string,
+  accountId: string,
+  nodeId: string,
+  state: ReaderState
+): Promise<ReaderState> {
+  return meSend<ReaderState>(
+    baseUrl,
+    accountId,
+    "PUT",
+    `/v1/me/nodes/${encodeURIComponent(nodeId)}/state`,
+    state
+  );
 }

@@ -221,6 +221,53 @@ the path should be no different — and it is the first repository that
 
 ---
 
+## Prompt 7 — Per-node reader state, off `localStorage`
+
+**Goal:** Move the reader's *per-node* state — the toolbar bookmark, the
+vocabulary helper's discovered entries, the memorizer's recite count, and the
+Practice tab's takeaway/action note — off `localStorage` and onto the server,
+one document per account *and* node, behind the same repository boundary the
+graph and the path already use.
+
+**Why:** Prompt 6 moved the learning path server-side and called this out as
+the next step: the path was cross-session, but everything else a reader marks
+still vanished with the browser. The state is also scoped differently from the
+path — a path is one document per account, this is one per account *and* node —
+so it can't simply reuse `LearningPathRepository`. And it is the last thing in
+the tree reaching for `useLocalStorage`: once it moves, no component persists
+anything directly, and every piece of reader-generated data goes through a
+`domain/repositories.ts` interface.
+
+**Scope:**
+- `ReaderStateRepository` in `domain/repositories.ts`, with a
+  `MemoryReaderStateRepository` (the no-backend stand-in, keyed per account and
+  node) and an `HttpReaderStateRepository` over `GET`/`PUT
+  /v1/me/nodes/{id}/state`, selected in `container.ts` exactly like the path.
+  The models (`ReaderState`, `EMPTY_READER_STATE`) live in a new
+  `domain/readerState.ts`, mirroring how `learning.ts` holds the path's.
+- Server: `GET`/`PUT /v1/me/nodes/{id}/state`, same identity story as the path
+  (`x-alminhej-account`, in-memory), one document per account+node. A `GET` for
+  an account that has never touched the node returns the empty state, not a
+  `404`; a state for a node that isn't in the graph is a `404`.
+- `useReaderState(nodeId)`, mirroring `useLearningPath`: the account's stored
+  document is the source of truth, mutations are *load-then-write* so a change
+  made before the first read lands can't clobber the server's copy, and it is
+  keyed by node id — so it resets on navigation and no-ops until the node has
+  resolved.
+- `ReadingContent`/`StudyPanel`/`PracticeTab` consume that hook's values as
+  props; delete `hooks/useLocalStorage.ts` once it has no callers.
+
+**Acceptance criteria:**
+- The same account token sees the same bookmark/vocabulary/recite-count/notes
+  after a reload; a different token — and a different node — sees blank ones.
+  (Provable locally: the memory provider keys per account+node, the HTTP
+  provider stores on the server — same contract.)
+- `npm run build` passes with zero type errors, `useLocalStorage.ts` is gone,
+  and the app still runs identically against Memory and against the real
+  backend.
+
+---
+
 ## Notes for whoever picks this up
 
 - Keep the Goal → Why → Scope → Acceptance shape for new prompts — it's

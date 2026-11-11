@@ -68,15 +68,22 @@ src/
     dto.ts           ReadingExperienceDTO and friends — what a real
                      `GET /v1/reading/{slug}` would return
     repositories.ts  KnowledgeRepository / RelationshipRepository /
-                     LearningPathRepository interfaces — the storage-agnostic
-                     boundary. The first two read the authored graph; the
-                     last *writes* the reader's own path.
+                     LearningPathRepository / ReaderStateRepository interfaces
+                     — the storage-agnostic boundary. The first two read the
+                     authored graph; the last two *write* the reader's own
+                     state: the path (one document per account) and the
+                     per-node reader state (one per account *and* node).
     learning.ts      Recommendation / LearningGoal / LearningPath, plus
                      REASON_SOURCE_EDGE — the vocabulary a path is described
                      in. A path is a *projection over the graph*, never a
                      parallel structure: nothing here stores a hand-ordered
                      node list. `EMPTY_LEARNING_PATH` is the canonical blank a
                      new account starts from, shared by every implementation.
+    readerState.ts   The reader's own markings on a single node — the reading
+                     toolbar's bookmark, the vocabulary helper's discovered
+                     entry ids, the memorizer's recite count, and the
+                     Practice tab's takeaway/action note. `EMPTY_READER_STATE`
+                     is the canonical blank, shared by every implementation.
 
   infrastructure/
     memory/
@@ -93,6 +100,11 @@ src/
                            The path repository against `localStorage`, keyed
                            per account, so the app is still per-account with
                            no server running.
+      MemoryReaderStateRepository.ts
+                           The per-node reader-state repository, likewise
+                           against `localStorage` but keyed per account *and*
+                           node — the no-backend stand-in for the same
+                           contract.
     http/
       httpClient.ts     Thin fetch wrapper shared by the two HTTP
                         repositories. A 404 means "absent" (null); anything
@@ -114,6 +126,10 @@ src/
       HttpLearningPathRepository.ts
                         The path repository — the first one that writes —
                         over `GET`/`PUT /v1/me/path`.
+      HttpReaderStateRepository.ts
+                        The per-node reader-state repository over `GET`/`PUT
+                        /v1/me/nodes/{id}/state`, on the same transport and
+                        with the same identity.
       adminClient.ts    §5.B's Content Management client — the one place
                         that knows about roles (`x-alminhej-roles`). It
                         deliberately does *not* collapse a 404 into `null`
@@ -154,7 +170,7 @@ src/
                                     talks to the real backend; leave it unset
                                     and it runs on the Memory provider — for
                                     the graph repositories *and* the reader's
-                                    own path alike.
+                                    own path and per-node state alike.
 
   hooks/
     useAccount.ts              The reader's identity: an opaque token minted
@@ -182,13 +198,19 @@ src/
     useRecommendation.ts       Runs `recommendationStrategy.recommend` for a
                                node and reports both the suggestion and its
                                "because …" reason
+    useReaderState.ts          The reader's own state for the node on screen —
+                               bookmark, discovered vocabulary, recite count,
+                               Practice notes — read from and written to the
+                               account's store through `ReaderStateRepository`.
+                               Keyed by node id, so it resets on navigation and
+                               no-ops until the node has resolved; mutations are
+                               load-then-write like the path's.
     useCompanion.ts            Asks §7's server route a free-text question
                                about one node. States are explicit —
                                idle / thinking / answered / unavailable /
                                error — so "not configured" can never render
                                as a fabricated answer.
     useIsMobile.ts              Responsive breakpoint
-    useLocalStorage.ts          Lightweight local persistence
 
   lib/
     contentBlocks.ts   Typed accessors for pulling a specific block off a
@@ -235,8 +257,10 @@ server/
                      dependencies. Serves the same JSON fixtures the
                      Memory provider ships, keeps §5.B's writes in memory
                      for the life of the process, and stores each account's
-                     learning path (`GET`/`PUT /v1/me/path`, keyed by the
-                     `x-alminhej-account` token) the same way. `npm run api`.
+                     own state the same way — the learning path (`GET`/`PUT
+                     /v1/me/path`) and the per-node reader state (`GET`/`PUT
+                     /v1/me/nodes/{id}/state`), both keyed by the
+                     `x-alminhej-account` token. `npm run api`.
   knowledgeContext.mjs  §7's `KnowledgeContextBuilder`: given a node id,
                      assembles that node's own content plus a *bounded*
                      slice of its immediate graph neighbors (only
@@ -369,10 +393,17 @@ than canned: the three authored prompts are quick-start buttons beside a
 free-text box, and every answer comes from §7's server route over a bounded,
 builder-assembled slice of the graph — labelled AI-generated, declining
 questions that fall outside its context, and shipping no API key to the
-client. The reader's learning path is now stored per account, server-side, so
-it is genuinely cross-session; the remaining per-node reader state (bookmarks,
-recite counts) is still browser-local, and moving it behind the same boundary
-is the next step — see `PROMPTS.md`.
+client. **The reader's own state is now server-side too.** The learning path
+was the first thing to move off `localStorage`; the remaining per-node reader
+state — the toolbar bookmark, discovered vocabulary, recite count, and the
+Practice tab's takeaway/action note — has followed it behind the same boundary,
+as one document per account *and* node (`ReaderStateRepository`). So it survives
+a reload and follows the account rather than the browser, and `useLocalStorage`
+is now gone from the tree entirely: every piece of reader-generated data goes
+through a repository, Memory or HTTP, chosen in one place. What remains local
+is the source-detail vote tally (plain component state, never persisted) and
+identity itself — `x-alminhej-account` is an identity, not a credential, and
+real auth (`/v1/auth/*`) is the honest next step — see `PROMPTS.md`, Prompt 7.
 
 ## Scalability notes
 

@@ -1,12 +1,14 @@
 import { MemoryKnowledgeRepository } from "@/infrastructure/memory/MemoryKnowledgeRepository";
 import { MemoryRelationshipRepository } from "@/infrastructure/memory/MemoryRelationshipRepository";
 import { MemoryLearningPathRepository } from "@/infrastructure/memory/MemoryLearningPathRepository";
+import { MemoryReaderStateRepository } from "@/infrastructure/memory/MemoryReaderStateRepository";
 import { HttpKnowledgeRepository } from "@/infrastructure/http/HttpKnowledgeRepository";
 import { HttpRelationshipRepository } from "@/infrastructure/http/HttpRelationshipRepository";
 import { HttpLearningPathRepository } from "@/infrastructure/http/HttpLearningPathRepository";
+import { HttpReaderStateRepository } from "@/infrastructure/http/HttpReaderStateRepository";
 import { AssembleReadingExperience } from "./AssembleReadingExperience";
 import { GraphTraversalRecommendationStrategy } from "./RecommendationStrategy";
-import type { LearningPathRepository } from "@/domain/repositories";
+import type { LearningPathRepository, ReaderStateRepository } from "@/domain/repositories";
 
 /**
  * The only file that decides *which* storage implementation is in use.
@@ -61,5 +63,17 @@ export const companionApiBaseUrl: string | null = apiBaseUrl ?? null;
 export const learningPathRepository: LearningPathRepository = apiBaseUrl
   ? new HttpLearningPathRepository(apiBaseUrl)
   : new MemoryLearningPathRepository();
+
+/**
+ * Per-node reader state — bookmark, discovered vocabulary, recite count, and
+ * the Practice-tab notes — is the same kind of per-account state as the path,
+ * one scope narrower (keyed by `(account, node)`). Same swap point again: with
+ * an API base URL it lives behind `GET`/`PUT /v1/me/nodes/{id}/state`; without
+ * one the memory provider stands in, keyed by account and node. `useReaderState`
+ * is the only caller.
+ */
+export const readerStateRepository: ReaderStateRepository = apiBaseUrl
+  ? new HttpReaderStateRepository(apiBaseUrl)
+  : new MemoryReaderStateRepository();
 
 export { knowledgeRepository, relationshipRepository };
