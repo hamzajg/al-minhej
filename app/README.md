@@ -63,6 +63,11 @@ src/
                      `GET /v1/reading/{slug}` would return
     repositories.ts  KnowledgeRepository / RelationshipRepository
                      interfaces — the storage-agnostic boundary
+    learning.ts      Recommendation / LearningGoal / LearningPath, plus
+                     REASON_SOURCE_EDGE — the vocabulary a path is described
+                     in. A path is a *projection over the graph*, never a
+                     parallel structure: nothing here stores a hand-ordered
+                     node list.
 
   infrastructure/
     memory/
@@ -103,8 +108,19 @@ src/
     DigitizationProgressService.ts A book's progress is *derived*, never
                                     hand-edited — see "Why this structure"
                                     below.
+    RecommendationStrategy.ts      The architecture doc's Strategy pattern:
+                                    given a finished node and the graph,
+                                    walk real edges (`PART_OF` siblings,
+                                    `REFERENCES`, `SIMILAR_TO`, shared
+                                    `NARRATED_BY` narrators) to suggest a
+                                    next node. Every suggestion carries the
+                                    one `Relationship` that justifies it, so
+                                    the UI can never claim an edge the graph
+                                    lacks. Rule-based today; an
+                                    embedding/ML strategy replaces this
+                                    class behind the same interface.
     container.ts                   The one file that wires Memory
-                                    providers into the application service.
+                                    providers into the application services.
                                     Swapping to a real backend later means
                                     changing two lines here.
 
@@ -119,6 +135,13 @@ src/
                                 biography sources)
     useKnowledgeNode.ts        Resolve any node by id (source detail modal)
     useReadingIndex.ts         Published reading experiences (Home page)
+    useLearningPath.ts         The current path — goal id + the node ids
+                               actually opened, in `localStorage`. Stores no
+                               to-visit list: what comes next is always
+                               re-derived from the graph.
+    useRecommendation.ts       Runs `recommendationStrategy.recommend` for a
+                               node and reports both the suggestion and its
+                               "because …" reason
     useIsMobile.ts              Responsive breakpoint
     useLocalStorage.ts          Lightweight local persistence
 
@@ -131,7 +154,8 @@ src/
 
   components/
     layout/         Header, BottomSheet, BottomTabBar
-    onboarding/      Bilingual reading-mode picker (Arabic First / Guided)
+    onboarding/      Bilingual goal picker (`GoalOnboardingModal`) and
+                      reading-mode picker (Arabic First / Guided)
     reader/          Toolbar + compact continuous Arabic canvas + Memorize mode
     chain/           Isnad explorer, driven by IsnadDTO
     graph/           Radial mini knowledge-graph (SVG), driven by real
@@ -167,6 +191,16 @@ server/
 
 ### Why this structure
 
+- **A learning path is a traversal, not a stored list.** The goal picker
+  (`components/onboarding/GoalOnboardingModal.tsx`) and the goal definitions
+  (`data/goals.ts`) give the reader *two* things and nothing more: a seed
+  node (by slug) and an ordering of rules. What comes next is computed every
+  time by `RecommendationStrategy` walking the same edges the reading
+  experience walks, which is why a path cannot drift out of sync with the
+  graph — there is no second copy of it to drift. `useLearningPath` persists
+  only the goal id and the node ids actually opened; the "next" card on the
+  home page is derived from those, and a recommendation that has no edge to
+  stand on says so instead of inventing one.
 - **A book's digitization progress is computed, not maintained.**
   `DigitizationProgressService.indexedUnitsFor(book)` counts published
   nodes that actually point at that book (`PART_OF` incoming, or
@@ -231,9 +265,12 @@ Management API plus the `/admin` workbench: an editor creates a node,
 attaches content blocks, links it to an existing book or narrator by
 autocomplete, and moves it `draft → in_review → published` — with publish
 reserved for `scholar-reviewer`/`admin`, so an editor alone cannot release
-their own work. AI Companion still returns static canned answers (no real
-model call yet). Guided Learning Paths and cross-session Progress Tracking
-are not yet built — see `PROMPTS.md`.
+their own work. **Guided Learning Paths** are now built on top of the same
+graph: a bilingual "why are you here?" goal picker seeds a path, and every
+"next" suggestion is a real edge traversal with a visible "because …" reason
+— never a hand-authored list. AI Companion still returns static canned
+answers (no real model call yet). Cross-session Progress Tracking is not yet
+built — see `PROMPTS.md`.
 
 ## Scalability notes
 

@@ -93,4 +93,19 @@ export interface UiStrings {
   homeGraphDesc: string;
   homeLibraryEyebrow: string;
   homeLibraryTitle: string;
+  pathEyebrow: string;
+  pathGoalLabel: string;
+  pathChooseTitle: string;
+  pathChooseDesc: string;
+  pathChooseCta: string;
+  pathStartHere: string;
+  pathNext: string;
+  pathCompleteTitle: string;
+  pathCompleteDesc: string;
+  pathChangeGoal: string;
+  pathBecauseSameCollection: string;
+  pathBecauseCrossReference: string;
+  pathBecauseSimilarTo: string;
+  pathBecauseSharedNarrator: string;
+  pathTraceableNote: string;
 }

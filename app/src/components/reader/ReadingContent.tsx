@@ -5,6 +5,7 @@ import { useIsMobile } from "@/hooks/useIsMobile";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { useReadingExperience } from "@/hooks/useReadingExperience";
 import { useKnowledgeNode } from "@/hooks/useKnowledgeNode";
+import { useLearningPath } from "@/hooks/useLearningPath";
 import { DIFFICULTY_LEVELS } from "@/lib/memorize";
 import { flattenClauseWords } from "@/lib/words";
 import { getClauses, getVocabulary } from "@/lib/contentBlocks";
@@ -77,6 +78,13 @@ export default function ReadingContent({ slug, bookContext }: ReadingContentProp
   const [votes, setVotes] = useState<Record<string, number>>({});
   const [voted, setVoted] = useState<Set<string>>(new Set());
   const activeSourceNode = useKnowledgeNode(activeSource);
+
+  // Opening a reading experience is what advances the current path. The
+  // next-step suggestion on the home page is derived from this.
+  const { recordVisit } = useLearningPath();
+  useEffect(() => {
+    if (dto) recordVisit(dto.node.id);
+  }, [dto, recordVisit]);
 
   const onDiscover = (id: string) => {
     if (!discoveredSet.has(id)) setDiscovered([...discovered, id]);

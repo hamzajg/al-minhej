@@ -3,6 +3,7 @@ import { MemoryRelationshipRepository } from "@/infrastructure/memory/MemoryRela
 import { HttpKnowledgeRepository } from "@/infrastructure/http/HttpKnowledgeRepository";
 import { HttpRelationshipRepository } from "@/infrastructure/http/HttpRelationshipRepository";
 import { AssembleReadingExperience } from "./AssembleReadingExperience";
+import { GraphTraversalRecommendationStrategy } from "./RecommendationStrategy";
 
 /**
  * The only file that decides *which* storage implementation is in use.
@@ -23,6 +24,17 @@ const relationshipRepository = apiBaseUrl
   : new MemoryRelationshipRepository();
 
 export const readingExperienceService = new AssembleReadingExperience(
+  knowledgeRepository,
+  relationshipRepository
+);
+
+/**
+ * Learning paths are a traversal over the graph, so the strategy reads the
+ * same repositories everything else does. A future embedding-based strategy
+ * implements the same `RecommendationStrategy` interface and replaces this
+ * one line.
+ */
+export const recommendationStrategy = new GraphTraversalRecommendationStrategy(
   knowledgeRepository,
   relationshipRepository
 );
