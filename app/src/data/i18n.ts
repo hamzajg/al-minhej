@@ -13,13 +13,3 @@ export const STRINGS: Record<UiLang, UiStrings> = {
 };
 
 export const SUBTITLE_LANGS: Record<string, string> = enData.subtitleLangs as Record<string, string>;
-
-export const COMPANION_PROMPTS: Record<string, string[]> = {
-  ar: arData.companionPrompts,
-  en: enData.companionPrompts,
-};
-
-export const COMPANION_ANSWERS: Record<string, Record<number, string>> = {
-  ar: arData.companionAnswers as Record<number, string>,
-  en: enData.companionAnswers as Record<number, string>,
-};

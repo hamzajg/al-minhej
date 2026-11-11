@@ -23,6 +23,7 @@
  *   GET /v1/nodes?ids={id,id,...}
  *   GET /v1/nodes?type={NodeType}
  *   GET /v1/relationships?nodeId={id}[&direction=from|to]
+ *   POST /v1/nodes/{id}/companion/ask   ← grounded AI answer (§7)
  *
  * Endpoints — §5.B (admin, sends `x-alminhej-roles`):
  *   GET   /v1/admin/nodes?type={NodeType}&status={NodeStatus}
@@ -33,11 +34,18 @@
  *   POST  /v1/admin/nodes/{id}/publish
  *
  * Run: npm run api   (PORT=8787 by default)
+ *
+ * The companion route is the only one that leaves this process: it calls the
+ * Anthropic API with `ANTHROPIC_API_KEY` from the environment (never from the
+ * client — see §7 and `server/companion.mjs`). With no key set it answers 503
+ * rather than pretending, so the app can show an honest "not configured" state.
  */
 import { createServer } from "node:http";
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
+import { buildKnowledgeContext } from "./knowledgeContext.mjs";
+import { askClaude, CompanionUpstreamError, DEFAULT_MODEL } from "./companion.mjs";
 
 const dataDir = join(dirname(fileURLToPath(import.meta.url)), "..", "src", "infrastructure", "memory", "data");
 
@@ -47,6 +55,23 @@ const NODES = JSON.parse(readFileSync(join(dataDir, "nodes.json"), "utf8"));
 const RELATIONSHIPS = JSON.parse(readFileSync(join(dataDir, "relationships.json"), "utf8"));
 
 const PORT = Number(process.env.PORT ?? 8787);
+
+/**
+ * §7's AI layer. The key lives here and only here — read from the environment
+ * at boot, used for the outbound call, never serialized into any response and
+ * never part of the client bundle (the browser only ever talks to this route).
+ */
+const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
+const COMPANION_MODEL = process.env.ANTHROPIC_MODEL ?? DEFAULT_MODEL;
+const companionReady = () => Boolean(ANTHROPIC_API_KEY);
+
+/**
+ * §7: "Every POST /v1/nodes/{id}/companion/ask call is logged to `ai_sessions`
+ * — not for surveillance, but because that log is the raw material for a
+ * scholarly reviewer to spot-check whether the companion is staying properly
+ * grounded." In-memory here, like the §5.B writes; a real server persists it.
+ */
+const AI_SESSIONS = [];
 
 const NODE_TYPES = ["BOOK", "PAGE", "HADITH", "VERSE", "NARRATOR", "EVENT", "CONCEPT"];
 const NODE_STATUSES = ["draft", "in_review", "published"];
@@ -169,6 +194,74 @@ function handleRelationships(res, url) {
     return r.from === nodeId || r.to === nodeId;
   });
   return sendJson(res, 200, edges);
+}
+
+/* ------------------------------------------------------------------ *
+ * §7 — the AI layer. Grounded, never open model access.
+ * ------------------------------------------------------------------ */
+
+const COMPANION_PREFIX = "/v1/nodes/";
+const COMPANION_SUFFIX = "/companion/ask";
+
+/** `true` when the path is the companion route (its `{id}` may contain `/`). */
+const isCompanionRoute = (pathname) =>
+  pathname.startsWith(COMPANION_PREFIX) && pathname.endsWith(COMPANION_SUFFIX);
+
+async function handleCompanion(req, res, url) {
+  const id = decodeURIComponent(
+    url.pathname.slice(COMPANION_PREFIX.length, url.pathname.length - COMPANION_SUFFIX.length)
+  );
+
+  // Validate the target first, so a missing node is a 404 regardless of whether
+  // the companion happens to be configured — the two failures are unrelated.
+  if (!NODES.some((n) => n.id === id && n.status === "published")) {
+    return sendError(res, 404, "NODE_NOT_FOUND", `No published node with id '${id}'`);
+  }
+
+  const body = await readJson(req);
+  if (!isNonEmptyString(body.question)) {
+    return sendError(res, 400, "INVALID_REQUEST", "'question' is required");
+  }
+  const lang = body.lang === "ar" ? "ar" : "en";
+
+  // The builder — §7's boundary. The model only ever sees this object.
+  const context = buildKnowledgeContext(id, NODES, RELATIONSHIPS);
+  if (!context) {
+    return sendError(res, 404, "CONTEXT_UNAVAILABLE", `Could not assemble context for '${id}'`);
+  }
+
+  if (!companionReady()) {
+    return sendError(
+      res,
+      503,
+      "COMPANION_UNAVAILABLE",
+      "The study companion is not configured: set ANTHROPIC_API_KEY in the server environment " +
+        "(the key must never live in the client)."
+    );
+  }
+
+  try {
+    const { answer, model } = await askClaude({
+      context,
+      question: body.question.trim(),
+      lang,
+      apiKey: ANTHROPIC_API_KEY,
+      model: COMPANION_MODEL,
+    });
+    AI_SESSIONS.push({
+      nodeId: id,
+      question: body.question.trim(),
+      lang,
+      model,
+      at: new Date().toISOString(),
+    });
+    return sendJson(res, 200, { answer, model, grounded: true });
+  } catch (cause) {
+    if (cause instanceof CompanionUpstreamError) {
+      return sendError(res, 502, "COMPANION_UPSTREAM_ERROR", cause.message);
+    }
+    throw cause;
+  }
 }
 
 /* ------------------------------------------------------------------ *
@@ -392,6 +485,15 @@ async function dispatch(req, res, url) {
     return handleAdminNodes(req, res, url);
   }
 
+  // §7's companion is the one public route that is a POST — it has to be
+  // matched before the generic GET-only guard below.
+  if (isCompanionRoute(url.pathname)) {
+    if (req.method !== "POST") {
+      return sendError(res, 405, "METHOD_NOT_ALLOWED", `${req.method} is not supported on the companion route`);
+    }
+    return handleCompanion(req, res, url);
+  }
+
   if (req.method !== "GET") {
     return sendError(res, 405, "METHOD_NOT_ALLOWED", `${req.method} is not supported`);
   }
@@ -400,6 +502,8 @@ async function dispatch(req, res, url) {
       status: "ok",
       nodes: NODES.length,
       relationships: RELATIONSHIPS.length,
+      // Honest about the one dependency that lives outside this process.
+      companion: companionReady() ? "ready" : "unconfigured",
     });
   }
   if (url.pathname === "/v1/nodes" || url.pathname.startsWith("/v1/nodes/")) {

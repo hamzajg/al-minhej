@@ -78,8 +78,9 @@ export interface ContextBlock {
 export interface AiContextBlock {
   type: "ai_context";
   explanation: Localized<string>;
+  /** Quick-start question ids; the questions themselves now go to the
+   *  grounded companion route (§7) instead of a canned `answers` list. */
   prompts: string[];
-  answers: Record<"ar" | "en", string[]>;
 }
 
 export interface QuizBlock {

@@ -39,6 +39,13 @@ export interface UiStrings {
   actionPh: string;
   companionTitle: string;
   companionNote: string;
+  companionPromptLabels: Record<string, string>;
+  companionAskPlaceholder: string;
+  companionSend: string;
+  companionThinking: string;
+  companionAiLabel: string;
+  companionUnavailable: string;
+  companionError: string;
   quizCorrect: string;
   quizWrong: string;
   welcomeGreet: string;
@@ -49,7 +56,6 @@ export interface UiStrings {
   guidedDesc: string;
   startBtn: string;
   reopenPicker: string;
-  companionPromptLabels: Record<string, string>;
   memorize: string;
   easy: string;
   medium: string;

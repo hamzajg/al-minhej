@@ -44,6 +44,12 @@ npm run dev       # Vite restarts itself; no rebuild
 #    and the book's digitization progress moves on the reading side with
 #    no other step. Try it with only the `editor` role ticked and notice
 #    Publish is refused; add `scholar-reviewer` to allow it.
+
+# 4. …the AI Companion (§7) is opt-in and server-side only. The key is
+#    read from the server's environment and never reaches the browser:
+ANTHROPIC_API_KEY=sk-ant-… npm run api   # enables /v1/nodes/{id}/companion/ask
+#    Without it the endpoint answers 503 and the widget says so rather
+#    than inventing an answer. `/v1/health` reports `companion: ready`.
 ```
 
 ```bash
@@ -98,6 +104,12 @@ src/
                         to doesn't exist" is the error an editor needs to
                         see, and refusing it is what stops a duplicate
                         "Sahih al-Bukhari" node from being minted by typo.
+      companionClient.ts §7's client — `askCompanion(baseUrl, nodeId,
+                        question, lang)`. The browser only ever calls the
+                        server route; it holds no key and no Anthropic URL.
+                        A `503` is surfaced verbatim so the widget can say
+                        "the companion isn't configured" instead of faking
+                        an answer.
 
   application/
     AssembleReadingExperience.ts   Walks nodes + relationships into a
@@ -142,6 +154,11 @@ src/
     useRecommendation.ts       Runs `recommendationStrategy.recommend` for a
                                node and reports both the suggestion and its
                                "because …" reason
+    useCompanion.ts            Asks §7's server route a free-text question
+                               about one node. States are explicit —
+                               idle / thinking / answered / unavailable /
+                               error — so "not configured" can never render
+                               as a fabricated answer.
     useIsMobile.ts              Responsive breakpoint
     useLocalStorage.ts          Lightweight local persistence
 
@@ -165,8 +182,11 @@ src/
                       "Source" type
     study/           Tabbed panel: Understand / Vocabulary / Connect /
                       Practice / Library
-    companion/       Floating AI companion, grounded in the node's
-                      ai_context block
+    companion/       Floating AI companion: the node's three authored
+                      prompts are quick-start buttons, plus a free-text
+                      question box. Every answer is a grounded call to §7 —
+                      labelled AI-generated, and never shown for a node
+                      that has no `ai_context` block.
     ui/              Pill, Card, IconBadge primitives
 
   pages/
@@ -183,10 +203,25 @@ src/
                       what it shows is what a reader will see.
 
 server/
-  api-server.mjs     §5.A + §5.B over plain `node:http`, zero dependencies.
-                     Serves the same JSON fixtures the Memory provider
-                     ships, and keeps §5.B's writes in memory for the life
-                     of the process. `npm run api`.
+  api-server.mjs     §5.A + §5.B + §7 over plain `node:http`, zero
+                     dependencies. Serves the same JSON fixtures the
+                     Memory provider ships, and keeps §5.B's writes in
+                     memory for the life of the process. `npm run api`.
+  knowledgeContext.mjs  §7's `KnowledgeContextBuilder`: given a node id,
+                     assembles that node's own content plus a *bounded*
+                     slice of its immediate graph neighbors (only
+                     EXPLAINS / REFERENCES / NARRATED_BY / PART_OF, capped
+                     by count and characters) into the context sent to the
+                     model. The AI layer never touches storage directly —
+                     this is the one seam between the graph and the LLM.
+  companion.mjs      The prompt contract, kept out of the HTTP server so
+                     it can be tested with no network: a system prompt that
+                     permits *only* the supplied context, requires an
+                     explicit decline ("Do NOT guess") when the question
+                     falls outside it, and mandates the AI-generated
+                     self-identification the reading UI already uses.
+                     `askClaude` takes an injectable `fetch`, which is how
+                     the outbound call shape is asserted in tests.
 ```
 
 ### Why this structure
@@ -201,6 +236,18 @@ server/
   only the goal id and the node ids actually opened; the "next" card on the
   home page is derived from those, and a recommendation that has no edge to
   stand on says so instead of inventing one.
+- **The AI layer is grounded by construction, and the key is server-only.**
+  §7's rule is that the model never touches storage — it only ever sees a
+  `KnowledgeContextBuilder`-assembled slice of the graph.
+  `server/knowledgeContext.mjs` *is* that builder, and it is deliberately
+  bounded (a capped neighbor count and snippet length), so a question that
+  falls outside the node's assembled context is one the system prompt is
+  required to decline rather than answer. The browser only calls the route;
+  `ANTHROPIC_API_KEY` is read from `process.env` inside the server and is
+  never serialized into the client bundle. When no key is set the endpoint
+  returns `503 COMPANION_UNAVAILABLE` and the widget says the companion
+  isn't configured — there is no code path that produces a fabricated
+  answer.
 - **A book's digitization progress is computed, not maintained.**
   `DigitizationProgressService.indexedUnitsFor(book)` counts published
   nodes that actually point at that book (`PART_OF` incoming, or
@@ -268,9 +315,12 @@ reserved for `scholar-reviewer`/`admin`, so an editor alone cannot release
 their own work. **Guided Learning Paths** are now built on top of the same
 graph: a bilingual "why are you here?" goal picker seeds a path, and every
 "next" suggestion is a real edge traversal with a visible "because …" reason
-— never a hand-authored list. AI Companion still returns static canned
-answers (no real model call yet). Cross-session Progress Tracking is not yet
-built — see `PROMPTS.md`.
+— never a hand-authored list. **The AI Companion** is now grounded rather
+than canned: the three authored prompts are quick-start buttons beside a
+free-text box, and every answer comes from §7's server route over a bounded,
+builder-assembled slice of the graph — labelled AI-generated, declining
+questions that fall outside its context, and shipping no API key to the
+client. Cross-session Progress Tracking is not yet built — see `PROMPTS.md`.
 
 ## Scalability notes
 

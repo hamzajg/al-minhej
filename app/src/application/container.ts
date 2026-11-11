@@ -39,4 +39,13 @@ export const recommendationStrategy = new GraphTraversalRecommendationStrategy(
   relationshipRepository
 );
 
+/**
+ * The AI companion is HTTP-only, and by construction: the model call has to
+ * happen server-side so `ANTHROPIC_API_KEY` never reaches the browser. There is
+ * therefore no in-memory strategy to swap in here — with no API base URL the
+ * companion is `null` and the widget says so honestly, which is the same
+ * "don't paper over a missing backend" rule `httpClient.ts` follows.
+ */
+export const companionApiBaseUrl: string | null = apiBaseUrl ?? null;
+
 export { knowledgeRepository, relationshipRepository };
