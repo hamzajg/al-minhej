@@ -40,7 +40,7 @@ export function StudyPanel({
     ["connect", t.tabConnect],
     ["practice", t.tabPractice],
     ["library", t.tabLibrary],
-    ["biography", "السيرة / Biography"],
+    ["biography", t.tabBiography],
   ];
 
   return (
