@@ -28,6 +28,8 @@
  * Endpoints — §5.A (the reader's own state, sends `x-alminhej-account`):
  *   GET /v1/me/path      ← the account's learning path
  *   PUT /v1/me/path      ← replace it
+ *   GET /v1/me/nodes/{id}/state  ← the account's own state for one node
+ *   PUT /v1/me/nodes/{id}/state  ← replace it
  *
  * Endpoints — §5.B (admin, sends `x-alminhej-roles`):
  *   GET   /v1/admin/nodes?type={NodeType}&status={NodeStatus}
@@ -351,6 +353,104 @@ async function handleMePath(req, res) {
 }
 
 /* ------------------------------------------------------------------ *
+ * §5.A — the reader's own state *for one node* (`/v1/me/nodes/{id}/state`)
+ *
+ * The path above is one document per account; this is one per (account,
+ * node): bookmark, discovered vocabulary, recite count, and the Practice-tab
+ * notes. It is the same identity story (`x-alminhej-account`) and the same
+ * in-memory lifecycle. Kept separate from the path because it is written on
+ * nearly every reader interaction, where the path is not.
+ * ------------------------------------------------------------------ */
+
+const ME_NODE_PREFIX = "/v1/me/nodes/";
+const ME_NODE_SUFFIX = "/state";
+
+/** `true` when the path is the per-node state route (its `{id}` is encoded). */
+const isMeNodeStateRoute = (pathname) =>
+  pathname.startsWith(ME_NODE_PREFIX) && pathname.endsWith(ME_NODE_SUFFIX);
+
+/** One document per account+node, keyed so two accounts' states never collide. */
+const READER_STATES = new Map();
+const readerStateKey = (accountId, nodeId) => `${accountId}\u0000${nodeId}`;
+
+/** Mirrors `EMPTY_READER_STATE` in the client's `domain/readerState.ts`. */
+const EMPTY_READER_STATE = {
+  bookmarked: false,
+  discovered: [],
+  reciteCount: 0,
+  takeaway: "",
+  actionItem: "",
+};
+
+/** A reader state is a small, fixed shape — reject anything else outright. */
+function isValidReaderState(value) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return false;
+  if (typeof value.bookmarked !== "boolean") return false;
+  if (!Number.isInteger(value.reciteCount) || value.reciteCount < 0) return false;
+  if (typeof value.takeaway !== "string") return false;
+  if (typeof value.actionItem !== "string") return false;
+  if (!Array.isArray(value.discovered) || !value.discovered.every(isNonEmptyString)) return false;
+  return true;
+}
+
+async function handleMeNodeState(req, res, url) {
+  const accountId = accountFrom(req);
+  if (!accountId) {
+    return sendError(
+      res,
+      400,
+      "INVALID_REQUEST",
+      "The x-alminhej-account header is required — it is the account identity"
+    );
+  }
+
+  const nodeId = decodeURIComponent(
+    url.pathname.slice(ME_NODE_PREFIX.length, url.pathname.length - ME_NODE_SUFFIX.length)
+  );
+  // A state for a node nobody can read is a client bug, not a document to keep.
+  if (!NODES.some((n) => n.id === nodeId)) {
+    return sendError(res, 404, "NODE_NOT_FOUND", `No node with id '${nodeId}'`);
+  }
+
+  const key = readerStateKey(accountId, nodeId);
+
+  if (req.method === "GET") {
+    // As with the path: an account that has never touched this node simply has
+    // no state, and the honest answer is the empty state, never a 404.
+    return sendJson(res, 200, READER_STATES.get(key) ?? EMPTY_READER_STATE);
+  }
+
+  if (req.method !== "PUT") {
+    return sendError(
+      res,
+      405,
+      "METHOD_NOT_ALLOWED",
+      `${req.method} is not supported on /v1/me/nodes/{id}/state`
+    );
+  }
+
+  const body = await readJson(req);
+  if (!isValidReaderState(body)) {
+    return sendError(
+      res,
+      400,
+      "INVALID_REQUEST",
+      "Body must be a reader state: { bookmarked, discovered[], reciteCount, takeaway, actionItem }"
+    );
+  }
+
+  const stored = {
+    bookmarked: body.bookmarked,
+    discovered: body.discovered,
+    reciteCount: body.reciteCount,
+    takeaway: body.takeaway,
+    actionItem: body.actionItem,
+  };
+  READER_STATES.set(key, stored);
+  return sendJson(res, 200, stored);
+}
+
+/* ------------------------------------------------------------------ *
  * §5.B — Content Management API
  * ------------------------------------------------------------------ */
 
@@ -583,6 +683,9 @@ async function dispatch(req, res, url) {
   // `/v1/me/*` accepts PUT as well as GET, so it too precedes the guard.
   if (url.pathname === "/v1/me/path") {
     return handleMePath(req, res);
+  }
+  if (isMeNodeStateRoute(url.pathname)) {
+    return handleMeNodeState(req, res, url);
   }
 
   if (req.method !== "GET") {

@@ -14,6 +14,10 @@ interface Props {
   setTab: (t: RightTab) => void;
   discovered: Set<string>;
   onDiscover: (id: string) => void;
+  takeaway: string;
+  actionItem: string;
+  setTakeaway: (value: string) => void;
+  setActionItem: (value: string) => void;
   activeGraphNode: string;
   setActiveGraphNode: (id: string) => void;
   onOpenSource: (id: string) => void;
@@ -25,6 +29,10 @@ export function StudyPanel({
   setTab,
   discovered,
   onDiscover,
+  takeaway,
+  actionItem,
+  setTakeaway,
+  setActionItem,
   activeGraphNode,
   setActiveGraphNode,
   onOpenSource,
@@ -56,7 +64,15 @@ export function StudyPanel({
       {tab === "connect" && (
         <ConnectTab graph={dto.graph} active={activeGraphNode} onSelect={setActiveGraphNode} />
       )}
-      {tab === "practice" && <PracticeTab node={dto.node} />}
+      {tab === "practice" && (
+        <PracticeTab
+          node={dto.node}
+          takeaway={takeaway}
+          actionItem={actionItem}
+          setTakeaway={setTakeaway}
+          setActionItem={setActionItem}
+        />
+      )}
       {tab === "library" && <LibraryTab onOpenSource={onOpenSource} />}
     </div>
   );

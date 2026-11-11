@@ -2,7 +2,7 @@ import { Flame, ChevronLeft, ChevronRight, List, X, Lock } from "lucide-react";
 import { useState, useEffect, useMemo } from "react";
 import { useSettings } from "@/context/SettingsContext";
 import { useIsMobile } from "@/hooks/useIsMobile";
-import { useLocalStorage } from "@/hooks/useLocalStorage";
+import { useReaderState } from "@/hooks/useReaderState";
 import { useReadingExperience } from "@/hooks/useReadingExperience";
 import { useKnowledgeNode } from "@/hooks/useKnowledgeNode";
 import { useLearningPath } from "@/hooks/useLearningPath";
@@ -49,21 +49,24 @@ export default function ReadingContent({ slug, bookContext }: ReadingContentProp
   const { t, uiLang, dir } = useSettings();
   const isCompact = useIsMobile(1040);
 
+  // The reader's own per-node state (bookmark, discovered vocabulary, recite
+  // count, Practice notes) now lives per account behind `ReaderStateRepository`
+  // rather than in `localStorage`. Keyed by node id, so it no-ops until the
+  // reading experience — and therefore the node — has resolved.
+  const reader = useReaderState(dto?.node.id);
+  const discoveredSet = useMemo(() => new Set(reader.state.discovered), [reader.state.discovered]);
+
   const [onboarding, setOnboarding] = useState(true);
   const [sheet, setSheet] = useState<SheetId>(null);
   const [activeNarrator, setActiveNarrator] = useState("narrator-yahya");
   const [rightTab, setRightTab] = useState<RightTab>("understand");
   const [activeGraphNode, setActiveGraphNode] = useState("center");
   const [fontScale, setFontScale] = useState(1);
-  const [bookmarked, setBookmarked] = useLocalStorage(`alminhej:${slug}:bookmarked`, false);
   const [copied, setCopied] = useState(false);
-  const [discovered, setDiscovered] = useLocalStorage<string[]>(`alminhej:${slug}:discovered`, []);
-  const discoveredSet = useMemo(() => new Set(discovered), [discovered]);
 
   const [memorize, setMemorize] = useState(false);
   const [difficulty, setDifficulty] = useState<number>(DIFFICULTY_LEVELS.medium);
   const [revealed, setRevealed] = useState<Set<string>>(new Set());
-  const [reciteCount, setReciteCount] = useLocalStorage(`alminhej:${slug}:reciteCount`, 0);
 
   const [showToc, setShowToc] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
@@ -86,9 +89,7 @@ export default function ReadingContent({ slug, bookContext }: ReadingContentProp
     if (dto) recordVisit(dto.node.id);
   }, [dto, recordVisit]);
 
-  const onDiscover = (id: string) => {
-    if (!discoveredSet.has(id)) setDiscovered([...discovered, id]);
-  };
+  const onDiscover = reader.addDiscovered;
 
   const onToggleReveal = (key: string) => {
     setRevealed((r) => {
@@ -278,8 +279,8 @@ export default function ReadingContent({ slug, bookContext }: ReadingContentProp
         >
           <ReaderToolbar
             setFontScale={setFontScale}
-            bookmarked={bookmarked}
-            setBookmarked={setBookmarked}
+            bookmarked={reader.state.bookmarked}
+            setBookmarked={() => reader.toggleBookmark()}
             copied={copied}
             onCopy={() => {
               const clauses = getClauses(dto.node);
@@ -315,11 +316,11 @@ export default function ReadingContent({ slug, bookContext }: ReadingContentProp
 
           {memorize && (
             <button
-              onClick={() => setReciteCount((n) => n + 1)}
+              onClick={() => reader.incrementRecite()}
               className="mt-5 flex items-center gap-2 text-[13px] font-semibold px-5 py-2.5 rounded-full bg-[var(--color-gold)] text-[#241c0a]"
             >
               <Flame size={15} /> {t.recitedBtn}
-              {reciteCount > 0 && ` · ${reciteCount} ${t.recitedCount}`}
+              {reader.state.reciteCount > 0 && ` · ${reader.state.reciteCount} ${t.recitedCount}`}
             </button>
           )}
         </main>
@@ -332,6 +333,10 @@ export default function ReadingContent({ slug, bookContext }: ReadingContentProp
               setTab={setRightTab}
               discovered={discoveredSet}
               onDiscover={onDiscover}
+              takeaway={reader.state.takeaway}
+              actionItem={reader.state.actionItem}
+              setTakeaway={reader.setTakeaway}
+              setActionItem={reader.setActionItem}
               activeGraphNode={activeGraphNode}
               setActiveGraphNode={setActiveGraphNode}
               onOpenSource={setActiveSource}
@@ -345,6 +350,10 @@ export default function ReadingContent({ slug, bookContext }: ReadingContentProp
               setTab={setRightTab}
               discovered={discoveredSet}
               onDiscover={onDiscover}
+              takeaway={reader.state.takeaway}
+              actionItem={reader.state.actionItem}
+              setTakeaway={reader.setTakeaway}
+              setActionItem={reader.setActionItem}
               activeGraphNode={activeGraphNode}
               setActiveGraphNode={setActiveGraphNode}
               onOpenSource={setActiveSource}
