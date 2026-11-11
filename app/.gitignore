@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# ALMINHEJ_DATA_DIR — the API's local document store (§6). Generated, never authored.
+.data/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

@@ -10,11 +10,17 @@
  * later and nothing above `infrastructure/` notices.
  *
  * §5.B — the Content Management API. Create/edit nodes, draw relationships, and
- * move a node through `draft → in_review → published`, role-gated. Mutations live
- * in memory for the life of the process (the fixtures are read, never written
- * back), which is enough to run the review workflow end to end — publishing here
+ * move a node through `draft → in_review → published`, role-gated. Publishing here
  * is observable on the reading side immediately, because digitization progress is
  * derived from the graph at read time rather than cached on the book node.
+ *
+ * All of it — the graph, accounts, sessions, learning paths, per-node reader
+ * state, the companion log — is read from and written through `server/store.mjs`,
+ * §6's document model. With no `ALMINHEJ_DATA_DIR` the store is in-memory and the
+ * fixtures are re-read at boot, which is the behavior this server has always had;
+ * point the env var at a directory and every write lands on disk, so an editor's
+ * publish, a reader's path, and a registered account all survive a restart.
+ * `/v1/health` reports which mode is active.
  *
  * Endpoints — §5.A (public, no auth):
  *   GET /v1/health
@@ -46,7 +52,8 @@
  *   POST  /v1/admin/nodes/{id}/submit-for-review
  *   POST  /v1/admin/nodes/{id}/publish
  *
- * Run: npm run api   (PORT=8787 by default)
+ * Run: npm run api                       (PORT=8787 by default; in-memory)
+ *      ALMINHEJ_DATA_DIR=.data npm run api   (same server, now durable)
  *
  * The companion route is the only one that leaves this process: it calls the
  * Anthropic API with `ANTHROPIC_API_KEY` from the environment (never from the
@@ -61,13 +68,42 @@ import { dirname, join } from "node:path";
 import { buildKnowledgeContext } from "./knowledgeContext.mjs";
 import { assembleReadingExperience } from "./readingExperience.mjs";
 import { askClaude, CompanionUpstreamError, DEFAULT_MODEL } from "./companion.mjs";
+import { createStore } from "./store.mjs";
 
 const dataDir = join(dirname(fileURLToPath(import.meta.url)), "..", "src", "infrastructure", "memory", "data");
 
-// Mutable for the life of the process — the §5.B writes append/update these in
-// memory. The JSON on disk is only ever the seed.
-const NODES = JSON.parse(readFileSync(join(dataDir, "nodes.json"), "utf8"));
-const RELATIONSHIPS = JSON.parse(readFileSync(join(dataDir, "relationships.json"), "utf8"));
+/**
+ * §6's document model. `ALMINHEJ_DATA_DIR` makes it durable; unset, it is a no-op
+ * store and every collection below hydrates to nothing, exactly as this server
+ * behaved before the store existed.
+ */
+const store = createStore({ dir: process.env.ALMINHEJ_DATA_DIR ?? null });
+
+const fixture = (name) => JSON.parse(readFileSync(join(dataDir, name), "utf8"));
+
+/**
+ * The authored graph. On a fresh — or in-memory — store this is the JSON fixtures,
+ * the same ones the client's Memory provider ships, which is what keeps the two
+ * providers comparable. On a *persisted* store that has been written to, it is
+ * whatever was last saved: an editor's published node is still published after a
+ * restart, and the fixtures are only ever the seed.
+ */
+const NODES = store.collection("knowledge_nodes").all();
+if (NODES.length === 0) NODES.push(...fixture("nodes.json"));
+
+const RELATIONSHIPS = store.collection("relationships").all();
+if (RELATIONSHIPS.length === 0) RELATIONSHIPS.push(...fixture("relationships.json"));
+
+/** Persist a whole collection. A no-op while the store is in-memory. */
+const collections = {
+  nodes: store.collection("knowledge_nodes"),
+  relationships: store.collection("relationships"),
+  users: store.collection("users"),
+  sessions: store.collection("sessions"),
+  learningPaths: store.collection("learning_paths"),
+  readerStates: store.collection("reader_states"),
+  aiSessions: store.collection("ai_sessions"),
+};
 
 const PORT = Number(process.env.PORT ?? 8787);
 
@@ -84,9 +120,11 @@ const companionReady = () => Boolean(ANTHROPIC_API_KEY);
  * §7: "Every POST /v1/nodes/{id}/companion/ask call is logged to `ai_sessions`
  * — not for surveillance, but because that log is the raw material for a
  * scholarly reviewer to spot-check whether the companion is staying properly
- * grounded." In-memory here, like the §5.B writes; a real server persists it.
+ * grounded." It is §6's `ai_sessions` collection: hydrated from the store at
+ * boot and appended through it, so the audit trail outlives the process that
+ * wrote it.
  */
-const AI_SESSIONS = [];
+const AI_SESSIONS = collections.aiSessions.all();
 
 const NODE_TYPES = ["BOOK", "PAGE", "HADITH", "VERSE", "NARRATOR", "EVENT", "CONCEPT"];
 const NODE_STATUSES = ["draft", "in_review", "published"];
@@ -292,6 +330,7 @@ async function handleCompanion(req, res, url) {
       model,
       at: new Date().toISOString(),
     });
+    collections.aiSessions.replace(AI_SESSIONS);
     return sendJson(res, 200, { answer, model, grounded: true });
   } catch (cause) {
     if (cause instanceof CompanionUpstreamError) {
@@ -313,15 +352,28 @@ async function handleCompanion(req, res, url) {
  * token — it never trusts a client-supplied id again.
  *
  * Tokens are random and looked up in `SESSIONS` rather than signed: there is no
- * signing key to leak, and `logout` is a real delete rather than a denylist. The
- * cost is that sessions don't survive a restart — honest for a stand-in, and a
- * smaller surface than a hand-rolled JWT. In-memory like the other §5.B-era
- * writes; a real server persists §6's `users` collection plus a session store.
+ * signing key to leak, and `logout` is a real delete rather than a denylist — a
+ * smaller surface than a hand-rolled JWT. Both §6's `users` collection and those
+ * tokens live in the store, so a durable server keeps its accounts *and* their
+ * sessions across a restart; in-memory, they reset with the process.
  * ------------------------------------------------------------------ */
 
+/** §6's `users` collection, held two ways: by email to log in, by id for `/v1/auth/me`. */
 const USERS = new Map(); // email (lowercased) -> user
 const USERS_BY_ID = new Map(); // id -> user
 const SESSIONS = new Map(); // token -> { userId, createdAt }
+
+const saveUsers = () => collections.users.replace([...USERS.values()]);
+const saveSessions = () =>
+  collections.sessions.replace([...SESSIONS].map(([token, session]) => ({ token, ...session })));
+
+for (const user of collections.users.all()) {
+  USERS.set(user.email, user);
+  USERS_BY_ID.set(user.id, user);
+}
+for (const { token, ...session } of collections.sessions.all()) {
+  SESSIONS.set(token, session);
+}
 
 const MIN_PASSWORD_LENGTH = 8;
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -340,6 +392,7 @@ function verifyPassword(password, user) {
 function issueSession(userId) {
   const token = randomBytes(32).toString("hex");
   SESSIONS.set(token, { userId, createdAt: new Date().toISOString() });
+  saveSessions();
   return token;
 }
 
@@ -392,6 +445,7 @@ async function handleAuthRegister(req, res) {
   };
   USERS.set(user.email, user);
   USERS_BY_ID.set(user.id, user);
+  saveUsers();
   return sendJson(res, 201, { token: issueSession(user.id), user: publicUser(user) });
 }
 
@@ -428,7 +482,10 @@ function handleAuthLogout(req, res) {
     return sendError(res, 405, "METHOD_NOT_ALLOWED", `${req.method} is not supported on /v1/auth/logout`);
   }
   const token = tokenFrom(req);
-  if (token) SESSIONS.delete(token);
+  if (token) {
+    SESSIONS.delete(token);
+    saveSessions();
+  }
   // Idempotent: logging out an already-invalid session is not an error.
   return sendJson(res, 200, { ok: true });
 }
@@ -455,11 +512,19 @@ async function handleAuth(req, res, url) {
  * session token belongs to, resolved server-side. A missing or invalid token is
  * a `401`, never a `400` — "you are not signed in" and "your request was
  * malformed" are different failures and the client acts on them differently.
- * In-memory, like the §5.B writes: a real server persists this as §6's
- * `learning_paths` (and per-node) collections.
+ * §6's `learning_paths`: one document per account, held in the store, so a path
+ * a reader built yesterday is still theirs today.
  * ------------------------------------------------------------------ */
 
+/** accountId -> the account's learning path. §6's `learning_paths`. */
 const ACCOUNTS = new Map();
+
+const savePaths = () =>
+  collections.learningPaths.replace([...ACCOUNTS].map(([accountId, path]) => ({ accountId, path })));
+
+for (const { accountId, path } of collections.learningPaths.all()) {
+  ACCOUNTS.set(accountId, path);
+}
 
 /** Mirrors `EMPTY_LEARNING_PATH` in the client's `domain/learning.ts`. */
 const EMPTY_PATH = {
@@ -516,6 +581,7 @@ async function handleMePath(req, res) {
     onboardingSeen: body.onboardingSeen,
   };
   ACCOUNTS.set(accountId, stored);
+  savePaths();
   return sendJson(res, 200, stored);
 }
 
@@ -536,9 +602,27 @@ const ME_NODE_SUFFIX = "/state";
 const isMeNodeStateRoute = (pathname) =>
   pathname.startsWith(ME_NODE_PREFIX) && pathname.endsWith(ME_NODE_SUFFIX);
 
-/** One document per account+node, keyed so two accounts' states never collide. */
+/**
+ * One document per (account, node) — §6's `user_progress`, whose §6.3 unique
+ * compound key `(userId, nodeId)` is exactly this pair. The in-process key is a
+ * joined string so two accounts' states can never collide; the store gets it back
+ * as the two fields, so the persisted shape is the documented one rather than a
+ * serialization artifact.
+ */
 const READER_STATES = new Map();
 const readerStateKey = (accountId, nodeId) => `${accountId}\u0000${nodeId}`;
+
+const saveReaderStates = () =>
+  collections.readerStates.replace(
+    [...READER_STATES].map(([key, state]) => {
+      const [accountId, nodeId] = key.split("\u0000");
+      return { accountId, nodeId, state };
+    })
+  );
+
+for (const { accountId, nodeId, state } of collections.readerStates.all()) {
+  READER_STATES.set(readerStateKey(accountId, nodeId), state);
+}
 
 /** Mirrors `EMPTY_READER_STATE` in the client's `domain/readerState.ts`. */
 const EMPTY_READER_STATE = {
@@ -609,6 +693,7 @@ async function handleMeNodeState(req, res, url) {
     actionItem: body.actionItem,
   };
   READER_STATES.set(key, stored);
+  saveReaderStates();
   return sendJson(res, 200, stored);
 }
 
@@ -663,6 +748,7 @@ async function createNode(req, res) {
     schemaVersion: 1,
   };
   NODES.push(node);
+  collections.nodes.replace(NODES);
   return sendJson(res, 201, node);
 }
 
@@ -704,6 +790,7 @@ async function patchNode(req, res, node) {
   if (body.attributes !== undefined) node.attributes = body.attributes;
   if (body.content !== undefined) node.content = body.content;
 
+  collections.nodes.replace(NODES);
   return sendJson(res, 200, node);
 }
 
@@ -743,6 +830,7 @@ async function addRelationship(req, res, source) {
   };
   if (body.metadata && typeof body.metadata === "object") edge.metadata = body.metadata;
   RELATIONSHIPS.push(edge);
+  collections.relationships.replace(RELATIONSHIPS);
   return sendJson(res, 201, edge);
 }
 
@@ -760,7 +848,10 @@ function transition(req, res, node, target, allowedRoles, forbiddenMessage) {
   // parent book's `digitization.indexedUnits` in a Mongo-backed server. Here
   // progress is derived from the graph on read (DigitizationProgressService), so
   // there is no cached counter to recompute — the status flip above is the whole
-  // update, and the book's bar moves on the next read with no extra step.
+  // update, and the book's bar moves on the next read with no extra step. What
+  // the store adds is that the flip *sticks*: the page a reviewer publishes is
+  // still published for the next process that boots.
+  collections.nodes.replace(NODES);
   return sendJson(res, 200, node);
 }
 
@@ -868,6 +959,8 @@ async function dispatch(req, res, url) {
       relationships: RELATIONSHIPS.length,
       // Honest about the one dependency that lives outside this process.
       companion: companionReady() ? "ready" : "unconfigured",
+      // …and about whether this server's writes outlive it (§6's store).
+      persistence: store.persistent ? "file" : "memory",
     });
   }
   if (url.pathname === "/v1/nodes" || url.pathname.startsWith("/v1/nodes/")) {
@@ -905,4 +998,9 @@ const server = createServer(async (req, res) => {
 
 server.listen(PORT, () => {
   console.log(`AlMinhej API listening on http://localhost:${PORT} (${NODES.length} nodes, ${RELATIONSHIPS.length} edges)`);
+  console.log(
+    store.persistent
+      ? `Persistence: file — §6's collections are written to ${store.dir}`
+      : "Persistence: memory — set ALMINHEJ_DATA_DIR to keep writes across restarts"
+  );
 });

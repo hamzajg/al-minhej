@@ -38,6 +38,14 @@ npm run api       # http://localhost:8787 (the REST surface from §5 of the doc)
 echo 'VITE_ALMINHEJ_API_BASE_URL=http://localhost:8787' > .env.local
 npm run dev       # Vite restarts itself; no rebuild
 
+# 2b. …and make that server's writes survive a restart. Unset, `npm run api`
+#     holds everything in memory for the life of the process — and says so on
+#     `/v1/health`. With a data directory it keeps §6's collections on disk:
+ALMINHEJ_DATA_DIR=.data npm run api
+#     Publish a node, register an account, build a path, mark up a page — then
+#     kill the server and start it again. It is all still there. Delete
+#     `.data/` to re-seed from the fixtures.
+
 # 3. …and the editor-facing Content Management API (§5.B) at /admin
 #    Same `npm run api` process, same graph. Create a HADITH node, link it
 #    with PART_OF to a book that already exists, submit it, publish it —
@@ -316,16 +324,18 @@ src/
 
 server/
   api-server.mjs     §5.A + §5.B + §7 over plain `node:http`, zero
-                     dependencies. Serves the same JSON fixtures the
-                     Memory provider ships and keeps §5.B's writes in memory
-                     for the life of the process. §5.A's auth is real:
+                     dependencies. The graph is seeded from the same JSON
+                     fixtures the Memory provider ships, and every write the
+                     server accepts — nodes, edges, accounts, sessions,
+                     learning paths, per-node reader state, the companion log
+                     — goes through `store.mjs`. §5.A's auth is real:
                      `POST /v1/auth/register`, `/login`, `/logout` and
                      `GET /v1/auth/me`, with passwords salted and hashed via
                      `scrypt` (compared in constant time) and an opaque random
                      session token — not a JWT, so there is no signing key to
                      leak and logout is a real delete. `/v1/me/*` resolves the
                      account from `Authorization: Bearer <token>` and stores
-                     each account's own state the same in-memory way — the
+                     each account's own state through the same store — the
                      learning path (`GET`/`PUT /v1/me/path`) and the per-node
                      reader state (`GET`/`PUT /v1/me/nodes/{id}/state`).
                      §5.A's `GET /v1/reading/{slug}` returns the *whole*
@@ -333,6 +343,23 @@ server/
                      client assembles in-process without a backend, so the
                      reading screen never has to reassemble it from raw edges.
                      `npm run api`.
+  store.mjs          §6's document model, and the seam a real database slots
+                     into. Until Prompt 10 the server held all of its state in
+                     module-level arrays and Maps, so an editor's publish, a
+                     registered account and a reader's path died with the
+                     process — which hollowed out the Content Management API's
+                     whole point. Now each §6 collection (`knowledge_nodes`,
+                     `relationships`, `users`, the session tokens,
+                     `learning_paths`, `user_progress`, `ai_sessions`)
+                     hydrates at boot and writes through after each mutation.
+                     Zero dependencies still: a collection is `all()` /
+                     `replace()`, persisted as one JSON file per collection with
+                     atomic writes, which is the same two methods a Mongo
+                     adapter implements with `find` / `insertMany`. Off by
+                     default, so `npm run api` on its own writes nothing and the
+                     server's read surface stays comparable to the client's
+                     Memory provider; `ALMINHEJ_DATA_DIR` turns it on, and
+                     `/v1/health` reports which mode is live.
   readingExperience.mjs §5.A's `/v1/reading/{slug}`: the server-side twin of
                      `AssembleReadingExperience`, walking the published
                      graph into the same `ReadingExperienceDTO` — isnad,
@@ -424,6 +451,17 @@ server/
   `domain/repositories.ts` has zero knowledge of arrays, MongoDB, or HTTP.
   `infrastructure/memory/*` is one implementation; `container.ts` is the
   single place that decides which implementation is active.
+- **The server's state has a store, and switching it on changes nothing above
+  it.** `server/store.mjs` is §6's document model — one JSON file per
+  collection, a two-method collection API, atomic writes — and it is the reason
+  an editor's publish, a reader's path, and a registered account outlive the
+  process. It is deliberately *opt-in*: with `ALMINHEJ_DATA_DIR` unset the
+  server behaves exactly as it did before, which keeps `npm run api`
+  dependency-free and keeps the server's read surface comparable to the client's
+  Memory provider — an edited, persisted graph is, correctly, *not* the fixture
+  graph, and a parity check between the two only means something while both are
+  seeded from the same fixtures. `/v1/health` reports which mode is live rather
+  than leaving it to be discovered, the same way it reports `companion`.
 - **`SettingsContext` separates "interface language" from "translation
   language."** `uiLang` (ar/en) drives the whole chrome. `subtitleLang`
   (en/fr/es) only affects the optional line-by-line gloss under the
@@ -501,8 +539,14 @@ for the whole DTO instead of three graph round trips reassembled in the browser.
 `AssembleReadingExperience` is still the in-process implementation of the same
 interface, so the Memory path assembles locally while the server assembles
 identically in `server/readingExperience.mjs` — the two are held together by a
-parity check that compares both over every published slug. See `PROMPTS.md`,
-Prompt 9.
+parity check that compares both over every published slug. And the server's own
+state now outlives the server: §6's collections — the graph, accounts, sessions,
+each account's path and per-node reader state, the companion log — hydrate at
+boot through `server/store.mjs` and write through on every mutation, so an
+editor's publish is still a publish, a reader's path is still theirs, and a
+registered account can still log in after a restart. It is one env var
+(`ALMINHEJ_DATA_DIR`) away and off by default, so nothing about the in-memory
+story changed for anyone who doesn't ask for it. See `PROMPTS.md`, Prompt 10.
 
 ## Scalability notes
 

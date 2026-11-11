@@ -380,6 +380,72 @@ from a fan-out of requests to one.
 
 ---
 
+## Prompt 10 — §6's document model, so the server's state outlives the server
+
+**Goal:** Put the server's state behind a store — the §6 collections the
+architecture doc has always assumed — so graph edits, accounts, sessions,
+learning paths, per-node reader state, and the companion log survive a restart.
+Keep the process-level behavior unchanged when no store is configured.
+
+**Why:** Every prompt since the backend existed has been honest that the server
+holds its writes in memory for the life of the process. That was acceptable
+while it only *served* a fixture graph; it stopped being acceptable once the
+server became a system that *writes*. §5.B's whole argument is that publishing a
+node is what moves a book's digitization progress — but the publish evaporated on
+restart, so the workflow's output was a demo that reset itself. Prompt 6–8's
+"per account" storage was per *process*. And §6 names exactly what is missing:
+`knowledge_nodes`, `relationships`, `users`, `user_progress`, `ai_sessions`. This
+is the last piece of the architecture doc's storage story that the repo had not
+implemented at all.
+
+**Scope:**
+- `server/store.mjs` — §6's document model as a zero-dependency store. One JSON
+  file per collection (`knowledge_nodes`, `relationships`, `users`, the session
+  tokens, `learning_paths`, `reader_states` — §6's `user_progress` — and
+  `ai_sessions`), a two-method collection API (`all()` / `replace()`), and
+  atomic writes (write a temp file, rename over the target, so a crash mid-save
+  cannot leave a half-written collection). `reader_states` persists as
+  `{ accountId, nodeId, state }` — §6.3's unique compound key — rather than the
+  joined string the process uses internally.
+- `server/api-server.mjs` — every collection hydrates from the store at boot and
+  writes through after every mutation: create/patch/publish a node,
+  add-relationship, register/login/logout, `PUT /v1/me/path`,
+  `PUT /v1/me/nodes/{id}/state`, and the companion log append. The JSON fixtures
+  become the *seed*: they are read only when a collection is empty, so a
+  persisted graph is never overwritten by the seed on the next boot.
+- `GET /v1/health` reports `persistence: "file" | "memory"` — the same honesty
+  it already applies to `companion` — and the boot log names the mode and, when
+  durable, the directory.
+- **Opt-in, deliberately.** With no `ALMINHEJ_DATA_DIR` the store is a no-op and
+  the server behaves exactly as it did before. That keeps `npm run api`
+  dependency-free, keeps CI and a first run from writing anything to disk, and
+  — most importantly — keeps the server's read surface comparable to the
+  client's Memory provider: an edited, persisted graph is not the fixture graph,
+  and the client/server parity check only means something while both are seeded
+  from the same fixtures.
+- The store is the seam a real database slots into: `collection(name)`, then
+  `all()`/`replace()`, which a Mongo adapter implements as `find({}).toArray()`
+  and `deleteMany` + `insertMany`. Swapping it is one file, not a rewrite — and
+  it stays zero-dependency, which is what lets this server run with nothing else
+  installed.
+
+**Acceptance criteria:**
+- With `ALMINHEJ_DATA_DIR` set: create → submit → publish a node, add an edge,
+  register an account, `PUT` a learning path and a per-node reader state, then
+  **restart the process** — and every one of those is still there: the node
+  count reflects the new node, it is still publicly readable by slug, the same
+  session token still authenticates, the same path and reader state come back,
+  and the same password still verifies.
+- Without the env var the server is unchanged: `/v1/health` reports
+  `persistence: "memory"`, the node count is the fixture count regardless of
+  what any data directory contains, and nothing is written to disk.
+- `npm run build` passes with zero type errors and `npm run lint` reports no
+  new problems.
+- The HTTP surface is identical in both modes — persistence is a property of the
+  store, never of a route, so no endpoint behaves differently.
+
+---
+
 ## Notes for whoever picks this up
 
 - Keep the Goal → Why → Scope → Acceptance shape for new prompts — it's
