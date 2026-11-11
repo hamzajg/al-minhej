@@ -117,6 +117,12 @@ export interface KnowledgeNode {
   attributes: NodeAttributes;
   content: ContentBlock[];
   digitization?: DigitizationTarget;
+  /**
+   * §3.1's `search: { keywords, boost }` — the authored hints `/v1/search`
+   * ranks with. Both optional: most nodes carry neither, and the index falls
+   * back to title, attributes and content, with a boost of 1.
+   */
+  search?: { keywords: string[]; boost: number };
   schemaVersion: number;
 }
 

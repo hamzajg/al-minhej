@@ -49,6 +49,26 @@ export interface ReadingExperienceDTO {
   };
 }
 
+/**
+ * §5.A's `GET /v1/search?q=` — one row per matching node, mixed types in one
+ * list (a hadith, a book, a narrator, a verse next to each other). That mixing
+ * *is* the point: the search runs over the knowledge graph, so it is not
+ * confined to whatever a lesson index happened to contain.
+ */
+export interface SearchResultDTO {
+  node: KnowledgeNode;
+  /**
+   * Which field the query hit. Carried because "why is this row here?" is the
+   * first thing a reader asks of a cross-type result list, and deriving it in
+   * the UI would mean re-implementing the match.
+   */
+  matchedIn: "title" | "keyword" | "content";
+  /** Relevance, highest first; the field weight multiplied by §3.1's `boost`. */
+  score: number;
+  /** A short excerpt around the match, one per language the node carries. */
+  snippet: Localized<string>;
+}
+
 export interface LibraryEntryDTO {
   node: KnowledgeNode;
   indexedUnits: number;

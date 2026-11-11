@@ -15,12 +15,12 @@
  * derived from the graph at read time rather than cached on the book node.
  *
  * All of it — the graph, accounts, sessions, learning paths, per-node reader
- * state, the companion log — is read from and written through `server/store.mjs`,
- * §6's document model. With no `ALMINHEJ_DATA_DIR` the store is in-memory and the
- * fixtures are re-read at boot, which is the behavior this server has always had;
- * point the env var at a directory and every write lands on disk, so an editor's
- * publish, a reader's path, and a registered account all survive a restart.
- * `/v1/health` reports which mode is active.
+ * state, the search index, the companion log — is read from and written through
+ * `server/store.mjs`, §6's document model. With no `ALMINHEJ_DATA_DIR` the store
+ * is in-memory and the fixtures are re-read at boot, which is the behavior this
+ * server has always had; point the env var at a directory and every write lands
+ * on disk, so an editor's publish, a reader's path, and a registered account all
+ * survive a restart. `/v1/health` reports which mode is active.
  *
  * Endpoints — §5.A (public, no auth):
  *   GET /v1/health
@@ -30,6 +30,7 @@
  *   GET /v1/nodes?type={NodeType}
  *   GET /v1/relationships?nodeId={id}[&direction=from|to]
  *   GET /v1/reading/{slug}              ← the whole assembled reading DTO in one call
+ *   GET /v1/search?q={query}            ← cross-type search over the graph (§6's search_index)
  *   POST /v1/nodes/{id}/companion/ask   ← grounded AI answer (§7)
  *
  * Endpoints — §5.A (auth, no credentials to read):
@@ -67,6 +68,7 @@ import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { buildKnowledgeContext } from "./knowledgeContext.mjs";
 import { assembleReadingExperience } from "./readingExperience.mjs";
+import { buildSearchIndex, searchGraph } from "./search.mjs";
 import { askClaude, CompanionUpstreamError, DEFAULT_MODEL } from "./companion.mjs";
 import { createStore } from "./store.mjs";
 
@@ -102,6 +104,7 @@ const collections = {
   sessions: store.collection("sessions"),
   learningPaths: store.collection("learning_paths"),
   readerStates: store.collection("reader_states"),
+  searchIndex: store.collection("search_index"),
   aiSessions: store.collection("ai_sessions"),
 };
 
@@ -125,6 +128,31 @@ const companionReady = () => Boolean(ANTHROPIC_API_KEY);
  * wrote it.
  */
 const AI_SESSIONS = collections.aiSessions.all();
+
+/**
+ * §6's `search_index` — "denormalized, refreshed on publish".
+ *
+ * The index is derived state, so it is never hand-maintained: it is written by
+ * `refreshSearchIndex` at boot, and again after every write that can change a
+ * node's searchable text. §5.B names publishing as the refresh trigger and it is
+ * the interesting one, but an editor's PATCH can change a title or a body on a
+ * node that is already live, and a stale index would leave a reader unable to
+ * find text sitting in plain sight on the page. So the rule is the broader one —
+ * "whenever the text changes" — with publish as one such moment.
+ *
+ * A store written by an older server has no such collection; an empty one is
+ * indistinguishable from a stale one, so it is rebuilt. A populated one is
+ * trusted, because the only writer is the refresh above.
+ */
+const SEARCH_INDEX = collections.searchIndex.all();
+
+function refreshSearchIndex() {
+  SEARCH_INDEX.length = 0;
+  SEARCH_INDEX.push(...buildSearchIndex(NODES));
+  collections.searchIndex.replace(SEARCH_INDEX);
+}
+
+if (SEARCH_INDEX.length === 0) refreshSearchIndex();
 
 const NODE_TYPES = ["BOOK", "PAGE", "HADITH", "VERSE", "NARRATOR", "EVENT", "CONCEPT"];
 const NODE_STATUSES = ["draft", "in_review", "published"];
@@ -269,6 +297,24 @@ function handleReading(res, url) {
     return sendError(res, 404, "NODE_NOT_FOUND", `No published node with slug '${slug}'`);
   }
   return sendJson(res, 200, dto);
+}
+
+/**
+ * §5.A's `GET /v1/search?q={query}` — cross-type search over the graph, served
+ * from §6's `search_index`. The query itself lives in `search.mjs` (the
+ * server-side twin of `application/SearchGraph.ts`, parity-checked against it);
+ * this handler only validates the request and serializes the rows.
+ *
+ * A missing `q` is a `400`, not an empty page: an absent parameter is a
+ * malformed request, whereas `?q=` with nothing in it legitimately matches
+ * nothing and answers `200 []`. Collapsing the two would hide a client bug.
+ */
+function handleSearch(res, url) {
+  const query = url.searchParams.get("q");
+  if (query === null) {
+    return sendError(res, 400, "INVALID_REQUEST", "A query is required: GET /v1/search?q={query}");
+  }
+  return sendJson(res, 200, searchGraph(query, SEARCH_INDEX, NODES));
 }
 
 /* ------------------------------------------------------------------ *
@@ -749,6 +795,7 @@ async function createNode(req, res) {
   };
   NODES.push(node);
   collections.nodes.replace(NODES);
+  refreshSearchIndex();
   return sendJson(res, 201, node);
 }
 
@@ -791,6 +838,10 @@ async function patchNode(req, res, node) {
   if (body.content !== undefined) node.content = body.content;
 
   collections.nodes.replace(NODES);
+  // A PATCH can change a title or a body on an already-published node, so the
+  // index has to follow it — §6's "refreshed on publish" is the trigger §5.B
+  // names, but it is not the only way a node's text can change.
+  refreshSearchIndex();
   return sendJson(res, 200, node);
 }
 
@@ -852,6 +903,9 @@ function transition(req, res, node, target, allowedRoles, forbiddenMessage) {
   // the store adds is that the flip *sticks*: the page a reviewer publishes is
   // still published for the next process that boots.
   collections.nodes.replace(NODES);
+  // §6: publishing a node is what "refreshes the search index" — the moment a
+  // node becomes findable, and the moment it stops being invisible to readers.
+  refreshSearchIndex();
   return sendJson(res, 200, node);
 }
 
@@ -957,11 +1011,17 @@ async function dispatch(req, res, url) {
       status: "ok",
       nodes: NODES.length,
       relationships: RELATIONSHIPS.length,
+      // §6's `search_index` — the count of *indexed* (i.e. published) nodes, which
+      // is why it can be smaller than `nodes` above.
+      searchIndex: SEARCH_INDEX.length,
       // Honest about the one dependency that lives outside this process.
       companion: companionReady() ? "ready" : "unconfigured",
       // …and about whether this server's writes outlive it (§6's store).
       persistence: store.persistent ? "file" : "memory",
     });
+  }
+  if (url.pathname === "/v1/search") {
+    return handleSearch(res, url);
   }
   if (url.pathname === "/v1/nodes" || url.pathname.startsWith("/v1/nodes/")) {
     return handleNodes(res, url);

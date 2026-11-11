@@ -75,9 +75,13 @@ src/
                      the core model. No Lesson type.
     dto.ts           ReadingExperienceDTO and friends — the shape §5.A's
                      `GET /v1/reading/{slug}` returns: the whole reading
-                     experience, assembled into one document.
+                     experience, assembled into one document — plus
+                     SearchResultDTO, one row of §5.A's `GET /v1/search?q=`
+                     (the matched node, which field it hit, its score, and a
+                     per-language excerpt).
     repositories.ts  KnowledgeRepository / RelationshipRepository /
-                     ReadingExperienceRepository / LearningPathRepository /
+                     ReadingExperienceRepository / SearchRepository /
+                     LearningPathRepository /
                      ReaderStateRepository / AuthRepository interfaces — the
                      storage-agnostic boundary. The first two read the authored
                      graph; ReadingExperienceRepository is the *assembled* read
@@ -123,6 +127,11 @@ src/
                            against `localStorage` but keyed per account *and*
                            node — the no-backend stand-in for the same
                            contract.
+      MemorySearchRepository.ts
+                           §5.A's `/v1/search?q=` with no server: builds §6's
+                           `search_index` once at module load over the fixture
+                           graph (nothing ever publishes without a server) and
+                           runs the same `SearchGraph` the server's twin runs.
     http/
       httpClient.ts     Thin fetch wrapper shared by the two HTTP
                         repositories. A 404 means "absent" (null); anything
@@ -164,6 +173,11 @@ src/
                         The assembled-read repository over `GET /v1/reading/{slug}` —
                         one request for the whole DTO instead of reassembling it
                         in the browser from the raw graph endpoints.
+      HttpSearchRepository.ts
+                        §5.A's `GET /v1/search?q=` over the network. The one
+                        caller that does *not* fold `httpClient`'s 404 into
+                        "no results": a backend that predates the route must
+                        say so, never render as an empty graph.
       adminClient.ts    §5.B's Content Management client — the one place
                         that knows about roles (`x-alminhej-roles`). It
                         deliberately does *not* collapse a 404 into `null`
@@ -205,6 +219,20 @@ src/
                                     lacks. Rule-based today; an
                                     embedding/ML strategy replaces this
                                     class behind the same interface.
+    SearchGraph.ts                 §5.A's `/v1/search?q=`, and §6's
+                                    `search_index` — pure and dependency-free:
+                                    `buildSearchIndex` flattens each
+                                    *published* node's title, authored
+                                    `search.keywords`, attributes and content
+                                    into a searchable text per script, and
+                                    `searchGraph` answers a query with
+                                    §5.A's `SearchResultDTO[]`. Arabic-aware
+                                    folding, but exact-token matching: every
+                                    word must land, because a ranked guess is
+                                    worse than no result when the corpus is
+                                    scripture. `server/search.mjs` is the
+                                    same code as plain JS, held together by a
+                                    parity check over the whole corpus.
     container.ts                   The only file that decides *which*
                                     storage implementation is active. Set
                                     `VITE_ALMINHEJ_API_BASE_URL` and the app
@@ -274,6 +302,12 @@ src/
                                idle / thinking / answered / unavailable /
                                error — so "not configured" can never render
                                as a fabricated answer.
+    useSearch.ts               Runs §5.A's `/v1/search?q=` through
+                               `SearchRepository`, debounced, with the states
+                               explicit (results / loading / error) and an
+                               empty query short-circuited to no results —
+                               so a cleared box never shows a request in
+                               flight.
     useIsMobile.ts              Responsive breakpoint
 
   lib/
@@ -307,6 +341,13 @@ src/
     HomePage.tsx     Lists published reading experiences from the graph
     ReadingPage.tsx  Composes the responsive reading studio around one
                       ReadingExperienceDTO
+    SearchPage.tsx   §5.A's `/v1/search?q=` as a screen (`/search`). The
+                      query lives in the URL, so a result list is a link you
+                      can share; each row names *why* it matched (title,
+                      keyword or content) and links into `/reading/{slug}`.
+                      The Library shelf's box hands its query here rather than
+                      faking a shelf-local filter — the index spans the whole
+                      graph, not the books on one shelf.
     AuthScreen.tsx   The §5.A sign-in/register screen at `/signin` — one form
                       for both, since they differ only in which call they make.
                       Validation is the browser's, so messages match the
@@ -327,7 +368,8 @@ server/
                      dependencies. The graph is seeded from the same JSON
                      fixtures the Memory provider ships, and every write the
                      server accepts — nodes, edges, accounts, sessions,
-                     learning paths, per-node reader state, the companion log
+                     learning paths, per-node reader state, the search index,
+                     the companion log
                      — goes through `store.mjs`. §5.A's auth is real:
                      `POST /v1/auth/register`, `/login`, `/logout` and
                      `GET /v1/auth/me`, with passwords salted and hashed via
@@ -342,7 +384,10 @@ server/
                      assembled reading DTO in one call — the same object the
                      client assembles in-process without a backend, so the
                      reading screen never has to reassemble it from raw edges.
-                     `npm run api`.
+                     §5.A's `GET /v1/search?q=` answers over §6's
+                     `search_index`, refreshed on every create, PATCH and
+                     publish — a missing `q` is a `400`, an empty or unmatched
+                     one is an empty `200`. `npm run api`.
   store.mjs          §6's document model, and the seam a real database slots
                      into. Until Prompt 10 the server held all of its state in
                      module-level arrays and Maps, so an editor's publish, a
@@ -350,7 +395,8 @@ server/
                      process — which hollowed out the Content Management API's
                      whole point. Now each §6 collection (`knowledge_nodes`,
                      `relationships`, `users`, the session tokens,
-                     `learning_paths`, `user_progress`, `ai_sessions`)
+                     `learning_paths`, `user_progress`, `search_index`,
+                     `ai_sessions`)
                      hydrates at boot and writes through after each mutation.
                      Zero dependencies still: a collection is `all()` /
                      `replace()`, persisted as one JSON file per collection with
@@ -368,6 +414,15 @@ server/
                      than a shared import (the browser and the server can't
                      share a module here), and held to the client assembler
                      by a parity check that compares both over every slug.
+  search.mjs         §5.A's `/v1/search?q=`: the server-side twin of
+                     `application/SearchGraph.ts` — the same index and the
+                     same query as plain JS, since the browser and the server
+                     can't share a module here either. Only *published* nodes
+                     are indexed, for the same reason only published nodes are
+                     readable: a draft becoming findable would be a content
+                     leak. Held to the client implementation by a parity check
+                     that compares index and query results over the whole
+                     corpus, harakat and all.
   knowledgeContext.mjs  §7's `KnowledgeContextBuilder`: given a node id,
                      assembles that node's own content plus a *bounded*
                      slice of its immediate graph neighbors (only
@@ -547,6 +602,26 @@ editor's publish is still a publish, a reader's path is still theirs, and a
 registered account can still log in after a restart. It is one env var
 (`ALMINHEJ_DATA_DIR`) away and off by default, so nothing about the in-memory
 story changed for anyone who doesn't ask for it. See `PROMPTS.md`, Prompt 10.
+And the graph is now **searchable**: §5.A's `GET /v1/search?q=` — the last
+public endpoint the doc names that nothing implemented — reads across every
+type at once, so a word finds a hadith, a book, a narrator and a verse in one
+list rather than only whatever the shelf on screen happened to hold. The
+index is §6's `search_index`, refreshed whenever a node's text changes
+(create, PATCH, publish — not only publish, since a PATCH on a live node would
+otherwise leave text findable in the graph but not in search) and persisted
+through the same store, so a restart doesn't re-derive it. Matching is
+Arabic-aware — harakat, tatweel and Qur'anic marks are stripped, `آأإٱ`
+folded to `ا` and `ىئ` to `ي`, so `إنما الأعمال بالنيات` finds the same hadith
+as `انما الاعمال بالنيات` — but stays **exact-token and AND-ed**, because a
+ranked near-miss is worse than no answer when the corpus is scripture. Each
+row says which field it hit (title, keyword, or content) and ranks by field
+weight times §3.1's authored `boost`; the excerpt is sliced from the original
+text, so the fold never reaches the reader. The client has a `/search` screen
+(its query in the URL, so a result list is shareable), a Header entry, and a
+Library box that hands its query over instead of faking a shelf-local filter.
+Both implementations — `application/SearchGraph.ts` and `server/search.mjs` —
+are held together by a parity check over the whole corpus. See `PROMPTS.md`,
+Prompt 11.
 
 ## Scalability notes
 

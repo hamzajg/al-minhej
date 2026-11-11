@@ -6,6 +6,7 @@ import BookReaderPage from "@/pages/BookReaderPage";
 import LibraryPage from "@/pages/LibraryPage";
 import LibraryWorkspacePreview from "@/pages/LibraryWorkspacePreview";
 import ReadingPage from "@/pages/ReadingPage";
+import SearchPage from "@/pages/SearchPage";
 import SourcesPreview from "@/pages/SourcesPreview";
 
 export default function App() {
@@ -13,6 +14,7 @@ export default function App() {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/library" element={<LibraryPage />} />
+      <Route path="/search" element={<SearchPage />} />
       <Route path="/signin" element={<AuthScreen />} />
       <Route path="/prototype/library-workspace" element={<LibraryWorkspacePreview />} />
       <Route path="/prototype/sources" element={<SourcesPreview />} />

@@ -2,12 +2,14 @@ import { MemoryKnowledgeRepository } from "@/infrastructure/memory/MemoryKnowled
 import { MemoryRelationshipRepository } from "@/infrastructure/memory/MemoryRelationshipRepository";
 import { MemoryLearningPathRepository } from "@/infrastructure/memory/MemoryLearningPathRepository";
 import { MemoryReaderStateRepository } from "@/infrastructure/memory/MemoryReaderStateRepository";
+import { MemorySearchRepository } from "@/infrastructure/memory/MemorySearchRepository";
 import { HttpKnowledgeRepository } from "@/infrastructure/http/HttpKnowledgeRepository";
 import { HttpRelationshipRepository } from "@/infrastructure/http/HttpRelationshipRepository";
 import { HttpLearningPathRepository } from "@/infrastructure/http/HttpLearningPathRepository";
 import { HttpReaderStateRepository } from "@/infrastructure/http/HttpReaderStateRepository";
 import { HttpAuthRepository } from "@/infrastructure/http/HttpAuthRepository";
 import { HttpReadingExperienceRepository } from "@/infrastructure/http/HttpReadingExperienceRepository";
+import { HttpSearchRepository } from "@/infrastructure/http/HttpSearchRepository";
 import { AssembleReadingExperience } from "./AssembleReadingExperience";
 import { GraphTraversalRecommendationStrategy } from "./RecommendationStrategy";
 import type {
@@ -15,6 +17,7 @@ import type {
   LearningPathRepository,
   ReaderStateRepository,
   ReadingExperienceRepository,
+  SearchRepository,
 } from "@/domain/repositories";
 
 /**
@@ -100,6 +103,18 @@ export const learningPathRepository: LearningPathRepository = apiBaseUrl
 export const readerStateRepository: ReaderStateRepository = apiBaseUrl
   ? new HttpReaderStateRepository(apiBaseUrl)
   : new MemoryReaderStateRepository();
+
+/**
+ * Search is the one *query-shaped* read: it takes a word rather than an id, so
+ * unlike the graph repositories above it has no caller who already knows what
+ * it wants. Same swap point regardless — with an API base URL the query goes to
+ * §5.A's `GET /v1/search?q=` and is answered from §6's `search_index`; without
+ * one it is answered in-process by `application/SearchGraph.ts`, over the same
+ * fixture graph, which the parity check holds to the server's answers.
+ */
+export const searchRepository: SearchRepository = apiBaseUrl
+  ? new HttpSearchRepository(apiBaseUrl)
+  : new MemorySearchRepository();
 
 /**
  * Real auth (§5.A's `/v1/auth/*`) is the one contract with no memory
