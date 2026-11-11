@@ -1,4 +1,5 @@
 import type { KnowledgeNode, NodeType, Relationship } from "./types";
+import type { ReadingExperienceDTO } from "./dto";
 import type { LearningPath } from "./learning";
 import type { ReaderState } from "./readerState";
 import type { AuthSession, AuthUser } from "./auth";
@@ -25,6 +26,25 @@ export interface RelationshipRepository {
   incomingTo(nodeId: string): Promise<Relationship[]>;
   /** Every edge originating *from* this node. */
   outgoingFrom(nodeId: string): Promise<Relationship[]>;
+}
+
+/**
+ * §5.A's `GET /v1/reading/{slug}` — the *assembled* reading experience in one
+ * call. The three graph repositories above are the low-level reads; this one is
+ * the use case built on top of them ("everything connected to this node, so the
+ * frontend never has to"). It was always part of the design — the architecture
+ * doc names the endpoint, and `AssembleReadingExperience` is its in-process
+ * implementation — but until now the assembly only ever ran in the browser,
+ * against three round trips' worth of raw edges.
+ *
+ * Putting it behind the same boundary the rest of the app uses is what lets the
+ * whole DTO be fetched in one request when a backend is configured, while the
+ * in-memory provider keeps assembling it locally. Both are the same object; the
+ * parity check asserts that, byte for byte.
+ */
+export interface ReadingExperienceRepository {
+  /** The assembled experience for a slug, or `null` when no published node has it. */
+  get(slug: string): Promise<ReadingExperienceDTO | null>;
 }
 
 /**

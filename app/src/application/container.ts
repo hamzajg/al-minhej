@@ -7,12 +7,14 @@ import { HttpRelationshipRepository } from "@/infrastructure/http/HttpRelationsh
 import { HttpLearningPathRepository } from "@/infrastructure/http/HttpLearningPathRepository";
 import { HttpReaderStateRepository } from "@/infrastructure/http/HttpReaderStateRepository";
 import { HttpAuthRepository } from "@/infrastructure/http/HttpAuthRepository";
+import { HttpReadingExperienceRepository } from "@/infrastructure/http/HttpReadingExperienceRepository";
 import { AssembleReadingExperience } from "./AssembleReadingExperience";
 import { GraphTraversalRecommendationStrategy } from "./RecommendationStrategy";
 import type {
   AuthRepository,
   LearningPathRepository,
   ReaderStateRepository,
+  ReadingExperienceRepository,
 } from "@/domain/repositories";
 
 /**
@@ -33,10 +35,28 @@ const relationshipRepository = apiBaseUrl
   ? new HttpRelationshipRepository(apiBaseUrl)
   : new MemoryRelationshipRepository();
 
-export const readingExperienceService = new AssembleReadingExperience(
+/**
+ * The reading experience is the one *assembled* read — a whole
+ * `ReadingExperienceDTO` rather than a raw node or edge. `AssembleReadingExperience`
+ * built it in-process from the graph repositories above; the same class is the
+ * memory implementation of `ReadingExperienceRepository`, and it stays the
+ * service `useNodeProgress`/`useLibrary` call for `progressFor`/`library`
+ * (digitization progress is still derived client-side from the graph).
+ *
+ * The DTO itself now swaps the same way everything else does: with an API base
+ * URL it comes from §5.A's `GET /v1/reading/{slug}` in a single request —
+ * the server assembles the identical object from `server/readingExperience.mjs`.
+ */
+const localReadingExperience = new AssembleReadingExperience(
   knowledgeRepository,
   relationshipRepository
 );
+
+export const readingExperienceService = localReadingExperience;
+
+export const readingExperienceRepository: ReadingExperienceRepository = apiBaseUrl
+  ? new HttpReadingExperienceRepository(apiBaseUrl)
+  : localReadingExperience;
 
 /**
  * Learning paths are a traversal over the graph, so the strategy reads the

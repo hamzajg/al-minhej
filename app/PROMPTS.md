@@ -327,6 +327,59 @@ backlog.
 
 ---
 
+## Prompt 9 — The assembled reading DTO as a server endpoint (`GET /v1/reading/{slug}`)
+
+**Goal:** Move the assembler behind a repository, so a backend-served reading
+screen fetches the whole `ReadingExperienceDTO` from §5.A's
+`GET /v1/reading/{slug}` in one request instead of issuing three raw
+graph reads and reassembling the experience in the browser. Keep
+`AssembleReadingExperience` as the in-memory implementation of the same
+interface, so the Memory path is unchanged.
+
+**Why:** The reading experience is the one *assembled* read in the app — isnad,
+commentary, Qur'an cross-references, related hadith, the "go deeper" pointer,
+and the graph neighbors, all derived from edges at read time. §5.A names
+`/v1/reading/{slug}` for exactly this, and Prompt 2 flagged it as the natural
+next step once the backend existed: the server can do the walk once and return
+the finished document, rather than shipping the raw `nodes`/`relationships`
+surface and duplicating the assembly logic in every client. It also puts the
+authority for "what a published reading experience is" on the same side as the
+publish endpoint that decides it, and shrinks the reading screen's cold start
+from a fan-out of requests to one.
+
+**Scope:**
+- Domain: `ReadingExperienceRepository` in `domain/repositories.ts` —
+  `get(slug): Promise<ReadingExperienceDTO | null>` — the assembled read built
+  on the three graph repositories.
+- `AssembleReadingExperience` now *implements* that interface (its
+  `execute` becomes `get`); it stays the in-memory implementation and keeps
+  `progressFor`/`library` for `useNodeProgress`/`useLibrary`. A new
+  `HttpReadingExperienceRepository` over §5.A is the other implementation, and
+  `container.ts` picks between them on `VITE_ALMINHEJ_API_BASE_URL` like every
+  other repository. `useReadingExperience` calls the repository, so no component
+  changes.
+- Server: `server/readingExperience.mjs` — the assembler as a dependency-free
+  port of the client one, walking only *published* nodes — and the
+  `GET /v1/reading/{slug}` route on `api-server.mjs` (§5.A). A published slug
+  is `200` with the full DTO; an unknown slug is `404 NODE_NOT_FOUND`; a
+  non-GET is `405`.
+- A `404` still resolves to `null` through `apiGet`, so "no such published
+  node" stays distinguishable from "the backend is down", exactly as it was
+  when assembly ran locally.
+
+**Acceptance criteria:**
+- `GET /v1/reading/{slug}` returns the assembled DTO for a published slug, a
+  `404` for an unknown or unpublished one, and `405` for a non-GET — verified
+  against a running `npm run api`.
+- The server-produced DTO and the client-assembled one are byte-for-byte equal
+  for every published slug (a parity check over the whole corpus), and an
+  unknown slug yields `null` from both.
+- `npm run build` passes with zero type errors, and the app runs identically
+  against Memory and against the real backend — one request for the reading
+  screen with a backend, in-process assembly without one.
+
+---
+
 ## Notes for whoever picks this up
 
 - Keep the Goal → Why → Scope → Acceptance shape for new prompts — it's

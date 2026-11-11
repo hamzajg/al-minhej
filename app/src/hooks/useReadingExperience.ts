@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { readingExperienceService } from "@/application/container";
+import { readingExperienceRepository } from "@/application/container";
 import type { ReadingExperienceDTO } from "@/domain/dto";
 
 interface State {
@@ -36,8 +36,8 @@ export function useReadingExperience(slug: string | undefined) {
       return;
     }
     setState((s) => ({ ...s, loading: true, error: null }));
-    readingExperienceService
-      .execute(slug)
+    readingExperienceRepository
+      .get(slug)
       .then((dto) => {
         if (cancelled) return;
         setState({ data: dto, loading: false, notFound: dto === null, error: null });
