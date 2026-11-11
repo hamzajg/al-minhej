@@ -25,6 +25,10 @@
  *   GET /v1/relationships?nodeId={id}[&direction=from|to]
  *   POST /v1/nodes/{id}/companion/ask   ← grounded AI answer (§7)
  *
+ * Endpoints — §5.A (the reader's own state, sends `x-alminhej-account`):
+ *   GET /v1/me/path      ← the account's learning path
+ *   PUT /v1/me/path      ← replace it
+ *
  * Endpoints — §5.B (admin, sends `x-alminhej-roles`):
  *   GET   /v1/admin/nodes?type={NodeType}&status={NodeStatus}
  *   POST  /v1/admin/nodes
@@ -265,6 +269,88 @@ async function handleCompanion(req, res, url) {
 }
 
 /* ------------------------------------------------------------------ *
+ * §5.A — the reader's own state, per account (`/v1/me/*`)
+ *
+ * There is no auth yet (PROMPTS.md Prompt 6 scoped it that way on purpose):
+ * the client mints an opaque token once and sends it as
+ * `x-alminhej-account`, and that token *is* the identity. It is not a
+ * credential — there is no password and nothing is verified — so this is the
+ * honest floor for "per-account", and the seam real auth (`/v1/auth/*`) slots
+ * into later. In-memory, like the §5.B writes: a real server persists this as
+ * §6's `learning_paths` collection.
+ * ------------------------------------------------------------------ */
+
+const ACCOUNTS = new Map();
+
+/** Mirrors `EMPTY_LEARNING_PATH` in the client's `domain/learning.ts`. */
+const EMPTY_PATH = {
+  goalId: null,
+  seedNodeId: null,
+  visited: [],
+  startedAt: null,
+  onboardingSeen: false,
+};
+
+function accountFrom(req) {
+  const raw = req.headers["x-alminhej-account"];
+  return isNonEmptyString(raw) ? String(raw).trim() : null;
+}
+
+/** A learning path is a small, fixed shape — reject anything else outright. */
+function isValidPath(value) {
+  const nullableString = (v) => v === null || isNonEmptyString(v);
+  if (!value || typeof value !== "object" || Array.isArray(value)) return false;
+  if (!nullableString(value.goalId)) return false;
+  if (!nullableString(value.seedNodeId)) return false;
+  if (!nullableString(value.startedAt)) return false;
+  if (typeof value.onboardingSeen !== "boolean") return false;
+  if (!Array.isArray(value.visited) || !value.visited.every(isNonEmptyString)) return false;
+  return true;
+}
+
+async function handleMePath(req, res) {
+  const accountId = accountFrom(req);
+  if (!accountId) {
+    return sendError(
+      res,
+      400,
+      "INVALID_REQUEST",
+      "The x-alminhej-account header is required — it is the account identity"
+    );
+  }
+
+  if (req.method === "GET") {
+    // An unknown account is not an error: it simply has no path yet, and the
+    // empty path is the honest answer (never a 404 the client must special-case).
+    return sendJson(res, 200, ACCOUNTS.get(accountId) ?? EMPTY_PATH);
+  }
+
+  if (req.method !== "PUT") {
+    return sendError(res, 405, "METHOD_NOT_ALLOWED", `${req.method} is not supported on /v1/me/path`);
+  }
+
+  const body = await readJson(req);
+  if (!isValidPath(body)) {
+    return sendError(
+      res,
+      400,
+      "INVALID_REQUEST",
+      "Body must be a learning path: { goalId, seedNodeId, visited[], startedAt, onboardingSeen }"
+    );
+  }
+
+  const stored = {
+    goalId: body.goalId,
+    seedNodeId: body.seedNodeId,
+    visited: body.visited,
+    startedAt: body.startedAt,
+    onboardingSeen: body.onboardingSeen,
+  };
+  ACCOUNTS.set(accountId, stored);
+  return sendJson(res, 200, stored);
+}
+
+/* ------------------------------------------------------------------ *
  * §5.B — Content Management API
  * ------------------------------------------------------------------ */
 
@@ -494,6 +580,11 @@ async function dispatch(req, res, url) {
     return handleCompanion(req, res, url);
   }
 
+  // `/v1/me/*` accepts PUT as well as GET, so it too precedes the guard.
+  if (url.pathname === "/v1/me/path") {
+    return handleMePath(req, res);
+  }
+
   if (req.method !== "GET") {
     return sendError(res, 405, "METHOD_NOT_ALLOWED", `${req.method} is not supported`);
   }
@@ -520,8 +611,8 @@ const server = createServer(async (req, res) => {
   if (req.method === "OPTIONS") {
     res.writeHead(204, {
       "access-control-allow-origin": "*",
-      "access-control-allow-methods": "GET, POST, PATCH, OPTIONS",
-      "access-control-allow-headers": "content-type, accept, x-alminhej-roles",
+      "access-control-allow-methods": "GET, POST, PUT, PATCH, OPTIONS",
+      "access-control-allow-headers": "content-type, accept, x-alminhej-roles, x-alminhej-account",
     });
     return res.end();
   }

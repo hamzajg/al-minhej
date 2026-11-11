@@ -1,9 +1,12 @@
 import { MemoryKnowledgeRepository } from "@/infrastructure/memory/MemoryKnowledgeRepository";
 import { MemoryRelationshipRepository } from "@/infrastructure/memory/MemoryRelationshipRepository";
+import { MemoryLearningPathRepository } from "@/infrastructure/memory/MemoryLearningPathRepository";
 import { HttpKnowledgeRepository } from "@/infrastructure/http/HttpKnowledgeRepository";
 import { HttpRelationshipRepository } from "@/infrastructure/http/HttpRelationshipRepository";
+import { HttpLearningPathRepository } from "@/infrastructure/http/HttpLearningPathRepository";
 import { AssembleReadingExperience } from "./AssembleReadingExperience";
 import { GraphTraversalRecommendationStrategy } from "./RecommendationStrategy";
+import type { LearningPathRepository } from "@/domain/repositories";
 
 /**
  * The only file that decides *which* storage implementation is in use.
@@ -47,5 +50,16 @@ export const recommendationStrategy = new GraphTraversalRecommendationStrategy(
  * "don't paper over a missing backend" rule `httpClient.ts` follows.
  */
 export const companionApiBaseUrl: string | null = apiBaseUrl ?? null;
+
+/**
+ * The reader's path is per account, and is the one repository that *writes*.
+ * Same swap point as the graph repositories: with an API base URL the path
+ * lives behind `GET`/`PUT /v1/me/path`; without one the memory provider stands
+ * in (keyed by account, so it is still per account). `useLearningPath` is the
+ * only caller.
+ */
+export const learningPathRepository: LearningPathRepository = apiBaseUrl
+  ? new HttpLearningPathRepository(apiBaseUrl)
+  : new MemoryLearningPathRepository();
 
 export { knowledgeRepository, relationshipRepository };

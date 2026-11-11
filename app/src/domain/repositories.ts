@@ -1,4 +1,5 @@
 import type { KnowledgeNode, NodeType, Relationship } from "./types";
+import type { LearningPath } from "./learning";
 
 /**
  * Storage-agnostic contracts. Application services depend on these
@@ -22,4 +23,16 @@ export interface RelationshipRepository {
   incomingTo(nodeId: string): Promise<Relationship[]>;
   /** Every edge originating *from* this node. */
   outgoingFrom(nodeId: string): Promise<Relationship[]>;
+}
+
+/**
+ * The reader's own path (§2/§6's `learning_paths` document), stored per
+ * account. Unlike the two graph repositories above, this one *writes* — a
+ * path is the reader's state, not authored content, so it never touches the
+ * node/edge fixtures. `accountId` is the opaque identity from
+ * `hooks/useAccount.ts`; the implementation decides how it is keyed.
+ */
+export interface LearningPathRepository {
+  get(accountId: string): Promise<LearningPath>;
+  save(accountId: string, path: LearningPath): Promise<LearningPath>;
 }

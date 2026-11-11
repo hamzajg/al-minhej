@@ -183,6 +183,44 @@ always a placeholder for it.
 
 ---
 
+## Prompt 6 — Per-account path storage
+
+**Goal:** Move the reader's learning path off `localStorage` and onto the
+server, stored per account, behind the same repository boundary everything
+else uses.
+
+**Why:** Prompt 4 shipped the path on `useLocalStorage` and called this swap
+out explicitly. A path that only exists in one browser is a session, not a
+path. Every other read in this app already goes through a
+`domain/repositories.ts` interface with a Memory and an HTTP implementation;
+the path should be no different — and it is the first repository that
+*writes*.
+
+**Scope:**
+- `LearningPathRepository` in `domain/repositories.ts`, with a
+  `MemoryLearningPathRepository` (the no-backend stand-in, still keyed per
+  account) and an `HttpLearningPathRepository` over `GET`/`PUT
+  /v1/me/path`, selected in `container.ts` exactly like the graph
+  repositories.
+- Identity is deliberately minimal. Full auth (`/v1/auth/*` in §5.A) is its
+  own piece of work, not this one. The client mints an opaque account token
+  once and sends it as `x-alminhej-account`; the server persists the path
+  per token (§6's `learning_paths` collection). The token is an identity,
+  not a credential — there is no password and nothing is verified — which
+  is the honest ceiling of "per-account" without an auth prompt.
+- `useLearningPath` keeps its shape but becomes load-then-mutate against the
+  account's stored path, so a visit recorded before the first read lands
+  cannot clobber what the server already had.
+
+**Acceptance criteria:**
+- The same account token sees the same path after a reload; a different
+  token sees a different one. (Provable locally: the memory provider stores
+  under a per-account key, the HTTP provider on the server — same contract.)
+- `npm run build` passes with zero type errors, and the app still runs
+  identically against Memory and against the real backend.
+
+---
+
 ## Notes for whoever picks this up
 
 - Keep the Goal → Why → Scope → Acceptance shape for new prompts — it's
