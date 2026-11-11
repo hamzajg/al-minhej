@@ -25,7 +25,13 @@
  *   GET /v1/relationships?nodeId={id}[&direction=from|to]
  *   POST /v1/nodes/{id}/companion/ask   ← grounded AI answer (§7)
  *
- * Endpoints — §5.A (the reader's own state, sends `x-alminhej-account`):
+ * Endpoints — §5.A (auth, no credentials to read):
+ *   POST /v1/auth/register   ← email + password -> session token
+ *   POST /v1/auth/login      ← email + password -> session token
+ *   POST /v1/auth/logout     ← invalidate the caller's session
+ *   GET  /v1/auth/me         ← the identity behind the caller's token
+ *
+ * Endpoints — §5.A (the reader's own state, sends `Authorization: Bearer`):
  *   GET /v1/me/path      ← the account's learning path
  *   PUT /v1/me/path      ← replace it
  *   GET /v1/me/nodes/{id}/state  ← the account's own state for one node
@@ -48,6 +54,7 @@
  */
 import { createServer } from "node:http";
 import { readFileSync } from "node:fs";
+import { randomBytes, scryptSync, timingSafeEqual } from "node:crypto";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { buildKnowledgeContext } from "./knowledgeContext.mjs";
@@ -271,15 +278,161 @@ async function handleCompanion(req, res, url) {
 }
 
 /* ------------------------------------------------------------------ *
+ * §5.A — auth (`/v1/auth/*`)
+ *
+ * Real identity, replacing the self-minted token Prompt 6 shipped: there, the
+ * client invented a value and sent it as `x-alminhej-account`, and that value
+ * *was* the account — so anyone could reach anyone's path by guessing a header.
+ * Here a reader registers or logs in with an email and a password, the password
+ * is salted and hashed with `scrypt` (compared in constant time), and the server
+ * issues an opaque session token. `/v1/me/*` then resolves the account from that
+ * token — it never trusts a client-supplied id again.
+ *
+ * Tokens are random and looked up in `SESSIONS` rather than signed: there is no
+ * signing key to leak, and `logout` is a real delete rather than a denylist. The
+ * cost is that sessions don't survive a restart — honest for a stand-in, and a
+ * smaller surface than a hand-rolled JWT. In-memory like the other §5.B-era
+ * writes; a real server persists §6's `users` collection plus a session store.
+ * ------------------------------------------------------------------ */
+
+const USERS = new Map(); // email (lowercased) -> user
+const USERS_BY_ID = new Map(); // id -> user
+const SESSIONS = new Map(); // token -> { userId, createdAt }
+
+const MIN_PASSWORD_LENGTH = 8;
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+const UNAUTHENTICATED_MESSAGE = "Sign in required: send a valid Authorization: Bearer <token>";
+
+const hashPassword = (password, salt) => scryptSync(password, salt, 64).toString("hex");
+
+/** Constant-time so a wrong password and a wrong-length hash take the same path. */
+function verifyPassword(password, user) {
+  const expected = Buffer.from(user.passwordHash, "hex");
+  const actual = Buffer.from(hashPassword(password, user.salt), "hex");
+  return expected.length === actual.length && timingSafeEqual(expected, actual);
+}
+
+function issueSession(userId) {
+  const token = randomBytes(32).toString("hex");
+  SESSIONS.set(token, { userId, createdAt: new Date().toISOString() });
+  return token;
+}
+
+/** What a caller is allowed to see of a user — never the hash, never the salt. */
+const publicUser = (user) => ({ id: user.id, email: user.email });
+
+/** The `Authorization: Bearer <token>` value, or null. */
+function tokenFrom(req) {
+  const raw = req.headers["authorization"];
+  if (!isNonEmptyString(raw)) return null;
+  const [scheme, value] = String(raw).split(" ");
+  return scheme?.toLowerCase() === "bearer" && isNonEmptyString(value) ? value.trim() : null;
+}
+
+/** The authenticated user id behind the request, or null (no session). */
+function accountFrom(req) {
+  const token = tokenFrom(req);
+  const session = token ? SESSIONS.get(token) : null;
+  return session ? session.userId : null;
+}
+
+/** Validate and normalize an email/password pair, or return the reason it isn't one. */
+function readCredentials(body) {
+  if (!isNonEmptyString(body.email) || !EMAIL_PATTERN.test(body.email.trim())) {
+    return { error: "'email' must be a valid email address" };
+  }
+  if (!isNonEmptyString(body.password) || body.password.length < MIN_PASSWORD_LENGTH) {
+    return { error: `'password' must be at least ${MIN_PASSWORD_LENGTH} characters` };
+  }
+  return { email: body.email.trim().toLowerCase(), password: body.password };
+}
+
+async function handleAuthRegister(req, res) {
+  if (req.method !== "POST") {
+    return sendError(res, 405, "METHOD_NOT_ALLOWED", `${req.method} is not supported on /v1/auth/register`);
+  }
+  const creds = readCredentials(await readJson(req));
+  if (creds.error) return sendError(res, 400, "INVALID_REQUEST", creds.error);
+  if (USERS.has(creds.email)) {
+    return sendError(res, 409, "EMAIL_TAKEN", "An account with that email already exists");
+  }
+
+  const salt = randomBytes(16).toString("hex");
+  const user = {
+    id: `user-${randomBytes(8).toString("hex")}`,
+    email: creds.email,
+    passwordHash: hashPassword(creds.password, salt),
+    salt,
+    createdAt: new Date().toISOString(),
+  };
+  USERS.set(user.email, user);
+  USERS_BY_ID.set(user.id, user);
+  return sendJson(res, 201, { token: issueSession(user.id), user: publicUser(user) });
+}
+
+async function handleAuthLogin(req, res) {
+  if (req.method !== "POST") {
+    return sendError(res, 405, "METHOD_NOT_ALLOWED", `${req.method} is not supported on /v1/auth/login`);
+  }
+  const body = await readJson(req);
+  if (!isNonEmptyString(body.email) || !isNonEmptyString(body.password)) {
+    return sendError(res, 400, "INVALID_REQUEST", "'email' and 'password' are required");
+  }
+
+  const user = USERS.get(body.email.trim().toLowerCase());
+  // One response for "no such email" and "wrong password" — neither the message
+  // nor the status may tell a caller which accounts exist.
+  if (!user || !verifyPassword(body.password, user)) {
+    return sendError(res, 401, "INVALID_CREDENTIALS", "Email or password is incorrect");
+  }
+  return sendJson(res, 200, { token: issueSession(user.id), user: publicUser(user) });
+}
+
+function handleAuthMe(req, res) {
+  if (req.method !== "GET") {
+    return sendError(res, 405, "METHOD_NOT_ALLOWED", `${req.method} is not supported on /v1/auth/me`);
+  }
+  const session = SESSIONS.get(tokenFrom(req));
+  const user = session ? USERS_BY_ID.get(session.userId) : null;
+  if (!user) return sendError(res, 401, "UNAUTHENTICATED", UNAUTHENTICATED_MESSAGE);
+  return sendJson(res, 200, { user: publicUser(user) });
+}
+
+function handleAuthLogout(req, res) {
+  if (req.method !== "POST") {
+    return sendError(res, 405, "METHOD_NOT_ALLOWED", `${req.method} is not supported on /v1/auth/logout`);
+  }
+  const token = tokenFrom(req);
+  if (token) SESSIONS.delete(token);
+  // Idempotent: logging out an already-invalid session is not an error.
+  return sendJson(res, 200, { ok: true });
+}
+
+async function handleAuth(req, res, url) {
+  switch (url.pathname) {
+    case "/v1/auth/register":
+      return handleAuthRegister(req, res);
+    case "/v1/auth/login":
+      return handleAuthLogin(req, res);
+    case "/v1/auth/logout":
+      return handleAuthLogout(req, res);
+    case "/v1/auth/me":
+      return handleAuthMe(req, res);
+    default:
+      return sendError(res, 404, "NOT_FOUND", `No auth route for ${url.pathname}`);
+  }
+}
+
+/* ------------------------------------------------------------------ *
  * §5.A — the reader's own state, per account (`/v1/me/*`)
  *
- * There is no auth yet (PROMPTS.md Prompt 6 scoped it that way on purpose):
- * the client mints an opaque token once and sends it as
- * `x-alminhej-account`, and that token *is* the identity. It is not a
- * credential — there is no password and nothing is verified — so this is the
- * honest floor for "per-account", and the seam real auth (`/v1/auth/*`) slots
- * into later. In-memory, like the §5.B writes: a real server persists this as
- * §6's `learning_paths` collection.
+ * Identity is now real (see above): the account is whatever user the caller's
+ * session token belongs to, resolved server-side. A missing or invalid token is
+ * a `401`, never a `400` — "you are not signed in" and "your request was
+ * malformed" are different failures and the client acts on them differently.
+ * In-memory, like the §5.B writes: a real server persists this as §6's
+ * `learning_paths` (and per-node) collections.
  * ------------------------------------------------------------------ */
 
 const ACCOUNTS = new Map();
@@ -292,11 +445,6 @@ const EMPTY_PATH = {
   startedAt: null,
   onboardingSeen: false,
 };
-
-function accountFrom(req) {
-  const raw = req.headers["x-alminhej-account"];
-  return isNonEmptyString(raw) ? String(raw).trim() : null;
-}
 
 /** A learning path is a small, fixed shape — reject anything else outright. */
 function isValidPath(value) {
@@ -313,12 +461,7 @@ function isValidPath(value) {
 async function handleMePath(req, res) {
   const accountId = accountFrom(req);
   if (!accountId) {
-    return sendError(
-      res,
-      400,
-      "INVALID_REQUEST",
-      "The x-alminhej-account header is required — it is the account identity"
-    );
+    return sendError(res, 401, "UNAUTHENTICATED", UNAUTHENTICATED_MESSAGE);
   }
 
   if (req.method === "GET") {
@@ -357,9 +500,9 @@ async function handleMePath(req, res) {
  *
  * The path above is one document per account; this is one per (account,
  * node): bookmark, discovered vocabulary, recite count, and the Practice-tab
- * notes. It is the same identity story (`x-alminhej-account`) and the same
- * in-memory lifecycle. Kept separate from the path because it is written on
- * nearly every reader interaction, where the path is not.
+ * notes. It is the same identity story (the account behind the caller's session
+ * token) and the same in-memory lifecycle. Kept separate from the path because
+ * it is written on nearly every reader interaction, where the path is not.
  * ------------------------------------------------------------------ */
 
 const ME_NODE_PREFIX = "/v1/me/nodes/";
@@ -396,12 +539,7 @@ function isValidReaderState(value) {
 async function handleMeNodeState(req, res, url) {
   const accountId = accountFrom(req);
   if (!accountId) {
-    return sendError(
-      res,
-      400,
-      "INVALID_REQUEST",
-      "The x-alminhej-account header is required — it is the account identity"
-    );
+    return sendError(res, 401, "UNAUTHENTICATED", UNAUTHENTICATED_MESSAGE);
   }
 
   const nodeId = decodeURIComponent(
@@ -680,6 +818,11 @@ async function dispatch(req, res, url) {
     return handleCompanion(req, res, url);
   }
 
+  // `/v1/auth/*` is POST as well as GET, so it too precedes the guard.
+  if (url.pathname.startsWith("/v1/auth/")) {
+    return handleAuth(req, res, url);
+  }
+
   // `/v1/me/*` accepts PUT as well as GET, so it too precedes the guard.
   if (url.pathname === "/v1/me/path") {
     return handleMePath(req, res);
@@ -715,7 +858,7 @@ const server = createServer(async (req, res) => {
     res.writeHead(204, {
       "access-control-allow-origin": "*",
       "access-control-allow-methods": "GET, POST, PUT, PATCH, OPTIONS",
-      "access-control-allow-headers": "content-type, accept, x-alminhej-roles, x-alminhej-account",
+      "access-control-allow-headers": "content-type, accept, authorization, x-alminhej-roles",
     });
     return res.end();
   }

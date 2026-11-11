@@ -1,6 +1,7 @@
-import { Languages, Library, Moon, Sparkle, Sun } from "lucide-react";
+import { Languages, Library, LogIn, LogOut, Moon, Sparkle, Sun } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSettings } from "@/context/SettingsContext";
+import { useAuth } from "@/context/AuthContext";
 
 interface HeaderProps {
   lessonTag?: string;
@@ -20,6 +21,7 @@ export function Header({
   logoHref = "/",
 }: HeaderProps) {
   const { t, uiLang, setUiLang, dark, toggleDark } = useSettings();
+  const { user, enabled, logout } = useAuth();
 
   return (
     <header className="h-14 flex items-center justify-between px-4 border-b border-[var(--color-line)] bg-[var(--color-panel)] shrink-0">
@@ -62,6 +64,34 @@ export function Header({
             <Languages size={14} />
           </button>
         )}
+
+        {enabled &&
+          (user ? (
+            <div className="flex items-center gap-1.5">
+              <span
+                className="hidden sm:inline max-w-[150px] truncate text-[11px] text-[var(--color-sub)]"
+                title={`${t.authSignedInAs} ${user.email}`}
+              >
+                {user.email}
+              </span>
+              <button
+                title={t.signOut}
+                onClick={() => void logout()}
+                className="w-8 h-8 rounded-lg grid place-items-center bg-[var(--color-panel-2)] border border-[var(--color-line)]"
+              >
+                <LogOut size={14} />
+              </button>
+            </div>
+          ) : (
+            <Link
+              to="/signin"
+              title={t.signIn}
+              className="h-8 rounded-lg px-2.5 flex items-center gap-1.5 text-[11px] bg-[var(--color-panel-2)] border border-[var(--color-line)]"
+            >
+              <LogIn size={13} />
+              {t.signIn}
+            </Link>
+          ))}
 
         <div className="flex rounded-lg overflow-hidden border border-[var(--color-line)]">
           {(["ar", "en"] as const).map((l) => (

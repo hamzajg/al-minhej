@@ -1,6 +1,7 @@
 import type { KnowledgeNode, NodeType, Relationship } from "./types";
 import type { LearningPath } from "./learning";
 import type { ReaderState } from "./readerState";
+import type { AuthSession, AuthUser } from "./auth";
 
 /**
  * Storage-agnostic contracts. Application services depend on these
@@ -30,22 +31,43 @@ export interface RelationshipRepository {
  * The reader's own path (§2/§6's `learning_paths` document), stored per
  * account. Unlike the two graph repositories above, this one *writes* — a
  * path is the reader's state, not authored content, so it never touches the
- * node/edge fixtures. `accountId` is the opaque identity from
- * `hooks/useAccount.ts`; the implementation decides how it is keyed.
+ * node/edge fixtures.
+ *
+ * `accountKey` is whatever scopes the state to one reader: the verified session
+ * token when a real backend is in use (`Authorization: Bearer`), or a local
+ * anonymous id without one. The implementation only ever treats it as an opaque
+ * key — it never inspects it.
  */
 export interface LearningPathRepository {
-  get(accountId: string): Promise<LearningPath>;
-  save(accountId: string, path: LearningPath): Promise<LearningPath>;
+  get(accountKey: string): Promise<LearningPath>;
+  save(accountKey: string, path: LearningPath): Promise<LearningPath>;
 }
 
 /**
  * The reader's own state *for a single node* — bookmark, discovered
  * vocabulary, recite count, and the Practice-tab notes. Like
  * `LearningPathRepository` this one *writes*, but the scope is one node, so
- * it is keyed by `(accountId, nodeId)` rather than by account alone. `nodeId`
+ * it is keyed by `(accountKey, nodeId)` rather than by account alone. `nodeId`
  * is the node's stable id (the same id `KnowledgeRepository.findById` uses).
  */
 export interface ReaderStateRepository {
-  get(accountId: string, nodeId: string): Promise<ReaderState>;
-  save(accountId: string, nodeId: string, state: ReaderState): Promise<ReaderState>;
+  get(accountKey: string, nodeId: string): Promise<ReaderState>;
+  save(accountKey: string, nodeId: string, state: ReaderState): Promise<ReaderState>;
+}
+
+/**
+ * §5.A's `/v1/auth/*` — real identity, replacing the client-minted token. The
+ * server verifies an email/password pair or a bearer token; nothing here trusts
+ * a caller-supplied id. Unlike the state repositories above this one is
+ * *only* meaningful with a backend: without one there is no one to verify
+ * against, so `container.ts` leaves the whole repository `null` and the app
+ * runs on the anonymous local identity as it did before auth.
+ */
+export interface AuthRepository {
+  register(email: string, password: string): Promise<AuthSession>;
+  login(email: string, password: string): Promise<AuthSession>;
+  /** The user behind a token, or `null` when the token is not a live session. */
+  me(token: string): Promise<AuthUser | null>;
+  /** Invalidate a session. Idempotent: an unknown token is not an error. */
+  logout(token: string): Promise<void>;
 }

@@ -4,23 +4,24 @@ import { BackendError } from "./httpClient";
 
 /**
  * §5.A's `/v1/me/*` surface — the reader's own state, as opposed to the shared
- * graph. Every call carries the account token (`x-alminhej-account`); today
- * that token *is* the identity, since there is no auth yet.
+ * graph. Every call carries the session token as `Authorization: Bearer`, and
+ * the server — not this client — resolves that token to an account. A missing
+ * or invalid token is a `401`, which this client surfaces as a `BackendError`
+ * with the server's `code` so the caller can react (today: no-op, since the
+ * hooks only run when a session exists).
  *
  * `apiGet` can't be reused here: it sets no such header, and it turns a 404
- * into `null` — which would hide "your account header was rejected" behind a
- * silent "no path". This client surfaces every non-2xx as a `BackendError`,
- * preserving the server's error `code`.
+ * into `null` — which would hide "your session was rejected" behind a silent
+ * "no path". This client surfaces every non-2xx as a `BackendError`, preserving
+ * the server's error `code`.
  */
-const ACCOUNT_HEADER = "x-alminhej-account";
-
 interface ErrorEnvelope {
   error?: { code?: string; message?: string };
 }
 
 async function meSend<T>(
   baseUrl: string,
-  accountId: string,
+  token: string,
   method: "GET" | "PUT",
   path: string,
   body?: unknown
@@ -28,7 +29,7 @@ async function meSend<T>(
   const url = `${baseUrl.replace(/\/+$/, "")}${path}`;
   const headers: Record<string, string> = {
     accept: "application/json",
-    [ACCOUNT_HEADER]: accountId,
+    authorization: `Bearer ${token}`,
   };
   if (body !== undefined) headers["content-type"] = "application/json";
 
@@ -57,16 +58,12 @@ async function meSend<T>(
   return payload as T;
 }
 
-export function getMyPath(baseUrl: string, accountId: string): Promise<LearningPath> {
-  return meSend<LearningPath>(baseUrl, accountId, "GET", "/v1/me/path");
+export function getMyPath(baseUrl: string, token: string): Promise<LearningPath> {
+  return meSend<LearningPath>(baseUrl, token, "GET", "/v1/me/path");
 }
 
-export function saveMyPath(
-  baseUrl: string,
-  accountId: string,
-  path: LearningPath
-): Promise<LearningPath> {
-  return meSend<LearningPath>(baseUrl, accountId, "PUT", "/v1/me/path", path);
+export function saveMyPath(baseUrl: string, token: string, path: LearningPath): Promise<LearningPath> {
+  return meSend<LearningPath>(baseUrl, token, "PUT", "/v1/me/path", path);
 }
 
 /**
@@ -76,12 +73,12 @@ export function saveMyPath(
  */
 export function getMyNodeState(
   baseUrl: string,
-  accountId: string,
+  token: string,
   nodeId: string
 ): Promise<ReaderState> {
   return meSend<ReaderState>(
     baseUrl,
-    accountId,
+    token,
     "GET",
     `/v1/me/nodes/${encodeURIComponent(nodeId)}/state`
   );
@@ -89,13 +86,13 @@ export function getMyNodeState(
 
 export function saveMyNodeState(
   baseUrl: string,
-  accountId: string,
+  token: string,
   nodeId: string,
   state: ReaderState
 ): Promise<ReaderState> {
   return meSend<ReaderState>(
     baseUrl,
-    accountId,
+    token,
     "PUT",
     `/v1/me/nodes/${encodeURIComponent(nodeId)}/state`,
     state

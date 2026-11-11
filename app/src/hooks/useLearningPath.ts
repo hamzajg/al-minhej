@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { learningPathRepository } from "@/application/container";
-import { useAccount } from "./useAccount";
+import { useIdentity } from "./useIdentity";
 import { LEARNING_GOALS } from "@/data/goals";
 import {
   EMPTY_LEARNING_PATH,
@@ -14,13 +14,16 @@ import {
  * of nodes to visit, since those come from the graph on demand.
  *
  * The account's stored path is the source of truth, reached through
- * `learningPathRepository` (Memory or HTTP, chosen in `container.ts`). `loaded`
- * stays false until the first read resolves, so the goal picker can wait
- * instead of re-asking a reader who already chose — a reader whose path is on
- * the server, not in `localStorage`, so it isn't known synchronously.
+ * `learningPathRepository` (Memory or HTTP, chosen in `container.ts`), keyed by
+ * `useIdentity()` — the verified session token with a backend, the local
+ * anonymous id without one, and `null` when signed out against a backend (in
+ * which case there is no account to read, so the hook holds the empty path).
+ * `loaded` stays false until the first read resolves, so the goal picker can
+ * wait instead of re-asking a reader who already chose — a reader whose path is
+ * on the server, not in `localStorage`, so it isn't known synchronously.
  */
 export function useLearningPath() {
-  const accountId = useAccount();
+  const accountKey = useIdentity();
   const [path, setPath] = useState<LearningPath>(EMPTY_LEARNING_PATH);
   const [loaded, setLoaded] = useState(false);
 
@@ -29,17 +32,33 @@ export function useLearningPath() {
   const pathRef = useRef<LearningPath>(EMPTY_LEARNING_PATH);
   // The first read, shared by the mount effect and any mutation that races it.
   const loadingRef = useRef<Promise<LearningPath | null> | null>(null);
+  // Which account the current path belongs to, so signing in as someone else
+  // (or out) drops the previous reader's path instead of showing it.
+  const loadedKeyRef = useRef<string | null>(null);
 
   const apply = useCallback((next: LearningPath) => {
     pathRef.current = next;
     setPath(next);
   }, []);
 
-  /** Read the account's path once. Resolves `null` if the backend is unreachable. */
+  /** Read the account's path once. Resolves `null` if there is no account. */
   const ensureLoaded = useCallback(() => {
+    if (loadedKeyRef.current !== accountKey) {
+      // A different account (or none): drop the read we had and reset to blank
+      // so one reader's path is never rendered for another.
+      loadedKeyRef.current = accountKey;
+      loadingRef.current = null;
+      apply({ ...EMPTY_LEARNING_PATH });
+    }
+    if (!accountKey) {
+      // Signed out against a real backend: there is no account to read, so the
+      // honest answer is the empty path, and the picker needn't wait.
+      setLoaded(true);
+      return Promise.resolve<LearningPath | null>(null);
+    }
     if (!loadingRef.current) {
       loadingRef.current = learningPathRepository
-        .get(accountId)
+        .get(accountKey)
         .then((stored) => {
           apply(stored);
           setLoaded(true);
@@ -51,7 +70,7 @@ export function useLearningPath() {
         });
     }
     return loadingRef.current;
-  }, [accountId, apply]);
+  }, [accountKey, apply]);
 
   useEffect(() => {
     void ensureLoaded();
@@ -64,6 +83,7 @@ export function useLearningPath() {
    */
   const mutate = useCallback(
     (change: (current: LearningPath) => LearningPath) => {
+      if (!accountKey) return;
       void ensureLoaded().then((stored) => {
         // Backend down: keep local state honest rather than fabricating a path
         // the server will never have.
@@ -71,12 +91,12 @@ export function useLearningPath() {
         const next = change(pathRef.current);
         if (next === pathRef.current) return;
         apply(next);
-        learningPathRepository.save(accountId, next).catch(() => {
+        learningPathRepository.save(accountKey, next).catch(() => {
           /* best-effort — the next mutation retries with fresh state */
         });
       });
     },
-    [accountId, apply, ensureLoaded]
+    [accountKey, apply, ensureLoaded]
   );
 
   const goal: LearningGoal | null =

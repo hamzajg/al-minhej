@@ -9,15 +9,16 @@ function newAccountId(): string {
 }
 
 /**
- * The reader's account token — the minimal identity `PROMPTS.md` Prompt 6 was
- * scoped to (full auth, §5.A's `/v1/auth/*`, is its own piece of work). It is
- * minted once and kept in `localStorage`; the server treats it as the identity
- * for `/v1/me/*`.
+ * The *anonymous* local identity — the account key used when there is no
+ * backend to authenticate against (`VITE_ALMINHEJ_API_BASE_URL` unset), so the
+ * app still persists per-account state in `localStorage` in offline dev. With
+ * a backend, real auth (§5.A's `/v1/auth/*`) supersedes this entirely and the
+ * session token is the account key instead; `hooks/useIdentity.ts` is the one
+ * place that picks between them, and it is what the state hooks read.
  *
- * It is a token, not a credential: there is no password and nothing is
- * verified, so losing it means losing that account's path. That is the honest
- * ceiling of "per-account" without an auth prompt, and the whole reason the
- * header/in-memory server store is documented as a stand-in.
+ * It is a key, not a credential: there is no password and nothing is verified,
+ * so losing it means losing that account's state. That is honest only because
+ * there is no server to protect — never use this where a session exists.
  */
 export function useAccount(): string {
   const [accountId] = useState(() => {
