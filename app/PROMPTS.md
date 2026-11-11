@@ -268,6 +268,65 @@ anything directly, and every piece of reader-generated data goes through a
 
 ---
 
+## Prompt 8 — Real auth (`/v1/auth/*`), replacing the self-minted identity token
+
+**Goal:** Replace the client-minted `x-alminhej-account` token — a value the
+client invented and the server took on faith — with real authentication:
+register and login with an email and a password, a verified credential, and a
+server-resolved identity behind the same `/v1/me/*` routes.
+
+**Why:** Prompts 6 and 7 both shipped an account that was an *identity*, not a
+credential: whoever sent `x-alminhej-account: <value>` *was* that account, so
+the header was the whole of the security model and anyone could read anyone
+else's path by guessing a string. That was worth calling out and living with
+while the point was proving the storage boundary; it is not worth shipping. The
+architecture doc names `/v1/auth/*` in §5.A, and the README calls this the
+honest next step. It is the largest and most security-sensitive piece of the
+backlog.
+
+**Scope:**
+- Server: `POST /v1/auth/register`, `POST /v1/auth/login`, `POST /v1/auth/logout`,
+  `GET /v1/auth/me`. Passwords are salted and hashed with `scrypt` and compared
+  in constant time (`timingSafeEqual`); the server issues an opaque random
+  session token (not a JWT — no signing key to leak, and logout is a real
+  delete, not a denylist). Login returns one response for both "no such email"
+  and "wrong password", so the API can't be used to enumerate accounts. §6's
+  `users` collection plus a session store would persist this in a real server;
+  in-memory here, like the other §5.A-era writes.
+- `/v1/me/*` now resolves the account from `Authorization: Bearer <token>` and
+  never trusts a client-supplied id again. A missing or invalid token is a
+  `401 UNAUTHENTICATED` — *not* the old `400 INVALID_REQUEST`, because "you are
+  not signed in" and "your request was malformed" are different failures and the
+  client acts on them differently.
+- Client: `AuthRepository` in `domain/repositories.ts` (with `AuthUser` /
+  `AuthSession` in a new `domain/auth.ts`), an `HttpAuthRepository` over §5.A,
+  and a `null` repository when there is no backend — there is no honest
+  in-memory auth, so the app keeps its anonymous local identity exactly as
+  before rather than faking a login. `AuthProvider`/`useAuth` hold the session,
+  persist the token in `localStorage`, and re-verify it against `/v1/auth/me`
+  on boot so a token the server no longer knows is dropped rather than trusted.
+- `hooks/useIdentity.ts` is the one place that reconciles the two identity
+  sources: the verified session token with a backend, the local anonymous id
+  without one, and `null` when signed out against a backend (in which case the
+  state hooks no-op). `useLearningPath`/`useReaderState` read it instead of
+  `useAccount`, and reset when it changes, so one reader's state is never
+  rendered for another.
+- An `AuthScreen` at `/signin` (register/login in one form) and a sign-in /
+  account affordance in the header.
+
+**Acceptance criteria:**
+- Registering, logging in, and logging out all work end to end; a wrong
+  password and an unknown email are indistinguishable in the response.
+- A forged or absent `Authorization` header on `/v1/me/*` is a `401`, and the
+  old `x-alminhej-account` header no longer grants access to anything.
+- The same signed-in account sees the same path/bookmark/notes after a reload;
+  a different account — and a signed-out reader — sees blank ones.
+- `npm run build` passes with zero type errors, and the app still runs against
+  the in-memory provider with no backend configured (where `authRepository` is
+  `null` and sign-in is unavailable, not faked).
+
+---
+
 ## Notes for whoever picks this up
 
 - Keep the Goal → Why → Scope → Acceptance shape for new prompts — it's

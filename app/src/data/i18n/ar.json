@@ -118,6 +118,27 @@
     "pathBecauseCrossReference": "مرتبط بإحالة مباشرة",
     "pathBecauseSimilarTo": "مُصنَّف كشبيه لما قرأته",
     "pathBecauseSharedNarrator": "يشترك في الإسناد عبر",
-    "pathTraceableNote": "كل خطوة تتبع رابطًا حقيقيًا في الشبكة."
+    "pathTraceableNote": "كل خطوة تتبع رابطًا حقيقيًا في الشبكة.",
+    "signIn": "تسجيل الدخول",
+    "signOut": "تسجيل الخروج",
+    "authSignInTitle": "تسجيل الدخول إلى المنهج",
+    "authSignInSubtitle": "يُحفظ مسارك وعلاماتك وملاحظاتك في حسابك.",
+    "authRegisterTitle": "إنشاء حساب",
+    "authRegisterSubtitle": "سجّل ببريد إلكتروني وكلمة مرور لحفظ تقدّمك.",
+    "authEmailLabel": "البريد الإلكتروني",
+    "authPasswordLabel": "كلمة المرور",
+    "authSignInCta": "تسجيل الدخول",
+    "authRegisterCta": "إنشاء حساب",
+    "authToRegister": "جديد هنا؟ أنشئ حسابًا",
+    "authToSignIn": "لديك حساب بالفعل؟ سجّل الدخول",
+    "authWorking": "جارٍ العمل…",
+    "authSignedInAs": "مسجّل الدخول باسم",
+    "authBackHome": "← العودة إلى القراءة",
+    "authUnavailable": "تسجيل الدخول يتطلّب تشغيل خادم المنهج — شغّله بالأمر ‎npm run api‎ واضبط VITE_ALMINHEJ_API_BASE_URL.",
+    "authEmailTaken": "يوجد حساب بهذا البريد الإلكتروني بالفعل.",
+    "authInvalidCredentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة.",
+    "authPasswordTooShort": "يجب ألا تقل كلمة المرور عن 8 أحرف.",
+    "authNetworkError": "تعذّر الوصول إلى الخادم. هل الخادم يعمل؟",
+    "authGenericError": "حدث خطأ ما. حاول مرة أخرى."
   }
 }

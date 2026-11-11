@@ -6,9 +6,14 @@ import { HttpKnowledgeRepository } from "@/infrastructure/http/HttpKnowledgeRepo
 import { HttpRelationshipRepository } from "@/infrastructure/http/HttpRelationshipRepository";
 import { HttpLearningPathRepository } from "@/infrastructure/http/HttpLearningPathRepository";
 import { HttpReaderStateRepository } from "@/infrastructure/http/HttpReaderStateRepository";
+import { HttpAuthRepository } from "@/infrastructure/http/HttpAuthRepository";
 import { AssembleReadingExperience } from "./AssembleReadingExperience";
 import { GraphTraversalRecommendationStrategy } from "./RecommendationStrategy";
-import type { LearningPathRepository, ReaderStateRepository } from "@/domain/repositories";
+import type {
+  AuthRepository,
+  LearningPathRepository,
+  ReaderStateRepository,
+} from "@/domain/repositories";
 
 /**
  * The only file that decides *which* storage implementation is in use.
@@ -75,5 +80,18 @@ export const learningPathRepository: LearningPathRepository = apiBaseUrl
 export const readerStateRepository: ReaderStateRepository = apiBaseUrl
   ? new HttpReaderStateRepository(apiBaseUrl)
   : new MemoryReaderStateRepository();
+
+/**
+ * Real auth (§5.A's `/v1/auth/*`) is the one contract with no memory
+ * implementation, on purpose: without a server there is nobody to verify an
+ * email, a password, or a token, and a browser-side login would be theatre.
+ * So this is `null` unless `VITE_ALMINHEJ_API_BASE_URL` is set, and the app
+ * falls back to the anonymous local identity (`hooks/useAccount.ts`) exactly
+ * as it did before auth existed. `AuthProvider` reads `null` as "sign-in
+ * unavailable" rather than pretending.
+ */
+export const authRepository: AuthRepository | null = apiBaseUrl
+  ? new HttpAuthRepository(apiBaseUrl)
+  : null;
 
 export { knowledgeRepository, relationshipRepository };

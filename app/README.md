@@ -68,11 +68,18 @@ src/
     dto.ts           ReadingExperienceDTO and friends — what a real
                      `GET /v1/reading/{slug}` would return
     repositories.ts  KnowledgeRepository / RelationshipRepository /
-                     LearningPathRepository / ReaderStateRepository interfaces
-                     — the storage-agnostic boundary. The first two read the
-                     authored graph; the last two *write* the reader's own
-                     state: the path (one document per account) and the
-                     per-node reader state (one per account *and* node).
+                     LearningPathRepository / ReaderStateRepository /
+                     AuthRepository interfaces — the storage-agnostic boundary.
+                     The first two read the authored graph; the next two *write*
+                     the reader's own state: the path (one document per account)
+                     and the per-node reader state (one per account *and* node).
+                     AuthRepository is the odd one out: it has no memory
+                     implementation, because there is no honest way to verify a
+                     credential without a server.
+    auth.ts          AuthUser / AuthSession — the verified identity behind a
+                     session (§5.A's `/v1/auth/*`): an opaque bearer token plus
+                     the user it belongs to. The token is the credential; the
+                     server, not the client, decides which account it maps to.
     learning.ts      Recommendation / LearningGoal / LearningPath, plus
                      REASON_SOURCE_EDGE — the vocabulary a path is described
                      in. A path is a *projection over the graph*, never a
@@ -117,12 +124,24 @@ src/
                         `container.ts` picks between these and the Memory
                         pair; nothing above this layer knows which won.
       meClient.ts       The §5.A `/v1/me/*` transport: reads and writes the
-                        account's own state, sending the opaque account token
-                        as `x-alminhej-account`. Kept separate from
-                        `httpClient.ts` because it *writes*, and because it
-                        must not collapse a 404 into `null` — "your path" is
-                        the account's, so a missing one is the server's honest
-                        empty answer and anything else is a real error.
+                        account's own state, sending the session token as
+                        `Authorization: Bearer <token>` (the server resolves it
+                        to an account; the client never names one). Kept
+                        separate from `httpClient.ts` because it *writes*, and
+                        because it must not collapse a 404 into `null` — "your
+                        path" is the account's, so a missing one is the server's
+                        honest empty answer and anything else is a real error.
+      authClient.ts     §5.A's `/v1/auth/*` transport — register, login,
+                        logout, and "who am I". It can't reuse `apiGet`: auth is
+                        POST-heavy, and `me` must read a `401` as "nobody is
+                        signed in" rather than an error, while every other
+                        non-2xx surfaces as a `BackendError` the UI branches on
+                        by `code`.
+      HttpAuthRepository.ts
+                        The §5.A auth repository. `container.ts` exports it only
+                        when an API base URL is set — without a backend there is
+                        nothing to verify against, so it exports `null` and the
+                        app keeps its anonymous local identity.
       HttpLearningPathRepository.ts
                         The path repository — the first one that writes —
                         over `GET`/`PUT /v1/me/path`.
@@ -170,14 +189,35 @@ src/
                                     talks to the real backend; leave it unset
                                     and it runs on the Memory provider — for
                                     the graph repositories *and* the reader's
-                                    own path and per-node state alike.
+                                    own path and per-node state alike. It also
+                                    exports `authRepository` as `null` when
+                                    there's no backend, since real auth has no
+                                    honest in-memory form.
+
+  context/
+    SettingsContext.tsx            Interface language, dark mode, reading mode —
+                                   the chrome, kept separate from the reading
+                                   content's translation language.
+    AuthContext.tsx                The reader's session (`useAuth`): holds the
+                                   token + user, persists the token in
+                                   `localStorage`, and re-verifies it against
+                                   `/v1/auth/me` on boot so a token the server
+                                   no longer knows is dropped rather than
+                                   trusted. With no backend it reports sign-in
+                                   as *unavailable* rather than faking a login.
 
   hooks/
-    useAccount.ts              The reader's identity: an opaque token minted
-                               once and kept in `localStorage`, sent to the
-                               server as `x-alminhej-account`. An identity,
-                               not a credential — there is no password and
-                               nothing is verified.
+    useAccount.ts              The *anonymous* local identity — the account key
+                               used only when no backend is configured, so
+                               offline dev still persists per-account state in
+                               `localStorage`. A key, not a credential: with a
+                               backend, real auth supersedes it entirely.
+    useIdentity.ts             The one place that reconciles the two identity
+                               sources: the verified session token with a
+                               backend, the local anonymous id without one, and
+                               `null` when signed out against a backend (in
+                               which case the state hooks no-op). What
+                               `useLearningPath`/`useReaderState` key off.
     useReadingExperience.ts   Bridges React to AssembleReadingExperience,
                                modeled as async even though Memory
                                resolves instantly — so swapping to a real
@@ -243,6 +283,12 @@ src/
     HomePage.tsx     Lists published reading experiences from the graph
     ReadingPage.tsx  Composes the responsive reading studio around one
                       ReadingExperienceDTO
+    AuthScreen.tsx   The §5.A sign-in/register screen at `/signin` — one form
+                      for both, since they differ only in which call they make.
+                      Validation is the browser's, so messages match the
+                      reader's locale; the server's error `code` decides the
+                      rest. When no backend is configured it says so honestly
+                      instead of offering a login that can't work.
     AdminPage.tsx    The §5.B editor workbench (/admin) — create a HADITH
                       node, attach content blocks, link it to a node that
                       already exists via autocomplete, and move it through
@@ -255,12 +301,18 @@ src/
 server/
   api-server.mjs     §5.A + §5.B + §7 over plain `node:http`, zero
                      dependencies. Serves the same JSON fixtures the
-                     Memory provider ships, keeps §5.B's writes in memory
-                     for the life of the process, and stores each account's
-                     own state the same way — the learning path (`GET`/`PUT
-                     /v1/me/path`) and the per-node reader state (`GET`/`PUT
-                     /v1/me/nodes/{id}/state`), both keyed by the
-                     `x-alminhej-account` token. `npm run api`.
+                     Memory provider ships and keeps §5.B's writes in memory
+                     for the life of the process. §5.A's auth is real:
+                     `POST /v1/auth/register`, `/login`, `/logout` and
+                     `GET /v1/auth/me`, with passwords salted and hashed via
+                     `scrypt` (compared in constant time) and an opaque random
+                     session token — not a JWT, so there is no signing key to
+                     leak and logout is a real delete. `/v1/me/*` resolves the
+                     account from `Authorization: Bearer <token>` and stores
+                     each account's own state the same in-memory way — the
+                     learning path (`GET`/`PUT /v1/me/path`) and the per-node
+                     reader state (`GET`/`PUT /v1/me/nodes/{id}/state`).
+                     `npm run api`.
   knowledgeContext.mjs  §7's `KnowledgeContextBuilder`: given a node id,
                      assembles that node's own content plus a *bounded*
                      slice of its immediate graph neighbors (only
@@ -401,9 +453,20 @@ as one document per account *and* node (`ReaderStateRepository`). So it survives
 a reload and follows the account rather than the browser, and `useLocalStorage`
 is now gone from the tree entirely: every piece of reader-generated data goes
 through a repository, Memory or HTTP, chosen in one place. What remains local
-is the source-detail vote tally (plain component state, never persisted) and
-identity itself — `x-alminhej-account` is an identity, not a credential, and
-real auth (`/v1/auth/*`) is the honest next step — see `PROMPTS.md`, Prompt 7.
+is the source-detail vote tally (plain component state, never persisted). And
+**that account is no longer a self-minted token.** `x-alminhej-account` — a
+value the client invented and the server took on faith — is gone; in its place
+are real `/v1/auth/*` endpoints: register and login with an email and a
+password, a `scrypt`-hashed, constant-time-verified credential, and an opaque
+session token sent as `Authorization: Bearer`, from which the server resolves
+the account. The old header grants access to nothing, a missing or forged token
+on `/v1/me/*` is a `401`, and a login failure can't be used to tell which
+emails exist. `AuthProvider`/`useAuth` carry the session on the client, the
+sign-in screen lives at `/signin`, and `hooks/useIdentity.ts` decides what
+"the account key" means in each mode — the session token with a backend, the
+anonymous local id without one. There is deliberately no in-memory auth:
+without a backend, sign-in reports itself as unavailable rather than pretending.
+See `PROMPTS.md`, Prompt 8.
 
 ## Scalability notes
 

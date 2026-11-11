@@ -114,4 +114,25 @@ export interface UiStrings {
   pathBecauseSimilarTo: string;
   pathBecauseSharedNarrator: string;
   pathTraceableNote: string;
+  signIn: string;
+  signOut: string;
+  authSignInTitle: string;
+  authSignInSubtitle: string;
+  authRegisterTitle: string;
+  authRegisterSubtitle: string;
+  authEmailLabel: string;
+  authPasswordLabel: string;
+  authSignInCta: string;
+  authRegisterCta: string;
+  authToRegister: string;
+  authToSignIn: string;
+  authWorking: string;
+  authSignedInAs: string;
+  authBackHome: string;
+  authUnavailable: string;
+  authEmailTaken: string;
+  authInvalidCredentials: string;
+  authPasswordTooShort: string;
+  authNetworkError: string;
+  authGenericError: string;
 }
