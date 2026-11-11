@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Amiri:wght@400;700&family=Cairo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-display: 'Fraunces', ui-serif, serif;
+  --font-arabic: 'Amiri', ui-serif, serif;
+  --font-ui-ar: 'Cairo', ui-sans-serif, sans-serif;
+  --font-sans: 'Inter', ui-sans-serif, sans-serif;
+}
+
+/* ---- Brand palette (light) ---- */
+:root {
+  --color-bg: #FBF7EE;
+  --color-panel: #FFFFFF;
+  --color-panel-2: #F3EEE0;
+  --color-ink: #16211D;
+  --color-sub: #5C6A61;
+  --color-line: rgba(22, 33, 29, 0.10);
+  --color-emerald: #0E4F3F;
+  --color-gold: #B4863A;
+  --color-gold-light: #E7D8AE;
+}
+
+/* ---- Brand palette (dark) ---- */
+.dark {
+  --color-bg: #101613;
+  --color-panel: #182420;
+  --color-panel-2: #1E2C26;
+  --color-ink: #F4EFE2;
+  --color-sub: #B9C4BC;
+  --color-line: rgba(244, 239, 226, 0.12);
+  --color-emerald: #3E8C6F;
+  --color-gold: #D9B876;
+  --color-gold-light: #D9B876;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+html[lang="ar"] body {
+  font-family: var(--font-ui-ar);
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-gold) 35%, transparent);
+}
+
+.lesson-scroller::-webkit-scrollbar {
+  width: 7px;
+}
+.lesson-scroller::-webkit-scrollbar-thumb {
+  background: var(--color-line);
+  border-radius: 8px;
+}
+
+.geo-bg {
+  background-image: radial-gradient(color-mix(in srgb, var(--color-gold) 14%, transparent) 1px, transparent 1px);
+  background-size: 26px 26px;
+}
+
+@keyframes invite-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-gold) 35%, transparent); }
+  50% { box-shadow: 0 0 0 6px transparent; }
+}
+.animate-invite-pulse {
+  animation: invite-pulse 1.8s ease-in-out infinite;
+  border-radius: 6px;
+}
+
+@keyframes toastInLib {
+  from { opacity: 0; transform: translate(-50%, -8px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
