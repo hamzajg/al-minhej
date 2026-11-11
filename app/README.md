@@ -21,14 +21,25 @@ backend) and the approval deck before it. See `PROMPTS.md` for the roadmap.
 - **React Router** — `/` (Home) and `/reading/:slug` (the reading experience)
 - **lucide-react** — icon set
 
-No real backend yet — but the *shape* of one is already here. See
-Architecture below.
+A real HTTP backend now exists behind those same interfaces — same app, same
+hooks, same components, one env var apart. See Architecture below, and
+`PROMPTS.md` for the roadmap.
 
 ## Getting started
 
 ```bash
 npm install
+
+# 1. In-memory provider (the default — no server needed)
 npm run dev       # http://localhost:5173
+
+# 2. …or the real backend, same app code
+npm run api       # http://localhost:8787 (the REST surface from §5 of the doc)
+echo 'VITE_ALMINHEJ_API_BASE_URL=http://localhost:8787' > .env.local
+npm run dev       # Vite restarts itself; no rebuild
+```
+
+```bash
 npm run build     # type-checks + production build to dist/
 npm run preview   # serve the production build locally
 ```
@@ -49,7 +60,7 @@ src/
   infrastructure/
     memory/
       data/
-        nodes.ts          The mock node "database" (24 nodes)
+        nodes.ts          The mock node "database" (70 nodes)
         relationships.ts  The mock edge "database"
       MemoryKnowledgeRepository.ts
       MemoryRelationshipRepository.ts
@@ -57,6 +68,17 @@ src/
                            arrays above. A MongoKnowledgeRepository later
                            satisfies the same interface — nothing above
                            this layer changes.
+    http/
+      httpClient.ts     Thin fetch wrapper shared by the two HTTP
+                        repositories. A 404 means "absent" (null); anything
+                        else that isn't 2xx throws BackendError — which is
+                        what stops "the backend is down" from rendering as
+                        "Not found."
+      HttpKnowledgeRepository.ts
+      HttpRelationshipRepository.ts
+                        The same two interfaces over the §5.A REST API.
+                        `container.ts` picks between these and the Memory
+                        pair; nothing above this layer knows which won.
 
   application/
     AssembleReadingExperience.ts   Walks nodes + relationships into a
@@ -166,25 +188,30 @@ Repository + Memory-provider layer (Clean Architecture, ready for a real
 backend to slot in underneath), derived digitization progress, the isnad
 chain reconstructed from graph edges (not a hand-authored `chain` array),
 the mini knowledge-graph rendered from real relationships, Vocabulary
-Helper, Source Library, and Memorize mode. AI Companion still returns
-static canned answers (no real model call yet). Guided Learning Paths,
-cross-session Progress Tracking, and a second reading experience to prove
-the model generalizes are not yet built — see `PROMPTS.md`.
+Helper, Source Library, and Memorize mode. Thirteen reading experiences
+are authored, all of them assembled by the same unmodified service. A real
+HTTP backend (`server/`, `npm run api`) now sits behind the same repository
+interfaces, selectable by env var. AI Companion still returns static canned
+answers (no real model call yet). Guided Learning Paths and cross-session
+Progress Tracking are not yet built — see `PROMPTS.md`.
 
 ## Scalability notes
 
-- This whole app currently runs against 24 hand-authored nodes and ~25
-  edges. The real test of the model is adding node #25 — a second hadith,
-  or a Qur'an verse with its own reading experience — without touching
-  `AssembleReadingExperience.ts`. See `PROMPTS.md`, Prompt 12.
+- This whole app currently runs against 70 hand-authored nodes and 133
+  edges. The model's real test — a second reading experience with no code
+  change — is already met: `app/` ships thirteen, added as data only. See
+  `PROMPTS.md`, Prompt 1.
 - `MiniGraph`'s layout is a simple even-angle radial spread
   (`360 / neighbors.length`), which works for a handful of neighbors and
   will get crowded past ~10-12. A real force-directed layout (`d3-force`)
   is the natural upgrade once a node has that many edges.
-- `container.ts` is the swap point for a real backend. `useReadingExperience`
-  and every other hook already treat the application layer as async, so
-  the swap doesn't touch component code — only `container.ts` changes,
-  per the architecture doc's §8 migration argument (which this repo *is*
-  the fulfillment of, one level down: adapter-free, because the frontend
-  was rebuilt to speak the graph model directly instead of being adapted
-  to it).
+- `container.ts` is the swap point for a real backend, and the swap has now
+  been done: two repository classes and the provider selection in
+  `container.ts`, and every hook, component and application service stayed
+  put. The one thing the move did expose is that `useReadingExperience` had
+  no rejection path — nothing with Memory can fail, so a dead backend would
+  have meant a permanently blank reading screen. That gap is closed, and a
+  `404` still means "not found" rather than "broken". Per the architecture
+  doc's §8 migration argument, which this repo *is* the fulfillment of, one
+  level down: adapter-free, because the frontend was rebuilt to speak the
+  graph model directly instead of being adapted to it.

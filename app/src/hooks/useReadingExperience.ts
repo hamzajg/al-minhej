@@ -6,6 +6,9 @@ interface State {
   data: ReadingExperienceDTO | null;
   loading: boolean;
   notFound: boolean;
+  /** Set only when the application layer *threw* — a real backend failure,
+   *  as opposed to a slug that simply isn't in the graph (`notFound`). */
+  error: string | null;
 }
 
 /**
@@ -13,21 +16,41 @@ interface State {
  * Modeled as async + loading state even though the memory provider
  * resolves instantly, specifically so swapping to a real `fetch()` later
  * doesn't change how any component consumes this hook.
+ *
+ * That swap is why the rejection path exists: with Memory it was unreachable,
+ * with a real backend it is the difference between "the API is down" and a
+ * screen stuck on the loading state forever.
  */
 export function useReadingExperience(slug: string | undefined) {
-  const [state, setState] = useState<State>({ data: null, loading: true, notFound: false });
+  const [state, setState] = useState<State>({
+    data: null,
+    loading: true,
+    notFound: false,
+    error: null,
+  });
 
   useEffect(() => {
     let cancelled = false;
     if (!slug) {
-      setState({ data: null, loading: false, notFound: true });
+      setState({ data: null, loading: false, notFound: true, error: null });
       return;
     }
-    setState((s) => ({ ...s, loading: true }));
-    readingExperienceService.execute(slug).then((dto) => {
-      if (cancelled) return;
-      setState({ data: dto, loading: false, notFound: dto === null });
-    });
+    setState((s) => ({ ...s, loading: true, error: null }));
+    readingExperienceService
+      .execute(slug)
+      .then((dto) => {
+        if (cancelled) return;
+        setState({ data: dto, loading: false, notFound: dto === null, error: null });
+      })
+      .catch((cause: unknown) => {
+        if (cancelled) return;
+        setState({
+          data: null,
+          loading: false,
+          notFound: false,
+          error: cause instanceof Error ? cause.message : "Unknown error",
+        });
+      });
     return () => {
       cancelled = true;
     };

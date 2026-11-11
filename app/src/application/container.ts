@@ -1,16 +1,26 @@
 import { MemoryKnowledgeRepository } from "@/infrastructure/memory/MemoryKnowledgeRepository";
 import { MemoryRelationshipRepository } from "@/infrastructure/memory/MemoryRelationshipRepository";
+import { HttpKnowledgeRepository } from "@/infrastructure/http/HttpKnowledgeRepository";
+import { HttpRelationshipRepository } from "@/infrastructure/http/HttpRelationshipRepository";
 import { AssembleReadingExperience } from "./AssembleReadingExperience";
 
 /**
  * The only file that decides *which* storage implementation is in use.
- * Swapping the whole app to a real backend later means changing these two
- * lines to `HttpKnowledgeRepository` / `HttpRelationshipRepository` (or a
- * MongoDB-backed pair on a server) — application services, hooks, and
- * every component stay exactly as they are.
+ *
+ * Set `VITE_ALMINHEJ_API_BASE_URL` (e.g. `http://localhost:8787`, and start it
+ * with `npm run api`) and the app talks to the real backend; leave it unset and
+ * it runs on the in-memory provider. Nothing else changes — not a hook, not a
+ * component, not `AssembleReadingExperience`. Vite auto-restarts the dev server
+ * when `.env` changes, so the flip doesn't need a rebuild.
  */
-const knowledgeRepository = new MemoryKnowledgeRepository();
-const relationshipRepository = new MemoryRelationshipRepository();
+const apiBaseUrl: string | undefined = import.meta.env?.VITE_ALMINHEJ_API_BASE_URL;
+
+const knowledgeRepository = apiBaseUrl
+  ? new HttpKnowledgeRepository(apiBaseUrl)
+  : new MemoryKnowledgeRepository();
+const relationshipRepository = apiBaseUrl
+  ? new HttpRelationshipRepository(apiBaseUrl)
+  : new MemoryRelationshipRepository();
 
 export const readingExperienceService = new AssembleReadingExperience(
   knowledgeRepository,

@@ -44,7 +44,7 @@ interface ReadingContentProps {
 }
 
 export default function ReadingContent({ slug, bookContext }: ReadingContentProps) {
-  const { data: dto, loading, notFound } = useReadingExperience(slug);
+  const { data: dto, loading, notFound, error } = useReadingExperience(slug);
   const { t, uiLang, dir } = useSettings();
   const isCompact = useIsMobile(1040);
 
@@ -109,6 +109,18 @@ export default function ReadingContent({ slug, bookContext }: ReadingContentProp
 
   if (loading) {
     return <div className="h-screen grid place-items-center bg-[var(--color-bg)] text-[var(--color-sub)]">…</div>;
+  }
+  if (error) {
+    return (
+      <div className="h-screen grid place-items-center bg-[var(--color-bg)] text-[var(--color-ink)] px-6 text-center">
+        <div className="max-w-[440px]">
+          <div className="text-sm font-semibold mb-1.5">Couldn't load this reading experience.</div>
+          <div className="text-xs leading-relaxed" style={{ color: "var(--color-sub)" }}>
+            {error}
+          </div>
+        </div>
+      </div>
+    );
   }
   if (notFound || !dto) {
     return (
