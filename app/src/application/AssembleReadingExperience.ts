@@ -1,4 +1,8 @@
-import type { KnowledgeRepository, RelationshipRepository } from "@/domain/repositories";
+import type {
+  KnowledgeRepository,
+  ReadingExperienceRepository,
+  RelationshipRepository,
+} from "@/domain/repositories";
 import type {
   CommentaryBlock,
   KnowledgeNode,
@@ -25,11 +29,13 @@ const ROLE_BY_DEPTH: Localized<string>[] = [
 
 /**
  * Orchestrates one use case: "assemble everything connected to this node
- * so the frontend never has to." Equivalent to the `/v1/reading/{slug}`
- * handler described in the architecture doc, just running against the
- * in-memory repositories for now instead of an HTTP call.
+ * so the frontend never has to." This is the in-process implementation of
+ * `ReadingExperienceRepository` — §5.A's `/v1/reading/{slug}` — running
+ * against the in-memory repositories; `HttpReadingExperienceRepository`
+ * satisfies the same interface by asking the server, which assembles the
+ * identical DTO from `server/readingExperience.mjs`.
  */
-export class AssembleReadingExperience {
+export class AssembleReadingExperience implements ReadingExperienceRepository {
   private nodes: KnowledgeRepository;
   private relationships: RelationshipRepository;
   private digitization: DigitizationProgressService;
@@ -40,7 +46,7 @@ export class AssembleReadingExperience {
     this.digitization = new DigitizationProgressService(nodes, relationships);
   }
 
-  async execute(slug: string): Promise<ReadingExperienceDTO | null> {
+  async get(slug: string): Promise<ReadingExperienceDTO | null> {
     const node = await this.nodes.findBySlug(slug);
     if (!node) return null;
 

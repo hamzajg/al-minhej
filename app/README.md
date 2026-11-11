@@ -65,17 +65,20 @@ src/
     types.ts        KnowledgeNode, ContentBlock (union), Relationship,
                      NodeType, RelationshipType, DigitizationTarget —
                      the core model. No Lesson type.
-    dto.ts           ReadingExperienceDTO and friends — what a real
-                     `GET /v1/reading/{slug}` would return
+    dto.ts           ReadingExperienceDTO and friends — the shape §5.A's
+                     `GET /v1/reading/{slug}` returns: the whole reading
+                     experience, assembled into one document.
     repositories.ts  KnowledgeRepository / RelationshipRepository /
-                     LearningPathRepository / ReaderStateRepository /
-                     AuthRepository interfaces — the storage-agnostic boundary.
-                     The first two read the authored graph; the next two *write*
-                     the reader's own state: the path (one document per account)
-                     and the per-node reader state (one per account *and* node).
-                     AuthRepository is the odd one out: it has no memory
-                     implementation, because there is no honest way to verify a
-                     credential without a server.
+                     ReadingExperienceRepository / LearningPathRepository /
+                     ReaderStateRepository / AuthRepository interfaces — the
+                     storage-agnostic boundary. The first two read the authored
+                     graph; ReadingExperienceRepository is the *assembled* read
+                     built on them (§5.A's `/v1/reading/{slug}`); the next two
+                     *write* the reader's own state: the path (one document per
+                     account) and the per-node reader state (one per account
+                     *and* node). AuthRepository is the odd one out: it has no
+                     memory implementation, because there is no honest way to
+                     verify a credential without a server.
     auth.ts          AuthUser / AuthSession — the verified identity behind a
                      session (§5.A's `/v1/auth/*`): an opaque bearer token plus
                      the user it belongs to. The token is the credential; the
@@ -149,6 +152,10 @@ src/
                         The per-node reader-state repository over `GET`/`PUT
                         /v1/me/nodes/{id}/state`, on the same transport and
                         with the same identity.
+      HttpReadingExperienceRepository.ts
+                        The assembled-read repository over `GET /v1/reading/{slug}` —
+                        one request for the whole DTO instead of reassembling it
+                        in the browser from the raw graph endpoints.
       adminClient.ts    §5.B's Content Management client — the one place
                         that knows about roles (`x-alminhej-roles`). It
                         deliberately does *not* collapse a 404 into `null`
@@ -169,6 +176,13 @@ src/
                                     commentary, Qur'an cross-references,
                                     related hadith, the "go deeper" pointer,
                                     and the knowledge-graph neighbor list.
+                                    This class *is* the in-memory
+                                    `ReadingExperienceRepository`, and the
+                                    one implementation §5.A's
+                                    `GET /v1/reading/{slug}` is faithful to:
+                                    `server/readingExperience.mjs` is the
+                                    same walk on the server, asserted
+                                    byte-for-byte against this one.
     DigitizationProgressService.ts A book's progress is *derived*, never
                                     hand-edited — see "Why this structure"
                                     below.
@@ -218,10 +232,12 @@ src/
                                `null` when signed out against a backend (in
                                which case the state hooks no-op). What
                                `useLearningPath`/`useReaderState` key off.
-    useReadingExperience.ts   Bridges React to AssembleReadingExperience,
-                               modeled as async even though Memory
-                               resolves instantly — so swapping to a real
-                               fetch() later doesn't change any component.
+    useReadingExperience.ts   Bridges React to the *assembled* read. It asks
+                               `readingExperienceRepository`, so with a
+                               backend the whole DTO arrives in one request
+                               and without one `AssembleReadingExperience`
+                               builds it in-process — the hook, and every
+                               component above it, is identical either way.
     useLibrary.ts              Global digitization index (Library tab)
     useNodeProgress.ts         Live progress for a single book node
     useReferencedBooks.ts      A node's REFERENCES-linked books (narrator
@@ -312,7 +328,19 @@ server/
                      each account's own state the same in-memory way — the
                      learning path (`GET`/`PUT /v1/me/path`) and the per-node
                      reader state (`GET`/`PUT /v1/me/nodes/{id}/state`).
+                     §5.A's `GET /v1/reading/{slug}` returns the *whole*
+                     assembled reading DTO in one call — the same object the
+                     client assembles in-process without a backend, so the
+                     reading screen never has to reassemble it from raw edges.
                      `npm run api`.
+  readingExperience.mjs §5.A's `/v1/reading/{slug}`: the server-side twin of
+                     `AssembleReadingExperience`, walking the published
+                     graph into the same `ReadingExperienceDTO` — isnad,
+                     commentary, references, the "go deeper" pointer, and the
+                     neighbor list — in one response. Kept as a port rather
+                     than a shared import (the browser and the server can't
+                     share a module here), and held to the client assembler
+                     by a parity check that compares both over every slug.
   knowledgeContext.mjs  §7's `KnowledgeContextBuilder`: given a node id,
                      assembles that node's own content plus a *bounded*
                      slice of its immediate graph neighbors (only
@@ -466,7 +494,15 @@ sign-in screen lives at `/signin`, and `hooks/useIdentity.ts` decides what
 "the account key" means in each mode — the session token with a backend, the
 anonymous local id without one. There is deliberately no in-memory auth:
 without a backend, sign-in reports itself as unavailable rather than pretending.
-See `PROMPTS.md`, Prompt 8.
+And the reading screen's own read has moved behind that boundary too: the
+*assembled* experience — isnad, commentary, references, the "go deeper" pointer,
+and the graph neighbors — is now §5.A's `GET /v1/reading/{slug}`, one request
+for the whole DTO instead of three graph round trips reassembled in the browser.
+`AssembleReadingExperience` is still the in-process implementation of the same
+interface, so the Memory path assembles locally while the server assembles
+identically in `server/readingExperience.mjs` — the two are held together by a
+parity check that compares both over every published slug. See `PROMPTS.md`,
+Prompt 9.
 
 ## Scalability notes
 

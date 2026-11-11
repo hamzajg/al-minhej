@@ -23,6 +23,7 @@
  *   GET /v1/nodes?ids={id,id,...}
  *   GET /v1/nodes?type={NodeType}
  *   GET /v1/relationships?nodeId={id}[&direction=from|to]
+ *   GET /v1/reading/{slug}              ← the whole assembled reading DTO in one call
  *   POST /v1/nodes/{id}/companion/ask   ← grounded AI answer (§7)
  *
  * Endpoints — §5.A (auth, no credentials to read):
@@ -58,6 +59,7 @@ import { randomBytes, scryptSync, timingSafeEqual } from "node:crypto";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { buildKnowledgeContext } from "./knowledgeContext.mjs";
+import { assembleReadingExperience } from "./readingExperience.mjs";
 import { askClaude, CompanionUpstreamError, DEFAULT_MODEL } from "./companion.mjs";
 
 const dataDir = join(dirname(fileURLToPath(import.meta.url)), "..", "src", "infrastructure", "memory", "data");
@@ -207,6 +209,28 @@ function handleRelationships(res, url) {
     return r.from === nodeId || r.to === nodeId;
   });
   return sendJson(res, 200, edges);
+}
+
+const READING_PREFIX = "/v1/reading/";
+
+/**
+ * §5.A's `GET /v1/reading/{slug}` — the assembled `ReadingExperienceDTO`, so the
+ * client fetches it in one request instead of reassembling it from the raw
+ * `nodes`/`relationships` endpoints. The assembly itself lives in
+ * `readingExperience.mjs` (the server-side twin of the client's
+ * `AssembleReadingExperience`); this handler only resolves the slug, 404s on an
+ * unknown one, and serializes the DTO.
+ */
+function handleReading(res, url) {
+  const slug = decodeURIComponent(url.pathname.slice(READING_PREFIX.length));
+  if (!slug) {
+    return sendError(res, 404, "NOT_FOUND", "A slug is required: GET /v1/reading/{slug}");
+  }
+  const dto = assembleReadingExperience(slug, NODES, RELATIONSHIPS);
+  if (!dto) {
+    return sendError(res, 404, "NODE_NOT_FOUND", `No published node with slug '${slug}'`);
+  }
+  return sendJson(res, 200, dto);
 }
 
 /* ------------------------------------------------------------------ *
@@ -833,6 +857,9 @@ async function dispatch(req, res, url) {
 
   if (req.method !== "GET") {
     return sendError(res, 405, "METHOD_NOT_ALLOWED", `${req.method} is not supported`);
+  }
+  if (url.pathname.startsWith(READING_PREFIX)) {
+    return handleReading(res, url);
   }
   if (url.pathname === "/v1/health") {
     return sendJson(res, 200, {
