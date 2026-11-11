@@ -92,7 +92,22 @@
     "homeGraphTitle": "Explore the Connections",
     "homeGraphDesc": "Every text links to its sources, chains, and commentaries — revealed as you go deeper.",
     "homeLibraryEyebrow": "A complete digital index",
-    "homeLibraryTitle": "The Library"
+    "homeLibraryTitle": "The Library",
+    "pathEyebrow": "Your path",
+    "pathGoalLabel": "Your goal",
+    "pathChooseTitle": "Choose why you're here",
+    "pathChooseDesc": "Pick a starting point and the path builds itself from the connections already in the knowledge graph.",
+    "pathChooseCta": "Choose a path",
+    "pathStartHere": "Start here",
+    "pathNext": "Next in your path",
+    "pathCompleteTitle": "You've reached the end of this path",
+    "pathCompleteDesc": "No remaining connection from where you are leads to something readable yet. Start a new path, or explore the library.",
+    "pathChangeGoal": "Change goal",
+    "pathBecauseSameCollection": "Both are collected in",
+    "pathBecauseCrossReference": "Directly cross-referenced",
+    "pathBecauseSimilarTo": "Marked similar to what you just read",
+    "pathBecauseSharedNarrator": "Shares the chain through",
+    "pathTraceableNote": "Every step follows a real connection in the graph."
   },
   "companionPrompts": ["Explain like I'm 12", "Give a practical example", "Why does the chain matter?"],
   "companionAnswers": {

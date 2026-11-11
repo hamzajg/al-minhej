@@ -1,10 +1,18 @@
 import { useEffect, useState } from "react";
-import { ArrowRight, BookOpen, Library, Network } from "lucide-react";
+import { ArrowRight, Compass, Library, Network } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSettings } from "@/context/SettingsContext";
 import { Header } from "@/components/layout/Header";
+import { GoalOnboardingModal } from "@/components/onboarding/GoalOnboardingModal";
 import { useReadingIndex } from "@/hooks/useReadingIndex";
+import { useLearningPath } from "@/hooks/useLearningPath";
+import { useRecommendation } from "@/hooks/useRecommendation";
+import { useKnowledgeNode } from "@/hooks/useKnowledgeNode";
 import { knowledgeRepository } from "@/application/container";
+import { LEARNING_GOALS } from "@/data/goals";
+import type { KnowledgeNode } from "@/domain/types";
+import type { Recommendation } from "@/domain/learning";
+import type { UiStrings } from "@/data/i18n";
 
 const NODE_COLORS: Record<string, string> = {
   HADITH: "#C79A46",
@@ -42,15 +50,68 @@ function polar(cx: number, cy: number, r: number, deg: number): [number, number]
   return [cx + r * Math.cos(a), cy + r * Math.sin(a)];
 }
 
+function nodeTitle(node: KnowledgeNode, uiLang: "ar" | "en"): string {
+  return uiLang === "ar" ? node.title.ar : node.title.en;
+}
+
+/**
+ * The "why this one" line. It is assembled from the recommendation's own
+ * `via` edge and `anchor` node — the caption cannot claim a connection the
+ * graph does not contain, because there is nothing else it can read from.
+ */
+function reasonCaption(rec: Recommendation, t: UiStrings, uiLang: "ar" | "en"): string {
+  switch (rec.reason) {
+    case "same_collection":
+      return rec.anchor
+        ? `${t.pathBecauseSameCollection} ${nodeTitle(rec.anchor, uiLang)}`
+        : t.pathBecauseSameCollection;
+    case "shared_narrator":
+      return rec.anchor
+        ? `${t.pathBecauseSharedNarrator} ${nodeTitle(rec.anchor, uiLang)}`
+        : t.pathBecauseSharedNarrator;
+    case "cross_reference":
+      return t.pathBecauseCrossReference;
+    case "similar_to":
+      return t.pathBecauseSimilarTo;
+  }
+}
+
 export default function HomePage() {
   const { t, uiLang } = useSettings();
   const nodes = useReadingIndex();
   const [bookCount, setBookCount] = useState(0);
   const node = nodes[0];
 
+  const { path, goal, currentNodeId, chooseGoal, dismissOnboarding } = useLearningPath();
+  const [goalOpen, setGoalOpen] = useState(false);
+
   useEffect(() => {
     knowledgeRepository.listByType("BOOK").then((books) => setBookCount(books.length));
   }, []);
+
+  // Ask "why are you here?" once, as soon as there is something to read.
+  useEffect(() => {
+    if (!path.onboardingSeen && nodes.length > 0) setGoalOpen(true);
+  }, [path.onboardingSeen, nodes.length]);
+
+  // A goal's seed always resolves to a real node, degrading to the first
+  // readable one if a seed slug is ever missing from the graph.
+  const resolveSeed = (slug: string) => nodes.find((n) => n.slug === slug) ?? nodes[0] ?? null;
+  const startNode = goal ? resolveSeed(goal.seedSlug) : null;
+
+  const currentNode = useKnowledgeNode(currentNodeId);
+  const recommendation = useRecommendation(
+    path.visited.length > 0 ? currentNode : null,
+    path.visited,
+    goal?.prefer
+  );
+
+  const pickGoal = (goalId: string) => {
+    const picked = LEARNING_GOALS.find((g) => g.id === goalId);
+    const chosen = picked ? resolveSeed(picked.seedSlug) : null;
+    if (chosen) chooseGoal(goalId, chosen.id);
+    setGoalOpen(false);
+  };
 
   const cx = 180;
   const cy = 180;
@@ -68,6 +129,16 @@ export default function HomePage() {
       `}</style>
 
       <Header />
+
+      {goalOpen && (
+        <GoalOnboardingModal
+          onChoose={pickGoal}
+          onSkip={() => {
+            dismissOnboarding();
+            setGoalOpen(false);
+          }}
+        />
+      )}
 
       <main className="flex-1 overflow-y-auto">
         {/* HERO */}
@@ -193,28 +264,87 @@ export default function HomePage() {
               </div>
             </Link>
 
-            {node && (
-              <Link
-                to={`/reading/${node.slug}`}
-                className="block text-start bg-[var(--color-panel)] border border-[var(--color-line)] rounded-2xl p-6 hover:-translate-y-0.5 transition-transform"
-              >
-                <div className="w-10 h-10 rounded-xl bg-[var(--color-gold)]/10 border border-[var(--color-gold)]/25 grid place-items-center mb-4">
-                  <BookOpen size={18} style={{ color: "var(--color-gold)" }} />
-                </div>
-                <div className="text-[11px] font-semibold tracking-[1px] mb-1" style={{ color: "var(--color-gold)", textTransform: uiLang === "en" ? "uppercase" : "none" }}>
-                  {t.continueLearning}
-                </div>
-                <h3 className="font-display text-lg font-semibold mb-1.5">
-                  {uiLang === "ar" ? node.title.ar : node.title.en}
-                </h3>
-                <p className="text-[12.5px] leading-relaxed" style={{ color: "var(--color-sub)" }}>
-                  {node.attributes.kind === "hadith" ? node.attributes.grade[uiLang] : ""}
-                </p>
-                <div className="flex items-center gap-1.5 text-xs font-semibold mt-3" style={{ color: "var(--color-emerald)" }}>
-                  {t.homeCta} <ArrowRight size={12} />
-                </div>
-              </Link>
-            )}
+            <div className="text-start bg-[var(--color-panel)] border border-[var(--color-line)] rounded-2xl p-6">
+              <div className="w-10 h-10 rounded-xl bg-[var(--color-gold)]/10 border border-[var(--color-gold)]/25 grid place-items-center mb-4">
+                <Compass size={18} style={{ color: "var(--color-gold)" }} />
+              </div>
+              <div className="text-[11px] font-semibold tracking-[1px] mb-1" style={{ color: "var(--color-gold)", textTransform: uiLang === "en" ? "uppercase" : "none" }}>
+                {t.pathEyebrow}
+              </div>
+
+              {!goal ? (
+                <>
+                  <h3 className="font-display text-lg font-semibold mb-1.5">{t.pathChooseTitle}</h3>
+                  <p className="text-[12.5px] leading-relaxed mb-3" style={{ color: "var(--color-sub)" }}>
+                    {t.pathChooseDesc}
+                  </p>
+                  <button
+                    onClick={() => setGoalOpen(true)}
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold cursor-pointer"
+                    style={{ color: "var(--color-emerald)" }}
+                  >
+                    {t.pathChooseCta} <ArrowRight size={12} />
+                  </button>
+                </>
+              ) : (
+                <>
+                  <div className="text-[10.5px] mb-2.5" style={{ color: "var(--color-sub)" }}>
+                    {t.pathGoalLabel}:{" "}
+                    <span style={{ color: "var(--color-ink)", fontWeight: 600 }}>
+                      {uiLang === "ar" ? goal.title.ar : goal.title.en}
+                    </span>
+                  </div>
+
+                  {path.visited.length === 0 && startNode ? (
+                    <Link
+                      to={`/reading/${startNode.slug}`}
+                      className="block rounded-xl border border-[var(--color-line)] bg-[var(--color-panel-2)] p-4 hover:border-[var(--color-emerald)] transition-colors"
+                    >
+                      <div className="text-[10px] font-semibold mb-1" style={{ color: "var(--color-emerald)" }}>
+                        {t.pathStartHere}
+                      </div>
+                      <div className="font-display text-[15px] font-semibold" style={{ color: "var(--color-ink)" }}>
+                        {nodeTitle(startNode, uiLang)}
+                      </div>
+                    </Link>
+                  ) : recommendation ? (
+                    <Link
+                      to={`/reading/${recommendation.node.slug}`}
+                      className="block rounded-xl border border-[var(--color-line)] bg-[var(--color-panel-2)] p-4 hover:border-[var(--color-emerald)] transition-colors"
+                    >
+                      <div className="text-[10px] font-semibold mb-1" style={{ color: "var(--color-emerald)" }}>
+                        {t.pathNext}
+                      </div>
+                      <div className="font-display text-[15px] font-semibold mb-1" style={{ color: "var(--color-ink)" }}>
+                        {nodeTitle(recommendation.node, uiLang)}
+                      </div>
+                      <div className="flex items-start gap-1.5 text-[11px] leading-relaxed" style={{ color: "var(--color-sub)" }}>
+                        <Network size={11} className="mt-[3px] shrink-0" />
+                        <span>{reasonCaption(recommendation, t, uiLang)}</span>
+                      </div>
+                    </Link>
+                  ) : (
+                    <>
+                      <h3 className="font-display text-[15px] font-semibold mb-1.5">{t.pathCompleteTitle}</h3>
+                      <p className="text-[11.5px] leading-relaxed mb-3" style={{ color: "var(--color-sub)" }}>
+                        {t.pathCompleteDesc}
+                      </p>
+                      <button
+                        onClick={() => setGoalOpen(true)}
+                        className="inline-flex items-center gap-1.5 text-xs font-semibold cursor-pointer"
+                        style={{ color: "var(--color-emerald)" }}
+                      >
+                        {t.pathChangeGoal} <ArrowRight size={12} />
+                      </button>
+                    </>
+                  )}
+
+                  <div className="text-[10px] mt-3" style={{ color: "var(--color-sub)" }}>
+                    {t.pathTraceableNote}
+                  </div>
+                </>
+              )}
+            </div>
           </div>
         </section>
       </main>
