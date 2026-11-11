@@ -175,19 +175,7 @@
           "explain_12",
           "practical_example",
           "why_chain"
-        ],
-        "answers": {
-          "en": [
-            "It's like getting credit for homework based on why you did it — copying it to avoid trouble doesn't count the same as doing it to learn. God looks at your 'why', not just the finished page.",
-            "Two students study the same night — one to genuinely understand and help others, one only to show off a grade. Same action, different intention, different weight.",
-            "The chain (isnad) is how scholars verified a saying actually reached the Prophet ﷺ reliably — checking that every link was trustworthy and precise, generation by generation."
-          ],
-          "ar": [
-            "الأمر أشبه بالحصول على درجة في الواجب المدرسي بناءً على سبب قيامك به — نسخه لتجنّب المشكلة لا يُحسب مثل أدائه للتعلّم فعلًا. الله ينظر إلى «لماذا» فعلت الشيء، لا فقط إلى الصفحة المكتملة.",
-            "طالبان يذاكران في نفس الليلة — أحدهما ليفهم فعلًا ويفيد غيره، والآخر فقط ليتباهى بالدرجة. الفعل نفسه، لكن النية مختلفة، والوزن مختلف.",
-            "السند هو الطريقة التي تحقّق بها العلماء من وصول القول فعلًا إلى النبي ﷺ بشكل موثوق — بالتأكد أن كل حلقة كانت أمينة ودقيقة، جيلًا بعد جيل."
-          ]
-        }
+        ]
       },
       {
         "type": "quiz",
@@ -428,19 +416,7 @@
           "explain_12",
           "practical_example",
           "why_chain"
-        ],
-        "answers": {
-          "en": [
-            "Think of it as three layers of one thing: what you do (the testimony, prayer, fasting), what you actually believe inside, and how present you feel while doing it. The hadith says all three matter.",
-            "You could pray five times a day and still be 'asleep' during it. Ihsan is the difference between merely finishing the prayer and praying as if you can see God — the same minutes, a different depth.",
-            "The chain (isnad) is how scholars checked that this exact conversation was reliably reported — each narrator verified, generation by generation, so the definition of the religion itself rests on a checked path."
-          ],
-          "ar": [
-            "تخيّلها ثلاث طبقات لشيء واحد: ما تفعله (الشهادة، الصلاة، الصوم)، وما تعتقده في داخلك فعلًا، وكيف يكون حضور قلبك أثناء أدائه. يقول الحديث إن الثلاث كلها مهمة.",
-            "قد تصلي خمس مرات في اليوم ويبقى قلبك غافلًا فيها. الإحسان هو الفرق بين أن تُنهي الصلاة فقط وأن تصلي كأنك ترى الله — نفس الدقائق، لكن عمق مختلف.",
-            "السند هو الطريقة التي تحقّق بها العلماء من أن هذا الحوار نفسه نُقل بموثوقية — كل راوٍ يُوثَّق جيلًا بعد جيل، حتى يقوم تعريف الدين نفسه على طريق مُتحقَّق منه."
-          ]
-        }
+        ]
       },
       {
         "type": "quiz",
