@@ -5,7 +5,8 @@ import type { KnowledgeNode, Localized, Relationship } from "./types";
  * parallel structure that can drift out of sync with it. Nothing here
  * stores a hand-ordered list of nodes: a goal picks a seed node and a
  * rule ordering, and every subsequent step is a traversal of real edges
- * (see `application/RecommendationStrategy.ts`).
+ * (see `application/RecommendationGraph.ts`, served by §5.A's
+ * `GET /v1/paths/recommended`).
  */
 
 /**

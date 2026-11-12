@@ -4,6 +4,7 @@ import { MemoryLearningPathRepository } from "@/infrastructure/memory/MemoryLear
 import { MemoryReaderStateRepository } from "@/infrastructure/memory/MemoryReaderStateRepository";
 import { MemorySearchRepository } from "@/infrastructure/memory/MemorySearchRepository";
 import { MemoryExploreRepository } from "@/infrastructure/memory/MemoryExploreRepository";
+import { MemoryRecommendationRepository } from "@/infrastructure/memory/MemoryRecommendationRepository";
 import { HttpKnowledgeRepository } from "@/infrastructure/http/HttpKnowledgeRepository";
 import { HttpRelationshipRepository } from "@/infrastructure/http/HttpRelationshipRepository";
 import { HttpLearningPathRepository } from "@/infrastructure/http/HttpLearningPathRepository";
@@ -12,14 +13,15 @@ import { HttpAuthRepository } from "@/infrastructure/http/HttpAuthRepository";
 import { HttpReadingExperienceRepository } from "@/infrastructure/http/HttpReadingExperienceRepository";
 import { HttpSearchRepository } from "@/infrastructure/http/HttpSearchRepository";
 import { HttpExploreRepository } from "@/infrastructure/http/HttpExploreRepository";
+import { HttpRecommendationRepository } from "@/infrastructure/http/HttpRecommendationRepository";
 import { AssembleReadingExperience } from "./AssembleReadingExperience";
-import { GraphTraversalRecommendationStrategy } from "./RecommendationStrategy";
 import type {
   AuthRepository,
   ExploreRepository,
   LearningPathRepository,
   ReaderStateRepository,
   ReadingExperienceRepository,
+  RecommendationRepository,
   SearchRepository,
 } from "@/domain/repositories";
 
@@ -65,15 +67,19 @@ export const readingExperienceRepository: ReadingExperienceRepository = apiBaseU
   : localReadingExperience;
 
 /**
- * Learning paths are a traversal over the graph, so the strategy reads the
- * same repositories everything else does. A future embedding-based strategy
- * implements the same `RecommendationStrategy` interface and replaces this
- * one line.
+ * Learning paths are a traversal over the graph, and "what comes next" is one
+ * more *read* of that graph (§5.A's `GET /v1/paths/recommended`) — the same
+ * swap point as explore and search. It used to be computed in the browser by a
+ * repository-backed strategy class; the walk now lives in the pure
+ * `application/RecommendationGraph.ts`, so with an API base URL the server
+ * (`server/recommendations.mjs`, the parity-checked twin) answers instead and
+ * without one the Memory provider runs the identical function locally. Either
+ * way the hook above is unchanged. A future embedding-based strategy replaces
+ * the pure module, not a call site.
  */
-export const recommendationStrategy = new GraphTraversalRecommendationStrategy(
-  knowledgeRepository,
-  relationshipRepository
-);
+export const recommendationRepository: RecommendationRepository = apiBaseUrl
+  ? new HttpRecommendationRepository(apiBaseUrl)
+  : new MemoryRecommendationRepository();
 
 /**
  * The AI companion is HTTP-only, and by construction: the model call has to
