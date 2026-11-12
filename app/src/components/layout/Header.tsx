@@ -1,4 +1,4 @@
-import { Languages, Library, LogIn, LogOut, Moon, Sparkle, Sun } from "lucide-react";
+import { Languages, Library, LogIn, LogOut, Moon, Search, Sparkle, Sun } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSettings } from "@/context/SettingsContext";
 import { useAuth } from "@/context/AuthContext";
@@ -40,6 +40,14 @@ export function Header({
       </Link>
 
       <div className="flex items-center gap-1.5">
+        <Link
+          to="/search"
+          title={t.search}
+          className="w-8 h-8 rounded-lg grid place-items-center bg-[var(--color-panel-2)] border border-[var(--color-line)]"
+        >
+          <Search size={14} />
+        </Link>
+
         <Link
           to="/library"
           title={t.tabLibrary}

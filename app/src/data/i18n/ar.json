@@ -139,6 +139,17 @@
     "authInvalidCredentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة.",
     "authPasswordTooShort": "يجب ألا تقل كلمة المرور عن 8 أحرف.",
     "authNetworkError": "تعذّر الوصول إلى الخادم. هل الخادم يعمل؟",
-    "authGenericError": "حدث خطأ ما. حاول مرة أخرى."
+    "authGenericError": "حدث خطأ ما. حاول مرة أخرى.",
+    "search": "بحث",
+    "searchTitle": "ابحث في الرسم المعرفي",
+    "searchHint": "كل حديث وكتاب وراوٍ وآية ومفهوم في فهرس واحد — بالعربية أو الإنجليزية.",
+    "searchEmpty": "لا نتائج. جرّب كلمة أخرى.",
+    "searchError": "البحث غير متاح — لم يستجب خادم المنهج.",
+    "searching": "جارٍ البحث…",
+    "searchResults": "نتيجة",
+    "searchMatchedIn": "مطابقة في",
+    "searchInTitle": "العنوان",
+    "searchInKeyword": "الكلمات المفتاحية",
+    "searchInContent": "النص"
   }
 }

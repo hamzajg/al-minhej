@@ -17,6 +17,7 @@ export default function LibraryPage() {
   const { t, uiLang, dir, dark, setUiLang, toggleDark } = useSettings();
   const navigate = useNavigate();
   const [toast, setToast] = useState<string | null>(null);
+  const [query, setQuery] = useState("");
 
   const showToast = (message: string) => {
     setToast(message);
@@ -83,10 +84,26 @@ export default function LibraryPage() {
             <h1 className="font-display text-[38px] font-semibold m-0" style={{ color: "var(--color-ink)" }}>{t.libraryShelfTitle}</h1>
           </div>
 
-          <div className="flex items-center gap-[10px] px-4 py-[10px] mb-9 border rounded-xl" style={{ background: "var(--color-panel)", borderColor: "var(--color-line)" }}>
+          {/* The shelf's own filter is a two-word decorator; the box belongs to
+              §5.A's /v1/search, which spans the whole graph rather than the books
+              on this shelf — so it hands the query over instead of faking a filter. */}
+          <form
+            onSubmit={(event) => {
+              event.preventDefault();
+              navigate(query.trim() === "" ? "/search" : `/search?q=${encodeURIComponent(query)}`);
+            }}
+            className="flex items-center gap-[10px] px-4 py-[10px] mb-9 border rounded-xl"
+            style={{ background: "var(--color-panel)", borderColor: "var(--color-line)" }}
+          >
             <Search size={15} className="shrink-0" style={{ color: "var(--color-sub)" }} />
-            <input placeholder={t.searchPlaceholder} className="border-none outline-none bg-none flex-1 text-[13px] font-family-inherit" style={{ color: "var(--color-ink)" }} />
-          </div>
+            <input
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder={t.searchPlaceholder}
+              className="border-none outline-none bg-none flex-1 text-[13px] font-family-inherit"
+              style={{ color: "var(--color-ink)" }}
+            />
+          </form>
 
           <div className="grid gap-4" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))" }}>
             {SHELF_BOOKS.map((book) => (

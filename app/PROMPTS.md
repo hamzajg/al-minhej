@@ -446,6 +446,77 @@ implemented at all.
 
 ---
 
+## Prompt 11 — §5.A's `/v1/search?q=`, over §6's `search_index`
+
+**Goal:** Implement `GET /v1/search?q=` — the last public endpoint §5.A names
+that nothing implements — as a cross-type search over the knowledge graph,
+backed by §6's denormalized `search_index`, refreshed whenever a node's text
+changes, and durable through the store.
+
+**Why:** The graph is the product; a word that cannot find it is a graph only
+its authors can use. Every other public endpoint reads *one* thing — a node by
+id, a slug, a relationship list, one assembled reading experience. Search is the
+first read that spans types, which is the point §5.A makes by returning
+`SearchResultDTO[]` in one mixed list: a hadith, a book, a narrator and a verse
+side by side, because the graph is the index. And §6 has always reserved a
+collection for exactly this (`search_index`: "Denormalized, refreshed on
+publish") — Prompt 10's store is what lets it stay refreshed across a restart
+instead of being rebuilt from scratch at every boot.
+
+**Scope:**
+- `application/SearchGraph.ts` — the index and the query, pure and
+  dependency-free: `buildSearchIndex(nodes)` flattens each published node's
+  title, §3.1's authored `search.keywords`, its attributes and its content into
+  a searchable text per script, and `searchGraph(query, index, nodes)` returns
+  §5.A's `SearchResultDTO[]`. `server/search.mjs` is the same code as plain JS —
+  the twin-module pattern `readingExperience.mjs` and `knowledgeContext.mjs`
+  already use — held together by a parity check rather than a shared import.
+- Arabic-aware folding, and only that: strip harakat, tatweel and Qur'anic
+  marks; fold `آأإٱ→ا`, `ىئ→ي`, `ة→ه`, `ؤ→و`; lowercase. Matching stays
+  **exact-token and AND-ed** — every word must land somewhere in the node. No
+  fuzzy matching and no stemming: a ranked guess is worse than no result when
+  the corpus is scripture, and a near-miss in a hadith isn't a near-miss.
+- `matchedIn: "title" | "keyword" | "content"` on each result, ranked by
+  `FIELD_WEIGHT[matchedIn] * boost` (title 3, keyword 2, content 1, times
+  §3.1's authored `boost`, defaulting to 1), with a short excerpt around the
+  match — one per language the node carries, sliced from the *original* text so
+  folding never leaks into what the reader sees. The reason is carried because
+  "why is this row here?" is the first question a mixed list raises.
+- The `search_index` collection in `server/store.mjs`, refreshed in
+  `server/api-server.mjs` after every create, PATCH and publish — not only on
+  publish, since a PATCH on a live node would otherwise leave text findable in
+  the graph but not in search. `/v1/health` reports `searchIndex`, which may be
+  smaller than `nodes` because only published nodes are indexed.
+- `GET /v1/search?q=` with §5.A's error split: a missing `q` is
+  `400 INVALID_REQUEST`; an empty `q` and a query with no matches are both
+  `200 []`. `HttpSearchRepository` is the one caller that does *not* fold
+  `apiGet`'s 404 into "no results" — a backend that predates search must say so,
+  not render as an empty graph.
+- The client: `SearchRepository` in `domain/repositories.ts`, a Memory
+  implementation (index built once, since without a server nothing publishes)
+  and an HTTP one, swapped in `application/container.ts` as usual; `useSearch`
+  (debounced), a `/search` page whose query lives in the URL, a Header entry,
+  and a Library page whose box hands the query to the real route instead of
+  faking a shelf-local filter.
+
+**Acceptance criteria:**
+- Client and server produce byte-identical results: index and query parity
+  across the whole fixture corpus, including `إنما الأعمال بالنيات` matching
+  `انما الاعمال بالنيات` (harakat) and `بخاري` matching `Bukhari` — and a title
+  match ranking first with `matchedIn: "title"`.
+- Only published nodes are findable: a new node is a draft, `submit-for-review`
+  leaves it unfindable, and `publish` makes it findable — and the new node's
+  text does *not* match a query that happens to appear in its `type`/`kind`,
+  proving structure isn't indexed as language.
+- With `ALMINHEJ_DATA_DIR` set, the index is written to `search_index.json` and
+  a restarted process answers the same queries without re-seeding; without the
+  env var the surface is identical and `/v1/health` reports
+  `persistence: "memory"`.
+- `npm run build` passes with zero type errors and `npm run lint` reports no
+  new problems.
+
+---
+
 ## Notes for whoever picks this up
 
 - Keep the Goal → Why → Scope → Acceptance shape for new prompts — it's

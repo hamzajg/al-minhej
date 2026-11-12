@@ -135,4 +135,15 @@ export interface UiStrings {
   authPasswordTooShort: string;
   authNetworkError: string;
   authGenericError: string;
+  search: string;
+  searchTitle: string;
+  searchHint: string;
+  searchEmpty: string;
+  searchError: string;
+  searching: string;
+  searchResults: string;
+  searchMatchedIn: string;
+  searchInTitle: string;
+  searchInKeyword: string;
+  searchInContent: string;
 }

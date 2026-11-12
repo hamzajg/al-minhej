@@ -3,11 +3,12 @@
  * in, behind one small seam.
  *
  * `AlMinhej_Backend_Architecture.md` §6 names the collections: `knowledge_nodes`,
- * `relationships`, `users`, `user_progress`, `ai_sessions` (and, per §5.A, the
- * session tokens and each account's learning path). Until now `api-server.mjs`
- * held all of it in module-level arrays and Maps, so every write died with the
- * process — and the Content Management API's whole point (publish a node, watch
- * the book's digitization progress move) evaporated on the next restart.
+ * `relationships`, `users`, `user_progress`, `search_index`, `ai_sessions` (and,
+ * per §5.A, the session tokens and each account's learning path). Until now
+ * `api-server.mjs` held all of it in module-level arrays and Maps, so every write
+ * died with the process — and the Content Management API's whole point (publish a
+ * node, watch the book's digitization progress move) evaporated on the next
+ * restart.
  *
  * This module is that state, expressed as §6's collections and persisted as one
  * JSON file per collection. Two deliberate constraints:
@@ -41,6 +42,7 @@ export const COLLECTIONS = [
   "sessions", //      §5.A's session tokens; opaque, so they must be stored, not derived
   "learning_paths", //§6's per-user path — one document per account
   "reader_states", // §6 `user_progress` — per (userId, nodeId); §6.3's unique compound key
+  "search_index", //  §6's denormalized index — refreshed whenever the graph's text changes
   "ai_sessions", //   §7/§6 `ai_sessions` — the companion Q&A audit log
 ];
 

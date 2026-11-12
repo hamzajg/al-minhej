@@ -139,7 +139,18 @@
     "authInvalidCredentials": "Email or password is incorrect.",
     "authPasswordTooShort": "Password must be at least 8 characters.",
     "authNetworkError": "Could not reach the server. Is the API running?",
-    "authGenericError": "Something went wrong. Please try again."
+    "authGenericError": "Something went wrong. Please try again.",
+    "search": "Search",
+    "searchTitle": "Search the knowledge graph",
+    "searchHint": "Every hadith, book, narrator, verse and concept in one index — in Arabic or English.",
+    "searchEmpty": "No matches. Try another word.",
+    "searchError": "Search is unavailable — the AlMinhej API did not answer.",
+    "searching": "Searching…",
+    "searchResults": "results",
+    "searchMatchedIn": "matched in",
+    "searchInTitle": "the title",
+    "searchInKeyword": "its keywords",
+    "searchInContent": "the text"
   },
   "subtitleLangs": { "en": "English", "fr": "Français", "es": "Español" }
 }

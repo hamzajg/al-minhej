@@ -1,5 +1,5 @@
 import type { KnowledgeNode, NodeType, Relationship } from "./types";
-import type { ReadingExperienceDTO } from "./dto";
+import type { ReadingExperienceDTO, SearchResultDTO } from "./dto";
 import type { LearningPath } from "./learning";
 import type { ReaderState } from "./readerState";
 import type { AuthSession, AuthUser } from "./auth";
@@ -45,6 +45,19 @@ export interface RelationshipRepository {
 export interface ReadingExperienceRepository {
   /** The assembled experience for a slug, or `null` when no published node has it. */
   get(slug: string): Promise<ReadingExperienceDTO | null>;
+}
+
+/**
+ * §5.A's `GET /v1/search?q=` — cross-type search over the graph, §6's own
+ * bounded context with its own `search_index` collection.
+ *
+ * It sits alongside the graph repositories rather than inside them because it
+ * answers a different question: they each take an id or a slug you already
+ * have, this one takes a word you don't. An empty or whitespace-only query is
+ * not an error and returns no rows — there is nothing to match on.
+ */
+export interface SearchRepository {
+  search(query: string): Promise<SearchResultDTO[]>;
 }
 
 /**
