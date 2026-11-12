@@ -5,6 +5,7 @@ import { MemoryReaderStateRepository } from "@/infrastructure/memory/MemoryReade
 import { MemorySearchRepository } from "@/infrastructure/memory/MemorySearchRepository";
 import { MemoryExploreRepository } from "@/infrastructure/memory/MemoryExploreRepository";
 import { MemoryRecommendationRepository } from "@/infrastructure/memory/MemoryRecommendationRepository";
+import { MemoryVoteRepository } from "@/infrastructure/memory/MemoryVoteRepository";
 import { HttpKnowledgeRepository } from "@/infrastructure/http/HttpKnowledgeRepository";
 import { HttpRelationshipRepository } from "@/infrastructure/http/HttpRelationshipRepository";
 import { HttpLearningPathRepository } from "@/infrastructure/http/HttpLearningPathRepository";
@@ -14,6 +15,7 @@ import { HttpReadingExperienceRepository } from "@/infrastructure/http/HttpReadi
 import { HttpSearchRepository } from "@/infrastructure/http/HttpSearchRepository";
 import { HttpExploreRepository } from "@/infrastructure/http/HttpExploreRepository";
 import { HttpRecommendationRepository } from "@/infrastructure/http/HttpRecommendationRepository";
+import { HttpVoteRepository } from "@/infrastructure/http/HttpVoteRepository";
 import { AssembleReadingExperience } from "./AssembleReadingExperience";
 import type {
   AuthRepository,
@@ -23,6 +25,7 @@ import type {
   ReadingExperienceRepository,
   RecommendationRepository,
   SearchRepository,
+  VoteRepository,
 } from "@/domain/repositories";
 
 /**
@@ -145,6 +148,19 @@ export const exploreRepository: ExploreRepository = apiBaseUrl
  * as it did before auth existed. `AuthProvider` reads `null` as "sign-in
  * unavailable" rather than pretending.
  */
+/**
+ * §5.A's `GET`/`POST /v1/nodes/{id}/votes` — the digitization-prioritization
+ * tally. The read is public (the count is for everyone; `votedByMe` needs a
+ * session), the write is per-account, so `cast` is a no-op without an account
+ * key — `useIdentity()` returns `null` for a signed-out reader on a real
+ * backend, exactly the "don't pretend" rule auth already follows. Same swap
+ * point as everything else: Memory tallies live in `localStorage` keyed by the
+ * anonymous account id; HTTP talks to the server's `votes` collection.
+ */
+export const voteRepository: VoteRepository = apiBaseUrl
+  ? new HttpVoteRepository(apiBaseUrl)
+  : new MemoryVoteRepository();
+
 export const authRepository: AuthRepository | null = apiBaseUrl
   ? new HttpAuthRepository(apiBaseUrl)
   : null;

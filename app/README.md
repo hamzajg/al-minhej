@@ -101,12 +101,13 @@ src/
                      is the "what next" read (§5.A's `/v1/paths/recommended`) —
                      the one assembled read that also takes the reader's own
                      state as input (the ids already seen, the goal's rule
-                     order); the next two
-                     *write* the reader's own state: the path (one document per
-                     account) and the per-node reader state (one per account
-                     *and* node). AuthRepository is the odd one out: it has no
-                     memory implementation, because there is no honest way to
-                     verify a credential without a server.
+                     order); VoteRepository is the public tally plus the
+                     per-account cast (§5.A's `/v1/nodes/{id}/votes`); the next
+                     two *write* the reader's own state: the path (one document
+                     per account) and the per-node reader state (one per
+                     account *and* node). AuthRepository is the odd one out: it
+                     has no memory implementation, because there is no honest
+                     way to verify a credential without a server.
     auth.ts          AuthUser / AuthSession — the verified identity behind a
                      session (§5.A's `/v1/auth/*`): an opaque bearer token plus
                      the user it belongs to. The token is the credential; the
@@ -122,6 +123,10 @@ src/
                      entry ids, the memorizer's recite count, and the
                      Practice tab's takeaway/action note. `EMPTY_READER_STATE`
                      is the canonical blank, shared by every implementation.
+    votes.ts         §5.A's `POST /v1/nodes/{id}/votes` tally — `VoteTally`
+                     keeps the public `count` and the private `votedByMe` in
+                     one object so the button and the number can never
+                     disagree; `emptyTally` is the canonical blank.
 
   infrastructure/
     memory/
@@ -160,6 +165,12 @@ src/
                            Nothing to store — a recommendation is a walk of the
                            graph as it stands, so it always reflects the edges
                            the reader is actually on.
+      MemoryVoteRepository.ts
+                           §5.A's `/v1/nodes/{id}/votes` with no server: one
+                           `localStorage` document maps each node id to the
+                           account keys that voted it, so `count` is distinct
+                           accounts and `votedByMe` is honest — the same
+                           `(account, node)` dedup §6.3 gives the server.
     http/
       httpClient.ts     Thin fetch wrapper shared by the two HTTP
                         repositories. A 404 means "absent" (null); anything
@@ -218,6 +229,18 @@ src/
                         lists. A `404` (starting slug not published) is `null`
                         via `httpClient`; a `200` whose `next` is `null` means
                         "nothing to suggest from here", so the two stay apart.
+      voteClient.ts     §5.A's `/v1/nodes/{id}/votes` transport. The GET is
+                        public — the token rides along only when signed in, so
+                        `votedByMe` can resolve; the POST requires it, and
+                        carries the `Idempotency-Key` §5.A asks of mutating
+                        endpoints. Its own module rather than a `meClient`
+                        reuse because the read is *not* account-scoped.
+      HttpVoteRepository.ts
+                        The vote repository over that transport. `get` maps a
+                        `404` to `null` ("not a published source", same
+                        absent-not-broken rule); `cast` needs the session
+                        token and surfaces a `401` as a `BackendError` the
+                        hook treats as "cannot vote".
       adminClient.ts    §5.B's Content Management client — the one place
                         that knows about roles (`x-alminhej-roles`). It
                         deliberately does *not* collapse a 404 into `null`
@@ -365,6 +388,14 @@ src/
                                Keyed by node id, so it resets on navigation and
                                no-ops until the node has resolved; mutations are
                                load-then-write like the path's.
+    useVotes.ts                The prioritization tally for the source-detail
+                               modal — `VoteRepository`'s public `get` for the
+                               count, per-account `cast` for the vote, with one
+                               `Idempotency-Key` per (account, node) so a
+                               retried POST replays rather than recounts.
+                               `canVote` is false for a signed-out reader on a
+                               real backend — the button disables rather than
+                               pretending.
     useCompanion.ts            Asks §7's server route a free-text question
                                about one node. States are explicit —
                                idle / thinking / answered / unavailable /
@@ -453,8 +484,8 @@ server/
                      dependencies. The graph is seeded from the same JSON
                      fixtures the Memory provider ships, and every write the
                      server accepts — nodes, edges, accounts, sessions,
-                     learning paths, per-node reader state, the search index,
-                     the companion log
+                     learning paths, per-node reader state, vote tallies, the
+                     search index, the companion log
                      — goes through `store.mjs`. §5.A's auth is real:
                      `POST /v1/auth/register`, `/login`, `/logout` and
                      `GET /v1/auth/me`, with passwords salted and hashed via
@@ -481,7 +512,13 @@ server/
                      caller's already-seen `exclude` ids and a goal's `prefer`
                      rule order; a missing `from` is a `400`, an unknown slug a
                      `404`, and a real node with nothing readable ahead is an
-                     honest `200` with `next: null`. `npm run api`.
+                     honest `200` with `next: null`. `GET /v1/nodes/{id}/votes`
+                     is the public tally — `count` for everyone, `votedByMe`
+                     only with a live session — and `POST` casts one, per
+                     account: no session is a `401`, a repeat vote or a replayed
+                     `Idempotency-Key` returns the same tally rather than
+                     counting twice, all persisted in §6's `votes` collection.
+                     `npm run api`.
   store.mjs          §6's document model, and the seam a real database slots
                      into. Until Prompt 10 the server held all of its state in
                      module-level arrays and Maps, so an editor's publish, a
@@ -489,8 +526,8 @@ server/
                      process — which hollowed out the Content Management API's
                      whole point. Now each §6 collection (`knowledge_nodes`,
                      `relationships`, `users`, the session tokens,
-                     `learning_paths`, `user_progress`, `search_index`,
-                     `ai_sessions`)
+                     `learning_paths`, `user_progress`, `votes`,
+                     `search_index`, `ai_sessions`)
                      hydrates at boot and writes through after each mutation.
                      Zero dependencies still: a collection is `all()` /
                      `replace()`, persisted as one JSON file per collection with
@@ -684,8 +721,14 @@ Practice tab's takeaway/action note — has followed it behind the same boundary
 as one document per account *and* node (`ReaderStateRepository`). So it survives
 a reload and follows the account rather than the browser, and `useLocalStorage`
 is now gone from the tree entirely: every piece of reader-generated data goes
-through a repository, Memory or HTTP, chosen in one place. What remains local
-is the source-detail vote tally (plain component state, never persisted). And
+through a repository, Memory or HTTP, chosen in one place. **The last piece of
+local state has moved too: the source-detail vote tally.** §5.A's
+`GET`/`POST /v1/nodes/{id}/votes` is now real — the count is a public read
+(`votedByMe` only resolves with a session), casting is per-account and idempotent
+both by §6.3's `(userId, nodeId)` compound and by `Idempotency-Key`, and the
+documents live in §6's `votes` collection so they survive a restart. With no
+backend the Memory provider keeps the same tally in `localStorage`, so nothing
+above `infrastructure/` knows the difference. And
 **that account is no longer a self-minted token.** `x-alminhej-account` — a
 value the client invented and the server took on faith — is gone; in its place
 are real `/v1/auth/*` endpoints: register and login with an email and a

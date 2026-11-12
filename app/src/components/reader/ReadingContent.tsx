@@ -3,6 +3,7 @@ import { useState, useEffect, useMemo } from "react";
 import { useSettings } from "@/context/SettingsContext";
 import { useIsMobile } from "@/hooks/useIsMobile";
 import { useReaderState } from "@/hooks/useReaderState";
+import { useVotes } from "@/hooks/useVotes";
 import { useReadingExperience } from "@/hooks/useReadingExperience";
 import { useKnowledgeNode } from "@/hooks/useKnowledgeNode";
 import { useLearningPath } from "@/hooks/useLearningPath";
@@ -78,8 +79,10 @@ export default function ReadingContent({ slug, bookContext }: ReadingContentProp
   }, [toast]);
 
   const [activeSource, setActiveSource] = useState<string | null>(null);
-  const [votes, setVotes] = useState<Record<string, number>>({});
-  const [voted, setVoted] = useState<Set<string>>(new Set());
+  // The source-detail vote tally is the last reader-generated value that used
+  // to be plain component state; it now lives behind `VoteRepository` — the
+  // public count for everyone, the "did I vote" bit per account.
+  const sourceVotes = useVotes(activeSource ?? undefined);
   const activeSourceNode = useKnowledgeNode(activeSource);
 
   // Opening a reading experience is what advances the current path. The
@@ -105,11 +108,7 @@ export default function ReadingContent({ slug, bookContext }: ReadingContentProp
     setRevealed(new Set());
   };
 
-  const castVote = (sourceId: string) => {
-    if (voted.has(sourceId)) return;
-    setVoted((v) => new Set(v).add(sourceId));
-    setVotes((v) => ({ ...v, [sourceId]: (v[sourceId] || 0) + 1 }));
-  };
+  const castVote = () => sourceVotes.cast();
 
   const openChainForNarrator = (id: string) => {
     setActiveNarrator(id);
@@ -148,8 +147,9 @@ export default function ReadingContent({ slug, bookContext }: ReadingContentProp
           node={activeSourceNode}
           onClose={() => setActiveSource(null)}
           onVote={castVote}
-          voted={voted.has(activeSourceNode.id)}
-          voteCount={votes[activeSourceNode.id] || 0}
+          voted={sourceVotes.tally.votedByMe}
+          voteCount={sourceVotes.tally.count}
+          canVote={sourceVotes.canVote}
         />
       )}
 

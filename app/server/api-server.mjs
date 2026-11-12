@@ -34,6 +34,8 @@
  *   GET /v1/paths/recommended?from={slug}[&exclude={id,id}][&prefer={reason,reason}]
  *                                       ← the one next node the graph supports from here
  *   GET /v1/search?q={query}            ← cross-type search over the graph (§6's search_index)
+ *   GET  /v1/nodes/{id}/votes           ← the public tally (+ `votedByMe` when a session is sent)
+ *   POST /v1/nodes/{id}/votes           ← cast a prioritization vote (§6's `votes`, auth required)
  *   POST /v1/nodes/{id}/companion/ask   ← grounded AI answer (§7)
  *
  * Endpoints — §5.A (auth, no credentials to read):
@@ -109,6 +111,7 @@ const collections = {
   sessions: store.collection("sessions"),
   learningPaths: store.collection("learning_paths"),
   readerStates: store.collection("reader_states"),
+  votes: store.collection("votes"),
   searchIndex: store.collection("search_index"),
   aiSessions: store.collection("ai_sessions"),
 };
@@ -807,6 +810,123 @@ async function handleMeNodeState(req, res, url) {
 }
 
 /* ------------------------------------------------------------------ *
+ * §5.A — prioritization votes (`/v1/nodes/{id}/votes`)
+ *
+ * A vote is a public signal on a source — "digitize this next" — not reader
+ * state and not knowledge, so it gets its own §6 collection (`votes`) rather
+ * than living inside `reader_states`. The tally itself is public: anyone can
+ * see how many accounts asked for a node. Casting is not anonymous — §6.3's
+ * unique compound `(userId, nodeId)` only means something when there is a
+ * userId, so POST resolves the caller's session exactly like `/v1/me/*` does
+ * and answers `401` without one.
+ *
+ * Idempotency is layered the way §5.A describes it: the `(accountId, nodeId)`
+ * compound makes a repeat vote a no-op (the same account cannot inflate the
+ * count), and an `Idempotency-Key` header makes a *retried* request replay the
+ * first response instead of counting twice — the flaky-mobile-connection case
+ * the architecture doc calls out. Both return the same `VoteTally` shape the
+ * client's `domain/votes.ts` defines.
+ * ------------------------------------------------------------------ */
+
+const NODE_VOTES_PREFIX = "/v1/nodes/";
+const NODE_VOTES_SUFFIX = "/votes";
+
+/** `true` when the path is the votes route (its `{id}` is encoded). */
+const isNodeVotesRoute = (pathname) =>
+  pathname.startsWith(NODE_VOTES_PREFIX) && pathname.endsWith(NODE_VOTES_SUFFIX);
+
+/** §6's `votes` collection — one document per (account, node) that voted. */
+const VOTES = collections.votes.all();
+const saveVotes = () => collections.votes.replace(VOTES);
+
+/**
+ * `Idempotency-Key` → the nodeId it was first spent on, scoped per account.
+ * Rebuilt from the store at boot so a replay survives a restart, not just a
+ * retry inside one process.
+ */
+const VOTE_IDEMPOTENCY = new Map();
+for (const vote of VOTES) {
+  if (vote.idempotencyKey) {
+    VOTE_IDEMPOTENCY.set(`${vote.accountId}${vote.idempotencyKey}`, vote.nodeId);
+  }
+}
+
+/** The `{nodeId, count, votedByMe}` triple — `votedByMe` needs an account. */
+function voteTally(nodeId, accountId) {
+  const forNode = VOTES.filter((v) => v.nodeId === nodeId);
+  return {
+    nodeId,
+    count: forNode.length,
+    votedByMe: Boolean(accountId && forNode.some((v) => v.accountId === accountId)),
+  };
+}
+
+async function handleNodeVotes(req, res, url) {
+  const nodeId = decodeURIComponent(
+    url.pathname.slice(NODE_VOTES_PREFIX.length, url.pathname.length - NODE_VOTES_SUFFIX.length)
+  );
+  // Votes are a public signal on *published* sources — same visibility rule
+  // as every other §5.A read, so a draft's tally is a 404, not a zero.
+  if (!NODES.some((n) => n.id === nodeId && n.status === "published")) {
+    return sendError(res, 404, "NODE_NOT_FOUND", `No published node with id '${nodeId}'`);
+  }
+
+  if (req.method === "GET") {
+    // Public read: the count is for everyone; `votedByMe` resolves only when
+    // the caller sends a live session, and is honestly `false` otherwise.
+    return sendJson(res, 200, voteTally(nodeId, accountFrom(req)));
+  }
+
+  if (req.method !== "POST") {
+    return sendError(
+      res,
+      405,
+      "METHOD_NOT_ALLOWED",
+      `${req.method} is not supported on /v1/nodes/{id}/votes`
+    );
+  }
+
+  const accountId = accountFrom(req);
+  if (!accountId) {
+    return sendError(res, 401, "UNAUTHENTICATED", UNAUTHENTICATED_MESSAGE);
+  }
+
+  const idempotencyKey = req.headers["idempotency-key"];
+  const key = isNonEmptyString(idempotencyKey) ? idempotencyKey.trim() : null;
+  if (key) {
+    const seen = VOTE_IDEMPOTENCY.get(`${accountId}${key}`);
+    if (seen !== undefined && seen !== nodeId) {
+      return sendError(
+        res,
+        400,
+        "INVALID_REQUEST",
+        "Idempotency-Key was already used for a vote on a different node"
+      );
+    }
+    if (seen === nodeId) {
+      // A retry of a vote that already landed: replay the tally, don't recount.
+      return sendJson(res, 200, voteTally(nodeId, accountId));
+    }
+  }
+
+  if (VOTES.some((v) => v.accountId === accountId && v.nodeId === nodeId)) {
+    // §6.3's unique compound doing its job: the same account cannot vote twice.
+    return sendJson(res, 200, voteTally(nodeId, accountId));
+  }
+
+  const vote = {
+    accountId,
+    nodeId,
+    idempotencyKey: key,
+    at: new Date().toISOString(),
+  };
+  VOTES.push(vote);
+  saveVotes();
+  if (key) VOTE_IDEMPOTENCY.set(`${accountId}${key}`, nodeId);
+  return sendJson(res, 201, voteTally(nodeId, accountId));
+}
+
+/* ------------------------------------------------------------------ *
  * §5.B — Content Management API
  * ------------------------------------------------------------------ */
 
@@ -1063,6 +1183,12 @@ async function dispatch(req, res, url) {
     return handleMeNodeState(req, res, url);
   }
 
+  // Votes accept POST (and GET with an optional session), so the route is
+  // matched before the GET-only guard and before the generic /v1/nodes/* reads.
+  if (isNodeVotesRoute(url.pathname)) {
+    return handleNodeVotes(req, res, url);
+  }
+
   if (req.method !== "GET") {
     return sendError(res, 405, "METHOD_NOT_ALLOWED", `${req.method} is not supported`);
   }
@@ -1107,7 +1233,7 @@ const server = createServer(async (req, res) => {
     res.writeHead(204, {
       "access-control-allow-origin": "*",
       "access-control-allow-methods": "GET, POST, PUT, PATCH, OPTIONS",
-      "access-control-allow-headers": "content-type, accept, authorization, x-alminhej-roles",
+      "access-control-allow-headers": "content-type, accept, authorization, x-alminhej-roles, idempotency-key",
     });
     return res.end();
   }
