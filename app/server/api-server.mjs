@@ -49,6 +49,8 @@
  *   PUT /v1/me/path      ← replace it
  *   GET /v1/me/nodes/{id}/state  ← the account's own state for one node
  *   PUT /v1/me/nodes/{id}/state  ← replace it
+ *   GET  /v1/me/progress ← the account's aggregate learning progress
+ *   POST /v1/onboarding/goals    ← set the initial learning path from a goal
  *
  * Endpoints — §5.B (admin, sends `x-alminhej-roles`):
  *   GET   /v1/admin/nodes?type={NodeType}&status={NodeStatus}
@@ -927,6 +929,92 @@ async function handleNodeVotes(req, res, url) {
 }
 
 /* ------------------------------------------------------------------ *
+ * §5.A — onboarding goals and learning progress
+ *
+ * `POST /v1/onboarding/goals` is the *initial* path write: it exists
+ * separately from `PUT /v1/me/path` because onboarding is the one moment a
+ * path is created rather than updated — the endpoint refuses to clobber a
+ * path the reader has already travelled (`visited` non-empty → 409), which
+ * the generic PUT deliberately does not police.
+ *
+ * `GET /v1/me/progress` is the aggregate read the journey endpoints imply:
+ * the path's own counters plus what the per-node reader states add up to.
+ * Both resolve the account from the session token exactly like `/v1/me/*`.
+ * ------------------------------------------------------------------ */
+
+async function handleOnboardingGoals(req, res) {
+  if (req.method !== "POST") {
+    return sendError(res, 405, "METHOD_NOT_ALLOWED", `${req.method} is not supported on /v1/onboarding/goals`);
+  }
+  const accountId = accountFrom(req);
+  if (!accountId) {
+    return sendError(res, 401, "UNAUTHENTICATED", UNAUTHENTICATED_MESSAGE);
+  }
+
+  const body = await readJson(req);
+  if (!isNonEmptyString(body.goalId)) {
+    return sendError(res, 400, "INVALID_REQUEST", "'goalId' is required");
+  }
+  if (!isNonEmptyString(body.seedNodeId)) {
+    return sendError(res, 400, "INVALID_REQUEST", "'seedNodeId' is required");
+  }
+  // The seed must be a node a reader can actually start from — same
+  // published-only rule as every other §5.A read.
+  if (!NODES.some((n) => n.id === body.seedNodeId && n.status === "published")) {
+    return sendError(res, 404, "NODE_NOT_FOUND", `No published node with id '${body.seedNodeId}'`);
+  }
+
+  const existing = ACCOUNTS.get(accountId);
+  if (existing && existing.visited.length > 0) {
+    return sendError(
+      res,
+      409,
+      "PATH_EXISTS",
+      "This account already has a learning path with progress; reset it before onboarding again"
+    );
+  }
+
+  const path = {
+    goalId: body.goalId,
+    seedNodeId: body.seedNodeId,
+    visited: [],
+    startedAt: new Date().toISOString(),
+    onboardingSeen: true,
+  };
+  ACCOUNTS.set(accountId, path);
+  savePaths();
+  return sendJson(res, 200, path);
+}
+
+function handleMeProgress(req, res) {
+  if (req.method !== "GET") {
+    return sendError(res, 405, "METHOD_NOT_ALLOWED", `${req.method} is not supported on /v1/me/progress`);
+  }
+  const accountId = accountFrom(req);
+  if (!accountId) {
+    return sendError(res, 401, "UNAUTHENTICATED", UNAUTHENTICATED_MESSAGE);
+  }
+
+  const path = ACCOUNTS.get(accountId) ?? EMPTY_PATH;
+  // Every reader-state document this account owns — the in-process key is
+  // `${accountId}\0${nodeId}`, so the prefix is the account boundary.
+  const mine = [...READER_STATES.entries()]
+    .filter(([key]) => key.startsWith(accountId + "\u0000"))
+    .map(([, state]) => state);
+  const discovered = new Set(mine.flatMap((s) => s.discovered));
+
+  return sendJson(res, 200, {
+    goalId: path.goalId,
+    seedNodeId: path.seedNodeId,
+    startedAt: path.startedAt,
+    visitedCount: path.visited.length,
+    bookmarkedCount: mine.filter((s) => s.bookmarked).length,
+    discoveredCount: discovered.size,
+    reciteCount: mine.reduce((sum, s) => sum + s.reciteCount, 0),
+  });
+}
+
+/* ------------------------------------------------------------------ *
  * §5.B — Content Management API
  * ------------------------------------------------------------------ */
 
@@ -1181,6 +1269,13 @@ async function dispatch(req, res, url) {
   }
   if (isMeNodeStateRoute(url.pathname)) {
     return handleMeNodeState(req, res, url);
+  }
+  if (url.pathname === "/v1/me/progress") {
+    return handleMeProgress(req, res);
+  }
+  // `/v1/onboarding/*` accepts POST, so it precedes the GET-only guard too.
+  if (url.pathname === "/v1/onboarding/goals") {
+    return handleOnboardingGoals(req, res);
   }
 
   // Votes accept POST (and GET with an optional session), so the route is

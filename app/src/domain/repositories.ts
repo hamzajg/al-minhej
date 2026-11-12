@@ -1,6 +1,6 @@
 import type { KnowledgeNode, NodeType, Relationship } from "./types";
 import type { ExploreDTO, ReadingExperienceDTO, RecommendationDTO, SearchResultDTO } from "./dto";
-import type { LearningPath, RecommendationReason } from "./learning";
+import type { LearningPath, ProgressDTO, RecommendationReason } from "./learning";
 import type { ReaderState } from "./readerState";
 import type { AuthSession, AuthUser } from "./auth";
 import type { VoteTally } from "./votes";
@@ -113,7 +113,26 @@ export interface RecommendationRepository {
  */
 export interface LearningPathRepository {
   get(accountKey: string): Promise<LearningPath>;
+  /**
+   * §5.A's `POST /v1/onboarding/goals` — the *initial* path write, distinct
+   * from `save` because it is the one moment a path is created rather than
+   * updated: the server refuses (`PATH_EXISTS`) to clobber a path the reader
+   * has already travelled, which the generic `save` deliberately does not
+   * police. `path` carries the goal and seed the picker chose; the server
+   * owns `startedAt`. Implementations that cannot refuse (the memory
+   * provider, or a server without the route) fall back to `save` semantics.
+   */
+  start(accountKey: string, path: LearningPath): Promise<LearningPath>;
   save(accountKey: string, path: LearningPath): Promise<LearningPath>;
+}
+
+/**
+ * §5.A's `GET /v1/me/progress` — the aggregate journey read: the path's own
+ * counters plus what the account's per-node reader states add up to, in one
+ * document. Read-only, per account, same `accountKey` story as the path.
+ */
+export interface ProgressRepository {
+  get(accountKey: string): Promise<ProgressDTO>;
 }
 
 /**

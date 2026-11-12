@@ -6,6 +6,7 @@ import { Header } from "@/components/layout/Header";
 import { GoalOnboardingModal } from "@/components/onboarding/GoalOnboardingModal";
 import { useReadingIndex } from "@/hooks/useReadingIndex";
 import { useLearningPath } from "@/hooks/useLearningPath";
+import { useProgress } from "@/hooks/useProgress";
 import { useRecommendation } from "@/hooks/useRecommendation";
 import { useKnowledgeNode } from "@/hooks/useKnowledgeNode";
 import { knowledgeRepository } from "@/application/container";
@@ -83,11 +84,18 @@ export default function HomePage() {
   const node = nodes[0];
 
   const { path, goal, loaded, currentNodeId, chooseGoal, dismissOnboarding } = useLearningPath();
+  const { progress, refresh: refreshProgress } = useProgress();
   const [goalOpen, setGoalOpen] = useState(false);
 
   useEffect(() => {
     knowledgeRepository.listByType("BOOK").then((books) => setBookCount(books.length));
   }, []);
+
+  // The journey counters catch up after each recorded visit — the path and
+  // the reader states are the two things `GET /v1/me/progress` sums.
+  useEffect(() => {
+    refreshProgress();
+  }, [path.visited.length, refreshProgress]);
 
   // Ask "why are you here?" once, as soon as there is something to read —
   // but only after the account's stored path has loaded, or a reader who
@@ -296,6 +304,17 @@ export default function HomePage() {
                       {uiLang === "ar" ? goal.title.ar : goal.title.en}
                     </span>
                   </div>
+
+                  {progress &&
+                    (progress.visitedCount > 0 ||
+                      progress.bookmarkedCount > 0 ||
+                      progress.discoveredCount > 0) && (
+                      <div className="text-[11px] mb-3" style={{ color: "var(--color-sub)" }}>
+                        {uiLang === "ar"
+                          ? `${progress.visitedCount} مقروء · ${progress.bookmarkedCount} محفوظ · ${progress.discoveredCount} كلمة مكتشفة`
+                          : `${progress.visitedCount} read · ${progress.bookmarkedCount} bookmarked · ${progress.discoveredCount} words discovered`}
+                      </div>
+                    )}
 
                   {path.visited.length === 0 && startNode ? (
                     <Link

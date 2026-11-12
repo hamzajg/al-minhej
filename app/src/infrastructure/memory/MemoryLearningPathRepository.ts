@@ -28,6 +28,14 @@ export class MemoryLearningPathRepository implements LearningPathRepository {
     }
   }
 
+  /**
+   * With no server there is nothing to refuse an overwrite, so `start` is
+   * the same write as `save` — the onboarding contract's fallback case.
+   */
+  start(accountKey: string, path: LearningPath): Promise<LearningPath> {
+    return this.save(accountKey, path);
+  }
+
   async save(accountKey: string, path: LearningPath): Promise<LearningPath> {
     try {
       window.localStorage.setItem(keyFor(accountKey), JSON.stringify(path));

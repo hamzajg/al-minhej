@@ -1,4 +1,4 @@
-import type { LearningPath } from "@/domain/learning";
+import type { LearningPath, ProgressDTO } from "@/domain/learning";
 import type { ReaderState } from "@/domain/readerState";
 import { BackendError } from "./httpClient";
 
@@ -22,7 +22,7 @@ interface ErrorEnvelope {
 async function meSend<T>(
   baseUrl: string,
   token: string,
-  method: "GET" | "PUT",
+  method: "GET" | "PUT" | "POST",
   path: string,
   body?: unknown
 ): Promise<T> {
@@ -64,6 +64,29 @@ export function getMyPath(baseUrl: string, token: string): Promise<LearningPath>
 
 export function saveMyPath(baseUrl: string, token: string, path: LearningPath): Promise<LearningPath> {
   return meSend<LearningPath>(baseUrl, token, "PUT", "/v1/me/path", path);
+}
+
+/**
+ * §5.A's `POST /v1/onboarding/goals` — the initial path write. The body is
+ * just the picker's choice (`goalId` + the resolved `seedNodeId`); the server
+ * stamps `startedAt` and refuses (`PATH_EXISTS`) to overwrite a path the
+ * reader has already travelled.
+ */
+export function startMyOnboarding(
+  baseUrl: string,
+  token: string,
+  goalId: string,
+  seedNodeId: string
+): Promise<LearningPath> {
+  return meSend<LearningPath>(baseUrl, token, "POST", "/v1/onboarding/goals", {
+    goalId,
+    seedNodeId,
+  });
+}
+
+/** §5.A's `GET /v1/me/progress` — the aggregate journey read. */
+export function getMyProgress(baseUrl: string, token: string): Promise<ProgressDTO> {
+  return meSend<ProgressDTO>(baseUrl, token, "GET", "/v1/me/progress");
 }
 
 /**
