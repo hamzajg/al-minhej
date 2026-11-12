@@ -31,6 +31,8 @@
  *   GET /v1/relationships?nodeId={id}[&direction=from|to]
  *   GET /v1/reading/{slug}              ← the whole assembled reading DTO in one call
  *   GET /v1/explore/{slug}              ← the node's neighborhood: neighbors, timeline, cross-refs
+ *   GET /v1/paths/recommended?from={slug}[&exclude={id,id}][&prefer={reason,reason}]
+ *                                       ← the one next node the graph supports from here
  *   GET /v1/search?q={query}            ← cross-type search over the graph (§6's search_index)
  *   POST /v1/nodes/{id}/companion/ask   ← grounded AI answer (§7)
  *
@@ -71,6 +73,7 @@ import { buildKnowledgeContext } from "./knowledgeContext.mjs";
 import { assembleReadingExperience } from "./readingExperience.mjs";
 import { buildSearchIndex, searchGraph } from "./search.mjs";
 import { assembleExplore } from "./explore.mjs";
+import { recommendNext } from "./recommendations.mjs";
 import { askClaude, CompanionUpstreamError, DEFAULT_MODEL } from "./companion.mjs";
 import { createStore } from "./store.mjs";
 
@@ -320,6 +323,41 @@ function handleExplore(res, url) {
   const dto = assembleExplore(slug, NODES, RELATIONSHIPS);
   if (!dto) {
     return sendError(res, 404, "NODE_NOT_FOUND", `No published node with slug '${slug}'`);
+  }
+  return sendJson(res, 200, dto);
+}
+
+const RECOMMENDED_PATH = "/v1/paths/recommended";
+
+/**
+ * §5.A's `GET /v1/paths/recommended?from={slug}` — the one next node the graph
+ * supports from where the reader is, given the ids already on their path
+ * (`exclude`) and the rule order a goal wants (`prefer`). The walk itself lives
+ * in `recommendations.mjs` (the server-side twin of the client's
+ * `application/RecommendationGraph.ts`, parity-checked against it); this handler
+ * only parses the query, 404s on an unknown starting slug, and serializes the
+ * DTO.
+ *
+ * A missing `from` is a `400` — a malformed request. A `from` that is not in the
+ * published graph is a `404`. A `from` that *is* real but has nothing readable to
+ * point at is a `200` whose `next` is `null`: "nothing to suggest from here" is a
+ * real answer, not an error, and the two must not collapse into one.
+ */
+function handleRecommendedPaths(res, url) {
+  const from = url.searchParams.get("from");
+  if (from === null || from === "") {
+    return sendError(
+      res,
+      400,
+      "INVALID_REQUEST",
+      "A starting node is required: GET /v1/paths/recommended?from={slug}"
+    );
+  }
+  const exclude = (url.searchParams.get("exclude") ?? "").split(",").filter(Boolean);
+  const prefer = (url.searchParams.get("prefer") ?? "").split(",").filter(Boolean);
+  const dto = recommendNext({ fromSlug: from, exclude, prefer }, NODES, RELATIONSHIPS);
+  if (!dto) {
+    return sendError(res, 404, "NODE_NOT_FOUND", `No published node with slug '${from}'`);
   }
   return sendJson(res, 200, dto);
 }
@@ -1050,6 +1088,9 @@ async function dispatch(req, res, url) {
   }
   if (url.pathname === "/v1/search") {
     return handleSearch(res, url);
+  }
+  if (url.pathname === RECOMMENDED_PATH) {
+    return handleRecommendedPaths(res, url);
   }
   if (url.pathname === "/v1/nodes" || url.pathname.startsWith("/v1/nodes/")) {
     return handleNodes(res, url);

@@ -1,4 +1,5 @@
 import type { KnowledgeNode, Localized, RelationshipType } from "./types";
+import type { Recommendation } from "./learning";
 
 export interface IsnadPersonDTO {
   node: KnowledgeNode;
@@ -109,6 +110,28 @@ export interface ExploreDTO {
   timeline: TimelineEntryDTO[];
   /** The neighbors it connects to by meaning rather than by structure. */
   crossRefs: CrossRefDTO[];
+}
+
+/**
+ * §5.A's `GET /v1/paths/recommended` — the one *next node* the graph supports
+ * from where the reader is, given what they have already read.
+ *
+ * The path itself stays the reader's own state (§5.A's `/v1/me/path`); this is
+ * the read half of it: "given `from` and the ids already seen, which single node
+ * does the graph point to next?" The answer reuses `Recommendation` — the
+ * suggested node, the one edge that justifies it, and the shared book/narrator
+ * it is anchored on — so the caption the UI shows can never claim a connection
+ * the graph does not contain.
+ *
+ * `next` being `null` is a real, honest answer: no rule found a readable node.
+ * It is deliberately separate from the `404` for a `from` that is not in the
+ * published graph — "nothing to suggest from here" is not "no such node".
+ */
+export interface RecommendationDTO {
+  /** The published node the recommendation was computed from, resolved by slug. */
+  from: KnowledgeNode;
+  /** The suggested next node, or `null` when no outgoing rule finds a readable one. */
+  next: Recommendation | null;
 }
 
 export interface LibraryEntryDTO {

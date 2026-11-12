@@ -592,6 +592,90 @@ where that can finally be said out loud.
 
 ---
 
+## Prompt 13 — §5.A's `/v1/paths/recommended`, "what comes next" as a public read
+
+**Goal:** Implement `GET /v1/paths/recommended?from={slug}` — the one next node
+the graph supports from where the reader is, given the ids already on their path
+and the rule order a goal wants — as a `RecommendationDTO`. Move the walk itself
+out of the browser: it becomes a pure module with a dependency-free server twin,
+and the client reads it through a repository like every other assembled read.
+
+**Why:** "What do I read next?" is the product's central promise, and it is
+already built on the right idea — a suggestion is a traversal of real edges, never
+a hand-ordered list, and every suggestion carries the one edge that justifies it.
+But the traversal has only ever run *in the browser*, over the fixture graph,
+behind a class that reaches for three repositories: `RecommendationStrategy`
+computes each step client-side and there is no server that can answer it. §5.A
+names the endpoint (`/v1/paths/recommended → personalized next-node suggestions`)
+and it is the last one the public surface lists that nothing implements. Leaving
+it client-only also means the *rule* of the path lives in the bundle while the
+*state* of the path lives on the server — half a feature on each side of the
+boundary. This prompt puts the rule behind the same swap point as the rest:
+recommendation becomes one more read of the graph.
+
+**Scope:**
+- `RecommendationDTO` in `domain/dto.ts`: `from` (the resolved starting node) and
+  `next`, which is a `Recommendation` — the suggested node, its `reason`, the one
+  `via` edge, and the shared book/narrator `anchor` — or `null`. Reusing
+  `Recommendation` rather than inventing a parallel shape is deliberate: the UI's
+  "because …" caption is assembled from exactly those fields, so it can never
+  claim a connection the graph does not contain.
+- `application/RecommendationGraph.ts` — the walk, pure and dependency-free:
+  `recommendNext(query, nodes, relationships)`. This is the rule-based strategy
+  the architecture doc's §4 names, lifted out of the class it used to live in and
+  turned into a function of the graph. Four rules, walked in order: `PART_OF`
+  siblings under the same book (`same_collection`), a `REFERENCES` edge either
+  direction (`cross_reference`), the same for `SIMILAR_TO` (`similar_to`), and
+  another hadith passing through a shared `NARRATED_BY` narrator
+  (`shared_narrator`). Ties break on node id, so the same graph always yields the
+  same answer. `server/recommendations.mjs` is the same code as plain JS — the
+  twin-module pattern `readingExperience.mjs`, `search.mjs` and `explore.mjs`
+  already use — held together by a parity check rather than a shared import.
+- Two honest nulls, kept apart: `recommendNext` returns `null` when no *published*
+  node carries `from` (the route 404s), and `{ from, next: null }` when `from` is
+  real but no rule finds a readable node. "Nothing to suggest from here" is a real
+  answer, not an error, and collapsing it into the "no such node" case would hide
+  a broken link behind a valid one.
+- Only published nodes are destinations (`status === "published"` and non-empty
+  `content`), and anchors are resolved from the published set too — the same rule
+  §5.A applies everywhere else, so a draft sibling is never suggested and a
+  suggestion never points at something that cannot be read.
+- The client: `RecommendationRepository` in `domain/repositories.ts` — one method,
+  `recommend(fromSlug, exclude, prefer)` — a Memory implementation over the
+  fixtures and an HTTP one over `apiGet` (whose 404 is already "absent, not
+  broken"), swapped in `application/container.ts` as usual. `useRecommendation`
+  now calls the repository instead of the deleted strategy class; its contract to
+  `HomePage` is unchanged (`Recommendation | null`), so the "next" card and its
+  caption are untouched.
+- The server: `GET /v1/paths/recommended` behind the same GET-only guard as the
+  other public reads. `from` is required (`400` when absent), an unknown starting
+  slug is `404 NODE_NOT_FOUND`, and `exclude` / `prefer` are comma-separated
+  query lists — the reader's already-visited ids and, optionally, a goal's rule
+  ordering.
+
+**Acceptance criteria:**
+- Client and server produce byte-identical `RecommendationDTO`s for every
+  published slug over the fixture corpus, across every goal ordering and several
+  exclude sets, and both agree that an unknown slug is `null`/404.
+- A suggestion is always graph-backed: `next.via` is a real edge of the type the
+  `reason` implies, `next.node` is `published` with content, and `next.anchor` is
+  the shared book (for `same_collection`) or narrator (for `shared_narrator`) the
+  reason names.
+- The walk is order-sensitive and honest: swapping the goal's `prefer` changes
+  the answer (a `same_collection` first-step becomes a `shared_narrator` one), an
+  excluded node is never suggested, and when no rule finds a readable node the
+  answer is `200` with `next: null` rather than a guess.
+- Server smoke test over HTTP: `/v1/paths/recommended?from=arbain-1` is `200`
+  with `next.node.slug = "arbain-2"` and a `PART_OF`/`same_collection` reason; an
+  unknown slug is `404`; a missing `from` is `400`; `POST` is `405`;
+  `/v1/reading`, `/v1/explore` and `/v1/search` are unregressed; and a node
+  created as a draft is absent from the recommendation until it is published,
+  then takes over as the answer.
+- `npm run build` passes with zero type errors and `npm run lint` reports no
+  new problems.
+
+---
+
 ## Notes for whoever picks this up
 
 - Keep the Goal → Why → Scope → Acceptance shape for new prompts — it's

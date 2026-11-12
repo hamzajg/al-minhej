@@ -83,16 +83,25 @@ src/
                      `neighbors`, its era-aware `timeline`
                      (`TimelineEntryDTO` — the authored date `label`, an `era`
                      of `"CE" | "AH" | "unknown"`, and a parsed `year`) and its
-                     `crossRefs` (`CrossRefDTO`).
+                     `crossRefs` (`CrossRefDTO`) — and RecommendationDTO, §5.A's
+                     `GET /v1/paths/recommended`: the resolved `from` node and
+                     the single `next` suggestion (a `Recommendation` — the
+                     node, its `reason`, the one `via` edge, and the `anchor`
+                     it hangs off), or `null`.
     repositories.ts  KnowledgeRepository / RelationshipRepository /
                      ReadingExperienceRepository / SearchRepository /
-                     ExploreRepository / LearningPathRepository /
+                     ExploreRepository / RecommendationRepository /
+                     LearningPathRepository /
                      ReaderStateRepository / AuthRepository interfaces — the
                      storage-agnostic boundary. The first two read the authored
                      graph; ReadingExperienceRepository is the *assembled* read
-                     built on them (§5.A's `/v1/reading/{slug}`), and
+                     built on them (§5.A's `/v1/reading/{slug}`),
                      ExploreRepository is the neighborhood read beside it
-                     (§5.A's `/v1/explore/{slug}`); the next two
+                     (§5.A's `/v1/explore/{slug}`), and RecommendationRepository
+                     is the "what next" read (§5.A's `/v1/paths/recommended`) —
+                     the one assembled read that also takes the reader's own
+                     state as input (the ids already seen, the goal's rule
+                     order); the next two
                      *write* the reader's own state: the path (one document per
                      account) and the per-node reader state (one per account
                      *and* node). AuthRepository is the odd one out: it has no
@@ -144,6 +153,13 @@ src/
                            `assembleExplore` over the fixture graph. No index
                            to build — unlike search, a neighborhood is derived
                            per request from the edges already in hand.
+      MemoryRecommendationRepository.ts
+                           §5.A's `/v1/paths/recommended` with no server: runs
+                           the same pure `recommendNext` the server's twin runs
+                           (`RecommendationGraph.ts`) over the fixture graph.
+                           Nothing to store — a recommendation is a walk of the
+                           graph as it stands, so it always reflects the edges
+                           the reader is actually on.
     http/
       httpClient.ts     Thin fetch wrapper shared by the two HTTP
                         repositories. A 404 means "absent" (null); anything
@@ -195,6 +211,13 @@ src/
                         request for the whole neighborhood. Unlike search, the
                         404 *is* "no such node", so it rides the shared
                         `httpClient` and a missing slug comes back as `null`.
+      HttpRecommendationRepository.ts
+                        §5.A's `GET /v1/paths/recommended` over the network —
+                        one request for the next node, carrying the reader's
+                        already-seen ids and the goal's rule order as query
+                        lists. A `404` (starting slug not published) is `null`
+                        via `httpClient`; a `200` whose `next` is `null` means
+                        "nothing to suggest from here", so the two stay apart.
       adminClient.ts    §5.B's Content Management client — the one place
                         that knows about roles (`x-alminhej-roles`). It
                         deliberately does *not* collapse a 404 into `null`
@@ -225,17 +248,25 @@ src/
     DigitizationProgressService.ts A book's progress is *derived*, never
                                     hand-edited — see "Why this structure"
                                     below.
-    RecommendationStrategy.ts      The architecture doc's Strategy pattern:
-                                    given a finished node and the graph,
-                                    walk real edges (`PART_OF` siblings,
-                                    `REFERENCES`, `SIMILAR_TO`, shared
-                                    `NARRATED_BY` narrators) to suggest a
-                                    next node. Every suggestion carries the
-                                    one `Relationship` that justifies it, so
-                                    the UI can never claim an edge the graph
-                                    lacks. Rule-based today; an
-                                    embedding/ML strategy replaces this
-                                    class behind the same interface.
+    RecommendationGraph.ts         §5.A's `/v1/paths/recommended` — the
+                                    architecture doc's §4 Strategy, pure and
+                                    dependency-free: `recommendNext` walks real
+                                    edges (`PART_OF` siblings, `REFERENCES`,
+                                    `SIMILAR_TO`, shared `NARRATED_BY`
+                                    narrators) from a finished node and returns
+                                    the one next node, in the rule order a goal
+                                    supplies. Every suggestion carries the one
+                                    `Relationship` that justifies it, so the UI
+                                    can never claim an edge the graph lacks.
+                                    Extracted from the repository-backed
+                                    strategy class it used to be, so the *same*
+                                    walk can answer from the browser's fixtures
+                                    and from the server's store —
+                                    `server/recommendations.mjs` is the same
+                                    code as plain JS, held together by a parity
+                                    check. Rule-based today; an embedding/ML
+                                    strategy replaces this module, not a call
+                                    site.
     SearchGraph.ts                 §5.A's `/v1/search?q=`, and §6's
                                     `search_index` — pure and dependency-free:
                                     `buildSearchIndex` flattens each
@@ -320,9 +351,13 @@ src/
                                and follows the account rather than the browser.
                                Stores no to-visit list: what comes next is
                                always re-derived from the graph.
-    useRecommendation.ts       Runs `recommendationStrategy.recommend` for a
-                               node and reports both the suggestion and its
-                               "because …" reason
+    useRecommendation.ts       Asks §5.A's `/v1/paths/recommended` for the next
+                               node via `RecommendationRepository` — the
+                               suggestion and its "because …" reason, or `null`
+                               when no edge leads somewhere readable. With a
+                               backend the walk happens server-side; without one
+                               the same pure `recommendNext` runs in-process.
+                               The hook's contract is unchanged either way.
     useReaderState.ts          The reader's own state for the node on screen —
                                bookmark, discovered vocabulary, recite count,
                                Practice notes — read from and written to the
@@ -440,7 +475,13 @@ server/
                      one is an empty `200`. §5.A's `GET /v1/explore/{slug}`
                      returns the node's whole neighborhood — `neighbors`,
                      `timeline` and `crossRefs` — in one call, 404 when no
-                     *published* node carries the slug. `npm run api`.
+                     *published* node carries the slug. §5.A's
+                     `GET /v1/paths/recommended?from={slug}` returns the single
+                     next node the graph supports from there, honoring the
+                     caller's already-seen `exclude` ids and a goal's `prefer`
+                     rule order; a missing `from` is a `400`, an unknown slug a
+                     `404`, and a real node with nothing readable ahead is an
+                     honest `200` with `next: null`. `npm run api`.
   store.mjs          §6's document model, and the seam a real database slots
                      into. Until Prompt 10 the server held all of its state in
                      module-level arrays and Maps, so an editor's publish, a
@@ -483,6 +524,14 @@ server/
                      and a draft's own slug is 404-shaped. Held to the client
                      assembler by a parity check that compares the whole DTO
                      over every published slug.
+  recommendations.mjs §5.A's `/v1/paths/recommended`: the server-side twin of
+                     `application/RecommendationGraph.ts` — the same rule-ordered
+                     walk as plain JS, from a finished node to the one next node,
+                     with the `via` edge that justifies it. Destinations are only
+                     ever *published* nodes with content, so a draft sibling is
+                     never suggested. Held to the client module by a parity check
+                     that compares the whole DTO over every published slug,
+                     across every goal ordering and several exclude sets.
   knowledgeContext.mjs  §7's `KnowledgeContextBuilder`: given a node id,
                      assembles that node's own content plus a *bounded*
                      slice of its immediate graph neighbors (only
@@ -506,12 +555,14 @@ server/
   (`components/onboarding/GoalOnboardingModal.tsx`) and the goal definitions
   (`data/goals.ts`) give the reader *two* things and nothing more: a seed
   node (by slug) and an ordering of rules. What comes next is computed every
-  time by `RecommendationStrategy` walking the same edges the reading
-  experience walks, which is why a path cannot drift out of sync with the
-  graph — there is no second copy of it to drift. `useLearningPath` persists
-  only the goal id and the node ids actually opened; the "next" card on the
-  home page is derived from those, and a recommendation that has no edge to
-  stand on says so instead of inventing one.
+  time by walking the same edges the reading experience walks — now through
+  §5.A's `GET /v1/paths/recommended` (`RecommendationGraph.ts` client-side,
+  its server twin when a backend is configured) — which is why a path cannot
+  drift out of sync with the graph: there is no second copy of it to drift.
+  `useLearningPath` persists only the goal id and the node ids actually
+  opened; the "next" card on the home page is derived from those (the ids
+  travel back to the endpoint as `exclude`), and a recommendation that has no
+  edge to stand on says so instead of inventing one.
 - **The reader's path is per account, and that swap happened behind the
   repository boundary.** `localStorage` was the right place to *prove* the
   path, but a path that exists in one browser is a session, not a path.

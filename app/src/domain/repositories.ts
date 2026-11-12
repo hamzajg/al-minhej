@@ -1,6 +1,6 @@
 import type { KnowledgeNode, NodeType, Relationship } from "./types";
-import type { ExploreDTO, ReadingExperienceDTO, SearchResultDTO } from "./dto";
-import type { LearningPath } from "./learning";
+import type { ExploreDTO, ReadingExperienceDTO, RecommendationDTO, SearchResultDTO } from "./dto";
+import type { LearningPath, RecommendationReason } from "./learning";
 import type { ReaderState } from "./readerState";
 import type { AuthSession, AuthUser } from "./auth";
 
@@ -71,6 +71,32 @@ export interface SearchRepository {
  */
 export interface ExploreRepository {
   get(slug: string): Promise<ExploreDTO | null>;
+}
+
+/**
+ * §5.A's `GET /v1/paths/recommended` — the *next node* the graph supports from
+ * where the reader is, given what they have already read.
+ *
+ * It belongs beside the assembled reads above because it is one of them: a slug
+ * in, one DTO out, `null` for a slug that is not in the published graph. But it
+ * is the one read that takes *reader state* as an input too — `exclude` is the
+ * ids already on the path (never re-suggested) and `prefer` is the rule ordering
+ * a goal supplies — which is what makes the answer "personalized" while still
+ * being computed entirely from authored edges. Nothing here invents a
+ * suggestion: a recommendation is only ever a node some real edge points to.
+ */
+export interface RecommendationRepository {
+  /**
+   * The next node from `fromSlug`, skipping `exclude`, walking the rules in
+   * `prefer` order (the default order when it is empty). `null` when no
+   * published node carries the slug; `next` inside the DTO is `null` when no
+   * rule finds a readable destination.
+   */
+  recommend(
+    fromSlug: string,
+    exclude: string[],
+    prefer: RecommendationReason[]
+  ): Promise<RecommendationDTO | null>;
 }
 
 /**
