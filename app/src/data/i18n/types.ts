@@ -146,4 +146,16 @@ export interface UiStrings {
   searchInTitle: string;
   searchInKeyword: string;
   searchInContent: string;
+  explore: string;
+  exploreOpen: string;
+  exploreHint: string;
+  exploreNeighbors: string;
+  exploreTimeline: string;
+  exploreCrossRefs: string;
+  exploreEmpty: string;
+  exploreLoading: string;
+  exploreError: string;
+  exploreNotFound: string;
+  exploreEraCE: string;
+  exploreEraAH: string;
 }

@@ -1,5 +1,5 @@
 import type { KnowledgeNode, NodeType, Relationship } from "./types";
-import type { ReadingExperienceDTO, SearchResultDTO } from "./dto";
+import type { ExploreDTO, ReadingExperienceDTO, SearchResultDTO } from "./dto";
 import type { LearningPath } from "./learning";
 import type { ReaderState } from "./readerState";
 import type { AuthSession, AuthUser } from "./auth";
@@ -58,6 +58,19 @@ export interface ReadingExperienceRepository {
  */
 export interface SearchRepository {
   search(query: string): Promise<SearchResultDTO[]>;
+}
+
+/**
+ * §5.A's `GET /v1/explore/{slug}` — the node's neighborhood, assembled.
+ *
+ * It sits beside `ReadingExperienceRepository` because it is the same kind of
+ * read: one slug in, one assembled DTO out, `null` for a slug that is not in the
+ * published graph. It exists separately because it answers a different question
+ * — "where does this sit" rather than "what does this say" — and §5.A names it
+ * as its own endpoint, with its own DTO.
+ */
+export interface ExploreRepository {
+  get(slug: string): Promise<ExploreDTO | null>;
 }
 
 /**

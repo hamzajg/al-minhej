@@ -1,4 +1,5 @@
-import { Network } from "lucide-react";
+import { Compass, Network } from "lucide-react";
+import { Link } from "react-router-dom";
 import { useSettings } from "@/context/SettingsContext";
 import { MiniGraph } from "@/components/graph/MiniGraph";
 import type { ReadingExperienceDTO } from "@/domain/dto";
@@ -10,7 +11,7 @@ interface Props {
 }
 
 export function ConnectTab({ graph, active, onSelect }: Props) {
-  const { uiLang } = useSettings();
+  const { t, uiLang } = useSettings();
   const centerLabel = uiLang === "ar" ? graph.center.title.ar : graph.center.title.en;
   const activeNeighbor = graph.neighbors.find((n) => n.node.id === active);
   const activeLabel = active === "center" ? centerLabel : activeNeighbor ? (uiLang === "ar" ? activeNeighbor.node.title.ar : activeNeighbor.node.title.en) : "";
@@ -26,6 +27,18 @@ export function ConnectTab({ graph, active, onSelect }: Props) {
         </div>
         {activeDetail && <p className="text-xs text-[var(--color-sub)] leading-relaxed">{activeDetail}</p>}
       </div>
+
+      {/* The tab shows the neighborhood in place; §5.A's `/v1/explore` is the
+          same graph as its own screen — chronology and cross-references
+          included — so this hands off instead of growing a second, thinner
+          copy of it here. */}
+      <Link
+        to={`/explore/${encodeURIComponent(graph.center.slug)}`}
+        className="mt-3 flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl no-underline text-[12px] bg-[var(--color-panel)] border border-[var(--color-line)] text-[var(--color-gold)]"
+      >
+        <Compass size={13} />
+        {t.exploreOpen}
+      </Link>
     </div>
   );
 }

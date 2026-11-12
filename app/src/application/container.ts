@@ -3,6 +3,7 @@ import { MemoryRelationshipRepository } from "@/infrastructure/memory/MemoryRela
 import { MemoryLearningPathRepository } from "@/infrastructure/memory/MemoryLearningPathRepository";
 import { MemoryReaderStateRepository } from "@/infrastructure/memory/MemoryReaderStateRepository";
 import { MemorySearchRepository } from "@/infrastructure/memory/MemorySearchRepository";
+import { MemoryExploreRepository } from "@/infrastructure/memory/MemoryExploreRepository";
 import { HttpKnowledgeRepository } from "@/infrastructure/http/HttpKnowledgeRepository";
 import { HttpRelationshipRepository } from "@/infrastructure/http/HttpRelationshipRepository";
 import { HttpLearningPathRepository } from "@/infrastructure/http/HttpLearningPathRepository";
@@ -10,10 +11,12 @@ import { HttpReaderStateRepository } from "@/infrastructure/http/HttpReaderState
 import { HttpAuthRepository } from "@/infrastructure/http/HttpAuthRepository";
 import { HttpReadingExperienceRepository } from "@/infrastructure/http/HttpReadingExperienceRepository";
 import { HttpSearchRepository } from "@/infrastructure/http/HttpSearchRepository";
+import { HttpExploreRepository } from "@/infrastructure/http/HttpExploreRepository";
 import { AssembleReadingExperience } from "./AssembleReadingExperience";
 import { GraphTraversalRecommendationStrategy } from "./RecommendationStrategy";
 import type {
   AuthRepository,
+  ExploreRepository,
   LearningPathRepository,
   ReaderStateRepository,
   ReadingExperienceRepository,
@@ -115,6 +118,17 @@ export const readerStateRepository: ReaderStateRepository = apiBaseUrl
 export const searchRepository: SearchRepository = apiBaseUrl
   ? new HttpSearchRepository(apiBaseUrl)
   : new MemorySearchRepository();
+
+/**
+ * Explore is the other *slug-shaped* assembled read, one endpoint over from the
+ * reading experience: §5.A's `GET /v1/explore/{slug}`. Same swap point, same
+ * shape of answer (`null` for a slug that isn't published) — with an API base
+ * URL the neighborhood is assembled by `server/explore.mjs`, without one by
+ * `application/ExploreGraph.ts`, and the parity check holds the two identical.
+ */
+export const exploreRepository: ExploreRepository = apiBaseUrl
+  ? new HttpExploreRepository(apiBaseUrl)
+  : new MemoryExploreRepository();
 
 /**
  * Real auth (§5.A's `/v1/auth/*`) is the one contract with no memory

@@ -150,6 +150,18 @@
     "searchMatchedIn": "مطابقة في",
     "searchInTitle": "العنوان",
     "searchInKeyword": "الكلمات المفتاحية",
-    "searchInContent": "النص"
+    "searchInContent": "النص",
+    "explore": "استكشاف",
+    "exploreOpen": "افتح المستكشف الكامل",
+    "exploreHint": "موقع هذا العنصر في الرسم المعرفي — جيرانه، وتسلسله الزمني، وما يشير إليه.",
+    "exploreNeighbors": "رابطًا",
+    "exploreTimeline": "التسلسل الزمني",
+    "exploreCrossRefs": "انظر أيضًا",
+    "exploreEmpty": "لا شيء آخر متصل بهذا العنصر بعد.",
+    "exploreLoading": "جارٍ التحميل…",
+    "exploreError": "الاستكشاف غير متاح — لم يستجب خادم المنهج.",
+    "exploreNotFound": "لا يوجد عنصر منشور بهذا العنوان.",
+    "exploreEraCE": "م",
+    "exploreEraAH": "هـ"
   }
 }

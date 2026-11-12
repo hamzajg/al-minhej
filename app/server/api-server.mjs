@@ -30,6 +30,7 @@
  *   GET /v1/nodes?type={NodeType}
  *   GET /v1/relationships?nodeId={id}[&direction=from|to]
  *   GET /v1/reading/{slug}              ← the whole assembled reading DTO in one call
+ *   GET /v1/explore/{slug}              ← the node's neighborhood: neighbors, timeline, cross-refs
  *   GET /v1/search?q={query}            ← cross-type search over the graph (§6's search_index)
  *   POST /v1/nodes/{id}/companion/ask   ← grounded AI answer (§7)
  *
@@ -69,6 +70,7 @@ import { dirname, join } from "node:path";
 import { buildKnowledgeContext } from "./knowledgeContext.mjs";
 import { assembleReadingExperience } from "./readingExperience.mjs";
 import { buildSearchIndex, searchGraph } from "./search.mjs";
+import { assembleExplore } from "./explore.mjs";
 import { askClaude, CompanionUpstreamError, DEFAULT_MODEL } from "./companion.mjs";
 import { createStore } from "./store.mjs";
 
@@ -278,6 +280,7 @@ function handleRelationships(res, url) {
 }
 
 const READING_PREFIX = "/v1/reading/";
+const EXPLORE_PREFIX = "/v1/explore/";
 
 /**
  * §5.A's `GET /v1/reading/{slug}` — the assembled `ReadingExperienceDTO`, so the
@@ -293,6 +296,28 @@ function handleReading(res, url) {
     return sendError(res, 404, "NOT_FOUND", "A slug is required: GET /v1/reading/{slug}");
   }
   const dto = assembleReadingExperience(slug, NODES, RELATIONSHIPS);
+  if (!dto) {
+    return sendError(res, 404, "NODE_NOT_FOUND", `No published node with slug '${slug}'`);
+  }
+  return sendJson(res, 200, dto);
+}
+
+/**
+ * §5.A's `GET /v1/explore/{slug}` — the node's neighborhood, assembled. The walk
+ * itself lives in `explore.mjs` (the server-side twin of the client's
+ * `application/ExploreGraph.ts`, parity-checked against it); this handler only
+ * resolves the slug, 404s on an unknown one, and serializes the DTO.
+ *
+ * Unlike `/v1/reading/{slug}` there is nothing to assemble per request beyond the
+ * walk itself — no index, no cache — so the answer always describes the graph as
+ * it stands right now, including a node an editor published a moment ago.
+ */
+function handleExplore(res, url) {
+  const slug = decodeURIComponent(url.pathname.slice(EXPLORE_PREFIX.length));
+  if (!slug) {
+    return sendError(res, 404, "NOT_FOUND", "A slug is required: GET /v1/explore/{slug}");
+  }
+  const dto = assembleExplore(slug, NODES, RELATIONSHIPS);
   if (!dto) {
     return sendError(res, 404, "NODE_NOT_FOUND", `No published node with slug '${slug}'`);
   }
@@ -1005,6 +1030,9 @@ async function dispatch(req, res, url) {
   }
   if (url.pathname.startsWith(READING_PREFIX)) {
     return handleReading(res, url);
+  }
+  if (url.pathname.startsWith(EXPLORE_PREFIX)) {
+    return handleExplore(res, url);
   }
   if (url.pathname === "/v1/health") {
     return sendJson(res, 200, {
