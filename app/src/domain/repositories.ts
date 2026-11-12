@@ -3,6 +3,7 @@ import type { ExploreDTO, ReadingExperienceDTO, RecommendationDTO, SearchResultD
 import type { LearningPath, RecommendationReason } from "./learning";
 import type { ReaderState } from "./readerState";
 import type { AuthSession, AuthUser } from "./auth";
+import type { VoteTally } from "./votes";
 
 /**
  * Storage-agnostic contracts. Application services depend on these
@@ -142,4 +143,20 @@ export interface AuthRepository {
   me(token: string): Promise<AuthUser | null>;
   /** Invalidate a session. Idempotent: an unknown token is not an error. */
   logout(token: string): Promise<void>;
+}
+
+/**
+ * §5.A's `POST /v1/nodes/{id}/votes` — one vote per account per node, counted
+ * in public so a source's digitization queue can be prioritized by readers
+ * rather than by guesswork. `GET` is the matching read: the tally is public,
+ * `votedByMe` is not (it is false without an account).
+ *
+ * Casting is idempotent twice over: the same account cannot increment the
+ * count twice, and a retried POST with the same `Idempotency-Key` returns the
+ * first response rather than a second vote. `accountKey` is optional on `get`
+ * so a signed-out reader can still see the public count.
+ */
+export interface VoteRepository {
+  get(nodeId: string, accountKey: string | null): Promise<VoteTally | null>;
+  cast(nodeId: string, accountKey: string, idempotencyKey: string): Promise<VoteTally | null>;
 }

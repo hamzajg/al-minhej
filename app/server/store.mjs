@@ -42,6 +42,7 @@ export const COLLECTIONS = [
   "sessions", //      §5.A's session tokens; opaque, so they must be stored, not derived
   "learning_paths", //§6's per-user path — one document per account
   "reader_states", // §6 `user_progress` — per (userId, nodeId); §6.3's unique compound key
+  "votes", //        §6 `votes` — per (userId, nodeId); §6.3's unique compound key
   "search_index", //  §6's denormalized index — refreshed whenever the graph's text changes
   "ai_sessions", //   §7/§6 `ai_sessions` — the companion Q&A audit log
 ];

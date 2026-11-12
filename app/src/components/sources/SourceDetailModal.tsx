@@ -11,9 +11,11 @@ interface Props {
   onVote: (id: string) => void;
   voted: boolean;
   voteCount: number;
+  /** False when the caller has no account to vote with (signed out on a real backend). */
+  canVote?: boolean;
 }
 
-export function SourceDetailModal({ node, onClose, onVote, voted, voteCount }: Props) {
+export function SourceDetailModal({ node, onClose, onVote, voted, voteCount, canVote = true }: Props) {
   const { t, uiLang, dir } = useSettings();
   const { indexedUnits, pct } = useNodeProgress(node);
   const digitized = indexedUnits > 0;
@@ -77,10 +79,10 @@ export function SourceDetailModal({ node, onClose, onVote, voted, voteCount }: P
             <p className="text-[12.5px] leading-relaxed text-[var(--color-ink)] mb-3">{t.sourceEmptyNote}</p>
             <button
               onClick={() => onVote(node.id)}
-              disabled={voted}
+              disabled={voted || !canVote}
               className={[
                 "flex items-center gap-1.5 text-xs font-semibold px-3.5 py-2 rounded-full border-none",
-                voted ? "bg-[var(--color-panel-2)] text-[var(--color-sub)] cursor-default" : "bg-[var(--color-gold)] text-[#241c0a] cursor-pointer",
+                voted || !canVote ? "bg-[var(--color-panel-2)] text-[var(--color-sub)] cursor-default" : "bg-[var(--color-gold)] text-[#241c0a] cursor-pointer",
               ].join(" ")}
             >
               <Flame size={13} /> {voted ? t.voted : t.helpPrioritize}
