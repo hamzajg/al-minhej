@@ -69,6 +69,48 @@ export interface SearchResultDTO {
   snippet: Localized<string>;
 }
 
+/**
+ * §5.A's `GET /v1/explore/{slug}` — one node and its whole neighborhood, cut
+ * three ways. Where the reading experience answers "what is this, and what does
+ * it stand on", Explore answers "where does it sit".
+ *
+ * All three lists are the *same* edge set, partitioned rather than gathered
+ * separately: `neighbors` is every edge, `crossRefs` is the ones that connect by
+ * meaning, and `timeline` is the ones that carry a date. Deriving them from one
+ * walk is what keeps them from ever disagreeing with each other.
+ */
+export interface TimelineEntryDTO {
+  node: KnowledgeNode;
+  /** The date exactly as authored on the node — never re-derived, never converted. */
+  label: string;
+  /**
+   * Which calendar `year` is in. The graph is not one era: narrators and events
+   * are dated CE, books by their Hijri era. Sorting a Hijri year against a
+   * Gregorian one would be a fabricated chronology, so the era travels with the
+   * year and the reader is told which they are looking at.
+   */
+  era: "CE" | "AH" | "unknown";
+  /** The first year in `label`, for ordering *within* an `era`; `null` if unparseable. */
+  year: number | null;
+}
+
+export interface CrossRefDTO {
+  node: KnowledgeNode;
+  relationshipType: RelationshipType;
+  note: Localized<string>;
+}
+
+export interface ExploreDTO {
+  /** The node being explored — the center of the graph. */
+  node: KnowledgeNode;
+  /** Every edge touching it, in either direction. */
+  neighbors: GraphNeighborDTO[];
+  /** The dated neighbors, oldest first within each era. */
+  timeline: TimelineEntryDTO[];
+  /** The neighbors it connects to by meaning rather than by structure. */
+  crossRefs: CrossRefDTO[];
+}
+
 export interface LibraryEntryDTO {
   node: KnowledgeNode;
   indexedUnits: number;

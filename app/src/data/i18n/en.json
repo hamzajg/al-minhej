@@ -150,7 +150,19 @@
     "searchMatchedIn": "matched in",
     "searchInTitle": "the title",
     "searchInKeyword": "its keywords",
-    "searchInContent": "the text"
+    "searchInContent": "the text",
+    "explore": "Explore",
+    "exploreOpen": "Open the full explorer",
+    "exploreHint": "Where this node sits in the graph — its neighbors, its chronology, and what it points to.",
+    "exploreNeighbors": "connections",
+    "exploreTimeline": "Timeline",
+    "exploreCrossRefs": "See also",
+    "exploreEmpty": "Nothing else is connected to this node yet.",
+    "exploreLoading": "Loading…",
+    "exploreError": "Explore is unavailable — the AlMinhej API did not answer.",
+    "exploreNotFound": "No published node has that address.",
+    "exploreEraCE": "CE",
+    "exploreEraAH": "AH"
   },
   "subtitleLangs": { "en": "English", "fr": "Français", "es": "Español" }
 }

@@ -517,6 +517,81 @@ instead of being rebuilt from scratch at every boot.
 
 ---
 
+## Prompt 12 — §5.A's `/v1/explore/{nodeSlug}`, the graph as its own view
+
+**Goal:** Implement `GET /v1/explore/{nodeSlug}` — the last public read §5.A
+names that nothing implements — as an `ExploreDTO`: the node at the center of
+its own neighborhood, the neighbors it is dated alongside, and the
+cross-references that attach it to the rest of the corpus by meaning.
+
+**Why:** Every read shipped so far answers "what is this node?" — its text, its
+chain, its commentary — and the graph is only visible *through* one node at a
+time. But the product's claim is that knowledge here is a web, not a shelf, and
+the web is exactly what nobody can look at yet. `ConnectTab` shows a node's
+neighbors, but only inside a reading session and only as a ring, with no
+chronology and nothing about *why* two nodes are adjacent. §5.A names the read
+that fixes this (`ExploreDTO (graph neighbors, timeline, cross-refs)`) and §10.2
+already flags that the graph traversal behind it is the part that will outgrow
+a single `$graphLookup` — the shape of the answer matters more than the query
+that produces it. This prompt is that shape, and it is also the honest home for
+the timeline: a hadith and a book do not share a clock, and the endpoint is
+where that can finally be said out loud.
+
+**Scope:**
+- `ExploreDTO` in `domain/dto.ts`, beside `ReadingExperienceDTO`: `node`,
+  `neighbors: GraphNeighborDTO[]`, `timeline: TimelineEntryDTO[]`,
+  `crossRefs: CrossRefDTO[]`. `TimelineEntryDTO` carries `label` (the date
+  exactly as authored — never re-derived, never converted), an `era` of
+  `"CE" | "AH" | "unknown"`, and the first `year` parsed from the label for
+  ordering *within* an era.
+- `application/ExploreGraph.ts` — the whole thing, pure and dependency-free:
+  `assembleExplore(slug, nodes, relationships)`. One pass over the edges that
+  touch the node, and the three arrays are three *partitions of the same edge
+  set* — a neighbor is always added to `neighbors`, and the same edge may also
+  land in `timeline` (if the far node is dated) or `crossRefs` (if the edge type
+  is one of the five meaning-bearing ones: `REFERENCES`, `SIMILAR_TO`,
+  `core_concept`, `thematic_link`, `related_hadith`). Building them together is
+  the point: three slices of one adjacency list cannot disagree about what is
+  adjacent. `server/explore.mjs` is the same code as plain JS — the twin-module
+  pattern `readingExperience.mjs` and `search.mjs` already use — held together
+  by a parity check rather than a shared import.
+- Era-aware, not sorted-into-a-lie: dating a narrator or an event comes from its
+  `attributes.dates`, a book from its `attributes.eraLabel`. `eraOf` reads the
+  suffix in the label, `ERA_RANK` orders CE before AH before unknown, and ties
+  break on year then id. Hijri and Gregorian years are never interleaved by raw
+  number — doing so would assert a chronology the fixtures do not carry.
+- Only published nodes are ever visible: an edge pointing at a draft is not a
+  neighbor, and a draft's own slug is 404-shaped — the same rule §5.A applies
+  everywhere else.
+- The client: `ExploreRepository` in `domain/repositories.ts` (one method,
+  `get(slug)`), a Memory implementation over the fixtures and an HTTP one over
+  `apiGet` (whose 404 is already "absent, not broken"), swapped in
+  `application/container.ts` as usual; `useExplore`, a `/explore/:slug` page, and
+  a `ConnectTab` hand-off link that opens it rather than growing a second,
+  thinner copy of the graph inside the reading session.
+- The server: the route behind the same GET-only guard the other public reads
+  sit behind, with the `NODE_NOT_FOUND` 404 and an empty-slug guard.
+
+**Acceptance criteria:**
+- Client and server produce byte-identical DTOs for every published slug in the
+  fixture corpus, and an unknown slug is `null`/404 in both.
+- The DTO is internally consistent: every edge to a published node appears in
+  `neighbors`; every `crossRef` and every `timeline` entry is also a neighbor;
+  `crossRefs` contains only the five meaning-bearing edge types; the timeline
+  names each node at most once and is sorted within each era.
+- The timeline is era-honest on real fixtures: a narrator's CE date is reported
+  as CE and sorts before a book's AH era label, and an AH label is *never*
+  silently rewritten as CE.
+- Server smoke test over HTTP: `/v1/explore/arbain-1` is `200` with
+  `node`/`neighbors`/`timeline`/`crossRefs`; an unknown slug is `404
+  NODE_NOT_FOUND`; `POST` is `405`; `/v1/reading/{slug}` and `/v1/search` are
+  unregressed; and a node created as a draft is absent from its neighbor's
+  explore view until it is published, then present — cross-refs included.
+- `npm run build` passes with zero type errors and `npm run lint` reports no
+  new problems.
+
+---
+
 ## Notes for whoever picks this up
 
 - Keep the Goal → Why → Scope → Acceptance shape for new prompts — it's

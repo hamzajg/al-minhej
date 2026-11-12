@@ -78,14 +78,21 @@ src/
                      experience, assembled into one document — plus
                      SearchResultDTO, one row of §5.A's `GET /v1/search?q=`
                      (the matched node, which field it hit, its score, and a
-                     per-language excerpt).
+                     per-language excerpt) — and ExploreDTO, the shape of §5.A's
+                     `GET /v1/explore/{slug}`: the node at the center, its
+                     `neighbors`, its era-aware `timeline`
+                     (`TimelineEntryDTO` — the authored date `label`, an `era`
+                     of `"CE" | "AH" | "unknown"`, and a parsed `year`) and its
+                     `crossRefs` (`CrossRefDTO`).
     repositories.ts  KnowledgeRepository / RelationshipRepository /
                      ReadingExperienceRepository / SearchRepository /
-                     LearningPathRepository /
+                     ExploreRepository / LearningPathRepository /
                      ReaderStateRepository / AuthRepository interfaces — the
                      storage-agnostic boundary. The first two read the authored
                      graph; ReadingExperienceRepository is the *assembled* read
-                     built on them (§5.A's `/v1/reading/{slug}`); the next two
+                     built on them (§5.A's `/v1/reading/{slug}`), and
+                     ExploreRepository is the neighborhood read beside it
+                     (§5.A's `/v1/explore/{slug}`); the next two
                      *write* the reader's own state: the path (one document per
                      account) and the per-node reader state (one per account
                      *and* node). AuthRepository is the odd one out: it has no
@@ -132,6 +139,11 @@ src/
                            `search_index` once at module load over the fixture
                            graph (nothing ever publishes without a server) and
                            runs the same `SearchGraph` the server's twin runs.
+      MemoryExploreRepository.ts
+                           §5.A's `/v1/explore/{slug}` with no server: runs
+                           `assembleExplore` over the fixture graph. No index
+                           to build — unlike search, a neighborhood is derived
+                           per request from the edges already in hand.
     http/
       httpClient.ts     Thin fetch wrapper shared by the two HTTP
                         repositories. A 404 means "absent" (null); anything
@@ -178,6 +190,11 @@ src/
                         caller that does *not* fold `httpClient`'s 404 into
                         "no results": a backend that predates the route must
                         say so, never render as an empty graph.
+      HttpExploreRepository.ts
+                        §5.A's `GET /v1/explore/{slug}` over the network — one
+                        request for the whole neighborhood. Unlike search, the
+                        404 *is* "no such node", so it rides the shared
+                        `httpClient` and a missing slug comes back as `null`.
       adminClient.ts    §5.B's Content Management client — the one place
                         that knows about roles (`x-alminhej-roles`). It
                         deliberately does *not* collapse a 404 into `null`
@@ -233,6 +250,22 @@ src/
                                     scripture. `server/search.mjs` is the
                                     same code as plain JS, held together by a
                                     parity check over the whole corpus.
+    ExploreGraph.ts                §5.A's `/v1/explore/{slug}` — pure and
+                                    dependency-free. `assembleExplore` makes
+                                    one pass over the edges touching the node
+                                    and returns three *partitions of the same
+                                    edge set*: `neighbors`, the era-aware
+                                    `timeline` (dated from the node's own
+                                    `attributes`, sorted within an era, never
+                                    across one), and `crossRefs` (the five
+                                    meaning-bearing edge types). Because the
+                                    three are sliced in one pass they cannot
+                                    disagree about what is adjacent — a
+                                    property a separate timeline or cross-ref
+                                    query would quietly break. `server/explore.mjs`
+                                    is the same code as plain JS, held
+                                    together by a parity check over every
+                                    published slug.
     container.ts                   The only file that decides *which*
                                     storage implementation is active. Set
                                     `VITE_ALMINHEJ_API_BASE_URL` and the app
@@ -308,6 +341,12 @@ src/
                                empty query short-circuited to no results —
                                so a cleared box never shows a request in
                                flight.
+    useExplore.ts              Runs §5.A's `/v1/explore/{slug}` through
+                               `ExploreRepository`. States are explicit
+                               (data / loading / notFound / error), and a
+                               rejection is never folded into "no
+                               connections" — a dead backend must not look
+                               like an isolated node.
     useIsMobile.ts              Responsive breakpoint
 
   lib/
@@ -348,6 +387,17 @@ src/
                       The Library shelf's box hands its query here rather than
                       faking a shelf-local filter — the index spans the whole
                       graph, not the books on one shelf.
+    ExplorePage.tsx  §5.A's `/v1/explore/{slug}` as a screen
+                      (`/explore/:slug`) — the graph as its own view rather
+                      than a tab inside a reading session. The center's
+                      neighborhood draws on `MiniGraph`; beside it the
+                      era-aware timeline lists each dated neighbor
+                      (`label · era`, each a link into `/reading/{slug}`) and
+                      a "See also" section lists the cross-references. An
+                      unknown slug says so and offers the way back; a
+                      backend error never renders as "nothing is connected".
+                      `ConnectTab` links here instead of growing a second,
+                      thinner copy of the same graph.
     AuthScreen.tsx   The §5.A sign-in/register screen at `/signin` — one form
                       for both, since they differ only in which call they make.
                       Validation is the browser's, so messages match the
@@ -387,7 +437,10 @@ server/
                      §5.A's `GET /v1/search?q=` answers over §6's
                      `search_index`, refreshed on every create, PATCH and
                      publish — a missing `q` is a `400`, an empty or unmatched
-                     one is an empty `200`. `npm run api`.
+                     one is an empty `200`. §5.A's `GET /v1/explore/{slug}`
+                     returns the node's whole neighborhood — `neighbors`,
+                     `timeline` and `crossRefs` — in one call, 404 when no
+                     *published* node carries the slug. `npm run api`.
   store.mjs          §6's document model, and the seam a real database slots
                      into. Until Prompt 10 the server held all of its state in
                      module-level arrays and Maps, so an editor's publish, a
@@ -423,6 +476,13 @@ server/
                      leak. Held to the client implementation by a parity check
                      that compares index and query results over the whole
                      corpus, harakat and all.
+  explore.mjs        §5.A's `/v1/explore/{slug}`: the server-side twin of
+                     `application/ExploreGraph.ts` — the same one-pass
+                     `assembleExplore` as plain JS. Only *published* nodes are
+                     visible, so an edge pointing at a draft is not a neighbor
+                     and a draft's own slug is 404-shaped. Held to the client
+                     assembler by a parity check that compares the whole DTO
+                     over every published slug.
   knowledgeContext.mjs  §7's `KnowledgeContextBuilder`: given a node id,
                      assembles that node's own content plus a *bounded*
                      slice of its immediate graph neighbors (only
@@ -621,7 +681,25 @@ text, so the fold never reaches the reader. The client has a `/search` screen
 Library box that hands its query over instead of faking a shelf-local filter.
 Both implementations — `application/SearchGraph.ts` and `server/search.mjs` —
 are held together by a parity check over the whole corpus. See `PROMPTS.md`,
-Prompt 11.
+Prompt 11. And the graph is now something you can **look at**: §5.A's
+`GET /v1/explore/{slug}` — the last public read the doc names that nothing
+implemented — answers with a node's whole neighborhood in one call. It returns
+three views of *one* adjacency list, sliced in a single pass so they cannot
+disagree with each other: `neighbors` (every edge touching the node, either
+direction), `crossRefs` (the neighbors it reaches by meaning rather than
+structure — `REFERENCES`, `SIMILAR_TO`, `core_concept`, `thematic_link`,
+`related_hadith`) and `timeline` (the dated neighbors, in order). The timeline
+is deliberately **era-aware** rather than globally sorted: a narrator or event
+is dated in CE and a book by its Hijri era label, so each entry carries its
+`era` and the sort only ever orders *within* one — interleaving Hijri and
+Gregorian years by raw number would assert a chronology the data does not
+carry. Only published nodes appear, exactly as everywhere else in §5.A. The
+client has an `/explore/:slug` screen — the neighborhood on `MiniGraph`, the
+timeline and a "See also" list beside it — and `ConnectTab` now hands off to it
+instead of growing a second, thinner copy of the same graph inside a reading
+session. `application/ExploreGraph.ts` and `server/explore.mjs` are held
+together by a parity check over every published slug, client and server
+byte-identical. See `PROMPTS.md`, Prompt 12.
 
 ## Scalability notes
 
