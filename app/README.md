@@ -496,6 +496,13 @@ server/
                      each account's own state through the same store — the
                      learning path (`GET`/`PUT /v1/me/path`) and the per-node
                      reader state (`GET`/`PUT /v1/me/nodes/{id}/state`).
+                     `POST /v1/onboarding/goals` is the *initial* path write —
+                     it stamps `startedAt` itself and answers `409 PATH_EXISTS`
+                     rather than clobber a path the reader has already
+                     travelled — and `GET /v1/me/progress` is the aggregate
+                     journey read: the path's counters plus the account's
+                     bookmarks, discovered vocabulary and recites summed over
+                     its reader states, all persisted through the same store.
                      §5.A's `GET /v1/reading/{slug}` returns the *whole*
                      assembled reading DTO in one call — the same object the
                      client assembles in-process without a backend, so the

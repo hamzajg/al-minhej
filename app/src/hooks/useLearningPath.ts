@@ -102,17 +102,36 @@ export function useLearningPath() {
   const goal: LearningGoal | null =
     LEARNING_GOALS.find((g) => g.id === path.goalId) ?? null;
 
+  /**
+   * Choosing a goal is the *initial* path write, so it goes through
+   * `start` — §5.A's `POST /v1/onboarding/goals` with a backend — rather
+   * than the generic `save` every later mutation uses. The server owns
+   * `startedAt` and refuses to clobber travelled progress; the repository
+   * falls back to `save` where no such refusal exists, so re-onboarding
+   * after a reset behaves exactly as before.
+   */
   const chooseGoal = useCallback(
     (goalId: string, seedNodeId: string) => {
-      mutate(() => ({
-        goalId,
-        seedNodeId,
-        visited: [],
-        startedAt: new Date().toISOString(),
-        onboardingSeen: true,
-      }));
+      if (!accountKey) return;
+      void ensureLoaded().then((stored) => {
+        if (stored === null) return;
+        const next: LearningPath = {
+          goalId,
+          seedNodeId,
+          visited: [],
+          startedAt: new Date().toISOString(),
+          onboardingSeen: true,
+        };
+        apply(next);
+        learningPathRepository
+          .start(accountKey, next)
+          .then((saved) => apply(saved))
+          .catch(() => {
+            /* best-effort — the next mutation retries with fresh state */
+          });
+      });
     },
-    [mutate]
+    [accountKey, apply, ensureLoaded]
   );
 
   const dismissOnboarding = useCallback(() => {

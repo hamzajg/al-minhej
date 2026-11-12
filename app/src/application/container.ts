@@ -1,6 +1,7 @@
 import { MemoryKnowledgeRepository } from "@/infrastructure/memory/MemoryKnowledgeRepository";
 import { MemoryRelationshipRepository } from "@/infrastructure/memory/MemoryRelationshipRepository";
 import { MemoryLearningPathRepository } from "@/infrastructure/memory/MemoryLearningPathRepository";
+import { MemoryProgressRepository } from "@/infrastructure/memory/MemoryProgressRepository";
 import { MemoryReaderStateRepository } from "@/infrastructure/memory/MemoryReaderStateRepository";
 import { MemorySearchRepository } from "@/infrastructure/memory/MemorySearchRepository";
 import { MemoryExploreRepository } from "@/infrastructure/memory/MemoryExploreRepository";
@@ -9,6 +10,7 @@ import { MemoryVoteRepository } from "@/infrastructure/memory/MemoryVoteReposito
 import { HttpKnowledgeRepository } from "@/infrastructure/http/HttpKnowledgeRepository";
 import { HttpRelationshipRepository } from "@/infrastructure/http/HttpRelationshipRepository";
 import { HttpLearningPathRepository } from "@/infrastructure/http/HttpLearningPathRepository";
+import { HttpProgressRepository } from "@/infrastructure/http/HttpProgressRepository";
 import { HttpReaderStateRepository } from "@/infrastructure/http/HttpReaderStateRepository";
 import { HttpAuthRepository } from "@/infrastructure/http/HttpAuthRepository";
 import { HttpReadingExperienceRepository } from "@/infrastructure/http/HttpReadingExperienceRepository";
@@ -21,6 +23,7 @@ import type {
   AuthRepository,
   ExploreRepository,
   LearningPathRepository,
+  ProgressRepository,
   ReaderStateRepository,
   ReadingExperienceRepository,
   RecommendationRepository,
@@ -103,6 +106,17 @@ export const companionApiBaseUrl: string | null = apiBaseUrl ?? null;
 export const learningPathRepository: LearningPathRepository = apiBaseUrl
   ? new HttpLearningPathRepository(apiBaseUrl)
   : new MemoryLearningPathRepository();
+
+/**
+ * §5.A's `GET /v1/me/progress` — the aggregate journey read, one scope wider
+ * than the path: it sums the path *and* every per-node reader state the
+ * account owns. Same swap point again — with an API base URL the server does
+ * the summing; without one `MemoryProgressRepository` sums the same two
+ * localStorage collections locally. `useProgress` is the only caller.
+ */
+export const progressRepository: ProgressRepository = apiBaseUrl
+  ? new HttpProgressRepository(apiBaseUrl)
+  : new MemoryProgressRepository();
 
 /**
  * Per-node reader state — bookmark, discovered vocabulary, recite count, and

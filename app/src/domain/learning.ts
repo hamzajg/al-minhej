@@ -66,6 +66,41 @@ export const EMPTY_LEARNING_PATH: LearningPath = {
 };
 
 /**
+ * §5.A's `GET /v1/me/progress` — the aggregate read over the path and every
+ * per-node reader state the account owns. It is deliberately counters, not
+ * lists: the path's `visited` array and the reader states' contents stay
+ * behind their own endpoints, and this DTO exists so a dashboard can answer
+ * "how far along am I" in one call without pulling either.
+ */
+export interface ProgressDTO {
+  goalId: string | null;
+  seedNodeId: string | null;
+  startedAt: string | null;
+  /** Distinct nodes opened on the path. */
+  visitedCount: number;
+  /** Nodes the reader flagged. */
+  bookmarkedCount: number;
+  /** Distinct vocabulary entries discovered across all reader states. */
+  discoveredCount: number;
+  /** Total recitations across all reader states. */
+  reciteCount: number;
+}
+
+/**
+ * What progress is before the account has done anything — the same "no path
+ * yet" story as `EMPTY_LEARNING_PATH`, one level up.
+ */
+export const EMPTY_PROGRESS: ProgressDTO = {
+  goalId: null,
+  seedNodeId: null,
+  startedAt: null,
+  visitedCount: 0,
+  bookmarkedCount: 0,
+  discoveredCount: 0,
+  reciteCount: 0,
+};
+
+/**
  * The edge type each reason is derived from. Kept as data so a
  * recommendation's `reason` and its `via.type` can be checked against
  * each other, rather than trusted by convention.
