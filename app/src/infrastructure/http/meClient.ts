@@ -1,5 +1,6 @@
 import type { LearningPath, ProgressDTO } from "@/domain/learning";
 import type { ReaderState } from "@/domain/readerState";
+import type { WorkspaceKind, WorkspaceNote } from "@/domain/workspace";
 import { BackendError } from "./httpClient";
 
 /**
@@ -120,4 +121,47 @@ export function saveMyNodeState(
     `/v1/me/nodes/${encodeURIComponent(nodeId)}/state`,
     state
   );
+}
+
+/* ------------------------------------------------------------------ *
+ * The user workspace — `/v1/me/bookmarks`, `/v1/me/notes`,
+ * `/v1/me/reflections`. Same bearer transport as everything above.
+ * ------------------------------------------------------------------ */
+
+export function getMyBookmarks(baseUrl: string, token: string): Promise<string[]> {
+  return meSend<string[]>(baseUrl, token, "GET", "/v1/me/bookmarks");
+}
+
+export function setMyBookmark(
+  baseUrl: string,
+  token: string,
+  nodeId: string,
+  bookmarked: boolean
+): Promise<{ nodeId: string; bookmarked: boolean }> {
+  return meSend(baseUrl, token, "POST", "/v1/me/bookmarks", { nodeId, bookmarked });
+}
+
+const WORKSPACE_PATH: Record<WorkspaceKind, string> = {
+  note: "/v1/me/notes",
+  reflection: "/v1/me/reflections",
+};
+
+export function getMyNotes(
+  baseUrl: string,
+  token: string,
+  kind: WorkspaceKind,
+  nodeId?: string
+): Promise<WorkspaceNote[]> {
+  const query = nodeId === undefined ? "" : `?nodeId=${encodeURIComponent(nodeId)}`;
+  return meSend<WorkspaceNote[]>(baseUrl, token, "GET", `${WORKSPACE_PATH[kind]}${query}`);
+}
+
+export function createMyNote(
+  baseUrl: string,
+  token: string,
+  kind: WorkspaceKind,
+  nodeId: string,
+  text: string
+): Promise<WorkspaceNote> {
+  return meSend<WorkspaceNote>(baseUrl, token, "POST", WORKSPACE_PATH[kind], { nodeId, text });
 }

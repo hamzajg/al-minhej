@@ -503,6 +503,13 @@ server/
                      journey read: the path's counters plus the account's
                      bookmarks, discovered vocabulary and recites summed over
                      its reader states, all persisted through the same store.
+                     The user workspace completes the surface: `GET`/`POST`
+                     `/v1/me/bookmarks` lists and toggles the account's
+                     bookmarked nodes (the flag lives on the reader state —
+                     POST merges, never replaces), and `GET`/`POST`
+                     `/v1/me/notes` + `/v1/me/reflections` are the account's
+                     journal, one §6 `user_notes` collection discriminated by
+                     `kind`, newest first, `?nodeId=` to narrow.
                      §5.A's `GET /v1/reading/{slug}` returns the *whole*
                      assembled reading DTO in one call — the same object the
                      client assembles in-process without a backend, so the

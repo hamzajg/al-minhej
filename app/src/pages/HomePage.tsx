@@ -7,6 +7,7 @@ import { GoalOnboardingModal } from "@/components/onboarding/GoalOnboardingModal
 import { useReadingIndex } from "@/hooks/useReadingIndex";
 import { useLearningPath } from "@/hooks/useLearningPath";
 import { useProgress } from "@/hooks/useProgress";
+import { useBookmarks } from "@/hooks/useBookmarks";
 import { useRecommendation } from "@/hooks/useRecommendation";
 import { useKnowledgeNode } from "@/hooks/useKnowledgeNode";
 import { knowledgeRepository } from "@/application/container";
@@ -85,6 +86,8 @@ export default function HomePage() {
 
   const { path, goal, loaded, currentNodeId, chooseGoal, dismissOnboarding } = useLearningPath();
   const { progress, refresh: refreshProgress } = useProgress();
+  const { bookmarks } = useBookmarks();
+  const [bookmarkNodes, setBookmarkNodes] = useState<KnowledgeNode[]>([]);
   const [goalOpen, setGoalOpen] = useState(false);
 
   useEffect(() => {
@@ -96,6 +99,27 @@ export default function HomePage() {
   useEffect(() => {
     refreshProgress();
   }, [path.visited.length, refreshProgress]);
+
+  // §5.A's `/v1/me/bookmarks` returns ids; the chips need the nodes behind
+  // them, resolved through the same repository the rest of the app reads.
+  useEffect(() => {
+    if (!bookmarks || bookmarks.length === 0) {
+      setBookmarkNodes([]);
+      return;
+    }
+    let live = true;
+    knowledgeRepository
+      .findManyByIds(bookmarks)
+      .then((nodes) => {
+        if (live) setBookmarkNodes(nodes);
+      })
+      .catch(() => {
+        if (live) setBookmarkNodes([]);
+      });
+    return () => {
+      live = false;
+    };
+  }, [bookmarks]);
 
   // Ask "why are you here?" once, as soon as there is something to read —
   // but only after the account's stored path has loaded, or a reader who
@@ -315,6 +339,21 @@ export default function HomePage() {
                           : `${progress.visitedCount} read · ${progress.bookmarkedCount} bookmarked · ${progress.discoveredCount} words discovered`}
                       </div>
                     )}
+
+                  {bookmarkNodes.length > 0 && (
+                    <div className="flex flex-wrap gap-1.5 mb-3">
+                      {bookmarkNodes.slice(0, 6).map((n) => (
+                        <Link
+                          key={n.id}
+                          to={`/reading/${n.slug}`}
+                          className="text-[10.5px] px-2 py-1 rounded-full border border-[var(--color-line)] hover:border-[var(--color-gold)] transition-colors"
+                          style={{ color: "var(--color-sub)" }}
+                        >
+                          {nodeTitle(n, uiLang)}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
 
                   {path.visited.length === 0 && startNode ? (
                     <Link
