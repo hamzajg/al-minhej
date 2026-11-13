@@ -51,6 +51,9 @@
  *   PUT /v1/me/nodes/{id}/state  ← replace it
  *   GET  /v1/me/progress ← the account's aggregate learning progress
  *   POST /v1/onboarding/goals    ← set the initial learning path from a goal
+ *   GET/POST /v1/me/bookmarks    ← the account's bookmarked nodes
+ *   GET/POST /v1/me/notes        ← the account's notes on nodes
+ *   GET/POST /v1/me/reflections  ← the account's reflections on nodes
  *
  * Endpoints — §5.B (admin, sends `x-alminhej-roles`):
  *   GET   /v1/admin/nodes?type={NodeType}&status={NodeStatus}
@@ -114,6 +117,7 @@ const collections = {
   learningPaths: store.collection("learning_paths"),
   readerStates: store.collection("reader_states"),
   votes: store.collection("votes"),
+  userNotes: store.collection("user_notes"),
   searchIndex: store.collection("search_index"),
   aiSessions: store.collection("ai_sessions"),
 };
@@ -1015,6 +1019,131 @@ function handleMeProgress(req, res) {
 }
 
 /* ------------------------------------------------------------------ *
+ * §5.A — the user workspace (`/v1/me/bookmarks`, `/v1/me/notes`,
+ * `/v1/me/reflections`)
+ *
+ * The workspace is the reader's own collection, so every route resolves the
+ * account from the session token exactly like the rest of `/v1/me/*` and a
+ * missing one is a `401`, never an anonymous write.
+ *
+ * Bookmarks deliberately do *not* get their own collection: the flag already
+ * lives on the per-node reader state (`user_progress.bookmarked`), and a
+ * second store for the same bit would be two sources of truth that drift.
+ * `GET` is the aggregate list the workspace UI needs; `POST` is a narrow
+ * write that merges `{bookmarked}` into the existing reader-state document
+ * rather than replacing it — a bookmark toggle must never wipe the
+ * discovered vocabulary or recite count sitting next to it.
+ *
+ * Notes and reflections share §6's `user_notes` collection, discriminated by
+ * `kind`, because they are the same document shape (account, node, text,
+ * timestamps) answering two different questions — "what did I want to
+ * remember" vs "what did this change in me". Two routes, one collection:
+ * the API keeps the spec's paths while the store keeps one writer.
+ * ------------------------------------------------------------------ */
+
+/** §6's `user_notes` — hydrated from the store, appended through it. */
+const USER_NOTES = collections.userNotes.all();
+const saveUserNotes = () => collections.userNotes.replace(USER_NOTES);
+
+const isNoteKind = (kind) => kind === "note" || kind === "reflection";
+const newNoteId = () => `note-${randomBytes(8).toString("hex")}`;
+
+/** The node a workspace document points at must be one that exists. */
+const nodeExists = (nodeId) => NODES.some((n) => n.id === nodeId);
+
+async function handleMeBookmarks(req, res) {
+  const accountId = accountFrom(req);
+  if (!accountId) {
+    return sendError(res, 401, "UNAUTHENTICATED", UNAUTHENTICATED_MESSAGE);
+  }
+
+  if (req.method === "GET") {
+    // The bookmarked subset of the account's reader states — node ids only,
+    // because the flag carries no timestamp of its own to report.
+    const prefix = accountId + "\u0000";
+    return sendJson(
+      res,
+      200,
+      [...READER_STATES.entries()]
+        .filter(([key, state]) => key.startsWith(prefix) && state.bookmarked)
+        .map(([key]) => key.slice(prefix.length))
+    );
+  }
+
+  if (req.method !== "POST") {
+    return sendError(res, 405, "METHOD_NOT_ALLOWED", `${req.method} is not supported on /v1/me/bookmarks`);
+  }
+
+  const body = await readJson(req);
+  if (!isNonEmptyString(body.nodeId)) {
+    return sendError(res, 400, "INVALID_REQUEST", "'nodeId' is required");
+  }
+  if (typeof body.bookmarked !== "boolean") {
+    return sendError(res, 400, "INVALID_REQUEST", "'bookmarked' must be a boolean");
+  }
+  if (!nodeExists(body.nodeId)) {
+    return sendError(res, 404, "NODE_NOT_FOUND", `No node with id '${body.nodeId}'`);
+  }
+
+  // Merge, never replace: the reader state is one document per (account,
+  // node), so writing only the flag would drop everything else on it.
+  const key = readerStateKey(accountId, body.nodeId);
+  const stored = { ...(READER_STATES.get(key) ?? EMPTY_READER_STATE), bookmarked: body.bookmarked };
+  READER_STATES.set(key, stored);
+  saveReaderStates();
+  return sendJson(res, 200, { nodeId: body.nodeId, bookmarked: body.bookmarked });
+}
+
+async function handleWorkspaceNotes(req, res, url, kind) {
+  const accountId = accountFrom(req);
+  if (!accountId) {
+    return sendError(res, 401, "UNAUTHENTICATED", UNAUTHENTICATED_MESSAGE);
+  }
+
+  if (req.method === "GET") {
+    const nodeId = url.searchParams.get("nodeId");
+    const docs = USER_NOTES.filter(
+      (n) =>
+        n.accountId === accountId &&
+        n.kind === kind &&
+        (nodeId === null || n.nodeId === nodeId)
+    );
+    // Newest first — a journal reads backwards from today.
+    docs.sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
+    return sendJson(res, 200, docs);
+  }
+
+  if (req.method !== "POST") {
+    return sendError(res, 405, "METHOD_NOT_ALLOWED", `${req.method} is not supported on this workspace route`);
+  }
+
+  const body = await readJson(req);
+  if (!isNonEmptyString(body.nodeId)) {
+    return sendError(res, 400, "INVALID_REQUEST", "'nodeId' is required");
+  }
+  if (!isNonEmptyString(body.text)) {
+    return sendError(res, 400, "INVALID_REQUEST", "'text' is required");
+  }
+  if (!nodeExists(body.nodeId)) {
+    return sendError(res, 404, "NODE_NOT_FOUND", `No node with id '${body.nodeId}'`);
+  }
+
+  const now = new Date().toISOString();
+  const doc = {
+    id: newNoteId(),
+    accountId,
+    nodeId: body.nodeId,
+    kind,
+    text: body.text,
+    createdAt: now,
+    updatedAt: now,
+  };
+  USER_NOTES.push(doc);
+  saveUserNotes();
+  return sendJson(res, 201, doc);
+}
+
+/* ------------------------------------------------------------------ *
  * §5.B — Content Management API
  * ------------------------------------------------------------------ */
 
@@ -1276,6 +1405,16 @@ async function dispatch(req, res, url) {
   // `/v1/onboarding/*` accepts POST, so it precedes the GET-only guard too.
   if (url.pathname === "/v1/onboarding/goals") {
     return handleOnboardingGoals(req, res);
+  }
+  // The user workspace is GET *and* POST, so it precedes the guard as well.
+  if (url.pathname === "/v1/me/bookmarks") {
+    return handleMeBookmarks(req, res);
+  }
+  if (url.pathname === "/v1/me/notes") {
+    return handleWorkspaceNotes(req, res, url, "note");
+  }
+  if (url.pathname === "/v1/me/reflections") {
+    return handleWorkspaceNotes(req, res, url, "reflection");
   }
 
   // Votes accept POST (and GET with an optional session), so the route is

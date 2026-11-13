@@ -7,6 +7,7 @@ import { MemorySearchRepository } from "@/infrastructure/memory/MemorySearchRepo
 import { MemoryExploreRepository } from "@/infrastructure/memory/MemoryExploreRepository";
 import { MemoryRecommendationRepository } from "@/infrastructure/memory/MemoryRecommendationRepository";
 import { MemoryVoteRepository } from "@/infrastructure/memory/MemoryVoteRepository";
+import { MemoryWorkspaceRepository } from "@/infrastructure/memory/MemoryWorkspaceRepository";
 import { HttpKnowledgeRepository } from "@/infrastructure/http/HttpKnowledgeRepository";
 import { HttpRelationshipRepository } from "@/infrastructure/http/HttpRelationshipRepository";
 import { HttpLearningPathRepository } from "@/infrastructure/http/HttpLearningPathRepository";
@@ -18,6 +19,7 @@ import { HttpSearchRepository } from "@/infrastructure/http/HttpSearchRepository
 import { HttpExploreRepository } from "@/infrastructure/http/HttpExploreRepository";
 import { HttpRecommendationRepository } from "@/infrastructure/http/HttpRecommendationRepository";
 import { HttpVoteRepository } from "@/infrastructure/http/HttpVoteRepository";
+import { HttpWorkspaceRepository } from "@/infrastructure/http/HttpWorkspaceRepository";
 import { AssembleReadingExperience } from "./AssembleReadingExperience";
 import type {
   AuthRepository,
@@ -29,6 +31,7 @@ import type {
   RecommendationRepository,
   SearchRepository,
   VoteRepository,
+  WorkspaceRepository,
 } from "@/domain/repositories";
 
 /**
@@ -174,6 +177,18 @@ export const exploreRepository: ExploreRepository = apiBaseUrl
 export const voteRepository: VoteRepository = apiBaseUrl
   ? new HttpVoteRepository(apiBaseUrl)
   : new MemoryVoteRepository();
+
+/**
+ * §5.A's user workspace — `/v1/me/bookmarks`, `/v1/me/notes` and
+ * `/v1/me/reflections`. Same swap point as the other per-account state: with
+ * an API base URL the workspace lives on the server (§6's `user_notes`, plus
+ * the bookmark flag on `user_progress`); without one the memory provider
+ * keeps the same two localStorage homes. `useBookmarks` and
+ * `useWorkspaceJournal` are the only callers.
+ */
+export const workspaceRepository: WorkspaceRepository = apiBaseUrl
+  ? new HttpWorkspaceRepository(apiBaseUrl)
+  : new MemoryWorkspaceRepository();
 
 export const authRepository: AuthRepository | null = apiBaseUrl
   ? new HttpAuthRepository(apiBaseUrl)

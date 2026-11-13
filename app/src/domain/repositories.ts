@@ -4,6 +4,7 @@ import type { LearningPath, ProgressDTO, RecommendationReason } from "./learning
 import type { ReaderState } from "./readerState";
 import type { AuthSession, AuthUser } from "./auth";
 import type { VoteTally } from "./votes";
+import type { WorkspaceKind, WorkspaceNote } from "./workspace";
 
 /**
  * Storage-agnostic contracts. Application services depend on these
@@ -178,4 +179,34 @@ export interface AuthRepository {
 export interface VoteRepository {
   get(nodeId: string, accountKey: string | null): Promise<VoteTally | null>;
   cast(nodeId: string, accountKey: string, idempotencyKey: string): Promise<VoteTally | null>;
+}
+
+/**
+ * §5.A's user workspace — `/v1/me/bookmarks`, `/v1/me/notes` and
+ * `/v1/me/reflections`. The reader's own collection, so it writes like the
+ * path and reader state do: per `accountKey`, never anonymous.
+ *
+ * Bookmarks are the aggregate *list* view over the `bookmarked` flag the
+ * per-node reader state already carries — `setBookmark` merges into that
+ * document rather than writing a parallel collection, which is why it takes
+ * the flag rather than a whole `ReaderState`.
+ */
+export interface WorkspaceRepository {
+  /** The account's bookmarked node ids. */
+  listBookmarks(accountKey: string): Promise<string[]>;
+  /** Set or clear one node's bookmark; everything else on the reader state is preserved. */
+  setBookmark(accountKey: string, nodeId: string, bookmarked: boolean): Promise<void>;
+  /** The account's journal entries of one kind, newest first; `nodeId` narrows to one node. */
+  listNotes(
+    accountKey: string,
+    kind: WorkspaceKind,
+    nodeId?: string
+  ): Promise<WorkspaceNote[]>;
+  /** Append a journal entry; the server stamps id and timestamps. */
+  createNote(
+    accountKey: string,
+    kind: WorkspaceKind,
+    nodeId: string,
+    text: string
+  ): Promise<WorkspaceNote>;
 }
