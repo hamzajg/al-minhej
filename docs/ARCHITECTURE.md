@@ -17,6 +17,8 @@ al-minhej/
 │   │   ├── data/             data layer
 │   │   └── lib/              utilities
 │   ├── server/api-server.mjs dev API server
+│   ├── server/companion.mjs grounded companion: single-shot + agent
+│   │                        tool loop (`deep: true`), Anthropic-only
 │   ├── mockdata/             mock knowledge-graph data
 │   └── AlMinhej_Backend_Architecture.md
 ├── platform/webapp/          SECONDARY — elearning/streaming client
@@ -47,6 +49,14 @@ there is no fixed course/lesson tree. Normative definitions live in
 No production backend in repo. `app/server/api-server.mjs` + `mockdata/`
 are the dev contract — shapes mirror the knowledge model but are not
 authoritative. Real backend per `app/AlMinhej_Backend_Architecture.md`.
+
+The dev server does host one real outbound integration: the grounded
+study companion (`POST /v1/nodes/{id}/companion/ask`, needs
+`ANTHROPIC_API_KEY`). Default is single-shot over the node's bounded
+context; `"deep": true` runs a bounded tool-use loop whose read-only
+tools (`search_knowledge`, `read_node_context`, `explore_node`) retrieve
+published graph material via the same server modules as the REST routes.
+All calls are logged to `ai_sessions` with a `toolTrace` (ADR 0002).
 
 ## Two-client strategy
 

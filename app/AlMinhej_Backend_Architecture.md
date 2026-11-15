@@ -463,6 +463,28 @@ Every `POST /v1/nodes/{id}/companion/ask` call is logged to `ai_sessions`
 scholarly reviewer to spot-check whether the companion is staying properly
 grounded, which matters more here than in a generic chatbot product.
 
+### 7.A Companion v2 — retrieval tools (opt-in `deep: true`)
+
+The single-shot path above can only see the target node's bounded context.
+Questions that span the graph ("what does this narrator say elsewhere?")
+need material from other nodes. With `"deep": true` in the request body,
+`askClaudeAgent` (in `server/companion.mjs`) runs a bounded tool-calling
+loop (max 4 iterations) against Anthropic's tool-use API. The model gets
+three read-only retrieval tools — `search_knowledge`, `read_node_context`,
+`explore_node` — implemented in `companionRetrieve` over the same server
+modules the REST routes use (`searchGraph`, `buildKnowledgeContext`,
+`assembleExplore`). Only published nodes are reachable, so tools cannot
+leak drafts.
+
+Grounding discipline is unchanged: tool results are *additional grounding*
+appended to the conversation, the agent system prompt keeps the same hard
+rules (answer only from supplied material, decline what it can't support,
+self-identify as AI, no fatwa), and every tool call is recorded in the
+`ai_sessions` entry's `toolTrace` for the same reviewer spot-checks. Tool
+failures return `is_error` results to the model rather than failing the
+request. Without `deep`, the route behaves exactly as before — existing
+clients are unaffected.
+
 ---
 
 ## 8. Migration: the shipped MVP isn't wasted work
