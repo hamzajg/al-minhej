@@ -81,7 +81,7 @@ import { assembleReadingExperience } from "./readingExperience.mjs";
 import { buildSearchIndex, searchGraph } from "./search.mjs";
 import { assembleExplore } from "./explore.mjs";
 import { recommendNext } from "./recommendations.mjs";
-import { askClaude, CompanionUpstreamError, DEFAULT_MODEL } from "./companion.mjs";
+import { askClaude, askClaudeAgent, CompanionUpstreamError, DEFAULT_MODEL } from "./companion.mjs";
 import { createStore } from "./store.mjs";
 
 const dataDir = join(dirname(fileURLToPath(import.meta.url)), "..", "src", "infrastructure", "memory", "data");
@@ -400,6 +400,43 @@ const COMPANION_SUFFIX = "/companion/ask";
 const isCompanionRoute = (pathname) =>
   pathname.startsWith(COMPANION_PREFIX) && pathname.endsWith(COMPANION_SUFFIX);
 
+/**
+ * Companion v2's retrieval tools — read-only views over the same server
+ * modules the REST routes use. Only *published* nodes qualify (searchGraph
+ * indexes published nodes; buildKnowledgeContext/assembleExplore filter on
+ * status), so a tool can never leak a draft.
+ */
+function companionRetrieve(name, input = {}) {
+  if (name === "search_knowledge") {
+    const query = typeof input.query === "string" ? input.query.trim() : "";
+    if (!query) return { results: [] };
+    return {
+      results: searchGraph(query, SEARCH_INDEX, NODES)
+        .slice(0, 5)
+        .map((r) => ({
+          id: r.node.id,
+          slug: r.node.slug,
+          title: r.node.title,
+          matchedIn: r.matchedIn,
+          snippet: r.snippet,
+        })),
+    };
+  }
+  if (name === "read_node_context") {
+    const nodeId = typeof input.nodeId === "string" ? input.nodeId : "";
+    const context = buildKnowledgeContext(nodeId, NODES, RELATIONSHIPS);
+    if (!context) return { error: `No published node with id '${nodeId}'` };
+    return context;
+  }
+  if (name === "explore_node") {
+    const slug = typeof input.slug === "string" ? input.slug : "";
+    const explore = assembleExplore(slug, NODES, RELATIONSHIPS);
+    if (!explore) return { error: `No published node with slug '${slug}'` };
+    return explore;
+  }
+  throw new Error(`Unknown companion tool '${name}'`);
+}
+
 async function handleCompanion(req, res, url) {
   const id = decodeURIComponent(
     url.pathname.slice(COMPANION_PREFIX.length, url.pathname.length - COMPANION_SUFFIX.length)
@@ -433,23 +470,45 @@ async function handleCompanion(req, res, url) {
     );
   }
 
+  // `deep: true` opts into companion v2: the model may retrieve additional
+  // graph material through read-only tools before answering. Default stays
+  // the single-shot path so existing clients are unaffected.
+  const deep = body.deep === true;
+
   try {
-    const { answer, model } = await askClaude({
-      context,
-      question: body.question.trim(),
-      lang,
-      apiKey: ANTHROPIC_API_KEY,
-      model: COMPANION_MODEL,
-    });
+    const question = body.question.trim();
+    const { answer, model, toolTrace } = deep
+      ? await askClaudeAgent({
+          context,
+          question,
+          lang,
+          apiKey: ANTHROPIC_API_KEY,
+          model: COMPANION_MODEL,
+          retrieve: companionRetrieve,
+        })
+      : { ...(await askClaude({
+          context,
+          question,
+          lang,
+          apiKey: ANTHROPIC_API_KEY,
+          model: COMPANION_MODEL,
+        })), toolTrace: undefined };
     AI_SESSIONS.push({
       nodeId: id,
-      question: body.question.trim(),
+      question,
       lang,
       model,
+      deep,
+      ...(toolTrace ? { toolTrace } : {}),
       at: new Date().toISOString(),
     });
     collections.aiSessions.replace(AI_SESSIONS);
-    return sendJson(res, 200, { answer, model, grounded: true });
+    return sendJson(res, 200, {
+      answer,
+      model,
+      grounded: true,
+      ...(deep ? { deep: true, toolTrace: toolTrace ?? [] } : {}),
+    });
   } catch (cause) {
     if (cause instanceof CompanionUpstreamError) {
       return sendError(res, 502, "COMPANION_UPSTREAM_ERROR", cause.message);
